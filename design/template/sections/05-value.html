@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SolidGraph · Section · Value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../design-system/tokens.css" />
+<link rel="stylesheet" href="../design-system/base.css" />
+<link rel="stylesheet" href="../design-system/animations.css" />
+<link rel="stylesheet" href="../components/eyebrow.css" />
+<link rel="stylesheet" href="../components/pillar.css" />
+<style>
+  /* Section layout — value proposition + pillar grid */
+  .value { padding: 130px 0 110px; position: relative; overflow: hidden; }
+  .value-head { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: end; margin-bottom: 70px; }
+  .value-head h2 { margin-top: 20px; }
+  .value-head .lead { color: var(--muted); font-size: 16px; line-height: 1.8; }
+  .value-head .lead .strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 14px; font-size: 18px; }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 980px) { .value-head { grid-template-columns: 1fr; gap: 26px; } .pillars { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .pillars { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+</defs></svg>
+
+<!-- ===================== VALUE PROPOSITION ===================== -->
+<section class="value" data-section="value" data-screen-label="Value">
+  <div class="container">
+    <div class="value-head">
+      <div data-reveal="left">
+        <span class="eyebrow">Why SolidGraph</span>
+        <h2>We Build It From Scratch.<br/><span class="grad-text">You Own It Forever.</span></h2>
+      </div>
+      <div class="lead" data-reveal="right" style="--d:120ms">
+        <span class="strong">A custom website built for your specific business — not a template dressed up to look like one.</span>
+        At SolidGraph Solutions, we write every line of code for your business specifically. No page builders, no generic templates, no drag-and-drop shortcuts. The result is a website that loads faster, looks sharper, and actually converts visitors into customers — and it belongs 100% to you from day one.
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar" data-reveal style="--d:0ms"><span class="num">01</span><div class="ic"><svg width="22" height="22"><use href="#i-code"/></svg></div><h3>Built From Scratch</h3><p>Every line of code written for your business. No Wix, no templates, no shortcuts.</p></div>
+      <div class="pillar" data-reveal style="--d:90ms"><span class="num">02</span><div class="ic"><svg width="22" height="22"><use href="#i-zap"/></svg></div><h3>Fast Delivery</h3><p>Most custom websites are ready in 2 weeks. Not months.</p></div>
+      <div class="pillar" data-reveal style="--d:180ms"><span class="num">03</span><div class="ic"><svg width="22" height="22"><use href="#i-dollar"/></svg></div><h3>Clear, Honest Pricing</h3><p>You know exactly what you're paying for before we start. No surprises.</p></div>
+      <div class="pillar" data-reveal style="--d:270ms"><span class="num">04</span><div class="ic"><svg width="22" height="22"><use href="#i-shield"/></svg></div><h3>You Own Everything</h3><p>Your domain, your code, your content. No vendor lock-in, ever.</p></div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Component · Section head (.section-head)
+   Centered heading block: eyebrow + h2 + lead paragraph. Pair with the
+   Eyebrow component (components/eyebrow.css).
+   Depends on: tokens.css, eyebrow.css
+   ----------------------------------------------------------------------------
+   <div class="section-head">
+     <span class="eyebrow centered">Pricing</span>
+     <h2>Simple Plans. No Hidden Fees.</h2>
+     <p>Pick the plan that fits where your business is right now.</p>
+   </div>
+   ========================================================================== */
+.section-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
+.section-head h2 { margin: 18px 0 16px; }
+.section-head p { color: var(--muted); font-size: 17px; }

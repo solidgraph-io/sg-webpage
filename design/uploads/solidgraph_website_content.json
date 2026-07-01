@@ -1,0 +1,1260 @@
+{
+  "meta": {
+    "content_type": "website-page",
+    "slug": "home",
+    "strapi_version": "5.x",
+    "i18n_enabled": true,
+    "locales": ["en", "es"],
+    "last_updated": "2026-04-20",
+    "company": "SolidGraph Solutions LLC",
+    "markets": ["Charlotte, NC", "Springfield-Branson, MO"]
+  },
+  "en": {
+    "seo": {
+      "meta_title": "SolidGraph Solutions — Custom Website Development for Local Businesses | Charlotte & Springfield",
+      "meta_description": "We build custom websites from scratch for local businesses in Charlotte NC and Springfield MO. No templates. No page builders. A real website that brings in more customers. Starting at $1,300.",
+      "og_title": "SolidGraph Solutions — Custom-Built Websites for Local Businesses",
+      "og_description": "More customers find you online. More calls. More walk-ins. We build custom websites from scratch — no templates, no shortcuts.",
+      "keywords": [
+        "custom website development Charlotte NC",
+        "web developer Charlotte NC small business",
+        "custom website Springfield MO",
+        "website developer Springfield Missouri",
+        "custom website development small business",
+        "professional website Charlotte NC",
+        "business website developer Charlotte",
+        "restaurant website Charlotte NC",
+        "contractor website Springfield MO"
+      ]
+    },
+    "nav": {
+      "logo_text": "SolidGraph Solutions",
+      "links": [
+        {
+          "label": "How It Works",
+          "anchor": "#how-it-works"
+        },
+        {
+          "label": "Our Plans",
+          "anchor": "#plans"
+        },
+        {
+          "label": "Our Work",
+          "anchor": "#portfolio"
+        },
+        {
+          "label": "About Us",
+          "anchor": "#about"
+        },
+        {
+          "label": "Contact",
+          "anchor": "#contact"
+        }
+      ],
+      "cta": {
+        "label": "Get a Free Quote",
+        "anchor": "#contact",
+        "style": "primary"
+      }
+    },
+    "sections": [
+      {
+        "id": "hero",
+        "type": "hero",
+        "order": 1,
+        "headline": "Your Business Deserves a Website Built From Scratch — Not a Template",
+        "subheadline": "We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door.",
+        "body": null,
+        "cta_primary": {
+          "label": "Get a Free Quote",
+          "anchor": "#contact"
+        },
+        "cta_secondary": {
+          "label": "See Our Plans",
+          "anchor": "#plans"
+        },
+        "trust_bar": {
+          "label": "Trusted by local businesses in",
+          "locations": ["Charlotte, NC", "Springfield-Branson, MO"]
+        },
+        "social_proof_snippet": "Custom-built from scratch · Starting at ,300 · Delivered in 2 weeks"
+      },
+      {
+        "id": "pain-points",
+        "type": "problem-statement",
+        "order": 2,
+        "headline": "Sound Familiar?",
+        "subheadline": "Most local business owners come to us after running into the same walls.",
+        "items": [
+          {
+            "icon": "search",
+            "text": "\"My business doesn't show up when people search online — even though I've been here for years.\""
+          },
+          {
+            "icon": "phone-off",
+            "text": "\"I'm losing customers to competitors who just have a better-looking, faster website.\""
+          },
+          {
+            "icon": "layout-template",
+            "text": "\"I tried building something myself on Wix, but it looks cheap and I can't get it to do what I need.\""
+          },
+          {
+            "icon": "dollar",
+            "text": "\"I've been quoted thousands by agencies — but I have no idea what I'd actually be paying for.\""
+          }
+        ],
+        "transition": "You're not alone — and a custom-built website is closer and more affordable than you think."
+      },
+      {
+        "id": "value-proposition",
+        "type": "solution-statement",
+        "order": 3,
+        "headline": "We Build It From Scratch. You Own It Forever.",
+        "subheadline": "A custom website built for your specific business — not a template dressed up to look like one.",
+        "body": "At SolidGraph Solutions, we write every line of code for your business specifically. No page builders, no generic templates, no drag-and-drop shortcuts. The result is a website that loads faster, looks sharper, and actually converts visitors into customers — and it belongs 100% to you from day one.",
+        "pillars": [
+          {
+            "icon": "code-2",
+            "title": "Built From Scratch",
+            "description": "Every line of code written for your business. No Wix, no templates, no shortcuts."
+          },
+          {
+            "icon": "zap",
+            "title": "Fast Delivery",
+            "description": "Most custom websites are ready in 2 weeks. Not months."
+          },
+          {
+            "icon": "dollar-sign",
+            "title": "Clear, Honest Pricing",
+            "description": "You know exactly what you're paying for before we start. No surprises."
+          },
+          {
+            "icon": "shield",
+            "title": "You Own Everything",
+            "description": "Your domain, your code, your content. No vendor lock-in, ever."
+          }
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "type": "process",
+        "order": 4,
+        "headline": "How It Works",
+        "subheadline": "From first conversation to live website — a simple, 4-step process.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "We Talk",
+            "description": "You tell us about your business, your customers, and what you need. No forms, no pressure — just a real conversation. Free, no commitment.",
+            "duration": "30 minutes"
+          },
+          {
+            "number": "02",
+            "title": "We Plan",
+            "description": "We put together a clear proposal: what your website will include, what it will cost, and when it will be ready. You approve it before we touch anything.",
+            "duration": "1–2 days"
+          },
+          {
+            "number": "03",
+            "title": "We Build",
+            "description": "Our team custom-builds your website from scratch. You'll see a preview before it goes live and have rounds of feedback to make sure everything looks, feels, and works exactly right.",
+            "duration": "10–25 business days"
+          },
+          {
+            "number": "04",
+            "title": "You Launch",
+            "description": "Your website goes live. We show you how to update it yourself, and we're here if you ever need help. It's your site — fully in your hands.",
+            "duration": "Launch day"
+          }
+        ]
+      },
+      {
+        "id": "plans",
+        "type": "pricing",
+        "order": 5,
+        "headline": "Simple Plans. No Hidden Fees.",
+        "subheadline": "Pick the plan that fits where your business is right now. You can always grow into a bigger one.",
+        "note": "Every plan is custom-built from scratch. No templates, no page builders, no Wix. You own 100% of the code.",
+        "plans": [
+          {
+            "id": "nano",
+            "name": "Nano",
+            "badge": null,
+            "tagline": "Your first custom-built online presence",
+            "price": "$1,300",
+            "price_note": "one-time payment",
+            "delivery": "Ready in 10–15 business days",
+            "best_for": "Freelancers, home services, solo professionals, new businesses ready for a real website",
+            "includes": [
+              "Custom-built one-page website with up to 5 sections",
+              "Home, About, Services, Gallery, and Contact",
+              "Contact form (name, email, message)",
+              "Your own content management panel — update text and photos yourself",
+              "Mobile-friendly design",
+              "Basic Google visibility setup (SEO)",
+              "Cloudflare security and speed protection",
+              "2 rounds of feedback before launch",
+              "15-minute video tutorial to manage your site"
+            ],
+            "not_includes": ["Online store or payments", "Blog", "Booking system"],
+            "cta": {
+              "label": "Get Started",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "micro",
+            "name": "Micro",
+            "badge": "Most Popular",
+            "tagline": "More pages, more tools, more customers — all custom built",
+            "price": "$2,800",
+            "price_note": "one-time payment",
+            "delivery": "Ready in 18–25 business days",
+            "best_for": "Restaurants, salons, retail shops, service businesses that need more than a single page",
+            "includes": [
+              "Up to 10 custom-built pages with their own web addresses",
+              "Blog — publish news, tips, and updates yourself",
+              "Google Maps location on your site",
+              "Live chat widget so visitors can message you instantly",
+              "Google Analytics — see how many people visit your site",
+              "Up to 2 custom contact forms",
+              "Advanced Google visibility setup",
+              "3 rounds of feedback before launch",
+              "Everything in Nano"
+            ],
+            "not_includes": ["Online store or payments", "Booking system"],
+            "cta": {
+              "label": "Get Started",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "pro",
+            "name": "Pro",
+            "badge": null,
+            "tagline": "Full custom development — sell online, take bookings, grow faster",
+            "price": "$5,500",
+            "price_note": "one-time payment",
+            "delivery": "Ready in 35–50 business days",
+            "best_for": "Retailers, service businesses that take appointments, anyone ready to sell online with a real custom store",
+            "includes": [
+              "Unlimited pages",
+              "Online store — sell up to 100 products",
+              "Secure online payments via Stripe (credit and debit cards)",
+              "Booking and appointment system",
+              "Email list signup connected to Mailchimp",
+              "Full custom design built from scratch",
+              "Conversion tracking — know which pages bring you customers",
+              "Performance optimization — loads fast on any device",
+              "4 rounds of feedback before launch",
+              "Everything in Micro"
+            ],
+            "not_includes": ["More than 100 products (available as add-on at $2/product)"],
+            "cta": {
+              "label": "Get Started",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "enterprise",
+            "name": "Enterprise",
+            "badge": null,
+            "tagline": "Complex custom projects, built exactly to your specs",
+            "price": "Custom quote",
+            "price_note": "after a free discovery call",
+            "delivery": "Timeline defined in proposal",
+            "best_for": "Businesses with specific integrations, large catalogs, or complex requirements that go beyond standard plans",
+            "includes": [
+              "Everything in Pro",
+              "Unlimited products",
+              "Multiple languages (English + Spanish)",
+              "Custom system integrations",
+              "Advanced business automation",
+              "Dedicated account manager",
+              "Priority support and SLA"
+            ],
+            "not_includes": [],
+            "cta": {
+              "label": "Let's Talk",
+              "anchor": "#contact"
+            }
+          }
+        ],
+        "hosting_section": {
+          "headline": "Keep Your Site Running Smoothly",
+          "subheadline": "After launch, our hosting plans take care of everything — so you never have to worry about your website going down.",
+          "plans": [
+            {
+              "id": "hosting-nano",
+              "name": "Basic Hosting",
+              "price": "$35/mo",
+              "description": "Hosting, security, and peace of mind. We keep your site online and protected.",
+              "includes": [
+                "High-quality hosting",
+                "Cloudflare protection",
+                "Weekly backups",
+                "Uptime monitoring",
+                "Email support (48h response)"
+              ]
+            },
+            {
+              "id": "hosting-micro",
+              "name": "Active Hosting",
+              "price": "$65/mo",
+              "description": "Everything in Basic, plus we handle small content updates for you.",
+              "includes": [
+                "Daily backups",
+                "2 content updates per month",
+                "Email support (24h response)",
+                "Monthly analytics report"
+              ]
+            },
+            {
+              "id": "hosting-pro",
+              "name": "Managed Hosting",
+              "price": "$120/mo",
+              "description": "Hands-on support, regular updates, and a monthly check-in call.",
+              "includes": [
+                "5 content updates per month",
+                "1 small feature change per month",
+                "Chat + email support (12h response)",
+                "Monthly 30-min review call",
+                "Performance monitoring"
+              ]
+            },
+            {
+              "id": "hosting-enterprise",
+              "name": "Premium Hosting",
+              "price": "From $250/mo",
+              "description": "Full management, priority support, and a dedicated account manager.",
+              "includes": [
+                "Unlimited content updates",
+                "Up to 4h development/month",
+                "Priority support (4h response)",
+                "Monthly SEO report",
+                "Dedicated account manager"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "social-proof",
+        "type": "testimonials",
+        "order": 6,
+        "headline": "What Local Business Owners Are Saying",
+        "subheadline": "Real results for real businesses.",
+        "note_internal": "PLACEHOLDER — replace with real testimonials before launch",
+        "testimonials": [
+          {
+            "id": "t1",
+            "quote": "I had no idea getting a professional website could be this straightforward. They explained everything in plain English and delivered exactly what they promised.",
+            "author": "Maria G.",
+            "business": "Hair salon owner, Charlotte NC",
+            "result": "Placeholder testimonial — replace before launch"
+          },
+          {
+            "id": "t2",
+            "quote": "Within a month of launching our new site, we started getting calls from people who found us on Google. That never happened before.",
+            "author": "James R.",
+            "business": "HVAC contractor, Springfield MO",
+            "result": "Placeholder testimonial — replace before launch"
+          },
+          {
+            "id": "t3",
+            "quote": "The pricing was clear from day one. No surprises, no upselling. Just a great website at a price that made sense for my budget.",
+            "author": "Sandra L.",
+            "business": "Catering business, Charlotte NC",
+            "result": "Placeholder testimonial — replace before launch"
+          }
+        ],
+        "stats": [
+          {
+            "value": "2 weeks",
+            "label": "Average delivery time"
+          },
+          {
+            "value": "$0",
+            "label": "Hidden fees"
+          },
+          {
+            "value": "100%",
+            "label": "Satisfaction on delivery"
+          }
+        ]
+      },
+      {
+        "id": "portfolio",
+        "type": "portfolio",
+        "order": 7,
+        "headline": "Our Work",
+        "subheadline": "Every website we build is different — because every business is different.",
+        "note_internal": "PLACEHOLDER — add real project screenshots before launch",
+        "items": [
+          {
+            "id": "p1",
+            "title": "Local HVAC Company",
+            "category": "Service Business",
+            "plan_used": "Micro",
+            "location": "Springfield, MO",
+            "description": "A clean, fast website that brings in local leads through Google search.",
+            "image_placeholder": "project-hvac.jpg"
+          },
+          {
+            "id": "p2",
+            "title": "Hair & Beauty Salon",
+            "category": "Retail & Beauty",
+            "plan_used": "Nano",
+            "location": "Charlotte, NC",
+            "description": "A stylish one-page site with online booking link and gallery.",
+            "image_placeholder": "project-salon.jpg"
+          },
+          {
+            "id": "p3",
+            "title": "Family Restaurant",
+            "category": "Food & Beverage",
+            "plan_used": "Micro",
+            "location": "Charlotte, NC",
+            "description": "Menu, location map, and Google Reviews integrated in one cohesive site.",
+            "image_placeholder": "project-restaurant.jpg"
+          }
+        ],
+        "cta": {
+          "label": "Get a Website Like This",
+          "anchor": "#contact"
+        }
+      },
+      {
+        "id": "about",
+        "type": "about",
+        "order": 8,
+        "headline": "We're Developers Who Build From Scratch — Not a Template Agency",
+        "subheadline": "SolidGraph Solutions LLC — custom website development for local businesses in Charlotte and Springfield.",
+        "body_paragraphs": [
+          "We started SolidGraph Solutions because we kept seeing the same problem: local business owners were either stuck with a cheap template site that didn't represent them, or they'd been quoted outrageous prices by agencies that just reskinned the same WordPress theme for every client.",
+          "We build differently. Every website we create is written from scratch — custom code, custom design, built specifically for your business. No templates, no drag-and-drop builders, no shortcuts. The result is a faster, sharper, more professional website that you own completely.",
+          "We're a lean, senior-level team — which means lower costs for you and faster delivery than traditional agencies. We use modern tools and AI-assisted development to build high-quality custom websites at a fraction of what large agencies charge, without compromising on quality or craftsmanship."
+        ],
+        "differentiators": [
+          {
+            "icon": "code-2",
+            "title": "Real Custom Development",
+            "description": "Every website written from scratch. No templates, no page builders. Your site is yours alone — not a variation of something we've sold to 50 other businesses."
+          },
+          {
+            "icon": "shield",
+            "title": "You Own Everything",
+            "description": "Your domain, your code, your content. We hand it all over to you at the end — no vendor lock-in, no strings attached."
+          },
+          {
+            "icon": "trending-up",
+            "title": "Built to Grow With You",
+            "description": "Start with a Nano site today. When your business is ready, your custom website grows with you — no rebuilding from zero."
+          }
+        ],
+        "locations": {
+          "headline": "Proudly Serving",
+          "cities": [
+            {
+              "name": "Charlotte, NC",
+              "description": "The Queen City's local businesses deserve a web presence that matches their ambition."
+            },
+            {
+              "name": "Springfield-Branson, MO",
+              "description": "From the Ozarks to downtown — we help local businesses get found online."
+            }
+          ]
+        }
+      },
+      {
+        "id": "faq",
+        "type": "faq",
+        "order": 9,
+        "headline": "Questions We Hear All the Time",
+        "subheadline": "No jargon. Just honest answers.",
+        "items": [
+          {
+            "question": "Do I need any technical knowledge to manage my website?",
+            "answer": "Not at all. Even though we build every website from scratch with custom code, we set up a simple dashboard where you can change your text and photos with a few clicks — no coding needed. It's like editing a Word document. We also send you a short video tutorial walking you through it."
+          },
+          {
+            "question": "What if I already have a website? Can you redesign it?",
+            "answer": "Absolutely. Many of our clients come to us with an outdated site they're not happy with. We'll review what you have and give you an honest assessment of whether a redesign or a fresh start is the better move for you."
+          },
+          {
+            "question": "Do I need to buy a domain name?",
+            "answer": "Yes — and it's very affordable. A domain name (like www.yourbusiness.com) typically costs $12–15 per year from providers like GoDaddy or Namecheap. We'll guide you through the process of buying one if you don't have it already."
+          },
+          {
+            "question": "How long does it take to build my website?",
+            "answer": "Most Nano websites are ready in 10–15 business days after we receive your content (text, photos, and logo). The timeline starts once you've shared your materials with us — the faster you send them, the faster we deliver."
+          },
+          {
+            "question": "What happens after my website launches?",
+            "answer": "Your website is fully yours to manage. If you'd like us to keep it running, secure, and updated, we offer monthly hosting plans starting at $35/month. There's no obligation — you can manage it yourself or move it to any other host."
+          },
+          {
+            "question": "Can I sell products on my website?",
+            "answer": "Yes — with our Pro plan. It includes a fully custom-built online store where you can sell up to 100 products and accept card payments securely via Stripe. Unlike template-based stores, yours is built to match your brand exactly. Our Nano and Micro plans are designed for businesses that don't need online sales yet."
+          },
+          {
+            "question": "Is my website protected from hackers?",
+            "answer": "Yes. Every custom website we build is protected by Cloudflare, the same security layer used by millions of businesses worldwide. Because we build from scratch, we also avoid the security vulnerabilities common in generic WordPress themes and page builders. Your site stays online and protected."
+          },
+          {
+            "question": "What if I need something that's not in any of your plans?",
+            "answer": "Just ask. Our Enterprise plan covers custom projects, and we're always happy to talk through what you need before you commit to anything. The initial conversation is always free."
+          }
+        ]
+      },
+      {
+        "id": "contact",
+        "type": "lead-capture",
+        "order": 10,
+        "headline": "Let's Talk About Your Website",
+        "subheadline": "Tell us a little about your business and we'll get back to you within 24 hours — no pressure, no sales pitch.",
+        "body": "Whether you're starting from scratch, stuck with a template you hate, or not happy with what you have, we'd love to hear about your business. Every website we build is custom — and so is every quote. The first conversation is completely free.",
+        "form": {
+          "fields": [
+            {
+              "name": "first_name",
+              "label": "First Name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "last_name",
+              "label": "Last Name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "email",
+              "label": "Email Address",
+              "type": "email",
+              "required": true
+            },
+            {
+              "name": "phone",
+              "label": "Phone Number",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "name": "business_name",
+              "label": "Business Name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "city",
+              "label": "City",
+              "type": "select",
+              "required": true,
+              "options": ["Charlotte, NC", "Springfield, MO", "Branson, MO", "Other"]
+            },
+            {
+              "name": "plan_interest",
+              "label": "Which plan are you interested in?",
+              "type": "select",
+              "required": false,
+              "options": [
+                "Not sure yet",
+                "Nano — $1,300",
+                "Micro — $2,800",
+                "Pro — $5,500",
+                "Enterprise — Custom",
+                "Just hosting"
+              ]
+            },
+            {
+              "name": "message",
+              "label": "Tell us a little about your business",
+              "type": "textarea",
+              "required": false,
+              "placeholder": "What do you do, who are your customers, and what do you hope your website does for you?"
+            }
+          ],
+          "submit_label": "Send My Request",
+          "success_message": "Thank you! We'll reach out within 24 business hours.",
+          "privacy_note": "We never share your information. No spam, ever."
+        },
+        "alternatives": {
+          "headline": "Prefer a direct conversation?",
+          "email": "hello@solidgraph.com",
+          "phone": "TBD",
+          "response_time": "We respond within 24 business hours, Monday–Friday."
+        }
+      },
+      {
+        "id": "footer",
+        "type": "footer",
+        "order": 11,
+        "company_name": "SolidGraph Solutions LLC",
+        "tagline": "Custom-built websites for local businesses.",
+        "links": [
+          {
+            "label": "How It Works",
+            "anchor": "#how-it-works"
+          },
+          {
+            "label": "Our Plans",
+            "anchor": "#plans"
+          },
+          {
+            "label": "Our Work",
+            "anchor": "#portfolio"
+          },
+          {
+            "label": "About",
+            "anchor": "#about"
+          },
+          {
+            "label": "FAQ",
+            "anchor": "#faq"
+          },
+          {
+            "label": "Contact",
+            "anchor": "#contact"
+          }
+        ],
+        "legal": [
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "/terms"
+          }
+        ],
+        "locations": ["Charlotte, NC", "Springfield-Branson, MO"],
+        "copyright": "© 2026 SolidGraph Solutions LLC. All rights reserved."
+      }
+    ]
+  },
+  "es": {
+    "seo": {
+      "meta_title": "SolidGraph Solutions — Desarrollo Web a Medida para Negocios Locales | Charlotte y Springfield",
+      "meta_description": "Construimos sitios web personalizados desde cero para negocios locales en Charlotte NC y Springfield MO. Sin plantillas. Sin constructores de páginas. Un sitio web real que te trae más clientes. Desde $1,300.",
+      "og_title": "SolidGraph Solutions — Sitios Web a Medida para Negocios Locales",
+      "og_description": "Más clientes te encuentran en internet. Más llamadas. Más visitas. Construimos sitios web desde cero — sin plantillas, sin atajos.",
+      "keywords": [
+        "desarrollo web a medida Charlotte NC",
+        "desarrollador web Charlotte NC pequeño negocio",
+        "sitio web personalizado Springfield MO",
+        "desarrollador web Springfield Missouri",
+        "desarrollo web personalizado pequeño negocio",
+        "sitio web profesional Charlotte NC",
+        "desarrollador web negocios locales Charlotte",
+        "sitio web restaurante Charlotte NC",
+        "sitio web contratista Springfield MO"
+      ]
+    },
+    "nav": {
+      "logo_text": "SolidGraph Solutions",
+      "links": [
+        {
+          "label": "Cómo Funciona",
+          "anchor": "#how-it-works"
+        },
+        {
+          "label": "Nuestros Planes",
+          "anchor": "#plans"
+        },
+        {
+          "label": "Nuestro Trabajo",
+          "anchor": "#portfolio"
+        },
+        {
+          "label": "Quiénes Somos",
+          "anchor": "#about"
+        },
+        {
+          "label": "Contacto",
+          "anchor": "#contact"
+        }
+      ],
+      "cta": {
+        "label": "Obtén una Cotización Gratis",
+        "anchor": "#contact",
+        "style": "primary"
+      }
+    },
+    "sections": [
+      {
+        "id": "hero",
+        "type": "hero",
+        "order": 1,
+        "headline": "Tu Negocio Merece un Sitio Web Construido Desde Cero — No una Plantilla",
+        "subheadline": "Desarrollamos sitios web personalizados para negocios locales en Charlotte y Springfield — para que más clientes te encuentren, te llamen y visiten tu negocio.",
+        "body": null,
+        "cta_primary": {
+          "label": "Obtén una Cotización Gratis",
+          "anchor": "#contact"
+        },
+        "cta_secondary": {
+          "label": "Ver Nuestros Planes",
+          "anchor": "#plans"
+        },
+        "trust_bar": {
+          "label": "Trabajamos con negocios locales en",
+          "locations": ["Charlotte, NC", "Springfield-Branson, MO"]
+        },
+        "social_proof_snippet": "Desarrollado desde cero · Desde $1,300 · Listo en 2 semanas"
+      },
+      {
+        "id": "pain-points",
+        "type": "problem-statement",
+        "order": 2,
+        "headline": "¿Te Suena Familiar?",
+        "subheadline": "La mayoría de los dueños de negocios locales llegan a nosotros después de toparse con los mismos obstáculos.",
+        "items": [
+          {
+            "icon": "search",
+            "text": "\"Mi negocio no aparece cuando la gente busca en internet — y llevo años en el mercado.\""
+          },
+          {
+            "icon": "phone-off",
+            "text": "\"Estoy perdiendo clientes frente a competidores que simplemente tienen un sitio más rápido y profesional.\""
+          },
+          {
+            "icon": "layout-template",
+            "text": "\"Intenté armar algo en Wix, pero se ve amateur y no puedo hacer que funcione como necesito.\""
+          },
+          {
+            "icon": "dollar",
+            "text": "\"Me han dado cotizaciones altísimas por agencias — pero ni siquiera sé bien qué incluiría.\""
+          }
+        ],
+        "transition": "No estás solo — y un sitio web desarrollado a medida está más cerca y es más accesible de lo que crees."
+      },
+      {
+        "id": "value-proposition",
+        "type": "solution-statement",
+        "order": 3,
+        "headline": "Lo Construimos Desde Cero. Tú Lo Posees Para Siempre.",
+        "subheadline": "Un sitio web a medida construido para tu negocio específico — no una plantilla disfrazada de diseño personalizado.",
+        "body": "En SolidGraph Solutions escribimos cada línea de código para tu negocio en particular. Sin constructores de páginas, sin plantillas genéricas, sin atajos. El resultado es un sitio web que carga más rápido, se ve más profesional y convierte visitantes en clientes — y te pertenece al 100% desde el primer día.",
+        "pillars": [
+          {
+            "icon": "code-2",
+            "title": "Desde Cero",
+            "description": "Cada línea de código escrita para tu negocio. Sin Wix, sin plantillas, sin atajos."
+          },
+          {
+            "icon": "zap",
+            "title": "Entrega Rápida",
+            "description": "La mayoría de los sitios personalizados están listos en 2 semanas. No meses."
+          },
+          {
+            "icon": "dollar-sign",
+            "title": "Precios Claros y Honestos",
+            "description": "Sabes exactamente qué estás pagando antes de que empecemos. Sin sorpresas."
+          },
+          {
+            "icon": "shield",
+            "title": "Tú Eres el Dueño de Todo",
+            "description": "Tu dominio, tu código, tu contenido. Sin dependencia de plataformas, jamás."
+          }
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "type": "process",
+        "order": 4,
+        "headline": "Cómo Funciona",
+        "subheadline": "De la primera conversación a la página en línea — un proceso simple de 4 pasos.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Hablamos",
+            "description": "Nos cuentas sobre tu negocio, tus clientes y lo que necesitas. Sin formularios, sin presión — solo una conversación real. Gratis, sin compromiso.",
+            "duration": "30 minutos"
+          },
+          {
+            "number": "02",
+            "title": "Planificamos",
+            "description": "Preparamos una propuesta clara: qué incluirá tu página, cuánto costará y cuándo estará lista. Tú la apruebas antes de que toquemos nada.",
+            "duration": "1–2 días"
+          },
+          {
+            "number": "03",
+            "title": "Construimos",
+            "description": "Nuestro equipo construye tu sitio web desde cero con código personalizado. Verás una vista previa antes de que salga en línea y tendrás rondas de retroalimentación para asegurarte de que todo se vea, se sienta y funcione exactamente bien.",
+            "duration": "10–25 días hábiles"
+          },
+          {
+            "number": "04",
+            "title": "Lanzas",
+            "description": "Tu página sale en línea. Te mostramos cómo actualizarla tú mismo, y estamos aquí si alguna vez necesitas ayuda. Es tu página — completamente en tus manos.",
+            "duration": "Día del lanzamiento"
+          }
+        ]
+      },
+      {
+        "id": "plans",
+        "type": "pricing",
+        "order": 5,
+        "headline": "Planes Simples. Sin Cargos Ocultos.",
+        "subheadline": "Elige el plan que se ajuste a donde está tu negocio hoy. Siempre puedes crecer a uno mayor.",
+        "note": "Cada plan se desarrolla desde cero. Sin plantillas, sin constructores de páginas, sin Wix. El 100% del código te pertenece.",
+        "plans": [
+          {
+            "id": "nano",
+            "name": "Nano",
+            "badge": null,
+            "tagline": "Tu primera presencia en línea desarrollada a medida",
+            "price": "$1,300",
+            "price_note": "pago único",
+            "delivery": "Lista en 10–15 días hábiles",
+            "best_for": "Freelancers, servicios a domicilio, profesionales independientes, negocios nuevos listos para un sitio web real",
+            "includes": [
+              "Sitio web de una sola página desarrollado a medida con hasta 5 secciones",
+              "Inicio, Nosotros, Servicios, Galería y Contacto",
+              "Formulario de contacto (nombre, correo, mensaje)",
+              "Panel propio para actualizar textos y fotos tú mismo",
+              "Diseño adaptado a celular",
+              "Configuración básica para aparecer en Google (SEO)",
+              "Protección y velocidad con Cloudflare",
+              "2 rondas de retroalimentación antes del lanzamiento",
+              "Tutorial en video de 15 minutos para gestionar tu página"
+            ],
+            "not_includes": ["Tienda en línea o pagos", "Blog", "Sistema de reservas"],
+            "cta": {
+              "label": "Comenzar",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "micro",
+            "name": "Micro",
+            "badge": "El Más Popular",
+            "tagline": "Más páginas, más herramientas, más clientes — todo desarrollado a medida",
+            "price": "$2,800",
+            "price_note": "pago único",
+            "delivery": "Lista en 18–25 días hábiles",
+            "best_for": "Restaurantes, salones, tiendas, negocios de servicios que necesitan más de una página",
+            "includes": [
+              "Hasta 10 páginas desarrolladas a medida con su propia dirección web",
+              "Blog — publica noticias, tips y novedades tú mismo",
+              "Mapa de Google con la ubicación de tu negocio",
+              "Chat en vivo para que los visitantes te escriban al instante",
+              "Google Analytics — ve cuántas personas visitan tu página",
+              "Hasta 2 formularios de contacto personalizados",
+              "Configuración avanzada para aparecer en Google",
+              "3 rondas de retroalimentación antes del lanzamiento",
+              "Todo lo del plan Nano"
+            ],
+            "not_includes": ["Tienda en línea o pagos", "Sistema de reservas"],
+            "cta": {
+              "label": "Comenzar",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "pro",
+            "name": "Pro",
+            "badge": null,
+            "tagline": "Desarrollo personalizado completo — vende en línea, acepta reservas, crece más rápido",
+            "price": "$5,500",
+            "price_note": "pago único",
+            "delivery": "Lista en 35–50 días hábiles",
+            "best_for": "Tiendas, negocios que toman citas, cualquier negocio listo para vender en línea con una tienda verdaderamente personalizada",
+            "includes": [
+              "Páginas ilimitadas",
+              "Tienda en línea — vende hasta 100 productos",
+              "Pagos seguros con tarjeta de crédito y débito (Stripe)",
+              "Sistema de reservas y citas en línea",
+              "Lista de correos conectada a Mailchimp",
+              "Diseño personalizado completamente a tu medida",
+              "Seguimiento de conversiones — sabe qué páginas te traen clientes",
+              "Optimización de velocidad — carga rápido en cualquier dispositivo",
+              "4 rondas de retroalimentación antes del lanzamiento",
+              "Todo lo del plan Micro"
+            ],
+            "not_includes": ["Más de 100 productos (disponible como complemento a $2/producto)"],
+            "cta": {
+              "label": "Comenzar",
+              "anchor": "#contact"
+            }
+          },
+          {
+            "id": "enterprise",
+            "name": "Enterprise",
+            "badge": null,
+            "tagline": "Proyectos personalizados complejos, construidos exactamente a tu medida",
+            "price": "Cotización personalizada",
+            "price_note": "tras una llamada de descubrimiento gratuita",
+            "delivery": "Cronograma definido en la propuesta",
+            "best_for": "Negocios con integraciones específicas, catálogos grandes o requisitos complejos que van más allá de los planes estándar",
+            "includes": [
+              "Todo lo del plan Pro",
+              "Productos ilimitados",
+              "Múltiples idiomas (inglés + español)",
+              "Integraciones con sistemas existentes",
+              "Automatizaciones de negocio avanzadas",
+              "Gerente de cuenta dedicado",
+              "Soporte prioritario y SLA"
+            ],
+            "not_includes": [],
+            "cta": {
+              "label": "Hablemos",
+              "anchor": "#contact"
+            }
+          }
+        ],
+        "hosting_section": {
+          "headline": "Mantén Tu Página Funcionando Sin Preocupaciones",
+          "subheadline": "Después del lanzamiento, nuestros planes de hosting se encargan de todo — para que nunca tengas que preocuparte por tu página.",
+          "plans": [
+            {
+              "id": "hosting-nano",
+              "name": "Hosting Básico",
+              "price": "$35/mes",
+              "description": "Hosting, seguridad y tranquilidad. Mantenemos tu página en línea y protegida.",
+              "includes": [
+                "Hosting de alta calidad",
+                "Protección Cloudflare",
+                "Copias de seguridad semanales",
+                "Monitoreo de disponibilidad",
+                "Soporte por correo (respuesta en 48h)"
+              ]
+            },
+            {
+              "id": "hosting-micro",
+              "name": "Hosting Activo",
+              "price": "$65/mes",
+              "description": "Todo lo del Básico, más nos encargamos de pequeñas actualizaciones de contenido.",
+              "includes": [
+                "Copias de seguridad diarias",
+                "2 actualizaciones de contenido al mes",
+                "Soporte por correo (respuesta en 24h)",
+                "Reporte mensual de visitantes"
+              ]
+            },
+            {
+              "id": "hosting-pro",
+              "name": "Hosting Administrado",
+              "price": "$120/mes",
+              "description": "Soporte activo, actualizaciones frecuentes y una llamada mensual de revisión.",
+              "includes": [
+                "5 actualizaciones de contenido al mes",
+                "1 cambio funcional pequeño al mes",
+                "Soporte por chat y correo (respuesta en 12h)",
+                "Llamada mensual de revisión de 30 min",
+                "Monitoreo de rendimiento"
+              ]
+            },
+            {
+              "id": "hosting-enterprise",
+              "name": "Hosting Premium",
+              "price": "Desde $250/mes",
+              "description": "Gestión completa, soporte prioritario y un gerente de cuenta dedicado.",
+              "includes": [
+                "Actualizaciones de contenido ilimitadas",
+                "Hasta 4h de desarrollo al mes",
+                "Soporte prioritario (respuesta en 4h)",
+                "Reporte SEO mensual",
+                "Gerente de cuenta dedicado"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "social-proof",
+        "type": "testimonials",
+        "order": 6,
+        "headline": "Lo Que Dicen los Dueños de Negocios Locales",
+        "subheadline": "Resultados reales para negocios reales.",
+        "note_internal": "PLACEHOLDER — reemplazar con testimonios reales antes del lanzamiento",
+        "testimonials": [
+          {
+            "id": "t1",
+            "quote": "No tenía idea de que conseguir una página web profesional pudiera ser tan sencillo. Me explicaron todo en términos simples y entregaron exactamente lo que prometieron.",
+            "author": "Maria G.",
+            "business": "Dueña de salón de belleza, Charlotte NC",
+            "result": "Testimonio de ejemplo — reemplazar antes del lanzamiento"
+          },
+          {
+            "id": "t2",
+            "quote": "Un mes después de lanzar nuestra nueva página, empezamos a recibir llamadas de personas que nos encontraron en Google. Eso nunca había pasado antes.",
+            "author": "James R.",
+            "business": "Contratista HVAC, Springfield MO",
+            "result": "Testimonio de ejemplo — reemplazar antes del lanzamiento"
+          },
+          {
+            "id": "t3",
+            "quote": "El precio fue claro desde el primer día. Sin sorpresas, sin intentar venderme más. Solo una gran página web a un precio que tenía sentido para mi presupuesto.",
+            "author": "Sandra L.",
+            "business": "Negocio de catering, Charlotte NC",
+            "result": "Testimonio de ejemplo — reemplazar antes del lanzamiento"
+          }
+        ],
+        "stats": [
+          {
+            "value": "2 semanas",
+            "label": "Tiempo de entrega promedio"
+          },
+          {
+            "value": "$0",
+            "label": "Cargos ocultos"
+          },
+          {
+            "value": "100%",
+            "label": "Satisfacción en la entrega"
+          }
+        ]
+      },
+      {
+        "id": "portfolio",
+        "type": "portfolio",
+        "order": 7,
+        "headline": "Nuestro Trabajo",
+        "subheadline": "Cada página que construimos es diferente — porque cada negocio es diferente.",
+        "note_internal": "PLACEHOLDER — agregar capturas de pantalla reales antes del lanzamiento",
+        "items": [
+          {
+            "id": "p1",
+            "title": "Empresa Local de HVAC",
+            "category": "Negocio de Servicios",
+            "plan_used": "Micro",
+            "location": "Springfield, MO",
+            "description": "Una página limpia y rápida que atrae clientes locales a través de búsquedas en Google.",
+            "image_placeholder": "project-hvac.jpg"
+          },
+          {
+            "id": "p2",
+            "title": "Salón de Cabello y Belleza",
+            "category": "Belleza y Estética",
+            "plan_used": "Nano",
+            "location": "Charlotte, NC",
+            "description": "Una página elegante de una sola hoja con enlace de reservas en línea y galería.",
+            "image_placeholder": "project-salon.jpg"
+          },
+          {
+            "id": "p3",
+            "title": "Restaurante Familiar",
+            "category": "Comida y Bebida",
+            "plan_used": "Micro",
+            "location": "Charlotte, NC",
+            "description": "Menú, mapa de ubicación y reseñas de Google integrados en una página coherente.",
+            "image_placeholder": "project-restaurant.jpg"
+          }
+        ],
+        "cta": {
+          "label": "Quiero una Página Así",
+          "anchor": "#contact"
+        }
+      },
+      {
+        "id": "about",
+        "type": "about",
+        "order": 8,
+        "headline": "Somos Desarrolladores que Construyen Desde Cero — No una Agencia de Plantillas",
+        "subheadline": "SolidGraph Solutions LLC — desarrollo web a medida para negocios locales en Charlotte y Springfield.",
+        "body_paragraphs": [
+          "Fundamos SolidGraph Solutions porque seguíamos viendo el mismo problema: los dueños de negocios locales estaban atrapados con un sitio de plantilla barata que no los representaba, o les habían dado cotizaciones exageradas por agencias que simplemente cambiaban los colores del mismo tema de WordPress para cada cliente.",
+          "Nosotros construimos diferente. Cada sitio web que creamos se escribe desde cero — código personalizado, diseño a medida, construido específicamente para tu negocio. Sin plantillas, sin constructores de arrastrar y soltar, sin atajos. El resultado es un sitio más rápido, más profesional y que te pertenece completamente.",
+          "Somos un equipo ágil de nivel senior — lo que significa menores costos para ti y entregas más rápidas que las agencias tradicionales. Usamos herramientas modernas y desarrollo asistido por IA para construir sitios web personalizados de alta calidad a una fracción de lo que cobran las agencias grandes, sin comprometer la calidad ni la artesanía."
+        ],
+        "differentiators": [
+          {
+            "icon": "code-2",
+            "title": "Desarrollo Real a Medida",
+            "description": "Cada sitio escrito desde cero. Sin plantillas, sin constructores de páginas. Tu sitio es único — no una variación de algo que vendemos a otros 50 negocios."
+          },
+          {
+            "icon": "shield",
+            "title": "Tú Eres el Dueño de Todo",
+            "description": "Tu dominio, tu código, tu contenido. Te lo entregamos todo al final — sin dependencia de plataformas, sin condiciones."
+          },
+          {
+            "icon": "trending-up",
+            "title": "Construido Para Crecer Contigo",
+            "description": "Empieza con un sitio Nano hoy. Cuando tu negocio esté listo, tu sitio personalizado crece contigo — sin reconstruirlo desde cero."
+          }
+        ],
+        "locations": {
+          "headline": "Con Orgullo Servimos a",
+          "cities": [
+            {
+              "name": "Charlotte, NC",
+              "description": "Los negocios locales de la Queen City merecen una presencia web a la altura de su ambición."
+            },
+            {
+              "name": "Springfield-Branson, MO",
+              "description": "Desde los Ozarks hasta el centro — ayudamos a los negocios locales a ser encontrados en línea."
+            }
+          ]
+        }
+      },
+      {
+        "id": "faq",
+        "type": "faq",
+        "order": 9,
+        "headline": "Preguntas Que Nos Hacen Todo el Tiempo",
+        "subheadline": "Sin tecnicismos. Solo respuestas honestas.",
+        "items": [
+          {
+            "question": "¿Necesito conocimientos técnicos para administrar mi página web?",
+            "answer": "Para nada. Aunque construimos cada sitio desde cero con código personalizado, configuramos un panel sencillo donde puedes cambiar tus textos y fotos con unos pocos clics — sin necesidad de saber programar. Es como editar un documento de Word. También te enviamos un video tutorial corto que te explica cómo hacerlo."
+          },
+          {
+            "question": "¿Qué pasa si ya tengo una página web? ¿Pueden rediseñarla?",
+            "answer": "Absolutamente. Muchos de nuestros clientes llegan con una página desactualizada con la que no están contentos. Revisamos lo que tienes y te damos una evaluación honesta de si un rediseño o empezar de cero es la mejor opción para ti."
+          },
+          {
+            "question": "¿Necesito comprar un nombre de dominio?",
+            "answer": "Sí — y es muy accesible. Un nombre de dominio (como www.tunegocio.com) típicamente cuesta $12–15 por año en proveedores como GoDaddy o Namecheap. Si aún no tienes uno, te guiamos paso a paso en el proceso de comprarlo."
+          },
+          {
+            "question": "¿Cuánto tiempo tarda construir mi página web?",
+            "answer": "La mayoría de las páginas Nano están listas en 10–15 días hábiles después de que recibimos tu contenido (textos, fotos y logo). El plazo comienza una vez que nos compartes tus materiales — cuanto más rápido los envíes, más rápido entregamos."
+          },
+          {
+            "question": "¿Qué pasa después de que mi página sale en línea?",
+            "answer": "Tu página es completamente tuya para administrar. Si quieres que nos encarguemos de mantenerla en línea, segura y actualizada, ofrecemos planes mensuales de hosting desde $35 al mes. No hay obligación — puedes administrarla tú mismo o moverla a cualquier otro servicio de hosting."
+          },
+          {
+            "question": "¿Puedo vender productos en mi página web?",
+            "answer": "Sí — con nuestro plan Pro. Incluye una tienda en línea desarrollada completamente a medida donde puedes vender hasta 100 productos y aceptar pagos con tarjeta de forma segura mediante Stripe. A diferencia de las tiendas de plantilla, la tuya está construida para que coincida exactamente con tu marca. Los planes Nano y Micro están diseñados para negocios que todavía no necesitan ventas en línea."
+          },
+          {
+            "question": "¿Mi página web está protegida de hackers?",
+            "answer": "Sí. Cada sitio que construimos está protegido por Cloudflare, la misma capa de seguridad que usan millones de negocios en el mundo. Además, al construir desde cero evitamos las vulnerabilidades de seguridad comunes en los temas genéricos de WordPress y los constructores de páginas. Tu sitio permanece en línea y protegido."
+          },
+          {
+            "question": "¿Qué pasa si necesito algo que no está en ninguno de sus planes?",
+            "answer": "Solo pregunta. Nuestro plan Enterprise cubre proyectos personalizados, y siempre estamos felices de hablar sobre lo que necesitas antes de que te comprometas a nada. La conversación inicial siempre es gratuita."
+          }
+        ]
+      },
+      {
+        "id": "contact",
+        "type": "lead-capture",
+        "order": 10,
+        "headline": "Hablemos de Tu Página Web",
+        "subheadline": "Cuéntanos un poco sobre tu negocio y te respondemos dentro de las próximas 24 horas — sin presión, sin discursos de ventas.",
+        "body": "Ya sea que estés empezando desde cero, atrapado con una plantilla que no te representa, o simplemente no estés contento con lo que tienes, nos encantaría escuchar sobre tu negocio. Cada sitio que construimos es personalizado — y también cada cotización. La primera conversación es completamente gratuita.",
+        "form": {
+          "fields": [
+            {
+              "name": "first_name",
+              "label": "Nombre",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "last_name",
+              "label": "Apellido",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "email",
+              "label": "Correo Electrónico",
+              "type": "email",
+              "required": true
+            },
+            {
+              "name": "phone",
+              "label": "Teléfono",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "name": "business_name",
+              "label": "Nombre del Negocio",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "city",
+              "label": "Ciudad",
+              "type": "select",
+              "required": true,
+              "options": ["Charlotte, NC", "Springfield, MO", "Branson, MO", "Otra"]
+            },
+            {
+              "name": "plan_interest",
+              "label": "¿Qué plan te interesa?",
+              "type": "select",
+              "required": false,
+              "options": [
+                "Aún no sé",
+                "Nano — $1,300",
+                "Micro — $2,800",
+                "Pro — $5,500",
+                "Enterprise — Personalizado",
+                "Solo hosting"
+              ]
+            },
+            {
+              "name": "message",
+              "label": "Cuéntanos un poco sobre tu negocio",
+              "type": "textarea",
+              "required": false,
+              "placeholder": "¿Qué haces, quiénes son tus clientes y qué esperas que haga tu página por ti?"
+            }
+          ],
+          "submit_label": "Enviar Mi Solicitud",
+          "success_message": "¡Gracias! Te contactaremos dentro de las próximas 24 horas hábiles.",
+          "privacy_note": "Nunca compartimos tu información. Sin spam, jamás."
+        },
+        "alternatives": {
+          "headline": "¿Prefieres una conversación directa?",
+          "email": "hello@solidgraph.com",
+          "phone": "Por definir",
+          "response_time": "Respondemos en 24 horas hábiles, de lunes a viernes."
+        }
+      },
+      {
+        "id": "footer",
+        "type": "footer",
+        "order": 11,
+        "company_name": "SolidGraph Solutions LLC",
+        "tagline": "Sitios web desarrollados a medida para negocios locales.",
+        "links": [
+          {
+            "label": "Cómo Funciona",
+            "anchor": "#how-it-works"
+          },
+          {
+            "label": "Nuestros Planes",
+            "anchor": "#plans"
+          },
+          {
+            "label": "Nuestro Trabajo",
+            "anchor": "#portfolio"
+          },
+          {
+            "label": "Quiénes Somos",
+            "anchor": "#about"
+          },
+          {
+            "label": "Preguntas Frecuentes",
+            "anchor": "#faq"
+          },
+          {
+            "label": "Contacto",
+            "anchor": "#contact"
+          }
+        ],
+        "legal": [
+          {
+            "label": "Política de Privacidad",
+            "href": "/privacy"
+          },
+          {
+            "label": "Términos de Servicio",
+            "href": "/terms"
+          }
+        ],
+        "locations": ["Charlotte, NC", "Springfield-Branson, MO"],
+        "copyright": "© 2026 SolidGraph Solutions LLC. Todos los derechos reservados."
+      }
+    ]
+  }
+}

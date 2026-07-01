@@ -1,0 +1,5 @@
+{
+  "extends": "@solidgraph/typescript-config/base",
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}

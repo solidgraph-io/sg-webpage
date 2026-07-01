@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SolidGraph · Section · Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../design-system/tokens.css" />
+<link rel="stylesheet" href="../design-system/base.css" />
+<link rel="stylesheet" href="../design-system/animations.css" />
+<link rel="stylesheet" href="../components/eyebrow.css" />
+<link rel="stylesheet" href="../components/section-head.css" />
+<link rel="stylesheet" href="../components/note-bar.css" />
+<link rel="stylesheet" href="../components/badge.css" />
+<link rel="stylesheet" href="../components/plan-card.css" />
+<link rel="stylesheet" href="../components/hosting-card.css" />
+<style>
+  /* Section layout — pricing plans + hosting */
+  .plans { padding: 130px 0 110px; background: #fff; position: relative; }
+  .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; }
+  @media (max-width: 1100px) { .plan-grid { grid-template-columns: 1fr 1fr; } .plan.popular { transform: none; } .plan.popular:hover { transform: translateY(-8px); } }
+  @media (max-width: 600px) { .plan-grid { grid-template-columns: 1fr; } }
+
+  .hosting { margin-top: 84px; }
+  .hosting-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+  .hosting-head h3 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
+  .hosting-head p { color: var(--muted); font-size: 15px; }
+  .hosting-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 980px) { .hosting-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .hosting-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></symbol>
+</defs></svg>
+
+<!-- ===================== PLANS ===================== -->
+<section class="plans" id="plans" data-section="plans" data-screen-label="Plans">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow centered">Pricing</span>
+      <h2>Simple Plans. No Hidden Fees.</h2>
+      <p>Pick the plan that fits where your business is right now. You can always grow into a bigger one.</p>
+    </div>
+    <div class="note-bar" data-reveal><svg width="16" height="16" style="color:var(--periwinkle)"><use href="#i-spark"/></svg> Every plan is custom-built from scratch. No templates, no page builders, no Wix. You own 100% of the code.</div>
+
+    <div class="plan-grid">
+      <div class="plan" data-reveal style="--d:0ms">
+        <div class="name">Nano</div>
+        <p class="tagline">Your first custom-built online presence</p>
+        <div class="price">$1,300</div>
+        <div class="price-note">one-time payment</div>
+        <span class="delivery">Ready in 10–15 business days</span>
+        <div class="best-for"><b>Best for</b>Freelancers, home services, solo professionals, new businesses ready for a real website</div>
+        <ul class="includes">
+          <li>Custom-built one-page website with up to 5 sections</li>
+          <li>Home, About, Services, Gallery, and Contact</li>
+          <li>Contact form (name, email, message)</li>
+          <li>Your own content management panel — update text and photos yourself</li>
+          <li>Mobile-friendly design</li>
+          <li>Basic Google visibility setup (SEO)</li>
+          <li>Cloudflare security and speed protection</li>
+          <li>2 rounds of feedback before launch</li>
+          <li>15-minute video tutorial to manage your site</li>
+        </ul>
+        <ul class="excludes"><li>Online store or payments</li><li>Blog</li><li>Booking system</li></ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+
+      <div class="plan popular" data-reveal style="--d:90ms">
+        <div class="badge">Most Popular</div>
+        <div class="name">Micro</div>
+        <p class="tagline">More pages, more tools, more customers — all custom built</p>
+        <div class="price">$2,800</div>
+        <div class="price-note">one-time payment</div>
+        <span class="delivery">Ready in 18–25 business days</span>
+        <div class="best-for"><b>Best for</b>Restaurants, salons, retail shops, service businesses that need more than a single page</div>
+        <ul class="includes">
+          <li>Up to 10 custom-built pages with their own web addresses</li>
+          <li>Blog — publish news, tips, and updates yourself</li>
+          <li>Google Maps location on your site</li>
+          <li>Live chat widget so visitors can message you instantly</li>
+          <li>Google Analytics — see how many people visit your site</li>
+          <li>Up to 2 custom contact forms</li>
+          <li>Advanced Google visibility setup</li>
+          <li>3 rounds of feedback before launch</li>
+          <li>Everything in Nano</li>
+        </ul>
+        <ul class="excludes"><li>Online store or payments</li><li>Booking system</li></ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+
+      <div class="plan" data-reveal style="--d:180ms">
+        <div class="name">Pro</div>
+        <p class="tagline">Full custom development — sell online, take bookings, grow faster</p>
+        <div class="price">$5,500</div>
+        <div class="price-note">one-time payment</div>
+        <span class="delivery">Ready in 35–50 business days</span>
+        <div class="best-for"><b>Best for</b>Retailers, service businesses that take appointments, anyone ready to sell online with a real custom store</div>
+        <ul class="includes">
+          <li>Unlimited pages</li>
+          <li>Online store — sell up to 100 products</li>
+          <li>Secure online payments via Stripe (credit and debit cards)</li>
+          <li>Booking and appointment system</li>
+          <li>Email list signup connected to Mailchimp</li>
+          <li>Full custom design built from scratch</li>
+          <li>Conversion tracking — know which pages bring you customers</li>
+          <li>Performance optimization — loads fast on any device</li>
+          <li>4 rounds of feedback before launch</li>
+          <li>Everything in Micro</li>
+        </ul>
+        <ul class="excludes"><li>More than 100 products (available as add-on at $2/product)</li></ul>
+        <a href="#contact" class="plan-cta">Get Started</a>
+      </div>
+
+      <div class="plan" data-reveal style="--d:270ms">
+        <div class="name">Enterprise</div>
+        <p class="tagline">Complex custom projects, built exactly to your specs</p>
+        <div class="price">Custom</div>
+        <div class="price-note">after a free discovery call</div>
+        <span class="delivery">Timeline defined in proposal</span>
+        <div class="best-for"><b>Best for</b>Businesses with specific integrations, large catalogs, or complex requirements that go beyond standard plans</div>
+        <ul class="includes">
+          <li>Everything in Pro</li>
+          <li>Unlimited products</li>
+          <li>Multiple languages (English + Spanish)</li>
+          <li>Custom system integrations</li>
+          <li>Advanced business automation</li>
+          <li>Dedicated account manager</li>
+          <li>Priority support and SLA</li>
+        </ul>
+        <a href="#contact" class="plan-cta">Let's Talk</a>
+      </div>
+    </div>
+
+    <div class="hosting">
+      <div class="hosting-head" data-reveal>
+        <h3>Keep Your Site Running Smoothly</h3>
+        <p>After launch, our hosting plans take care of everything — so you never have to worry about your website going down.</p>
+      </div>
+      <div class="hosting-grid">
+        <div class="hosting-card" data-reveal style="--d:0ms"><div class="name">Basic Hosting</div><div class="price">$35/mo</div><p class="desc">Hosting, security, and peace of mind. We keep your site online and protected.</p><ul><li>High-quality hosting</li><li>Cloudflare protection</li><li>Weekly backups</li><li>Uptime monitoring</li><li>Email support (48h response)</li></ul></div>
+        <div class="hosting-card" data-reveal style="--d:80ms"><div class="name">Active Hosting</div><div class="price">$65/mo</div><p class="desc">Everything in Basic, plus we handle small content updates for you.</p><ul><li>Daily backups</li><li>2 content updates per month</li><li>Email support (24h response)</li><li>Monthly analytics report</li></ul></div>
+        <div class="hosting-card" data-reveal style="--d:160ms"><div class="name">Managed Hosting</div><div class="price">$120/mo</div><p class="desc">Hands-on support, regular updates, and a monthly check-in call.</p><ul><li>5 content updates per month</li><li>1 small feature change per month</li><li>Chat + email support (12h response)</li><li>Monthly 30-min review call</li><li>Performance monitoring</li></ul></div>
+        <div class="hosting-card" data-reveal style="--d:240ms"><div class="name">Premium Hosting</div><div class="price">From $250/mo</div><p class="desc">Full management, priority support, and a dedicated account manager.</p><ul><li>Unlimited content updates</li><li>Up to 4h development/month</li><li>Priority support (4h response)</li><li>Monthly SEO report</li><li>Dedicated account manager</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/interactions.js"></script>
+</body>
+</html>

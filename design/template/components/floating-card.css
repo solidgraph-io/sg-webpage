@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Component · Floating card (.hero-float / .badge-card)
+   Small white elevated card (icon tile + label + sub) that bobs. Two class
+   names exist for two contexts (hero screen, about orbit) but share a shape.
+   Depends on: tokens.css, animations.css (@keyframes bob)
+   ----------------------------------------------------------------------------
+   <div class="hero-float f1"><div class="ic"><svg><use href="#i-zap"/></svg></div>
+     <div><b>Live in 2 weeks</b><span>Not months</span></div></div>
+   ========================================================================== */
+.hero-float {
+  position: absolute; z-index: 4; background: #fff; border-radius: 16px;
+  padding: 13px 17px; box-shadow: var(--shadow-md);
+  display: flex; align-items: center; gap: 11px;
+}
+.hero-float .ic, .badge-card .ic {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--lilac); color: var(--indigo); display: grid; place-items: center;
+}
+.hero-float b, .badge-card b { font-size: 13px; color: var(--ink); display: block; font-weight: 600; }
+.hero-float span, .badge-card span { font-size: 11px; color: var(--muted); }
+
+.badge-card {
+  position: absolute; background: #fff; border-radius: 14px;
+  padding: 13px 17px; box-shadow: var(--shadow-md);
+  display: flex; align-items: center; gap: 11px;
+}

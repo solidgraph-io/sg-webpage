@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Component · Note bar (.note-bar)
+   Centered lilac reassurance strip with a leading icon. Used above pricing.
+   Depends on: tokens.css
+   ----------------------------------------------------------------------------
+   <div class="note-bar"><svg width="16" height="16" style="color:var(--periwinkle)">
+     <use href="#i-spark"/></svg> Every plan is custom-built from scratch.</div>
+   ========================================================================== */
+.note-bar {
+  max-width: 720px; margin: 0 auto 56px; text-align: center;
+  background: var(--lilac); padding: 15px 26px; border-radius: 999px;
+  font-size: 13px; color: var(--indigo); font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}

@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Component · Badges, tags & chips
+   .badge  — gradient "Most Popular" flag (absolute, top-right of a card)
+   .p-tag  — light overlay tag on imagery (portfolio thumbnails)
+   .chips  — row of small tint chips (hero screen)
+   Depends on: tokens.css
+   ========================================================================== */
+.badge {
+  position: absolute; top: 22px; right: 24px; z-index: 2;
+  background: linear-gradient(100deg, var(--periwinkle), var(--peri-bright)); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 6px 13px; border-radius: 999px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+
+.p-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(255,255,255,.95); color: var(--indigo);
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  padding: 6px 13px; border-radius: 999px;
+}
+
+.chips { display: flex; gap: 8px; }
+.chips span { font-size: 10px; padding: 6px 12px; border-radius: 999px; background: var(--lilac); color: var(--indigo); font-weight: 600; }

@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Component · Form (.contact-form / .field)
+   Lilac form panel, two-column field grid, focus ring, success message.
+   .field.full spans both columns. Toggle .success-msg.show after submit.
+   Depends on: tokens.css, button.css (submit)
+   ========================================================================== */
+.contact-form { background: var(--lilac-2); border-radius: var(--radius-lg); padding: 40px; border: 1px solid rgba(45,61,138,.05); }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 12px; font-weight: 600; color: var(--ink); }
+.field label .req { color: var(--periwinkle); }
+.field input, .field select, .field textarea {
+  border: 1px solid var(--line); background: #fff; padding: 13px 15px; border-radius: 12px;
+  font-family: inherit; font-size: 13.5px; color: var(--ink);
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--indigo); box-shadow: 0 0 0 4px rgba(45,61,138,.1); }
+.field textarea { resize: vertical; min-height: 110px; }
+.form-foot { margin-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+.form-foot .privacy { font-size: 11.5px; color: var(--muted); }
+.success-msg { display: none; margin-top: 22px; background: rgba(52,211,154,.1); color: #1a8c63; padding: 15px 18px; border-radius: 12px; font-size: 13.5px; font-weight: 500; }
+.success-msg.show { display: block; }

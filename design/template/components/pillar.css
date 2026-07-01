@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Component · Pillar (.pillar)
+   Value-prop card that flips to a dark indigo gradient on hover (icon, text
+   and number all recolor). Numbered via .num. 3D tilt added by interactions.js.
+   Depends on: tokens.css
+   ========================================================================== */
+.pillar {
+  position: relative; border-radius: var(--radius-lg);
+  padding: 32px 28px 30px; background: #fff;
+  border: 1px solid var(--line); overflow: hidden;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.pillar .num { position: absolute; top: 22px; right: 26px; font-size: 13px; font-weight: 700; color: var(--lilac); transition: color .4s ease; }
+.pillar:hover .num { color: rgba(255,255,255,.4); }
+.pillar .ic {
+  width: 54px; height: 54px; border-radius: 16px; background: var(--lilac); color: var(--indigo);
+  display: grid; place-items: center; margin-bottom: 24px;
+  transition: background .4s ease, color .4s ease, transform .4s var(--ease-spring);
+}
+.pillar h3 { margin-bottom: 10px; font-size: 18px; transition: color .4s ease; }
+.pillar p { color: var(--muted); font-size: 13.5px; line-height: 1.65; transition: color .4s ease; }
+.pillar::before { content: ""; position: absolute; inset: 0; background: linear-gradient(165deg, var(--indigo), var(--night)); opacity: 0; transition: opacity .5s ease; z-index: 0; }
+.pillar > * { position: relative; z-index: 1; }
+.pillar:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
+.pillar:hover::before { opacity: 1; }
+.pillar:hover h3 { color: #fff; }
+.pillar:hover p { color: rgba(255,255,255,.8); }
+.pillar:hover .ic { background: rgba(255,255,255,.16); color: #fff; transform: scale(1.08) rotate(-5deg); }

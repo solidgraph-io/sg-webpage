@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Component · Pill (.pill)
+   Small status/label chip. Optional live "ping" dot for a "live" feel.
+   On dark backgrounds override background/border (see hero section).
+   Depends on: tokens.css, animations.css (@keyframes ping)
+   ----------------------------------------------------------------------------
+   <span class="pill"><span class="ping"></span> Custom-built from scratch</span>
+   ========================================================================== */
+.pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 16px 8px 12px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+}
+.pill .ping { width: 8px; height: 8px; border-radius: 50%; background: var(--success); position: relative; }
+.pill .ping::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1px solid var(--success); opacity: .6; animation: ping 1.8s var(--ease) infinite;
+}

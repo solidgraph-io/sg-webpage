@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Component · Logo (.logo)
+   Avatar mark + wordmark lockup. Used in nav and footer. On dark surfaces,
+   invert the mark (filter) and recolor .logo-text (see footer section).
+   Depends on: tokens.css · Asset: assets/logo_avatar.png
+   ----------------------------------------------------------------------------
+   <a href="#" class="logo">
+     <img src="assets/logo_avatar.png" alt="SolidGraph">
+     <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
+   </a>
+   ========================================================================== */
+.logo { display: flex; align-items: center; gap: 11px; }
+.logo img { height: 34px; width: auto; }
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.logo-text b { font-weight: 700; font-size: 16px; color: var(--indigo); letter-spacing: -.02em; }
+.logo-text small { font-size: 9px; letter-spacing: .26em; color: var(--ink); margin-top: 3px; font-weight: 600; }

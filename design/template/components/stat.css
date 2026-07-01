@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Component · Stat (.stat)
+   Big gradient number + label card. Values animate up via interactions.js
+   when data-count / data-prefix / data-suffix are present.
+   Depends on: tokens.css
+   ----------------------------------------------------------------------------
+   <div class="stat"><div class="v" data-count="100" data-suffix="%">100%</div>
+     <div class="l">Satisfaction on delivery</div></div>
+   ========================================================================== */
+.stat { text-align: center; background: #fff; border-radius: var(--radius-lg); padding: 38px 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(45,61,138,.04); }
+.stat .v { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.04em; background: linear-gradient(120deg, var(--indigo), var(--periwinkle)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat .l { font-size: 13px; color: var(--muted); margin-top: 12px; letter-spacing: .03em; }

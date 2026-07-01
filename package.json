@@ -1,0 +1,39 @@
+{
+  "name": "solidgraph-webpage",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e",
+    "trace": "npx tsx scripts/trace.ts"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "eslint": "^9.28.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "tsx": "^4.19.4",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.0"
+  },
+  "lint-staged": {
+    "apps/web/**/*.{ts,tsx,astro}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "**/*.{ts,tsx,astro,js,mjs,cjs,json,css,md}": [
+      "prettier --write --ignore-unknown"
+    ]
+  }
+}

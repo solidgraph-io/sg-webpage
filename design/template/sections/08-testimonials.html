@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SolidGraph · Section · Testimonials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../design-system/tokens.css" />
+<link rel="stylesheet" href="../design-system/base.css" />
+<link rel="stylesheet" href="../design-system/animations.css" />
+<link rel="stylesheet" href="../components/eyebrow.css" />
+<link rel="stylesheet" href="../components/section-head.css" />
+<link rel="stylesheet" href="../components/stat.css" />
+<link rel="stylesheet" href="../components/testimonial-card.css" />
+<style>
+  /* Section layout — social proof */
+  .testimonials { padding: 120px 0; background: var(--lilac-2); position: relative; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: 880px; margin: 0 auto 64px; }
+  .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 880px) { .stats { grid-template-columns: 1fr; } .t-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body style="background:var(--lilac-2);">
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testimonials" data-section="testimonials" data-screen-label="Testimonials">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow centered">Social Proof</span>
+      <h2>What Local Business Owners Are Saying</h2>
+      <p>Real results for real businesses.</p>
+    </div>
+    <div class="stats">
+      <div class="stat" data-reveal style="--d:0ms"><div class="v" data-count="2" data-suffix=" weeks">2 weeks</div><div class="l">Average delivery time</div></div>
+      <div class="stat" data-reveal style="--d:100ms"><div class="v" data-count="0" data-prefix="$">$0</div><div class="l">Hidden fees</div></div>
+      <div class="stat" data-reveal style="--d:200ms"><div class="v" data-count="100" data-suffix="%">100%</div><div class="l">Satisfaction on delivery</div></div>
+    </div>
+    <div class="t-grid">
+      <div class="t-card" data-reveal style="--d:0ms"><div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="quote">"I had no idea getting a professional website could be this straightforward. They explained everything in plain English and delivered exactly what they promised."</p><div class="t-author"><div class="avatar">MG</div><div><b>Maria G.</b><span>Hair salon owner, Charlotte NC</span></div></div></div>
+      <div class="t-card" data-reveal style="--d:120ms"><div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="quote">"Within a month of launching our new site, we started getting calls from people who found us on Google. That never happened before."</p><div class="t-author"><div class="avatar">JR</div><div><b>James R.</b><span>HVAC contractor, Springfield MO</span></div></div></div>
+      <div class="t-card" data-reveal style="--d:240ms"><div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="quote">"The pricing was clear from day one. No surprises, no upselling. Just a great website at a price that made sense for my budget."</p><div class="t-author"><div class="avatar">SL</div><div><b>Sandra L.</b><span>Catering business, Charlotte NC</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/interactions.js"></script>
+</body>
+</html>

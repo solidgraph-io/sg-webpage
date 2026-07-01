@@ -1,0 +1,131 @@
+# SolidGraph Solutions LLC — DroneCI Pipeline (web-only)
+# SPEC-INFRA-001/RF-8
+#
+# Gates (in dependency order):
+#   install    → all branches, all events
+#   validate   → all branches (lint + type-check + prettier)
+#   test       → all branches (vitest + trace check)
+#   build      → develop + main, push only
+#   build-push-web → main, push only (docker → registry)
+#   trigger-dokploy → main, push only
+#
+# Secrets required in Drone (Settings → Secrets):
+#   TURBO_TOKEN          Turborepo Remote Cache API token
+#   TURBO_TEAM           Turborepo team/org slug
+#   TURBO_API            Self-hosted cache server URL
+#   REGISTRY_USERNAME    Private registry username
+#   REGISTRY_PASSWORD    Private registry password
+#   DOKPLOY_WEBHOOK_WEB  Dokploy deploy webhook URL for web service
+
+kind: pipeline
+type: docker
+name: solidgraph-webpage
+
+steps:
+  # ── 1. install ──────────────────────────────────────────────────────────────
+  - name: install
+    image: node:22-alpine
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm install --frozen-lockfile
+
+  # ── 2. validate ─────────────────────────────────────────────────────────────
+  - name: validate
+    image: node:22-alpine
+    depends_on: [install]
+    environment:
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm lint
+      - pnpm type-check
+      - npx prettier --check .
+
+  # ── 3. test + trace ─────────────────────────────────────────────────────────
+  - name: test
+    image: node:22-alpine
+    depends_on: [validate]
+    environment:
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm test
+      - pnpm trace -- --check
+
+  # ── 4. build ─────────────────────────────────────────────────────────────────
+  - name: build
+    image: node:22-alpine
+    depends_on: [test]
+    when:
+      branch:
+        - develop
+        - main
+      event:
+        - push
+    environment:
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm build
+
+  # ── 5. build-push-web ────────────────────────────────────────────────────────
+  - name: build-push-web
+    image: plugins/docker
+    depends_on: [build]
+    when:
+      branch:
+        - main
+      event:
+        - push
+    settings:
+      registry: registry.solidgraph.dev
+      repo: registry.solidgraph.dev/solidgraph-web
+      dockerfile: apps/web/Dockerfile
+      context: .
+      mtu: 1450
+      tags:
+        - ${DRONE_COMMIT_SHA}
+        - latest
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
+
+  # ── 6. trigger-dokploy ───────────────────────────────────────────────────────
+  - name: trigger-dokploy
+    image: curlimages/curl
+    depends_on: [build-push-web]
+    when:
+      branch:
+        - main
+      event:
+        - push
+    environment:
+      DOKPLOY_WEBHOOK_WEB:
+        from_secret: DOKPLOY_WEBHOOK_WEB
+    commands:
+      - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB}
+
+trigger:
+  event:
+    - push
+    - pull_request
