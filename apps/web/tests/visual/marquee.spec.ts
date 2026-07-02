@@ -15,6 +15,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee desktop 1440 — diff vs di
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
     astroPage: page,
     browser,
@@ -31,6 +32,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee mobile 393 — diff vs dise
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'Mobile gate runs in mobile project only');
   await compareWithDesign({
     astroPage: page,
     browser,
