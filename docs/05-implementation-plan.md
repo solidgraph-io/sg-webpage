@@ -47,9 +47,9 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | SPEC-SEC-007 | 07-plans (+ hosting) | ✅ **Verified** — diff 1.35% desktop / 6.51% mobile vs diseño |
 | SPEC-SEC-008 | 08-testimonials (+ stats) | ✅ **Verified** — diff 0.44% desktop / 1.84% mobile vs diseño |
 | SPEC-SEC-009 | 09-portfolio | ✅ **Verified** — diff 0.98% desktop / 0.67% mobile vs diseño |
-| SPEC-SEC-010 | 10-about (órbita/ciudades) | Planned |
-| SPEC-SEC-011 | 11-faq | Planned |
-| SPEC-SEC-012 | 12-cta | Planned |
+| SPEC-SEC-010 | 10-about (órbita/ciudades) | ✅ **Verified** — diff 4.92% desktop / 6.91% mobile vs diseño |
+| SPEC-SEC-011 | 11-faq | ✅ **Verified** — diff 0.56% desktop / 8.74% mobile vs diseño |
+| SPEC-SEC-012 | 12-cta | ✅ **Verified** — diff 1.97% desktop / 0.20% mobile vs diseño |
 | SPEC-SEC-013 | 13-contact (form) | Planned |
 | SPEC-SEC-014 | 14-footer | Planned |
 | SPEC-SEC-015 | index.astro — ensamblado + orden + `<head>`/SEO base | Planned |
