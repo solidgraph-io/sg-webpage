@@ -52,7 +52,7 @@ File: `docs/specs/SPEC-QA-001.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/tests/visual/hero.spec.ts:14, apps/web/tests/visual/hero.spec.ts:30, apps/web/tests/visual/how-it-works.spec.ts:23, apps/web/tests/visual/how-it-works.spec.ts:37, apps/web/tests/visual/marquee.spec.ts:14, apps/web/tests/visual/marquee.spec.ts:30, apps/web/tests/visual/nav.spec.ts:26, apps/web/tests/visual/nav.spec.ts:43, apps/web/tests/visual/pain-points.spec.ts:18, apps/web/tests/visual/pain-points.spec.ts:32, apps/web/tests/visual/value.spec.ts:17, apps/web/tests/visual/value.spec.ts:31 |
+| RF-1 | ✅ | apps/web/tests/visual/hero.spec.ts:14, apps/web/tests/visual/hero.spec.ts:30, apps/web/tests/visual/how-it-works.spec.ts:23, apps/web/tests/visual/how-it-works.spec.ts:37, apps/web/tests/visual/marquee.spec.ts:14, apps/web/tests/visual/marquee.spec.ts:30, apps/web/tests/visual/nav.spec.ts:26, apps/web/tests/visual/nav.spec.ts:43, apps/web/tests/visual/pain-points.spec.ts:18, apps/web/tests/visual/pain-points.spec.ts:32, apps/web/tests/visual/plans.spec.ts:17, apps/web/tests/visual/plans.spec.ts:31, apps/web/tests/visual/value.spec.ts:17, apps/web/tests/visual/value.spec.ts:31 |
 | RF-2 | ✅ | apps/web/tests/visual/hero.spec.ts:88, apps/web/tests/visual/marquee.spec.ts:67, apps/web/tests/visual/nav.spec.ts:93 |
 | RF-3 | ✅ | apps/web/tests/visual/hero.spec.ts:80, apps/web/tests/visual/nav.spec.ts:84 |
 | RF-4 | ✅ | apps/web/src/__tests__/qa-001.test.ts:18, apps/web/src/__tests__/qa-001.test.ts:19, apps/web/src/__tests__/qa-001.test.ts:25, apps/web/src/__tests__/qa-001.test.ts:32 |
@@ -157,5 +157,58 @@ File: `docs/specs/SPEC-SEC-006.md`
 | INV-1 | ✅ | apps/web/src/__tests__/sec-006.test.ts:112 |
 | INV-2 | ✅ | apps/web/src/__tests__/sec-006.test.ts:120, apps/web/src/__tests__/sec-006.test.ts:124 |
 
+## ✅ SPEC-SEC-007 — Status: Verified
+
+File: `docs/specs/SPEC-SEC-007.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:17, apps/web/src/__tests__/sec-007.test.ts:21, apps/web/src/__tests__/sec-007.test.ts:27, apps/web/src/__tests__/sec-007.test.ts:31, apps/web/src/__tests__/sec-007.test.ts:35, apps/web/tests/visual/plans.spec.ts:61, apps/web/tests/visual/plans.spec.ts:66 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:42, apps/web/src/__tests__/sec-007.test.ts:46, apps/web/src/__tests__/sec-007.test.ts:50, apps/web/tests/visual/plans.spec.ts:73 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:57, apps/web/src/__tests__/sec-007.test.ts:61, apps/web/src/__tests__/sec-007.test.ts:65, apps/web/src/__tests__/sec-007.test.ts:71, apps/web/src/__tests__/sec-007.test.ts:77, apps/web/src/__tests__/sec-007.test.ts:81 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-007.test.ts:91, apps/web/src/__tests__/sec-007.test.ts:97, apps/web/src/__tests__/sec-007.test.ts:101 |
+| RF-5 | ✅ | apps/web/src/__tests__/sec-007.test.ts:109, apps/web/src/__tests__/sec-007.test.ts:115 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:122, apps/web/src/__tests__/sec-007.test.ts:126 |
+| RNF-2 | ✅ | apps/web/tests/visual/plans.spec.ts:78 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:133, apps/web/src/__tests__/sec-007.test.ts:139 |
+| RNF-4 | ✅ | apps/web/tests/visual/plans.spec.ts:17, apps/web/tests/visual/plans.spec.ts:31, apps/web/tests/visual/plans.spec.ts:47, apps/web/tests/visual/plans.spec.ts:53 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:148, apps/web/src/__tests__/sec-007.test.ts:153 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:161, apps/web/src/__tests__/sec-007.test.ts:165 |
+
+## ⚠️ SPEC-SEC-008 — Status: Approved
+
+File: `docs/specs/SPEC-SEC-008.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ❌ | — |
+| RF-2 | ❌ | — |
+| RF-3 | ❌ | — |
+| RF-4 | ❌ | — |
+| RF-5 | ❌ | — |
+| RNF-1 | ❌ | — |
+| RNF-2 | ❌ | — |
+| RNF-3 | ❌ | — |
+| RNF-4 | ❌ | — |
+| INV-1 | ❌ | — |
+| INV-2 | ❌ | — |
+
+## ⚠️ SPEC-SEC-009 — Status: Approved
+
+File: `docs/specs/SPEC-SEC-009.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ❌ | — |
+| RF-2 | ❌ | — |
+| RF-3 | ❌ | — |
+| RF-4 | ❌ | — |
+| RNF-1 | ❌ | — |
+| RNF-2 | ❌ | — |
+| RNF-3 | ❌ | — |
+| RNF-4 | ❌ | — |
+| INV-1 | ❌ | — |
+| INV-2 | ❌ | — |
+
 ---
-_Total specs: 9 | Uncovered reqs in Approved specs: 0_
+_Total specs: 12 | Uncovered reqs in Approved specs: 21_

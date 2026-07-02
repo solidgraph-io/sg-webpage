@@ -6,6 +6,7 @@ import Marquee from '../components/Marquee.astro';
 import PainPoints from '../components/PainPoints.astro';
 import Value from '../components/Value.astro';
 import HowItWorks from '../components/HowItWorks.astro';
+import Plans from '../components/Plans.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -69,6 +70,81 @@ const howCtas = [
   { label: 'Get Started', href: '#contact', variant: 'white'       as const, icon: true },
   { label: 'See Plans',   href: '#plans',   variant: 'ghost-light' as const },
 ];
+
+const plans = [
+  {
+    name: 'Nano', tagline: 'Your first custom-built online presence',
+    price: '$1,300', priceNote: 'one-time payment', delivery: 'Ready in 10–15 business days',
+    bestFor: 'Freelancers, home services, solo professionals, new businesses ready for a real website',
+    includes: [
+      'Custom-built one-page website with up to 5 sections',
+      'Home, About, Services, Gallery, and Contact',
+      'Contact form (name, email, message)',
+      'Your own content management panel — update text and photos yourself',
+      'Mobile-friendly design', 'Basic Google visibility setup (SEO)',
+      'Cloudflare security and speed protection', '2 rounds of feedback before launch',
+      '15-minute video tutorial to manage your site',
+    ],
+    excludes: ['Online store or payments', 'Blog', 'Booking system'],
+    ctaLabel: 'Get Started', ctaHref: '#contact',
+  },
+  {
+    name: 'Micro', tagline: 'More pages, more tools, more customers — all custom built',
+    price: '$2,800', priceNote: 'one-time payment', delivery: 'Ready in 18–25 business days',
+    bestFor: 'Restaurants, salons, retail shops, service businesses that need more than a single page',
+    includes: [
+      'Up to 10 custom-built pages with their own web addresses',
+      'Blog — publish news, tips, and updates yourself',
+      'Google Maps location on your site',
+      'Live chat widget so visitors can message you instantly',
+      'Google Analytics — see how many people visit your site',
+      'Up to 2 custom contact forms', 'Advanced Google visibility setup',
+      '3 rounds of feedback before launch', 'Everything in Nano',
+    ],
+    excludes: ['Online store or payments', 'Booking system'],
+    ctaLabel: 'Get Started', ctaHref: '#contact', popular: true,
+  },
+  {
+    name: 'Pro', tagline: 'Full custom development — sell online, take bookings, grow faster',
+    price: '$5,500', priceNote: 'one-time payment', delivery: 'Ready in 35–50 business days',
+    bestFor: 'Retailers, service businesses that take appointments, anyone ready to sell online with a real custom store',
+    includes: [
+      'Unlimited pages', 'Online store — sell up to 100 products',
+      'Secure online payments via Stripe (credit and debit cards)',
+      'Booking and appointment system',
+      'Email list signup connected to Mailchimp',
+      'Full custom design built from scratch',
+      'Conversion tracking — know which pages bring you customers',
+      'Performance optimization — loads fast on any device',
+      '4 rounds of feedback before launch', 'Everything in Micro',
+    ],
+    excludes: ['More than 100 products (available as add-on at $2/product)'],
+    ctaLabel: 'Get Started', ctaHref: '#contact',
+  },
+  {
+    name: 'Enterprise', tagline: 'Complex custom projects, built exactly to your specs',
+    price: 'Custom', priceNote: 'after a free discovery call', delivery: 'Timeline defined in proposal',
+    bestFor: 'Businesses with specific integrations, large catalogs, or complex requirements that go beyond standard plans',
+    includes: [
+      'Everything in Pro', 'Unlimited products',
+      'Multiple languages (English + Spanish)', 'Custom system integrations',
+      'Advanced business automation', 'Dedicated account manager',
+      'Priority support and SLA',
+    ],
+    ctaLabel: "Let's Talk", ctaHref: '#contact',
+  },
+];
+
+const hosting = {
+  heading: 'Keep Your Site Running Smoothly',
+  subheading: 'After launch, our hosting plans take care of everything — so you never have to worry about your website going down.',
+  cards: [
+    { name: 'Basic Hosting', price: '$35/mo', desc: 'Hosting, security, and peace of mind. We keep your site online and protected.', items: ['High-quality hosting', 'Cloudflare protection', 'Weekly backups', 'Uptime monitoring', 'Email support (48h response)'] },
+    { name: 'Active Hosting', price: '$65/mo', desc: 'Everything in Basic, plus we handle small content updates for you.', items: ['Daily backups', '2 content updates per month', 'Email support (24h response)', 'Monthly analytics report'] },
+    { name: 'Managed Hosting', price: '$120/mo', desc: 'Hands-on support, regular updates, and a monthly check-in call.', items: ['5 content updates per month', '1 small feature change per month', 'Chat + email support (12h response)', 'Monthly 30-min review call', 'Performance monitoring'] },
+    { name: 'Premium Hosting', price: 'From $250/mo', desc: 'Full management, priority support, and a dedicated account manager.', items: ['Unlimited content updates', 'Up to 4h development/month', 'Priority support (4h response)', 'Monthly SEO report', 'Dedicated account manager'] },
+  ],
+};
 ---
 
 <BaseLayout
@@ -111,4 +187,6 @@ const howCtas = [
   />
 
   <HowItWorks steps={howSteps} ctas={howCtas} />
+
+  <Plans plans={plans} hosting={hosting} />
 </BaseLayout>

@@ -44,9 +44,9 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | SPEC-SEC-004 | 04-pain-points (bento) | ✅ **Verified** — diff 0.28% desktop / 1.95% mobile vs diseño |
 | SPEC-SEC-005 | 05-value | ✅ **Verified** — diff 3.84% desktop / 5.81% mobile vs diseño |
 | SPEC-SEC-006 | 06-how-it-works (sticky) | ✅ **Verified** — diff 0.34% desktop / 1.15% mobile vs diseño |
-| SPEC-SEC-007 | 07-plans (+ hosting) | Planned |
-| SPEC-SEC-008 | 08-testimonials (+ stats) | Planned |
-| SPEC-SEC-009 | 09-portfolio | Planned |
+| SPEC-SEC-007 | 07-plans (+ hosting) | ✅ **Verified** — diff 1.35% desktop / 6.51% mobile vs diseño |
+| SPEC-SEC-008 | 08-testimonials (+ stats) | **Approved** — pendiente Claude Code |
+| SPEC-SEC-009 | 09-portfolio | **Approved** — pendiente Claude Code |
 | SPEC-SEC-010 | 10-about (órbita/ciudades) | Planned |
 | SPEC-SEC-011 | 11-faq | Planned |
 | SPEC-SEC-012 | 12-cta | Planned |

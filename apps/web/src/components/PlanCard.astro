@@ -1,0 +1,103 @@
+---
+/**
+ * PlanCard — pricing plan card with popular (dark) variant.
+ * Ports components/plan-card.css + badge.css from design/template.
+ */
+import Badge from './Badge.astro';
+
+interface Props {
+  name: string;
+  tagline: string;
+  price: string;
+  priceNote: string;
+  delivery: string;
+  bestFor: string;
+  includes: string[];
+  excludes?: string[];
+  ctaLabel: string;
+  ctaHref: string;
+  popular?: boolean;
+  delay?: string;
+}
+
+const { name, tagline, price, priceNote, delivery, bestFor, includes, excludes, ctaLabel, ctaHref, popular = false, delay = '0ms' } = Astro.props;
+---
+
+<div class:list={['plan', popular && 'popular']} data-reveal style={`--d:${delay}`}>
+  {popular && <Badge>Most Popular</Badge>}
+  <div class="name">{name}</div>
+  <p class="tagline">{tagline}</p>
+  <div class="price">{price}</div>
+  <div class="price-note">{priceNote}</div>
+  <span class="delivery">{delivery}</span>
+  <div class="best-for"><b>Best for</b>{bestFor}</div>
+  <ul class="includes">
+    {includes.map((item) => <li>{item}</li>)}
+  </ul>
+  {excludes && excludes.length > 0 && (
+    <ul class="excludes">
+      {excludes.map((item) => <li>{item}</li>)}
+    </ul>
+  )}
+  <a href={ctaHref} class="plan-cta">{ctaLabel}</a>
+</div>
+
+<style>
+.plan {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 36px 28px 30px; display: flex; flex-direction: column; position: relative;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .4s ease;
+}
+.plan:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: rgba(45,61,138,.18); }
+.plan.popular {
+  background: var(--night); color: #fff; border-color: transparent;
+  box-shadow: var(--shadow-lg); transform: scale(1.03); z-index: 2; overflow: hidden;
+}
+.plan.popular::before {
+  content: ""; position: absolute; width: 280px; height: 280px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(125,142,240,.4), transparent 65%);
+  top: -120px; right: -80px;
+}
+.plan.popular:hover { transform: scale(1.03) translateY(-8px); }
+.plan > * { position: relative; z-index: 1; }
+
+.name { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--periwinkle); margin-bottom: 16px; }
+.popular .name { color: var(--peri-bright); }
+.tagline { font-size: 14px; line-height: 1.5; color: var(--muted); margin-bottom: 24px; min-height: 42px; }
+.popular .tagline { color: var(--muted-d); }
+.price { font-size: 42px; font-weight: 800; color: var(--ink); line-height: 1; letter-spacing: -.03em; }
+.popular .price { color: #fff; }
+.price-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.popular .price-note { color: var(--muted-d); }
+.delivery { font-size: 11.5px; color: var(--indigo); font-weight: 600; background: var(--lilac); padding: 7px 13px; border-radius: 999px; margin: 16px 0 20px; align-self: flex-start; }
+.popular .delivery { background: rgba(255,255,255,.12); color: #fff; }
+.best-for { font-size: 12px; color: var(--muted); line-height: 1.55; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+.best-for b { display: block; color: var(--ink); margin-bottom: 5px; font-weight: 700; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.popular .best-for { color: var(--muted-d); border-color: rgba(255,255,255,.14); }
+.popular .best-for b { color: rgba(255,255,255,.95); }
+
+ul.includes { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
+ul.includes li { font-size: 12.5px; line-height: 1.5; color: var(--ink); padding-left: 26px; position: relative; }
+ul.includes li::before {
+  content: ""; position: absolute; left: 0; top: 2px; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--lilac) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%232d3d8a' d='M6.5 11L3.5 8l1-1 2 2 4-4 1 1z'/></svg>") center/15px no-repeat;
+}
+.popular ul.includes li { color: rgba(255,255,255,.9); }
+.popular ul.includes li::before {
+  background: rgba(255,255,255,.16) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='white' d='M6.5 11L3.5 8l1-1 2 2 4-4 1 1z'/></svg>") center/15px no-repeat;
+}
+ul.excludes { display: flex; flex-direction: column; gap: 7px; margin-bottom: 26px; }
+ul.excludes li { font-size: 11.5px; color: #b6b8c4; padding-left: 26px; position: relative; }
+ul.excludes li::before { content: "×"; position: absolute; left: 5px; top: -1px; font-size: 14px; }
+.popular ul.excludes li { color: rgba(255,255,255,.45); }
+
+.plan-cta {
+  margin-top: auto; text-align: center; padding: 14px;
+  border-radius: 999px; font-weight: 600; font-size: 13px; cursor: pointer;
+  background: transparent; color: var(--indigo); border: 1.5px solid rgba(45,61,138,.25);
+  transition: all .3s var(--ease);
+}
+.plan-cta:hover { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+.popular .plan-cta { background: #fff; color: var(--indigo); border-color: #fff; }
+.popular .plan-cta:hover { background: var(--peri-bright); color: #fff; border-color: var(--peri-bright); }
+</style>
