@@ -50,9 +50,9 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | SPEC-SEC-010 | 10-about (órbita/ciudades) | ✅ **Verified** — diff 4.92% desktop / 6.91% mobile vs diseño |
 | SPEC-SEC-011 | 11-faq | ✅ **Verified** — diff 0.56% desktop / 8.74% mobile vs diseño |
 | SPEC-SEC-012 | 12-cta | ✅ **Verified** — diff 1.97% desktop / 0.20% mobile vs diseño |
-| SPEC-SEC-013 | 13-contact (form) | Planned |
-| SPEC-SEC-014 | 14-footer | Planned |
-| SPEC-SEC-015 | index.astro — ensamblado + orden + `<head>`/SEO base | Planned |
+| SPEC-SEC-013 | 13-contact (UI del form; envío → EPIC-06) | ✅ **Verified** — diff 7.10% desktop / 7.78% mobile vs diseño |
+| SPEC-SEC-014 | 14-footer | ✅ **Verified** — diff 1.46% desktop / 3.28% mobile vs diseño |
+| SPEC-SEC-015 | index.astro — ensamblado + orden + `<head>`/SEO base + fidelidad de página | ✅ **Verified** — 14 secciones, orden correcto, SEO OK, h1 único, baseline above-fold |
 
 ### Diferido (tras el sitio fiel)
 | EPIC | Título | Estado |
