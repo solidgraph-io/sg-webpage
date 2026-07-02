@@ -96,7 +96,7 @@ test('[SPEC-SEC-015/INV-1] page has exactly one <h1>', async ({ page }) => {
 
 // ── Above-fold anti-regresión baseline (animations frozen) ───────────────────
 
-test('[SPEC-SEC-015/RNF-4] above-fold desktop — anti-regresión baseline', async ({ page }, testInfo) => {
+test('[SPEC-SEC-015/RF-4] above-fold desktop — anti-regresión baseline', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Above-fold baseline in desktop project only');
   await page.setViewportSize({ width: 1440, height: 900 });
   await waitForStyles(page);
@@ -108,7 +108,7 @@ test('[SPEC-SEC-015/RNF-4] above-fold desktop — anti-regresión baseline', asy
   });
 });
 
-test('[SPEC-SEC-015/RNF-4] above-fold mobile — anti-regresión baseline', async ({ page }, testInfo) => {
+test('[SPEC-SEC-015/RF-4] above-fold mobile — anti-regresión baseline', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Above-fold mobile baseline in mobile project only');
   await page.setViewportSize({ width: 393, height: 852 });
   await waitForStyles(page);
@@ -118,4 +118,16 @@ test('[SPEC-SEC-015/RNF-4] above-fold mobile — anti-regresión baseline', asyn
     clip: { x: 0, y: 0, width: 393, height: 852 },
     maxDiffPixelRatio: 0.02,
   });
+});
+
+// ── Responsive (RNF-3) ────────────────────────────────────────────────────────
+
+test('[SPEC-SEC-015/RNF-3] all key sections visible on mobile 393px', async ({ page }) => {
+  await page.setViewportSize({ width: 393, height: 852 });
+  await waitForStyles(page);
+  const selectors = ['.hero', '.marquee', '.pain', '.plans', '.contact', 'footer'];
+  for (const sel of selectors) {
+    const el = page.locator(sel);
+    await expect(el, `${sel} must exist in mobile viewport`).toBeAttached();
+  }
 });

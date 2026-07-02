@@ -70,6 +70,75 @@ describe('SPEC-SEC-015/RF-3 — SEO props in index.astro', () => {
   });
 });
 
+// ── RF-4: visual gate exists ─────────────────────────────────────────────────
+describe('SPEC-SEC-015/RF-4 — above-fold visual gate', () => {
+  it('[SPEC-SEC-015/RF-4] design template index.html source exists', () => {
+    const designIndex = path.join(ROOT, 'design/template/index.html');
+    expect(fs.existsSync(designIndex), 'design/template/index.html must exist as gate source').toBe(true);
+  });
+});
+
+// ── RF-5: interactions.js on full page ────────────────────────────────────────
+describe('SPEC-SEC-015/RF-5 — interactions.js progressive enhancement', () => {
+  it('[SPEC-SEC-015/RF-5] BaseLayout loads interactions.js deferred', () => {
+    const c = fs.readFileSync(layout, 'utf-8');
+    expect(c).toContain('interactions.js');
+    expect(c).toContain('defer');
+  });
+
+  it('[SPEC-SEC-015/RF-5] BaseLayout adds .js class before first paint', () => {
+    expect(fs.readFileSync(layout, 'utf-8')).toContain("classList.add('js')");
+  });
+});
+
+// ── RNF-1: page a11y landmarks ────────────────────────────────────────────────
+describe('SPEC-SEC-015/RNF-1 — a11y landmarks and lang', () => {
+  it('[SPEC-SEC-015/RNF-1] BaseLayout has lang="en" on html element', () => {
+    expect(fs.readFileSync(layout, 'utf-8')).toContain('lang="en"');
+  });
+
+  it('[SPEC-SEC-015/RNF-1] index.astro uses Nav for header landmark', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).toContain('<Nav');
+  });
+
+  it('[SPEC-SEC-015/RNF-1] index.astro uses Footer for footer landmark', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).toContain('<Footer');
+  });
+});
+
+// ── RNF-2: no accidental JS in index.astro ────────────────────────────────────
+describe('SPEC-SEC-015/RNF-2 — no accidental client JS', () => {
+  it('[SPEC-SEC-015/RNF-2] index.astro has no <script> blocks', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).not.toContain('<script');
+  });
+});
+
+// ── RNF-3: responsive ────────────────────────────────────────────────────────
+describe('SPEC-SEC-015/RNF-3 — responsive page', () => {
+  it('[SPEC-SEC-015/RNF-3] BaseLayout has meta viewport', () => {
+    expect(fs.readFileSync(layout, 'utf-8')).toContain('name="viewport"');
+  });
+
+  it('[SPEC-SEC-015/RNF-3] index.astro has no fixed-width inline style attributes', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).not.toContain('style=');
+  });
+});
+
+// ── INV-2: index.astro only composes ─────────────────────────────────────────
+describe('SPEC-SEC-015/INV-2 — index.astro is composition-only', () => {
+  it('[SPEC-SEC-015/INV-2] index.astro has no <style> block', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).not.toContain('<style');
+  });
+
+  it('[SPEC-SEC-015/INV-2] index.astro has no raw <div> elements', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).not.toContain('<div');
+  });
+
+  it('[SPEC-SEC-015/INV-2] index.astro has no raw <section> elements', () => {
+    expect(fs.readFileSync(idx, 'utf-8')).not.toContain('<section');
+  });
+});
+
 // ── INV-1: single h1 ─────────────────────────────────────────────────────
 describe('SPEC-SEC-015/INV-1 — single h1', () => {
   it('[SPEC-SEC-015/INV-1] Hero.astro uses <h1>', () => {
