@@ -1,0 +1,41 @@
+---
+/**
+ * Badge — gradient label. Three visual variants:
+ *  badge  — absolute positioned "Most Popular" flag on a card
+ *  p-tag  — light overlay tag on portfolio thumbnails
+ *  chip   — small tint chip (used inside a .chips row)
+ */
+type Variant = 'badge' | 'p-tag' | 'chip';
+
+interface Props {
+  variant?: Variant;
+  class?: string;
+}
+
+const { variant = 'badge', class: extra } = Astro.props;
+const cls = [variant === 'chip' ? undefined : variant, extra].filter(Boolean).join(' ');
+---
+
+{variant === 'chip' ? (
+  <span class={['chips-item', extra].filter(Boolean).join(' ')}><slot /></span>
+) : (
+  <span class={cls}><slot /></span>
+)}
+
+<style>
+.badge {
+  position: absolute; top: 22px; right: 24px; z-index: 2;
+  background: linear-gradient(100deg, var(--periwinkle), var(--peri-bright)); color: var(--white);
+  font-size: 10px; font-weight: 700; padding: 6px 13px; border-radius: 999px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+
+.p-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(255,255,255,.95); color: var(--indigo);
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  padding: 6px 13px; border-radius: 999px;
+}
+
+.chips-item { font-size: 10px; padding: 6px 12px; border-radius: 999px; background: var(--lilac); color: var(--indigo); font-weight: 600; }
+</style>

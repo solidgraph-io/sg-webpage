@@ -1,0 +1,33 @@
+---
+/**
+ * IconBox — rounded tile for inline SVG icons.
+ * Sizes: sm (36px) | md (50px, default) | lg (54px)
+ */
+type Size = 'sm' | 'md' | 'lg';
+
+interface Props {
+  size?: Size;
+  class?: string;
+}
+
+const { size = 'md', class: extra } = Astro.props;
+const cls = [
+  'icon-box',
+  size === 'sm' && 'icon-box--sm',
+  size === 'lg' && 'icon-box--lg',
+  extra,
+].filter(Boolean).join(' ');
+---
+
+<span class={cls} aria-hidden="true"><slot /></span>
+
+<style>
+.icon-box {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: var(--lilac); color: var(--indigo);
+  display: grid; place-items: center; flex-shrink: 0;
+  transition: transform .4s var(--ease-spring), background .4s ease, color .4s ease;
+}
+.icon-box--sm { width: 36px; height: 36px; border-radius: 10px; }
+.icon-box--lg { width: 54px; height: 54px; border-radius: 16px; }
+</style>

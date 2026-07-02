@@ -1,0 +1,31 @@
+---
+/**
+ * Pill — small status/label chip with optional live ping dot.
+ * Uses @keyframes ping from animations.css.
+ */
+interface Props {
+  ping?: boolean;
+  class?: string;
+}
+
+const { ping = false, class: extra } = Astro.props;
+const cls = ['pill', extra].filter(Boolean).join(' ');
+---
+
+<span class={cls}>
+  {ping && <span class="ping" aria-hidden="true"></span>}
+  <slot />
+</span>
+
+<style>
+.pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 16px 8px 12px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+}
+.pill .ping { width: 8px; height: 8px; border-radius: 50%; background: var(--success); position: relative; }
+.pill .ping::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1px solid var(--success); opacity: .6; animation: ping 1.8s var(--ease) infinite;
+}
+</style>

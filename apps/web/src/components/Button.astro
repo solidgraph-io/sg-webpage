@@ -1,0 +1,58 @@
+---
+/**
+ * Button — pill-shaped CTA atom.
+ * Variants: primary | white | ghost-light | outline
+ * Add magnetic prop to enable cursor-follow micro-interaction.
+ */
+type Variant = 'primary' | 'white' | 'ghost-light' | 'outline';
+
+interface Props {
+  variant?: Variant;
+  href?: string;
+  magnetic?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { variant = 'primary', href, magnetic = false, class: extra, ...rest } = Astro.props;
+const cls = ['btn', `btn-${variant}`, magnetic && 'magnetic', extra].filter(Boolean).join(' ');
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class={cls} href={href} {...rest}>
+  <slot />
+</Tag>
+
+<style>
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 28px; border-radius: 999px;
+  font-weight: 600; font-size: 14px; letter-spacing: .01em;
+  cursor: pointer; border: none; white-space: nowrap;
+  transition: transform .35s var(--ease-spring), box-shadow .3s ease, background .3s ease, color .3s ease;
+  overflow: hidden;
+}
+.btn svg { transition: transform .35s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+
+.btn-primary { background: var(--indigo); color: var(--white); box-shadow: 0 10px 30px -8px rgba(45,61,138,.55); }
+.btn-primary::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(100deg, var(--periwinkle), var(--indigo));
+  opacity: 0; transition: opacity .35s ease;
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary > * { position: relative; z-index: 1; }
+.btn-primary:hover { box-shadow: 0 16px 40px -10px rgba(92,112,214,.65); }
+
+.btn-white { background: var(--white); color: var(--indigo); }
+.btn-white:hover { background: var(--lilac); }
+
+.btn-ghost-light { background: rgba(255,255,255,.08); color: var(--white); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(6px); }
+.btn-ghost-light:hover { background: rgba(255,255,255,.16); }
+
+.btn-outline { background: transparent; color: var(--indigo); border: 1.5px solid rgba(45,61,138,.25); }
+.btn-outline:hover { background: var(--indigo); color: var(--white); border-color: var(--indigo); }
+
+.magnetic { transition: transform .25s var(--ease); }
+</style>
