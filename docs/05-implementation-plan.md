@@ -42,7 +42,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | SPEC-SEC-002 | 02-hero | ✅ **Verified** — diff 2.0% desktop / 4.4% mobile vs diseño |
 | SPEC-SEC-003 | 03-marquee | ✅ **Verified** — diff 2.4% desktop / 2.3% mobile vs diseño |
 | SPEC-SEC-004 | 04-pain-points (bento) | ✅ **Verified** — diff 0.28% desktop / 1.95% mobile vs diseño |
-| SPEC-SEC-005 | 05-value | **Approved** — pendiente Claude Code |
+| SPEC-SEC-005 | 05-value | ✅ **Verified** — diff 3.84% desktop / 5.81% mobile vs diseño |
 | SPEC-SEC-006 | 06-how-it-works (sticky) | **Approved** — pendiente Claude Code |
 | SPEC-SEC-007 | 07-plans (+ hosting) | Planned |
 | SPEC-SEC-008 | 08-testimonials (+ stats) | Planned |

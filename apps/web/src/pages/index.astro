@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import PainPoints from '../components/PainPoints.astro';
+import Value from '../components/Value.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -44,6 +45,18 @@ const painFeature = {
   title: "You're not alone.",
   text: 'And a custom-built website is closer and more affordable than you think.',
 };
+
+const valueLead = {
+  strong: 'A custom website built for your specific business — not a template dressed up to look like one.',
+  body: 'At SolidGraph Solutions, we write every line of code for your business specifically. No page builders, no generic templates, no drag-and-drop shortcuts. The result is a website that loads faster, looks sharper, and actually converts visitors into customers — and it belongs 100% to you from day one.',
+};
+
+const valuePillars = [
+  { num: '01', iconId: '/icons.svg#i-code',   title: 'Built From Scratch',    text: 'Every line of code written for your business. No Wix, no templates, no shortcuts.' },
+  { num: '02', iconId: '/icons.svg#i-zap',    title: 'Fast Delivery',         text: 'Most custom websites are ready in 2 weeks. Not months.' },
+  { num: '03', iconId: '/icons.svg#i-dollar', title: 'Clear, Honest Pricing', text: "You know exactly what you're paying for before we start. No surprises." },
+  { num: '04', iconId: '/icons.svg#i-shield', title: 'You Own Everything',    text: 'Your domain, your code, your content. No vendor lock-in, ever.' },
+];
 ---
 
 <BaseLayout
@@ -77,5 +90,11 @@ const painFeature = {
     intro="Most local business owners come to us after running into the same walls."
     items={painItems}
     feature={painFeature}
+  />
+
+  <Value
+    heading="We Build It From Scratch.<br/><span class='grad-text'>You Own It Forever.</span>"
+    lead={valueLead}
+    pillars={valuePillars}
   />
 </BaseLayout>
