@@ -37,9 +37,10 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 ### EPIC-21 — Secciones (una spec por sección, 1:1 con `design/template/sections/`)
 | ID | Sección | Estado |
 |----|---------|--------|
-| SPEC-SEC-001 | 01-nav | ✅ **Implemented** |
-| SPEC-SEC-002 | 02-hero | ✅ **Implemented** |
-| SPEC-SEC-003 | 03-marquee | ✅ **Implemented** |
+| SPEC-QA-001 | **Gate de fidelidad** (regresión visual contra el DISEÑO, sin dev toolbar, assets) | ✅ **Implemented** — harness pixelmatch + drone blocker activos |
+| SPEC-SEC-001 | 01-nav | ✅ **Verified** — diff 0.00% desktop / 0.45% mobile vs diseño |
+| SPEC-SEC-002 | 02-hero | ✅ **Verified** — diff 2.0% desktop / 4.4% mobile vs diseño |
+| SPEC-SEC-003 | 03-marquee | ✅ **Verified** — diff 2.4% desktop / 2.3% mobile vs diseño |
 | SPEC-SEC-004 | 04-pain-points (bento) | Planned |
 | SPEC-SEC-005 | 05-value | Planned |
 | SPEC-SEC-006 | 06-how-it-works (sticky) | Planned |

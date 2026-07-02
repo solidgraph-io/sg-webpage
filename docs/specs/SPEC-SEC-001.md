@@ -1,7 +1,7 @@
 # SPEC-SEC-001 — Sección 01: Nav
 
 - **ID:** SPEC-SEC-001
-- **Estado:** Implemented
+- **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
 - **Depende de:** SPEC-DS-001

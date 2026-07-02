@@ -1,39 +1,69 @@
 /**
- * SPEC-SEC-003/RNF-3 — Marquee visual regression
+ * SPEC-SEC-003/RNF-3 + SPEC-QA-001/RF-1 — Marquee visual gate
  */
 
 import { test, expect } from '@playwright/test';
-import { captureDesign, waitForFonts } from './helpers';
+import { compareWithDesign, waitForStyles } from './helpers';
 
-test.describe('SPEC-SEC-003/RNF-3 — Marquee visual', () => {
-  test('[SPEC-SEC-003/RNF-3] marquee desktop — design vs astro', async ({ page, browser }, testInfo) => {
-    // Design reference
-    const designPage = await browser.newPage();
-    await designPage.setViewportSize({ width: 1440, height: 200 });
-    const designShot = await captureDesign(designPage, '03-marquee.html', '.marquee');
-    await designPage.close();
-    await testInfo.attach('design-reference', { body: designShot, contentType: 'image/png' });
+test.beforeEach(async ({ page }) => {
+  await page.goto('/');
+});
 
-    // Astro implementation
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
-    await waitForFonts(page);
-    const astroShot = await page.locator('.marquee').screenshot();
-    await testInfo.attach('astro-implementation', { body: astroShot, contentType: 'image/png' });
+// ── Gate: design vs implementation ───────────────────────────────────────────
 
-    await expect(page.locator('.marquee')).toHaveScreenshot('marquee-desktop.png');
+test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee desktop 1440 — diff vs diseño', async ({
+  page,
+  browser,
+}, testInfo) => {
+  await compareWithDesign({
+    astroPage: page,
+    browser,
+    testInfo,
+    sectionFile: '03-marquee.html',
+    selector: '.marquee',
+    viewport: { width: 1440, height: 300 },
+    threshold: 0.08,
+    label: 'marquee-desktop',
   });
+});
 
-  test('[SPEC-SEC-003/RNF-3] marquee animation paused on hover', async ({ page }) => {
-    await page.goto('/');
-    await waitForFonts(page);
-    // Remove dev toolbar so it doesn't intercept pointer events
-    await page.evaluate(() => document.querySelector('astro-dev-toolbar')?.remove());
-    const track = page.locator('.marquee-track');
-    await page.locator('.marquee').hover();
-    const playState = await track.evaluate(
-      el => getComputedStyle(el).animationPlayState,
-    );
-    expect(playState).toBe('paused');
+test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee mobile 393 — diff vs diseño', async ({
+  page,
+  browser,
+}, testInfo) => {
+  await compareWithDesign({
+    astroPage: page,
+    browser,
+    testInfo,
+    sectionFile: '03-marquee.html',
+    selector: '.marquee',
+    viewport: { width: 393, height: 300 },
+    threshold: 0.10,
+    label: 'marquee-mobile',
   });
+});
+
+// ── Anti-regresión ─────────────────────────────────────────────────────────────
+
+test('[SPEC-SEC-003/RNF-3] marquee desktop — anti-regresión baseline', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await waitForStyles(page);
+  await expect(page.locator('.marquee')).toHaveScreenshot('marquee-desktop.png');
+});
+
+// ── Comportamiento ─────────────────────────────────────────────────────────────
+
+test('[SPEC-SEC-003/RNF-3] marquee animación pausa en hover', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await waitForStyles(page);
+  await page.evaluate(() => document.querySelector('astro-dev-toolbar')?.remove());
+  await page.locator('.marquee').hover();
+  const playState = await page
+    .locator('.marquee-track')
+    .evaluate((el) => getComputedStyle(el).animationPlayState);
+  expect(playState).toBe('paused');
+});
+
+test('[SPEC-QA-001/RF-2] marquee no contiene dev toolbar', async ({ page }) => {
+  expect(await page.locator('astro-dev-toolbar').count()).toBe(0);
 });

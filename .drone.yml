@@ -65,10 +65,30 @@ steps:
       - pnpm test
       - pnpm trace -- --check
 
-  # ── 4. build ─────────────────────────────────────────────────────────────────
+  # ── 4. visual-test (design fidelity gate) ───────────────────────────────────
+  # SPEC-QA-001/RF-5 — bloqueante; corre contra el build de producción (CI=true)
+  - name: visual-test
+    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    depends_on: [test]
+    environment:
+      CI: "true"
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm install --frozen-lockfile
+      - pnpm --filter @solidgraph/web build
+      - pnpm --filter @solidgraph/web test:e2e
+
+  # ── 5. build ─────────────────────────────────────────────────────────────────
   - name: build
     image: node:22-alpine
-    depends_on: [test]
+    depends_on: [visual-test]
     when:
       branch:
         - develop

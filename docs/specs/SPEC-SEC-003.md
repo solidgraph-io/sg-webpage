@@ -1,7 +1,7 @@
 # SPEC-SEC-003 — Sección 03: Marquee
 
 - **ID:** SPEC-SEC-003
-- **Estado:** Implemented
+- **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
 - **Depende de:** SPEC-DS-001

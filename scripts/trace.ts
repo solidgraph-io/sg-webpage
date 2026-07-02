@@ -79,9 +79,10 @@ async function collectCitations(): Promise<Map<string, string[]>> {
   // Map: "SPEC-INFRA-001/RF-1" → ["apps/web/src/__tests__/foo.test.ts:42"]
   const citations = new Map<string, string[]>();
 
-  // Scan all test files under apps/ and scripts/
+  // Scan all test files under apps/ and scripts/ (Vitest .test.ts + Playwright .spec.ts)
   const files: string[] = [];
   collectFiles(path.join(ROOT, 'apps'), '.test.ts', files);
+  collectFiles(path.join(ROOT, 'apps'), '.spec.ts', files);
   collectFiles(path.join(ROOT, 'scripts'), '.test.ts', files);
 
   for (const filePath of files) {

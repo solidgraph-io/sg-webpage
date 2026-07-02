@@ -1,7 +1,12 @@
 /* ==========================================================================
    SolidGraph · Global CSS
-   Entry point: Poppins self-hosted @font-face + design-system imports.
+   @import must come first (CSS spec). Poppins @font-face after imports.
    ========================================================================== */
+
+/* ---- Design system layers ---- */
+@import "./tokens.css";
+@import "./base.css";
+@import "./animations.css";
 
 /* ---- Poppins — self-hosted (no CDN) ---- */
 @font-face {
@@ -46,8 +51,3 @@
   font-style: normal;
   font-display: swap;
 }
-
-/* ---- Design system layers ---- */
-@import "./tokens.css";
-@import "./base.css";
-@import "./animations.css";
