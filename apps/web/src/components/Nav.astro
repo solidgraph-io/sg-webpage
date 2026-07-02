@@ -1,0 +1,125 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+
+interface NavLink {
+  label: string;
+  href: string;
+  active?: boolean;
+}
+
+interface Props {
+  links: NavLink[];
+  cta: { label: string; href: string };
+}
+
+const { links, cta } = Astro.props;
+---
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <Logo href="/" />
+
+    <!-- Desktop navigation -->
+    <nav class="nav-links" aria-label="Main navigation">
+      {links.map(link => (
+        <a
+          href={link.href}
+          aria-current={link.active ? 'page' : undefined}
+        >{link.label}</a>
+      ))}
+    </nav>
+
+    <!-- Mobile navigation (progressive, no JS required) -->
+    <details class="nav-mobile">
+      <summary aria-label="Toggle navigation menu">
+        <span class="hamburger" aria-hidden="true"></span>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        {links.map(link => (
+          <a
+            href={link.href}
+            aria-current={link.active ? 'page' : undefined}
+          >{link.label}</a>
+        ))}
+      </nav>
+    </details>
+
+    <Button variant="primary" href={cta.href} magnetic class="nav-cta">
+      <span>{cta.label}</span>
+    </Button>
+  </div>
+</header>
+
+<style>
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  transition: transform .4s var(--ease), padding .4s ease;
+}
+.nav-inner {
+  max-width: var(--max); margin: 14px auto 0;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 66px; padding: 0 14px 0 22px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(45,61,138,.08);
+  box-shadow: 0 8px 30px -16px rgba(31,44,102,.22);
+  transition: margin .4s var(--ease), background .4s ease;
+}
+.nav.scrolled .nav-inner { margin-top: 8px; background: rgba(255,255,255,.88); }
+.nav.hide { transform: translateY(-130%); }
+
+.nav-links { display: flex; gap: 6px; }
+.nav-links a {
+  font-size: 13.5px; font-weight: 500; color: var(--ink);
+  padding: 9px 15px; border-radius: 999px;
+  transition: background .2s ease, color .2s ease;
+}
+.nav-links a:hover, .nav-links a[aria-current] { background: var(--lilac); color: var(--indigo); }
+
+.nav-cta { padding: 11px 22px; font-size: 13px; }
+
+/* ── Mobile ── */
+.nav-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-mobile { display: block; position: relative; }
+  .nav-mobile > summary {
+    list-style: none; cursor: pointer;
+    padding: 10px 12px; border-radius: 10px; color: var(--ink);
+    transition: background .2s ease;
+  }
+  .nav-mobile > summary::-webkit-details-marker { display: none; }
+  .nav-mobile > summary:hover { background: var(--lilac); }
+  .hamburger, .hamburger::before, .hamburger::after {
+    display: block; width: 20px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: transform .25s ease;
+  }
+  .hamburger { position: relative; }
+  .hamburger::before, .hamburger::after {
+    content: ""; position: absolute; left: 0;
+  }
+  .hamburger::before { top: -6px; }
+  .hamburger::after  { top: 6px; }
+  .nav-mobile nav {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: rgba(255,255,255,.96); backdrop-filter: blur(18px);
+    border-radius: 18px; padding: 10px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(45,61,138,.08);
+    min-width: 200px;
+  }
+  .nav-mobile nav a {
+    display: block; padding: 11px 16px;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    border-radius: 10px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-mobile nav a:hover, .nav-mobile nav a[aria-current] {
+    background: var(--lilac); color: var(--indigo);
+  }
+}
+</style>
