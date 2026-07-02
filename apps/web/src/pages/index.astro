@@ -10,6 +10,7 @@ import Plans from '../components/Plans.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Portfolio from '../components/Portfolio.astro';
 import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -199,6 +200,17 @@ const aboutCities = [
   { name: 'Springfield-Branson, MO', note: 'From the Ozarks to downtown — we help local businesses get found online.' },
 ];
 
+const faqItems = [
+  { question: 'Do I need any technical knowledge to manage my website?', answer: 'Not at all. Even though we build every website from scratch with custom code, we set up a simple dashboard where you can change your text and photos with a few clicks — no coding needed. It\'s like editing a Word document. We also send you a short video tutorial walking you through it.' },
+  { question: 'What if I already have a website? Can you redesign it?', answer: 'Absolutely. Many of our clients come to us with an outdated site they\'re not happy with. We\'ll review what you have and give you an honest assessment of whether a redesign or a fresh start is the better move for you.' },
+  { question: 'Do I need to buy a domain name?', answer: 'Yes — and it\'s very affordable. A domain name (like www.yourbusiness.com) typically costs $12–15 per year from providers like GoDaddy or Namecheap. We\'ll guide you through the process of buying one if you don\'t have it already.' },
+  { question: 'How long does it take to build my website?', answer: 'Most Nano websites are ready in 10–15 business days after we receive your content (text, photos, and logo). The timeline starts once you\'ve shared your materials with us — the faster you send them, the faster we deliver.' },
+  { question: 'What happens after my website launches?', answer: 'Your website is fully yours to manage. If you\'d like us to keep it running, secure, and updated, we offer monthly hosting plans starting at $35/month. There\'s no obligation — you can manage it yourself or move it to any other host.' },
+  { question: 'Can I sell products on my website?', answer: 'Yes — with our Pro plan. It includes a fully custom-built online store where you can sell up to 100 products and accept card payments securely via Stripe. Unlike template-based stores, yours is built to match your brand exactly. Our Nano and Micro plans are designed for businesses that don\'t need online sales yet.' },
+  { question: 'Is my website protected from hackers?', answer: 'Yes. Every custom website we build is protected by Cloudflare, the same security layer used by millions of businesses worldwide. Because we build from scratch, we also avoid the security vulnerabilities common in generic WordPress themes and page builders. Your site stays online and protected.' },
+  { question: 'What if I need something that\'s not in any of your plans?', answer: 'Just ask. Our Enterprise plan covers custom projects, and we\'re always happy to talk through what you need before you commit to anything. The initial conversation is always free.' },
+];
+
 const hosting = {
   heading: 'Keep Your Site Running Smoothly',
   subheading: 'After launch, our hosting plans take care of everything — so you never have to worry about your website going down.',
@@ -259,4 +271,6 @@ const hosting = {
   <Portfolio items={portfolioItems} />
 
   <About visual={aboutVisual} body={aboutBody} diffs={aboutDiffs} cities={aboutCities} />
+
+  <Faq items={faqItems} />
 </BaseLayout>
