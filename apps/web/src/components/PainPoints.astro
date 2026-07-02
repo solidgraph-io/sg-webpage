@@ -1,0 +1,119 @@
+---
+import SectionHead from './SectionHead.astro';
+import Eyebrow from './Eyebrow.astro';
+import IconBox from './IconBox.astro';
+
+interface BentoItem {
+  iconId: string;
+  text: string;
+  wide?: boolean;
+}
+
+interface BentoFeature {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  items: BentoItem[];
+  feature: BentoFeature;
+}
+
+const { eyebrow = 'The Walls You Hit', heading, intro, items, feature } = Astro.props;
+---
+
+<section class="pain" data-section="pain-points" id="pain-points" aria-labelledby="pain-heading">
+  <div class="container">
+    <SectionHead data-reveal>
+      <Eyebrow slot="eyebrow" centered>{eyebrow}</Eyebrow>
+      <h2 id="pain-heading">{heading}</h2>
+      {intro && <p>{intro}</p>}
+    </SectionHead>
+    <div class="bento">
+      {/* First 2 cards, then feature (col 3-4), then remaining cards — matches design layout */}
+      {items.slice(0, 2).map((item, i) => (
+        <div class:list={['bento-card', item.wide && 'bento-wide']} data-reveal style={`--d:${i * 80}ms`}>
+          <IconBox size="md" class="ic">
+            <svg width="24" height="24" aria-hidden="true"><use href={item.iconId} /></svg>
+          </IconBox>
+          <p>{item.text}</p>
+        </div>
+      ))}
+      <div class="bento-feature" data-reveal="right" style="--d:160ms; padding:8px 20px; border-width:0px; border-style:solid; border-radius:28px">
+        <h3>{feature.title}</h3>
+        <p>{feature.text}</p>
+      </div>
+      {items.slice(2).map((item, i) => (
+        <div class:list={['bento-card', item.wide && 'bento-wide']} data-reveal style={`--d:${(i + 1) * 80}ms`}>
+          <IconBox size="md" class="ic">
+            <svg width="24" height="24" aria-hidden="true"><use href={item.iconId} /></svg>
+          </IconBox>
+          <p>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.pain { padding: 120px 0 110px; background: var(--lilac-2); position: relative; }
+
+/* ── Bento grid ── */
+.bento {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr; gap: 18px;
+  max-width: 1060px; margin: 0 auto;
+}
+
+/* ── Bento card ── */
+.bento-card {
+  background: #fff; border-radius: var(--radius-lg);
+  padding: 34px 32px; border: 1px solid rgba(45,61,138,.05);
+  box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.bento-card::before {
+  content: ""; position: absolute; right: -40px; top: -40px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: var(--lilac); opacity: 0;
+  transition: opacity .5s ease, transform .6s var(--ease);
+}
+.bento-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.bento-card:hover::before { opacity: .6; transform: scale(1.3); }
+.bento-card > * { position: relative; z-index: 1; }
+.bento-card :global(.ic) {
+  margin-bottom: 22px;
+  transition: transform .4s var(--ease-spring);
+}
+.bento-card:hover :global(.ic) { transform: scale(1.1) rotate(-6deg); }
+.bento-card p { font-size: 15px; line-height: 1.6; color: var(--ink); font-weight: 500; }
+
+/* ── Span variants — base rules BEFORE media queries so MQs can override ── */
+.bento-wide { grid-column: span 2; }
+.bento-feature {
+  grid-column: span 2; grid-row: span 1;
+  background: var(--indigo); color: #fff;
+  display: flex; flex-direction: column; justify-content: center;
+  border-radius: var(--radius-lg); overflow: hidden; position: relative;
+}
+.bento-feature::before {
+  content: ""; position: absolute; right: -40px; top: -40px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+.bento-feature h3 { color: #fff; font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; position: relative; z-index: 1; }
+.bento-feature p { color: rgba(255,255,255,.82); font-weight: 400; margin-top: 12px; font-size: 14.5px; position: relative; z-index: 1; }
+
+/* ── Responsive overrides — come AFTER base rules so they win in cascade ── */
+@media (max-width: 880px) {
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bento-wide, .bento-feature { grid-column: span 2; }
+}
+@media (max-width: 540px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento-wide, .bento-feature { grid-column: span 1; }
+}
+</style>

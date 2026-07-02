@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
+import PainPoints from '../components/PainPoints.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -32,6 +33,17 @@ const marqueeItems = [
   { label: 'Clear, Honest Pricing' },
   { label: 'Starting at $1,300' },
 ];
+
+const painItems = [
+  { iconId: '/icons.svg#i-search', text: '"My business doesn\'t show up when people search online — even though I\'ve been here for years."' },
+  { iconId: '/icons.svg#i-phone-off', text: '"I\'m losing customers to competitors who just have a better-looking, faster website."' },
+  { iconId: '/icons.svg#i-template', text: '"I tried building something myself on Wix, but it looks cheap and I can\'t get it to do what I need."' },
+  { iconId: '/icons.svg#i-dollar', text: '"I\'ve been quoted thousands by agencies — but I have no idea what I\'d actually be paying for."' },
+];
+const painFeature = {
+  title: "You're not alone.",
+  text: 'And a custom-built website is closer and more affordable than you think.',
+};
 ---
 
 <BaseLayout
@@ -59,4 +71,11 @@ const marqueeItems = [
   />
 
   <Marquee items={marqueeItems} />
+
+  <PainPoints
+    heading="Sound Familiar?"
+    intro="Most local business owners come to us after running into the same walls."
+    items={painItems}
+    feature={painFeature}
+  />
 </BaseLayout>
