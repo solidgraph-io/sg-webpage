@@ -6,15 +6,27 @@ export default defineConfig({
   forbidOnly: !!process.env['CI'],
   retries: process.env['CI'] ? 2 : 0,
   workers: process.env['CI'] ? 1 : '50%',
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }], ['list']],
+  snapshotDir: 'tests/snapshots',
+  expect: {
+    toHaveScreenshot: {
+      threshold: 0.15,
+      maxDiffPixelRatio: 0.05,
+      animations: 'disabled',
+    },
+  },
   use: {
     baseURL: 'http://localhost:4321',
     trace: 'on-first-retry',
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'desktop',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'mobile',
+      use: { ...devices['Pixel 5'] },
     },
   ],
   webServer: {
