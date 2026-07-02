@@ -12,6 +12,7 @@ import Portfolio from '../components/Portfolio.astro';
 import About from '../components/About.astro';
 import Faq from '../components/Faq.astro';
 import CtaStrip from '../components/CtaStrip.astro';
+import Contact from '../components/Contact.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -201,6 +202,17 @@ const aboutCities = [
   { name: 'Springfield-Branson, MO', note: 'From the Ozarks to downtown — we help local businesses get found online.' },
 ];
 
+const contactLeads = [
+  "Tell us a little about your business and we'll get back to you within 24 hours — no pressure, no sales pitch.",
+  "Whether you're starting from scratch, stuck with a template you hate, or not happy with what you have, we'd love to hear about your business. Every website we build is custom — and so is every quote. The first conversation is completely free.",
+];
+
+const contactAltRows = [
+  { iconId: '/icons.svg#i-mail',      label: 'hello@solidgraph.com',    sub: 'Email us anytime' },
+  { iconId: '/icons.svg#i-phone-off', label: 'Phone: TBD',              sub: 'Coming soon' },
+  { iconId: '/icons.svg#i-clock',     label: 'Within 24 business hours', sub: 'Monday – Friday' },
+];
+
 const faqItems = [
   { question: 'Do I need any technical knowledge to manage my website?', answer: 'Not at all. Even though we build every website from scratch with custom code, we set up a simple dashboard where you can change your text and photos with a few clicks — no coding needed. It\'s like editing a Word document. We also send you a short video tutorial walking you through it.' },
   { question: 'What if I already have a website? Can you redesign it?', answer: 'Absolutely. Many of our clients come to us with an outdated site they\'re not happy with. We\'ll review what you have and give you an honest assessment of whether a redesign or a fresh start is the better move for you.' },
@@ -280,5 +292,11 @@ const hosting = {
     body="Tell us about your business. The first conversation is always free."
     ctaLabel="Get a Free Quote"
     ctaHref="#contact"
+  />
+
+  <Contact
+    heading="Let's Talk About Your Website"
+    leads={contactLeads}
+    altRows={contactAltRows}
   />
 </BaseLayout>
