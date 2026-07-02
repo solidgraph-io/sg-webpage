@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import PainPoints from '../components/PainPoints.astro';
 import Value from '../components/Value.astro';
+import HowItWorks from '../components/HowItWorks.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -57,6 +58,17 @@ const valuePillars = [
   { num: '03', iconId: '/icons.svg#i-dollar', title: 'Clear, Honest Pricing', text: "You know exactly what you're paying for before we start. No surprises." },
   { num: '04', iconId: '/icons.svg#i-shield', title: 'You Own Everything',    text: 'Your domain, your code, your content. No vendor lock-in, ever.' },
 ];
+
+const howSteps = [
+  { num: '01', title: 'We Talk',    dur: '30 minutes',          text: "You tell us about your business, your customers, and what you need. No forms, no pressure — just a real conversation. Free, no commitment." },
+  { num: '02', title: 'We Plan',    dur: '1–2 days',       text: "We put together a clear proposal: what your website will include, what it will cost, and when it will be ready. You approve it before we touch anything." },
+  { num: '03', title: 'We Build',   dur: '10–25 business days', text: "Our team custom-builds your website from scratch. You’ll see a preview before it goes live and have rounds of feedback to make sure everything looks, feels, and works exactly right." },
+  { num: '04', title: 'You Launch', dur: 'Launch day',          text: "Your website goes live. We show you how to update it yourself, and we’re here if you ever need help. It’s your site — fully in your hands." },
+];
+const howCtas = [
+  { label: 'Get Started', href: '#contact', variant: 'white'       as const, icon: true },
+  { label: 'See Plans',   href: '#plans',   variant: 'ghost-light' as const },
+];
 ---
 
 <BaseLayout
@@ -97,4 +109,6 @@ const valuePillars = [
     lead={valueLead}
     pillars={valuePillars}
   />
+
+  <HowItWorks steps={howSteps} ctas={howCtas} />
 </BaseLayout>
