@@ -1,0 +1,49 @@
+---
+interface MarqueeItem {
+  label: string;
+}
+
+interface Props {
+  items: MarqueeItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="marquee" role="region" aria-label="Brand highlights">
+  <div class="marquee-track">
+    {items.map(item => (
+      <span class="item">{item.label} <span class="dot" aria-hidden="true"></span></span>
+    ))}
+    {/* Duplicate for seamless infinite scroll */}
+    <span aria-hidden="true">
+      {items.map(item => (
+        <span class="item">{item.label} <span class="dot"></span></span>
+      ))}
+    </span>
+  </div>
+</div>
+
+<style>
+.marquee {
+  background: var(--night); color: var(--white); padding: 26px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  position: relative; overflow: hidden;
+}
+.marquee-track {
+  display: flex; gap: 0; width: max-content;
+  animation: scroll-x 32s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track .item {
+  display: inline-flex; align-items: center; gap: 16px; padding: 0 34px;
+  font-size: 18px; font-weight: 600; color: rgba(255,255,255,.55);
+  white-space: nowrap; letter-spacing: -.01em;
+}
+.marquee-track .item .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--periwinkle);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+</style>

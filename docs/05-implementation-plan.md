@@ -39,7 +39,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 |----|---------|--------|
 | SPEC-SEC-001 | 01-nav | ✅ **Implemented** |
 | SPEC-SEC-002 | 02-hero | ✅ **Implemented** |
-| SPEC-SEC-003 | 03-marquee | **Approved** — pendiente Claude Code |
+| SPEC-SEC-003 | 03-marquee | ✅ **Implemented** |
 | SPEC-SEC-004 | 04-pain-points (bento) | Planned |
 | SPEC-SEC-005 | 05-value | Planned |
 | SPEC-SEC-006 | 06-how-it-works (sticky) | Planned |

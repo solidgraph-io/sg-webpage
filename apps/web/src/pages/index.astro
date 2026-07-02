@@ -1,10 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+
+const navLinks = [
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Our Plans',    href: '#plans' },
+  { label: 'Our Work',     href: '#portfolio' },
+  { label: 'About Us',     href: '#about' },
+  { label: 'Contact',      href: '#contact' },
+];
+
+const heroCtas = [
+  { label: 'Get a Free Quote', href: '#contact', variant: 'primary'     as const, icon: true },
+  { label: 'See Our Plans',    href: '#plans',   variant: 'ghost-light' as const },
+];
+
+const heroFloats = [
+  { iconId: '/icons.svg#i-zap',    label: 'Live in 2 weeks', sub: 'Not months',  pos: 'f1' as const },
+  { iconId: '/icons.svg#i-shield', label: 'You own it 100%', sub: 'No lock-in',  pos: 'f2' as const },
+];
+
+const marqueeItems = [
+  { label: 'Built From Scratch' },
+  { label: 'No Templates' },
+  { label: 'You Own Everything' },
+  { label: 'Charlotte, NC' },
+  { label: 'Delivered in 2 Weeks' },
+  { label: 'Springfield-Branson, MO' },
+  { label: 'Clear, Honest Pricing' },
+  { label: 'Starting at $1,300' },
+];
 ---
 
-<BaseLayout title="SolidGraph — Agencia de Desarrollo Web" description="Construimos soluciones digitales a medida para empresas que quieren crecer.">
-  <main class="container">
-    <h1>SolidGraph</h1>
-    <p>En construcción. Las secciones llegan con EPIC-21.</p>
-  </main>
+<BaseLayout
+  title="SolidGraph — Custom-Built Websites for Local Businesses"
+  description="We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door."
+>
+  <Nav links={navLinks} cta={{ label: 'Get a Free Quote', href: '#contact' }} />
+
+  <Hero
+    pill="Custom-built from scratch · No templates, ever"
+    title="Your Business Deserves a Website Built <span class='grad-text'>From Scratch</span> — Not a Template"
+    subtitle="We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door."
+    ctas={heroCtas}
+    snippet="Custom-built from scratch · Starting at $1,300 · Delivered in 2 weeks"
+    preview={{
+      url:     'yourbusiness.com',
+      tag:     'Hand-coded',
+      title:   'Built for <b>your</b> business — line by line',
+      body:    'No Wix. No page builders. A real website that loads fast and converts.',
+      cta:     'Get a Free Quote',
+      chips:   ['Fast', 'Custom', 'Yours'],
+      logoSrc: '/assets/logo_avatar.png',
+    }}
+    floats={heroFloats}
+  />
+
+  <Marquee items={marqueeItems} />
 </BaseLayout>
