@@ -1,0 +1,72 @@
+---
+/**
+ * Portfolio — work showcase grid + center CTA (SEC-009).
+ * Ports 09-portfolio.html; delegates cards to PortfolioCard.
+ */
+import SectionHead from './SectionHead.astro';
+import Eyebrow from './Eyebrow.astro';
+import Button from './Button.astro';
+import PortfolioCard from './PortfolioCard.astro';
+
+interface PortfolioItem {
+  category: string; title: string; location?: string;
+  description: string; tag?: string; thumbBg: string; thumbInner: string;
+}
+
+interface CtaItem { label: string; href: string; }
+
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  subheading?: string;
+  items: PortfolioItem[];
+  cta?: CtaItem;
+}
+
+const {
+  eyebrow = 'Our Work',
+  heading = 'Our Work',
+  subheading = 'Every website we build is different — because every business is different.',
+  items,
+  cta = { label: 'Get a Website Like This', href: '#contact' },
+} = Astro.props;
+---
+
+<section class="portfolio" id="portfolio" data-section="portfolio" aria-labelledby="portfolio-heading">
+  <div class="container">
+    <SectionHead data-reveal>
+      <Eyebrow slot="eyebrow" class="centered">{eyebrow}</Eyebrow>
+      <h2 id="portfolio-heading">{heading}</h2>
+      <p>{subheading}</p>
+    </SectionHead>
+
+    <div class="p-grid">
+      {items.map((item, i) => (
+        <PortfolioCard {...item} delay={`${i * 120}ms`} />
+      ))}
+    </div>
+
+    {cta && (
+      <div class="center-cta" data-reveal>
+        <Button variant="primary" href={cta.href} magnetic>
+          <span>{cta.label}</span>
+          <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow"/></svg>
+        </Button>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+/* ── Section ── */
+.portfolio { padding: 130px 0 120px; background: #fff; position: relative; overflow: hidden; }
+
+/* ── Portfolio grid (base rules BEFORE media queries) ── */
+.p-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+
+/* ── Center CTA ── */
+.center-cta { margin-top: 56px; text-align: center; }
+
+/* ── Responsive (AFTER base rules) ── */
+@media (max-width: 880px) { .p-grid { grid-template-columns: 1fr; } }
+</style>
