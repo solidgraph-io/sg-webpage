@@ -1,0 +1,31 @@
+---
+/**
+ * DiffItem — icon + title + text row for the About differentiators list.
+ * Uses white icon box on --lilac-2 background (different from IconBox/lilac).
+ */
+
+interface Props {
+  iconId: string;
+  title: string;
+  text: string;
+}
+
+const { iconId, title, text } = Astro.props;
+---
+
+<div class="diff">
+  <div class="ic" aria-hidden="true">
+    <svg width="20" height="20" aria-hidden="true"><use href={iconId} /></svg>
+  </div>
+  <div>
+    <h4>{title}</h4>
+    <p>{text}</p>
+  </div>
+</div>
+
+<style>
+.diff { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: flex-start; }
+.ic { width: 48px; height: 48px; border-radius: 13px; background: #fff; color: var(--indigo); display: grid; place-items: center; box-shadow: var(--shadow-sm); }
+.diff h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.diff p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+</style>

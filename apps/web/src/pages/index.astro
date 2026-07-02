@@ -9,6 +9,7 @@ import HowItWorks from '../components/HowItWorks.astro';
 import Plans from '../components/Plans.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Portfolio from '../components/Portfolio.astro';
+import About from '../components/About.astro';
 
 const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -173,6 +174,31 @@ const portfolioItems = [
   },
 ];
 
+const aboutVisual = {
+  badges: [
+    { iconId: '/icons.svg#i-code',   title: 'From scratch', subtitle: 'Custom code',   pos: 'b1' as const },
+    { iconId: '/icons.svg#i-shield', title: 'You own it',   subtitle: 'No lock-in',    pos: 'b2' as const },
+    { iconId: '/icons.svg#i-trend',  title: 'Built to grow',subtitle: 'Scales with you',pos: 'b3' as const },
+  ],
+};
+
+const aboutBody = [
+  "We started SolidGraph Solutions because we kept seeing the same problem: local business owners were either stuck with a cheap template site that didn't represent them, or they'd been quoted outrageous prices by agencies that just reskinned the same WordPress theme for every client.",
+  "We build differently. Every website we create is written from scratch — custom code, custom design, built specifically for your business. No templates, no drag-and-drop builders, no shortcuts. The result is a faster, sharper, more professional website that you own completely.",
+  "We're a lean, senior-level team — which means lower costs for you and faster delivery than traditional agencies. We use modern tools and AI-assisted development to build high-quality custom websites at a fraction of what large agencies charge, without compromising on quality or craftsmanship.",
+];
+
+const aboutDiffs = [
+  { iconId: '/icons.svg#i-code',   title: 'Real Custom Development',  text: "Every website written from scratch. No templates, no page builders. Your site is yours alone — not a variation of something we've sold to 50 other businesses." },
+  { iconId: '/icons.svg#i-shield', title: 'You Own Everything',        text: 'Your domain, your code, your content. We hand it all over to you at the end — no vendor lock-in, no strings attached.' },
+  { iconId: '/icons.svg#i-trend',  title: 'Built to Grow With You',    text: 'Start with a Nano site today. When your business is ready, your custom website grows with you — no rebuilding from zero.' },
+];
+
+const aboutCities = [
+  { name: 'Charlotte, NC',          note: "The Queen City's local businesses deserve a web presence that matches their ambition." },
+  { name: 'Springfield-Branson, MO', note: 'From the Ozarks to downtown — we help local businesses get found online.' },
+];
+
 const hosting = {
   heading: 'Keep Your Site Running Smoothly',
   subheading: 'After launch, our hosting plans take care of everything — so you never have to worry about your website going down.',
@@ -231,4 +257,6 @@ const hosting = {
   <Testimonials stats={testimonialStats} items={testimonials} />
 
   <Portfolio items={portfolioItems} />
+
+  <About visual={aboutVisual} body={aboutBody} diffs={aboutDiffs} cities={aboutCities} />
 </BaseLayout>
