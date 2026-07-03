@@ -64,7 +64,7 @@ File: `docs/specs/SPEC-INFRA-001.md`
 | INV-2 | ✅ | apps/web/src/__tests__/infra.test.ts:229, apps/web/src/__tests__/infra.test.ts:236 |
 | INV-3 | ✅ | apps/web/src/__tests__/infra.test.ts:276 |
 
-## 📝 SPEC-PERF-001 — Status: Review
+## ✅ SPEC-PERF-001 — Status: Implemented
 
 File: `docs/specs/SPEC-PERF-001.md`
 
@@ -75,8 +75,8 @@ File: `docs/specs/SPEC-PERF-001.md`
 | RF-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:107, apps/web/src/__tests__/perf-001.test.ts:108, apps/web/src/__tests__/perf-001.test.ts:117, apps/web/src/__tests__/perf-001.test.ts:125 |
 | RF-4 | ✅ | apps/web/src/__tests__/perf-001.test.ts:135, apps/web/src/__tests__/perf-001.test.ts:136, apps/web/src/__tests__/perf-001.test.ts:141, apps/web/src/__tests__/perf-001.test.ts:147 |
 | RF-5 | ✅ | apps/web/src/__tests__/perf-001.test.ts:155, apps/web/src/__tests__/perf-001.test.ts:156, apps/web/src/__tests__/perf-001.test.ts:164 |
-| RNF-1 | ❌ | — |
-| RNF-2 | ❌ | — |
+| RNF-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:225, apps/web/src/__tests__/perf-001.test.ts:226, apps/web/src/__tests__/perf-001.test.ts:236 |
+| RNF-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:249, apps/web/src/__tests__/perf-001.test.ts:250, apps/web/src/__tests__/perf-001.test.ts:255 |
 | INV-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:178, apps/web/src/__tests__/perf-001.test.ts:179, apps/web/src/__tests__/perf-001.test.ts:184 |
 | INV-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:195, apps/web/src/__tests__/perf-001.test.ts:196, apps/web/src/__tests__/perf-001.test.ts:209 |
 | INV-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:219 |

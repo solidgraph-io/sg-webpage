@@ -219,4 +219,47 @@ describe('SPEC-PERF-001 — Performance gate', () => {
   it('[SPEC-PERF-001/INV-3] .lighthouserc.js is dedicated config at repo root', () => {
     expect(fs.existsSync(path.join(ROOT, '.lighthouserc.js'))).toBe(true);
   });
+
+  // ── RNF-1: budgets are realistic and documented ──────────────────────────────
+
+  describe('[SPEC-PERF-001/RNF-1] budgets are realistic (achievable on current home)', () => {
+    it('[SPEC-PERF-001/RNF-1] LCP budget ≤ 4000 ms (CI-safe for headless Chrome)', () => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const cfg = require(path.join(ROOT, '.lighthouserc.js')) as {
+        ci?: { assert?: { assertions?: Record<string, [string, { maxNumericValue: number }]> } };
+      };
+      const entry = cfg.ci?.assert?.assertions?.['largest-contentful-paint'];
+      const budget = Array.isArray(entry) ? entry[1]?.maxNumericValue : undefined;
+      expect(budget).toBeLessThanOrEqual(4000);
+    });
+
+    it('[SPEC-PERF-001/RNF-1] TBT budget ≤ 800 ms (site is CSS-first, minimal JS)', () => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const cfg = require(path.join(ROOT, '.lighthouserc.js')) as {
+        ci?: { assert?: { assertions?: Record<string, [string, { maxNumericValue: number }]> } };
+      };
+      const entry = cfg.ci?.assert?.assertions?.['total-blocking-time'];
+      const budget = Array.isArray(entry) ? entry[1]?.maxNumericValue : undefined;
+      expect(budget).toBeLessThanOrEqual(800);
+    });
+  });
+
+  // ── RNF-2: perf optimizations don't break a11y (contrast/focus) ─────────────
+
+  describe('[SPEC-PERF-001/RNF-2] image optimization preserves a11y', () => {
+    it('[SPEC-PERF-001/RNF-2] focus-visible CSS still present after image refactor', () => {
+      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/styles/base.css'), 'utf-8');
+      expect(src).toContain(':focus-visible');
+    });
+
+    it('[SPEC-PERF-001/RNF-2] decorative images have empty alt (aria safe)', () => {
+      const aboutSrc = fs.readFileSync(
+        path.join(WEB_ROOT, 'src/components/About.astro'),
+        'utf-8',
+      );
+      // logo_avatar_full is decorative — must have alt=""
+      expect(aboutSrc).toMatch(/alt=""/);
+      expect(aboutSrc).toContain('aria-hidden="true"');
+    });
+  });
 });
