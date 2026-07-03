@@ -4,6 +4,9 @@
  * Used in nav and footer. On dark surfaces parent scope can invert
  * the img (filter) and recolor .logo-text.
  */
+import { Image } from 'astro:assets';
+import logoAvatar from '../assets/logo_avatar.png';
+
 interface Props {
   href?: string;
   class?: string;
@@ -14,7 +17,7 @@ const cls = ['logo', extra].filter(Boolean).join(' ');
 ---
 
 <a href={href} class={cls}>
-  <img src="/assets/logo_avatar.png" alt="SolidGraph" width="34" height="34" />
+  <Image src={logoAvatar} alt="SolidGraph" />
   <span class="logo-text">
     <b>SolidGraph</b>
     <small>SOLUTIONS</small>

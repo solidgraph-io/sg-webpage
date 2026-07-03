@@ -1,7 +1,7 @@
 # SPEC-PERF-001 — Performance: presupuestos Lighthouse + imágenes
 
 - **ID:** SPEC-PERF-001
-- **Estado:** Review
+- **Estado:** Implemented
 - **Épica / Story:** EPIC-07 / STORY-072 (performance)
 - **Capa atómica:** cross-cutting (build + CI)
 - **Depende de:** SPEC-DS-001, SPEC-SEC-015 (home ensamblada)

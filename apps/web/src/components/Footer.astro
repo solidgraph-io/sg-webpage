@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoAvatar from '../assets/logo_avatar.png';
+
 interface FootCol { heading: string; links: { label: string; href: string }[] }
 
 interface Props {
@@ -44,7 +47,7 @@ const {
     <div class="foot-grid">
       <div class="foot-brand">
         <a href={brandLink} class="logo" rel="noopener">
-          <img src="/assets/logo_avatar.png" alt="SolidGraph" style="height:40px; filter: brightness(0) invert(1);" />
+          <Image src={logoAvatar} alt="SolidGraph" style="height:40px;width:auto; filter: brightness(0) invert(1);" loading="lazy" />
           <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
         </a>
         <p>{tagline}</p>

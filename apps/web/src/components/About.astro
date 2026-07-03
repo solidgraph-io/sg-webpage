@@ -3,6 +3,8 @@
  * About — orbit visual + content with diffs + cities (SEC-010).
  * Ports 10-about.html; delegates diff rows to DiffItem, badges to FloatingCard.
  */
+import { Image } from 'astro:assets';
+import logoAvatarFull from '../assets/logo_avatar_full.png';
 import Eyebrow from './Eyebrow.astro';
 import FloatingCard from './FloatingCard.astro';
 import DiffItem from './DiffItem.astro';
@@ -39,7 +41,7 @@ const {
       <div class="orbit"></div>
       <div class="orbit o2"></div>
       <div class="center-logo">
-        <img src="/assets/logo_avatar_full.png" alt="" aria-hidden="true" />
+        <Image src={logoAvatarFull} alt="" aria-hidden="true" loading="lazy" width={200} />
       </div>
       {visual.badges.map((b) => (
         <FloatingCard variant="badge" class={b.pos}>

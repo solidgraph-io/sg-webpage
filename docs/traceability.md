@@ -70,16 +70,16 @@ File: `docs/specs/SPEC-PERF-001.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ❌ | — |
-| RF-2 | ❌ | — |
-| RF-3 | ❌ | — |
-| RF-4 | ❌ | — |
-| RF-5 | ❌ | — |
+| RF-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:15, apps/web/src/__tests__/perf-001.test.ts:16, apps/web/src/__tests__/perf-001.test.ts:20, apps/web/src/__tests__/perf-001.test.ts:29, apps/web/src/__tests__/perf-001.test.ts:38, apps/web/src/__tests__/perf-001.test.ts:47, apps/web/src/__tests__/perf-001.test.ts:58 |
+| RF-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:72, apps/web/src/__tests__/perf-001.test.ts:73, apps/web/src/__tests__/perf-001.test.ts:80, apps/web/src/__tests__/perf-001.test.ts:86, apps/web/src/__tests__/perf-001.test.ts:92, apps/web/src/__tests__/perf-001.test.ts:98 |
+| RF-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:107, apps/web/src/__tests__/perf-001.test.ts:108, apps/web/src/__tests__/perf-001.test.ts:117, apps/web/src/__tests__/perf-001.test.ts:125 |
+| RF-4 | ✅ | apps/web/src/__tests__/perf-001.test.ts:135, apps/web/src/__tests__/perf-001.test.ts:136, apps/web/src/__tests__/perf-001.test.ts:141, apps/web/src/__tests__/perf-001.test.ts:147 |
+| RF-5 | ✅ | apps/web/src/__tests__/perf-001.test.ts:155, apps/web/src/__tests__/perf-001.test.ts:156, apps/web/src/__tests__/perf-001.test.ts:164 |
 | RNF-1 | ❌ | — |
 | RNF-2 | ❌ | — |
-| INV-1 | ❌ | — |
-| INV-2 | ❌ | — |
-| INV-3 | ❌ | — |
+| INV-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:178, apps/web/src/__tests__/perf-001.test.ts:179, apps/web/src/__tests__/perf-001.test.ts:184 |
+| INV-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:195, apps/web/src/__tests__/perf-001.test.ts:196, apps/web/src/__tests__/perf-001.test.ts:209 |
+| INV-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:219 |
 
 ## ✅ SPEC-QA-001 — Status: Implemented
 
