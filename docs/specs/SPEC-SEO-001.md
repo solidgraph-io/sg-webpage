@@ -1,7 +1,7 @@
 # SPEC-SEO-001 — SEO de lanzamiento: metadatos, OG, JSON-LD, sitemap, robots
 
 - **ID:** SPEC-SEO-001
-- **Estado:** Review
+- **Estado:** Implemented
 - **Épica / Story:** EPIC-07 / STORY-071 (SEO)
 - **Capa atómica:** cross-cutting (layout + build)
 - **Depende de:** SPEC-DS-001 (BaseLayout/seo base), SPEC-SEC-015 (home ensamblada), **SPEC-CONTENT-001** (SiteConfig CMS-editable)

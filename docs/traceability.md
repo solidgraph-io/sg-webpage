@@ -352,18 +352,18 @@ File: `docs/specs/SPEC-SEO-001.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ❌ | — |
-| RF-2 | ❌ | — |
-| RF-3 | ❌ | — |
-| RF-4 | ❌ | — |
-| RF-5 | ❌ | — |
-| RF-6 | ❌ | — |
-| RF-7 | ❌ | — |
-| RNF-1 | ❌ | — |
-| RNF-2 | ❌ | — |
-| INV-1 | ❌ | — |
-| INV-2 | ❌ | — |
-| INV-3 | ❌ | — |
+| RF-1 | ✅ | apps/web/src/__tests__/seo-001.test.ts:18, apps/web/src/__tests__/seo-001.test.ts:22, apps/web/src/__tests__/seo-001.test.ts:31, apps/web/src/__tests__/seo-001.test.ts:42 |
+| RF-2 | ✅ | apps/web/src/__tests__/seo-001.test.ts:64, apps/web/src/__tests__/seo-001.test.ts:69, apps/web/src/__tests__/seo-001.test.ts:74, apps/web/src/__tests__/seo-001.test.ts:79, apps/web/src/__tests__/seo-001.test.ts:84, apps/web/src/__tests__/seo-001.test.ts:89, apps/web/src/__tests__/seo-001.test.ts:95, apps/web/src/__tests__/seo-001.test.ts:104 |
+| RF-3 | ✅ | apps/web/src/__tests__/seo-001.test.ts:112, apps/web/src/__tests__/seo-001.test.ts:116, apps/web/src/__tests__/seo-001.test.ts:120, apps/web/src/__tests__/seo-001.test.ts:124, apps/web/src/__tests__/seo-001.test.ts:128, apps/web/src/__tests__/seo-001.test.ts:132, apps/web/src/__tests__/seo-001.test.ts:136, apps/web/src/__tests__/seo-001.test.ts:140 |
+| RF-4 | ✅ | apps/web/src/__tests__/seo-001.test.ts:147, apps/web/src/__tests__/seo-001.test.ts:151 |
+| RF-5 | ✅ | apps/web/src/__tests__/seo-001.test.ts:159, apps/web/src/__tests__/seo-001.test.ts:163, apps/web/src/__tests__/seo-001.test.ts:168, apps/web/src/__tests__/seo-001.test.ts:173 |
+| RF-6 | ✅ | apps/web/src/__tests__/seo-001.test.ts:181, apps/web/src/__tests__/seo-001.test.ts:185, apps/web/src/__tests__/seo-001.test.ts:190, apps/web/src/__tests__/seo-001.test.ts:195 |
+| RF-7 | ✅ | apps/web/src/__tests__/seo-001.test.ts:203, apps/web/src/__tests__/seo-001.test.ts:208 |
+| RNF-1 | ✅ | apps/web/src/__tests__/seo-001.test.ts:220, apps/web/src/__tests__/seo-001.test.ts:225 |
+| RNF-2 | ✅ | apps/web/src/__tests__/seo-001.test.ts:234, apps/web/src/__tests__/seo-001.test.ts:238 |
+| INV-1 | ✅ | apps/web/src/__tests__/seo-001.test.ts:247, apps/web/src/__tests__/seo-001.test.ts:253 |
+| INV-2 | ✅ | apps/web/src/__tests__/seo-001.test.ts:262 |
+| INV-3 | ✅ | apps/web/src/__tests__/seo-001.test.ts:279, apps/web/src/__tests__/seo-001.test.ts:283 |
 
 ---
 _Total specs: 21 | Uncovered reqs in Approved specs: 0_

@@ -1,15 +1,27 @@
 ---
 import '../styles/global.css';
+import { getEntry } from 'astro:content';
+import { buildLocalBusinessJsonLd } from '../lib/seo';
 
 interface Props {
   title: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  noIndex?: boolean;
 }
 
-const { title, description = '', canonical } = Astro.props;
-const ogTitle = title;
-const ogDescription = description;
+const { title, description = '', canonical, ogImage, noIndex = false } = Astro.props;
+
+const site = await getEntry('settings', 'site');
+const sd = site?.data;
+
+const jsonLd = sd ? buildLocalBusinessJsonLd(sd) : null;
+// Canonical: prop overrides, then site URL, then nothing
+const resolvedCanonical = canonical ?? sd?.url ?? '';
+const resolvedOgImage = ogImage ?? sd?.defaultSeo.ogImage;
+// noIndex: prop OR PUBLIC_NOINDEX env flag (staging environments)
+const isNoIndex = noIndex || import.meta.env.PUBLIC_NOINDEX === 'true';
 ---
 
 <!doctype html>
@@ -19,11 +31,25 @@ const ogDescription = description;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={isNoIndex ? 'noindex, nofollow' : 'index, follow'} />
+    {resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={ogTitle} />
-    {ogDescription && <meta property="og:description" content={ogDescription} />}
-    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {resolvedCanonical && <meta property="og:url" content={resolvedCanonical} />}
+    {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+    {sd?.name && <meta property="og:site_name" content={sd.name} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
+
+    <!-- JSON-LD: LocalBusiness (SPEC-SEO-001/RF-2) -->
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
 
     <!-- Preload critical Poppins weights -->
     <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />

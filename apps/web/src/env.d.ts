@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   readonly PUBLIC_SITE_URL: string;
+  readonly PUBLIC_NOINDEX?: string;
 }
 
 interface ImportMeta {
