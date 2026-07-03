@@ -36,7 +36,7 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
   description={hd.seo?.description ?? sd.defaultSeo.description}
   canonical={hd.seo?.canonical ?? sd.url}
 >
-  <Nav links={hd.nav.links} cta={hd.nav.cta} />
+  <Nav links={hd.nav.links} cta={hd.nav.cta} slot="header" />
 
   <Hero
     pill={hd.hero.pill}
@@ -99,5 +99,6 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
     locations={hd.footer.locations}
     cols={hd.footer.cols}
     copyright={hd.footer.copyright}
+    slot="footer"
   />
 </BaseLayout>

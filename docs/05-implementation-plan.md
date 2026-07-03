@@ -68,9 +68,9 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID | Ítem | Estado |
 |----|------|--------|
-| STORY-071 / SPEC-SEO-001 | Metadatos, OG, **JSON-LD LocalBusiness**, canonical, sitemap, robots + `SiteConfig` tipado | **Approved** — pendiente Claude Code |
-| STORY-072 / SPEC-PERF-001 | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS | **Approved** — pendiente Claude Code |
-| STORY-081 / SPEC-A11Y-001 | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI | **Approved** — pendiente Claude Code |
+| STORY-071 / SPEC-SEO-001 | Metadatos, OG, **JSON-LD LocalBusiness**, canonical, sitemap, robots + `SiteConfig` tipado | **Implemented** |
+| STORY-072 / SPEC-PERF-001 | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS | **Review** — pendiente Claude Code |
+| STORY-081 / SPEC-A11Y-001 | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI | **Implemented** |
 
 ### Diferido (tras M1)
 | EPIC | Título | Estado |

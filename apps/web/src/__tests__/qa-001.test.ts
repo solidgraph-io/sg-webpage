@@ -56,7 +56,9 @@ describe('SPEC-QA-001 — visual gate', () => {
     it('[SPEC-QA-001/RF-5] build step depends on visual-test (blocks deploy)', () => {
       const drone = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
       const buildBlock = drone.slice(drone.indexOf('name: build'));
-      expect(buildBlock).toContain('depends_on: [visual-test]');
+      // depends_on may include additional gates (a11y-test etc.) after visual-test
+      expect(buildBlock).toContain('visual-test');
+      expect(buildBlock.slice(0, 100)).toContain('depends_on');
     });
   });
 

@@ -16,7 +16,7 @@ const { quote, authorName, authorRole, initials, delay = '0ms' } = Astro.props;
 ---
 
 <div class="t-card" data-reveal style={`--d:${delay}`}>
-  <div class="stars" aria-label="5 out of 5 stars">
+  <div class="stars" role="img" aria-label="5 out of 5 stars">
     {[1,2,3,4,5].map(() => <span aria-hidden="true">★</span>)}
   </div>
   <p class="quote">"{quote}"</p>

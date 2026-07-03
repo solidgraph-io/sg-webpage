@@ -1,7 +1,7 @@
 # SPEC-A11Y-001 — Accesibilidad transversal (WCAG 2.1 AA)
 
 - **ID:** SPEC-A11Y-001
-- **Estado:** Approved
+- **Estado:** Implemented
 - **Épica / Story:** EPIC-08 / STORY-081 (accesibilidad)
 - **Capa atómica:** cross-cutting (layout + CI)
 - **Depende de:** SPEC-DS-001, SPEC-SEC-015 (home ensamblada)

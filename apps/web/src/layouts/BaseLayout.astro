@@ -63,7 +63,14 @@ const isNoIndex = noIndex || import.meta.env.PUBLIC_NOINDEX === 'true';
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
-    <slot />
+    <!-- Skip-link: first tab stop, off-screen until focused (SPEC-A11Y-001/RF-2) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Named slots keep header/footer outside <main> for correct landmark nesting -->
+    <slot name="header" />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <slot name="footer" />
   </body>
   <!-- Interactions loaded once, deferred — does not block render -->
   <script is:inline defer src="/interactions.js"></script>

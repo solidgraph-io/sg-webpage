@@ -92,10 +92,10 @@ File: `docs/specs/SPEC-QA-001.md`
 | RF-3 | ✅ | apps/web/tests/visual/hero.spec.ts:80, apps/web/tests/visual/nav.spec.ts:84 |
 | RF-4 | ✅ | apps/web/src/__tests__/qa-001.test.ts:18, apps/web/src/__tests__/qa-001.test.ts:19, apps/web/src/__tests__/qa-001.test.ts:25, apps/web/src/__tests__/qa-001.test.ts:32 |
 | RF-5 | ✅ | apps/web/src/__tests__/qa-001.test.ts:44, apps/web/src/__tests__/qa-001.test.ts:45, apps/web/src/__tests__/qa-001.test.ts:50, apps/web/src/__tests__/qa-001.test.ts:56 |
-| RNF-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:64, apps/web/src/__tests__/qa-001.test.ts:65, apps/web/src/__tests__/qa-001.test.ts:71 |
-| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:82, apps/web/src/__tests__/qa-001.test.ts:83, apps/web/src/__tests__/qa-001.test.ts:89 |
-| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:96 |
-| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:107 |
+| RNF-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:66, apps/web/src/__tests__/qa-001.test.ts:67, apps/web/src/__tests__/qa-001.test.ts:73 |
+| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:84, apps/web/src/__tests__/qa-001.test.ts:85, apps/web/src/__tests__/qa-001.test.ts:91 |
+| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:98 |
+| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:109 |
 
 ## ✅ SPEC-SEC-001 — Status: Verified
 
@@ -346,7 +346,7 @@ File: `docs/specs/SPEC-SEC-015.md`
 | INV-1 | ✅ | apps/web/src/__tests__/sec-015.test.ts:144, apps/web/src/__tests__/sec-015.test.ts:149, apps/web/tests/visual/page.spec.ts:92 |
 | INV-2 | ✅ | apps/web/src/__tests__/sec-015.test.ts:129, apps/web/src/__tests__/sec-015.test.ts:133, apps/web/src/__tests__/sec-015.test.ts:137 |
 
-## 📝 SPEC-SEO-001 — Status: Review
+## ✅ SPEC-SEO-001 — Status: Implemented
 
 File: `docs/specs/SPEC-SEO-001.md`
 

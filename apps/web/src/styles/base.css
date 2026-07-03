@@ -54,6 +54,34 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ---- Skip-link (a11y — SPEC-A11Y-001/RF-2) ---- */
+/* Off-screen by default; appears on focus only — no JS, no layout shift. */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 99999;
+  padding: 12px 24px;
+  background: var(--indigo);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--periwinkle);
+  outline-offset: 2px;
+}
+
+/* ---- Focus ring — visible for keyboard users (AA) ---- */
+:focus-visible {
+  outline: 2px solid var(--periwinkle);
+  outline-offset: 3px;
+}
+
 /* ---- Cursor spotlight (opt-in on dark sections via .has-spot) ---- */
 .spotlight {
   position: absolute; inset: 0; pointer-events: none; z-index: 1;

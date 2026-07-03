@@ -85,10 +85,30 @@ steps:
       - pnpm --filter @solidgraph/web build
       - pnpm --filter @solidgraph/web test:e2e
 
+  # ── 4b. a11y gate (axe WCAG AA — SPEC-A11Y-001/RF-7, INV-1) ────────────────
+  # Runs after visual-test (build already done); reuses the same server.
+  - name: a11y-test
+    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    depends_on: [visual-test]
+    environment:
+      CI: "true"
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm install --frozen-lockfile
+      - pnpm --filter @solidgraph/web build
+      - pnpm --filter @solidgraph/web exec playwright test tests/a11y/
+
   # ── 5. build ─────────────────────────────────────────────────────────────────
   - name: build
     image: node:22-alpine
-    depends_on: [visual-test]
+    depends_on: [visual-test, a11y-test]
     when:
       branch:
         - develop
