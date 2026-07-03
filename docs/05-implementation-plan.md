@@ -54,14 +54,32 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | SPEC-SEC-014 | 14-footer | ✅ **Verified** — diff 1.46% desktop / 3.28% mobile vs diseño |
 | SPEC-SEC-015 | index.astro — ensamblado + orden + `<head>`/SEO base + fidelidad de página | ✅ **Verified** — 14 secciones, orden correcto, SEO OK, h1 único, baseline above-fold |
 
-### Diferido (tras el sitio fiel)
+### EPIC-22 — Contenido CMS-ready (prerequisito de SEO)
+> El contenido estaba inline en `index.astro` → **no editable por CMS**. Se mueve a Content
+> Collections (datos + Zod) para que Sveltia (EPIC-05) lo edite sin migración. El gate de fidelidad
+> prueba que el render no cambia.
+
+| ID | Ítem | Estado |
+|----|------|--------|
+| STORY-221 / SPEC-CONTENT-001 | Content Collections (`settings/site` + `pages/home`) + migración verbatim del contenido inline + `index.astro` lee de la colección | **Implemented** — `feature/SPEC-CONTENT-001-content-layer` |
+
+### EPIC-07/08 — SEO + Performance + Accesibilidad (M1, EN CURSO)
+> **M0 (sitio fiel) alcanzado.** Track elegido para M1. **SEO depende de EPIC-22** (SiteConfig CMS-editable). Gates nuevos: JSON-LD/sitemap/robots, Lighthouse, axe de página.
+
+| ID | Ítem | Estado |
+|----|------|--------|
+| STORY-071 / SPEC-SEO-001 | Metadatos, OG, **JSON-LD LocalBusiness**, canonical, sitemap, robots + `SiteConfig` tipado | **Approved** — pendiente Claude Code |
+| STORY-072 / SPEC-PERF-001 | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS | **Approved** — pendiente Claude Code |
+| STORY-081 / SPEC-A11Y-001 | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI | **Approved** — pendiente Claude Code |
+
+### Diferido (tras M1)
 | EPIC | Título | Estado |
 |------|--------|--------|
-| EPIC-06 | Leads: `/api/lead` + puerto email/CRM (el form UI llega en SEC-013) | Diferido |
-| EPIC-07/08 | SEO/perf + a11y transversal (gates) | Diferido |
+| EPIC-06 | Leads: `/api/lead` + puerto email/CRM (el form UI ya existe en SEC-013) | Diferido |
 | EPIC-10 | Analítica first-party → Umami | Diferido |
 | EPIC-30 | Reintroducir contrato de bloques Zod para la **fábrica** (envolver los organismos) | Diferido |
 | EPIC-05 | CMS Sveltia `/admin` | Diferido |
+| — | Deploy a producción (DroneCI→Dokploy, listo; falta decisión humana + secretos) | Diferido |
 
 ## 4. Trazabilidad
 `scripts/trace.ts` → `docs/traceability.md`; CI falla si una spec `Approved` tiene un requisito sin test.

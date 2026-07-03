@@ -1,0 +1,458 @@
+seo:
+  title: "SolidGraph — Custom-Built Websites for Local Businesses"
+  description: "We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door."
+  canonical: "https://solidgraph.dev"
+
+# ── Nav ───────────────────────────────────────────────────────────────────────
+
+nav:
+  links:
+    - label: How It Works
+      href: "#how-it-works"
+    - label: Our Plans
+      href: "#plans"
+    - label: Our Work
+      href: "#portfolio"
+    - label: About Us
+      href: "#about"
+    - label: Contact
+      href: "#contact"
+  cta:
+    label: Get a Free Quote
+    href: "#contact"
+
+# ── Hero ──────────────────────────────────────────────────────────────────────
+
+hero:
+  pill: "Custom-built from scratch · No templates, ever"
+  title: "Your Business Deserves a Website Built <span class='grad-text'>From Scratch</span> — Not a Template"
+  subtitle: "We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door."
+  snippet: "Custom-built from scratch · Starting at $1,300 · Delivered in 2 weeks"
+  ctas:
+    - label: Get a Free Quote
+      href: "#contact"
+      variant: primary
+      icon: true
+    - label: See Our Plans
+      href: "#plans"
+      variant: ghost-light
+      icon: false
+  preview:
+    url: yourbusiness.com
+    tag: Hand-coded
+    title: "Built for <b>your</b> business — line by line"
+    body: "No Wix. No page builders. A real website that loads fast and converts."
+    cta: Get a Free Quote
+    chips:
+      - Fast
+      - Custom
+      - Yours
+    logoSrc: /assets/logo_avatar.png
+  floats:
+    - iconId: /icons.svg#i-zap
+      label: Live in 2 weeks
+      sub: Not months
+      pos: f1
+    - iconId: /icons.svg#i-shield
+      label: "You own it 100%"
+      sub: No lock-in
+      pos: f2
+
+# ── Marquee ───────────────────────────────────────────────────────────────────
+
+marquee:
+  items:
+    - label: Built From Scratch
+    - label: No Templates
+    - label: You Own Everything
+    - label: "Charlotte, NC"
+    - label: Delivered in 2 Weeks
+    - label: Springfield-Branson, MO
+    - label: "Clear, Honest Pricing"
+    - label: Starting at $1,300
+
+# ── Pain Points ───────────────────────────────────────────────────────────────
+
+painPoints:
+  heading: Sound Familiar?
+  intro: Most local business owners come to us after running into the same walls.
+  items:
+    - iconId: /icons.svg#i-search
+      text: "\"My business doesn't show up when people search online — even though I've been here for years.\""
+    - iconId: /icons.svg#i-phone-off
+      text: "\"I'm losing customers to competitors who just have a better-looking, faster website.\""
+    - iconId: /icons.svg#i-template
+      text: "\"I tried building something myself on Wix, but it looks cheap and I can't get it to do what I need.\""
+    - iconId: /icons.svg#i-dollar
+      text: "\"I've been quoted thousands by agencies — but I have no idea what I'd actually be paying for.\""
+  feature:
+    title: "You're not alone."
+    text: And a custom-built website is closer and more affordable than you think.
+
+# ── Value ─────────────────────────────────────────────────────────────────────
+
+value:
+  heading: "We Build It From Scratch.<br/><span class='grad-text'>You Own It Forever.</span>"
+  lead:
+    strong: A custom website built for your specific business — not a template dressed up to look like one.
+    body: "At SolidGraph Solutions, we write every line of code for your business specifically. No page builders, no generic templates, no drag-and-drop shortcuts. The result is a website that loads faster, looks sharper, and actually converts visitors into customers — and it belongs 100% to you from day one."
+  pillars:
+    - num: "01"
+      iconId: /icons.svg#i-code
+      title: Built From Scratch
+      text: "Every line of code written for your business. No Wix, no templates, no shortcuts."
+    - num: "02"
+      iconId: /icons.svg#i-zap
+      title: Fast Delivery
+      text: Most custom websites are ready in 2 weeks. Not months.
+    - num: "03"
+      iconId: /icons.svg#i-dollar
+      title: "Clear, Honest Pricing"
+      text: "You know exactly what you're paying for before we start. No surprises."
+    - num: "04"
+      iconId: /icons.svg#i-shield
+      title: You Own Everything
+      text: "Your domain, your code, your content. No vendor lock-in, ever."
+
+# ── How It Works ──────────────────────────────────────────────────────────────
+
+howItWorks:
+  steps:
+    - num: "01"
+      title: We Talk
+      dur: 30 minutes
+      text: "You tell us about your business, your customers, and what you need. No forms, no pressure — just a real conversation. Free, no commitment."
+    - num: "02"
+      title: We Plan
+      dur: 1–2 days
+      text: "We put together a clear proposal: what your website will include, what it will cost, and when it will be ready. You approve it before we touch anything."
+    - num: "03"
+      title: We Build
+      dur: 10–25 business days
+      text: "Our team custom-builds your website from scratch. You'll see a preview before it goes live and have rounds of feedback to make sure everything looks, feels, and works exactly right."
+    - num: "04"
+      title: You Launch
+      dur: Launch day
+      text: "Your website goes live. We show you how to update it yourself, and we're here if you ever need help. It's your site — fully in your hands."
+  ctas:
+    - label: Get Started
+      href: "#contact"
+      variant: white
+      icon: true
+    - label: See Plans
+      href: "#plans"
+      variant: ghost-light
+      icon: false
+
+# ── Plans ─────────────────────────────────────────────────────────────────────
+
+plans:
+  items:
+    - name: Nano
+      tagline: Your first custom-built online presence
+      price: "$1,300"
+      priceNote: one-time payment
+      delivery: Ready in 10–15 business days
+      bestFor: "Freelancers, home services, solo professionals, new businesses ready for a real website"
+      includes:
+        - Custom-built one-page website with up to 5 sections
+        - "Home, About, Services, Gallery, and Contact"
+        - "Contact form (name, email, message)"
+        - Your own content management panel — update text and photos yourself
+        - Mobile-friendly design
+        - Basic Google visibility setup (SEO)
+        - Cloudflare security and speed protection
+        - 2 rounds of feedback before launch
+        - 15-minute video tutorial to manage your site
+      excludes:
+        - Online store or payments
+        - Blog
+        - Booking system
+      ctaLabel: Get Started
+      ctaHref: "#contact"
+
+    - name: Micro
+      tagline: "More pages, more tools, more customers — all custom built"
+      price: "$2,800"
+      priceNote: one-time payment
+      delivery: Ready in 18–25 business days
+      bestFor: "Restaurants, salons, retail shops, service businesses that need more than a single page"
+      includes:
+        - Up to 10 custom-built pages with their own web addresses
+        - Blog — publish news, tips, and updates yourself
+        - Google Maps location on your site
+        - Live chat widget so visitors can message you instantly
+        - Google Analytics — see how many people visit your site
+        - Up to 2 custom contact forms
+        - Advanced Google visibility setup
+        - 3 rounds of feedback before launch
+        - Everything in Nano
+      excludes:
+        - Online store or payments
+        - Booking system
+      ctaLabel: Get Started
+      ctaHref: "#contact"
+      popular: true
+
+    - name: Pro
+      tagline: Full custom development — sell online, take bookings, grow faster
+      price: "$5,500"
+      priceNote: one-time payment
+      delivery: Ready in 35–50 business days
+      bestFor: "Retailers, service businesses that take appointments, anyone ready to sell online with a real custom store"
+      includes:
+        - Unlimited pages
+        - Online store — sell up to 100 products
+        - Secure online payments via Stripe (credit and debit cards)
+        - Booking and appointment system
+        - Email list signup connected to Mailchimp
+        - Full custom design built from scratch
+        - Conversion tracking — know which pages bring you customers
+        - Performance optimization — loads fast on any device
+        - 4 rounds of feedback before launch
+        - Everything in Micro
+      excludes:
+        - "More than 100 products (available as add-on at $2/product)"
+      ctaLabel: Get Started
+      ctaHref: "#contact"
+
+    - name: Enterprise
+      tagline: "Complex custom projects, built exactly to your specs"
+      price: Custom
+      priceNote: after a free discovery call
+      delivery: Timeline defined in proposal
+      bestFor: "Businesses with specific integrations, large catalogs, or complex requirements that go beyond standard plans"
+      includes:
+        - Everything in Pro
+        - Unlimited products
+        - Multiple languages (English + Spanish)
+        - Custom system integrations
+        - Advanced business automation
+        - Dedicated account manager
+        - Priority support and SLA
+      ctaLabel: "Let's Talk"
+      ctaHref: "#contact"
+
+  hosting:
+    heading: Keep Your Site Running Smoothly
+    subheading: "After launch, our hosting plans take care of everything — so you never have to worry about your website going down."
+    cards:
+      - name: Basic Hosting
+        price: $35/mo
+        desc: "Hosting, security, and peace of mind. We keep your site online and protected."
+        items:
+          - High-quality hosting
+          - Cloudflare protection
+          - Weekly backups
+          - Uptime monitoring
+          - Email support (48h response)
+      - name: Active Hosting
+        price: $65/mo
+        desc: "Everything in Basic, plus we handle small content updates for you."
+        items:
+          - Daily backups
+          - 2 content updates per month
+          - Email support (24h response)
+          - Monthly analytics report
+      - name: Managed Hosting
+        price: $120/mo
+        desc: "Hands-on support, regular updates, and a monthly check-in call."
+        items:
+          - 5 content updates per month
+          - 1 small feature change per month
+          - "Chat + email support (12h response)"
+          - Monthly 30-min review call
+          - Performance monitoring
+      - name: Premium Hosting
+        price: From $250/mo
+        desc: "Full management, priority support, and a dedicated account manager."
+        items:
+          - Unlimited content updates
+          - Up to 4h development/month
+          - Priority support (4h response)
+          - Monthly SEO report
+          - Dedicated account manager
+
+# ── Testimonials ──────────────────────────────────────────────────────────────
+
+testimonials:
+  stats:
+    - value: 2 weeks
+      label: Average delivery time
+    - value: "$0"
+      label: Hidden fees
+    - value: "100%"
+      label: Satisfaction on delivery
+  items:
+    - quote: I had no idea getting a professional website could be this straightforward. They explained everything in plain English and delivered exactly what they promised.
+      authorName: Maria G.
+      authorRole: "Hair salon owner, Charlotte NC"
+      initials: MG
+    - quote: Within a month of launching our new site, we started getting calls from people who found us on Google. That never happened before.
+      authorName: James R.
+      authorRole: "HVAC contractor, Springfield MO"
+      initials: JR
+    - quote: "The pricing was clear from day one. No surprises, no upselling. Just a great website at a price that made sense for my budget."
+      authorName: Sandra L.
+      authorRole: "Catering business, Charlotte NC"
+      initials: SL
+
+# ── Portfolio ─────────────────────────────────────────────────────────────────
+
+portfolio:
+  items:
+    - category: Service Business
+      title: Local HVAC Company
+      location: "Springfield, MO"
+      description: A clean, fast website that brings in local leads through Google search.
+      tag: "Plan: Micro"
+      thumbBg: "linear-gradient(135deg,#e8ecf8,#d8defa)"
+      thumbInner: |-
+        <rect x="20" y="20" width="160" height="110" rx="10" fill="#fff" stroke="#2d3d8a" stroke-width="2"/><rect x="20" y="20" width="160" height="22" rx="10" fill="#2d3d8a"/><rect x="35" y="55" width="60" height="8" rx="3" fill="#5c70d6"/><rect x="35" y="68" width="100" height="6" rx="3" fill="#e8ecf8"/><rect x="35" y="80" width="80" height="6" rx="3" fill="#e8ecf8"/><rect x="35" y="100" width="50" height="18" rx="9" fill="#2d3d8a"/><circle cx="155" cy="80" r="14" fill="#5c70d6" opacity=".3"/>
+
+    - category: Retail & Beauty
+      title: Hair & Beauty Salon
+      location: "Charlotte, NC"
+      description: A stylish one-page site with online booking link and gallery.
+      tag: "Plan: Nano"
+      thumbBg: "linear-gradient(135deg,#d8defa,#c4ccf2)"
+      thumbInner: |-
+        <rect x="20" y="20" width="160" height="110" rx="10" fill="#fff" stroke="#2d3d8a" stroke-width="2"/><circle cx="100" cy="58" r="20" fill="#5c70d6" opacity=".4"/><rect x="50" y="88" width="100" height="8" rx="3" fill="#2d3d8a"/><rect x="60" y="102" width="80" height="6" rx="3" fill="#e8ecf8"/><rect x="70" y="115" width="60" height="10" rx="5" fill="#2d3d8a"/>
+
+    - category: Food & Beverage
+      title: Family Restaurant
+      location: "Charlotte, NC"
+      description: "Menu, location map, and Google Reviews integrated in one cohesive site."
+      tag: "Plan: Micro"
+      thumbBg: "linear-gradient(135deg,#e8ecf8,#bcc6ee)"
+      thumbInner: |-
+        <rect x="20" y="20" width="160" height="110" rx="10" fill="#fff" stroke="#2d3d8a" stroke-width="2"/><rect x="35" y="35" width="60" height="40" rx="5" fill="#5c70d6" opacity=".35"/><rect x="105" y="35" width="60" height="40" rx="5" fill="#2d3d8a" opacity=".15"/><rect x="35" y="85" width="130" height="6" rx="3" fill="#e8ecf8"/><rect x="35" y="97" width="100" height="6" rx="3" fill="#e8ecf8"/><rect x="35" y="112" width="40" height="10" rx="5" fill="#2d3d8a"/><rect x="80" y="112" width="40" height="10" rx="5" fill="#5c70d6"/>
+
+# ── About ─────────────────────────────────────────────────────────────────────
+
+about:
+  visual:
+    badges:
+      - iconId: /icons.svg#i-code
+        title: From scratch
+        subtitle: Custom code
+        pos: b1
+      - iconId: /icons.svg#i-shield
+        title: You own it
+        subtitle: No lock-in
+        pos: b2
+      - iconId: /icons.svg#i-trend
+        title: Built to grow
+        subtitle: Scales with you
+        pos: b3
+  body:
+    - "We started SolidGraph Solutions because we kept seeing the same problem: local business owners were either stuck with a cheap template site that didn't represent them, or they'd been quoted outrageous prices by agencies that just reskinned the same WordPress theme for every client."
+    - "We build differently. Every website we create is written from scratch — custom code, custom design, built specifically for your business. No templates, no drag-and-drop builders, no shortcuts. The result is a faster, sharper, more professional website that you own completely."
+    - "We're a lean, senior-level team — which means lower costs for you and faster delivery than traditional agencies. We use modern tools and AI-assisted development to build high-quality custom websites at a fraction of what large agencies charge, without compromising on quality or craftsmanship."
+  diffs:
+    - iconId: /icons.svg#i-code
+      title: Real Custom Development
+      text: "Every website written from scratch. No templates, no page builders. Your site is yours alone — not a variation of something we've sold to 50 other businesses."
+    - iconId: /icons.svg#i-shield
+      title: You Own Everything
+      text: "Your domain, your code, your content. We hand it all over to you at the end — no vendor lock-in, no strings attached."
+    - iconId: /icons.svg#i-trend
+      title: Built to Grow With You
+      text: "Start with a Nano site today. When your business is ready, your custom website grows with you — no rebuilding from zero."
+  cities:
+    - name: "Charlotte, NC"
+      note: "The Queen City's local businesses deserve a web presence that matches their ambition."
+    - name: Springfield-Branson, MO
+      note: "From the Ozarks to downtown — we help local businesses get found online."
+
+# ── FAQ ───────────────────────────────────────────────────────────────────────
+
+faq:
+  items:
+    - question: Do I need any technical knowledge to manage my website?
+      answer: "Not at all. Even though we build every website from scratch with custom code, we set up a simple dashboard where you can change your text and photos with a few clicks — no coding needed. It's like editing a Word document. We also send you a short video tutorial walking you through it."
+    - question: What if I already have a website? Can you redesign it?
+      answer: "Absolutely. Many of our clients come to us with an outdated site they're not happy with. We'll review what you have and give you an honest assessment of whether a redesign or a fresh start is the better move for you."
+    - question: Do I need to buy a domain name?
+      answer: "Yes — and it's very affordable. A domain name (like www.yourbusiness.com) typically costs $12–15 per year from providers like GoDaddy or Namecheap. We'll guide you through the process of buying one if you don't have it already."
+    - question: How long does it take to build my website?
+      answer: "Most Nano websites are ready in 10–15 business days after we receive your content (text, photos, and logo). The timeline starts once you've shared your materials with us — the faster you send them, the faster we deliver."
+    - question: What happens after my website launches?
+      answer: "Your website is fully yours to manage. If you'd like us to keep it running, secure, and updated, we offer monthly hosting plans starting at $35/month. There's no obligation — you can manage it yourself or move it to any other host."
+    - question: Can I sell products on my website?
+      answer: "Yes — with our Pro plan. It includes a fully custom-built online store where you can sell up to 100 products and accept card payments securely via Stripe. Unlike template-based stores, yours is built to match your brand exactly. Our Nano and Micro plans are designed for businesses that don't need online sales yet."
+    - question: Is my website protected from hackers?
+      answer: "Yes. Every custom website we build is protected by Cloudflare, the same security layer used by millions of businesses worldwide. Because we build from scratch, we also avoid the security vulnerabilities common in generic WordPress themes and page builders. Your site stays online and protected."
+    - question: What if I need something that's not in any of your plans?
+      answer: "Just ask. Our Enterprise plan covers custom projects, and we're always happy to talk through what you need before you commit to anything. The initial conversation is always free."
+
+# ── CTA Strip ─────────────────────────────────────────────────────────────────
+
+ctaStrip:
+  heading: Ready to Get Started?
+  body: Tell us about your business. The first conversation is always free.
+  ctaLabel: Get a Free Quote
+  ctaHref: "#contact"
+
+# ── Contact ───────────────────────────────────────────────────────────────────
+
+contact:
+  heading: "Let's Talk About Your Website"
+  leads:
+    - "Tell us a little about your business and we'll get back to you within 24 hours — no pressure, no sales pitch."
+    - "Whether you're starting from scratch, stuck with a template you hate, or not happy with what you have, we'd love to hear about your business. Every website we build is custom — and so is every quote. The first conversation is completely free."
+  altRows:
+    - iconId: /icons.svg#i-mail
+      label: hello@solidgraph.com
+      sub: Email us anytime
+    - iconId: /icons.svg#i-phone-off
+      label: "Phone: TBD"
+      sub: Coming soon
+    - iconId: /icons.svg#i-clock
+      label: Within 24 business hours
+      sub: Monday – Friday
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+
+footer:
+  brandLink: "https://solidgraph.dev"
+  tagline: Custom-built websites for local businesses.
+  locations:
+    - "Charlotte, NC"
+    - Springfield-Branson, MO
+  cols:
+    - heading: Navigate
+      links:
+        - label: How It Works
+          href: "#how-it-works"
+        - label: Our Plans
+          href: "#plans"
+        - label: Our Work
+          href: "#portfolio"
+        - label: About
+          href: "#about"
+        - label: FAQ
+          href: "#faq"
+        - label: Contact
+          href: "#contact"
+    - heading: Plans
+      links:
+        - label: "Nano — $1,300"
+          href: "#plans"
+        - label: "Micro — $2,800"
+          href: "#plans"
+        - label: "Pro — $5,500"
+          href: "#plans"
+        - label: Enterprise
+          href: "#plans"
+        - label: Hosting Plans
+          href: "#plans"
+    - heading: Get in Touch
+      links:
+        - label: hello@solidgraph.com
+          href: "mailto:hello@solidgraph.com"
+        - label: Free Quote
+          href: "#contact"
+        - label: Discovery Call
+          href: "#contact"
+  copyright: "© 2026 SolidGraph Solutions LLC. All rights reserved."
