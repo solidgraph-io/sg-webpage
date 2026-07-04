@@ -111,6 +111,9 @@ importers:
       vitest-axe:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
+      yaml:
+        specifier: ^2.9.0
+        version: 2.9.0
 
   packages/blocks-contract:
     dependencies:

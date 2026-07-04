@@ -78,7 +78,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID | Ítem | Estado |
 |----|------|--------|
-| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), `local_backend` para dev, OAuth de producción parametrizado | **Approved** — pendiente Claude Code (+ host Git/OAuth humano) |
+| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), `local_backend` para dev, OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
 
 ### Diferido
 | EPIC | Título | Estado |

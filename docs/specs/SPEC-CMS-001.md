@@ -1,7 +1,7 @@
 # SPEC-CMS-001 — CMS Sveltia (`/admin`, git-based) sobre las colecciones CMS-ready
 
 - **ID:** SPEC-CMS-001
-- **Estado:** Approved
+- **Estado:** Implemented
 - **Épica / Story:** EPIC-05 / STORY-051 (CMS)
 - **Capa atómica:** CMS / admin (estático)
 - **Depende de:** SPEC-CONTENT-001 (colecciones `settings/site` + `pages/home`)

@@ -1,0 +1,404 @@
+# Sveltia CMS — SPEC-CMS-001
+# git-based; pushes directly to GitHub, no CMS server required.
+# Fields mirror the Zod schemas in src/content/schemas.ts (INV-2 parity).
+
+backend:
+  name: github
+  repo: solidgraph-io/sg-webpage
+  branch: main
+  # OAuth relay (Cloudflare Worker sveltia-cms-auth) — RF-6
+  # Set base_url to your deployed relay URL (client_id/secret live in the Worker).
+  # Docs: https://github.com/sveltia/sveltia-cms-auth
+  base_url: https://sveltia-cms-auth.REPLACE_WITH_WORKER_SUBDOMAIN.workers.dev
+  auth_endpoint: auth
+
+# Dev without OAuth: run `npx @sveltia/cms-proxy-server` then open /admin — RF-5
+local_backend: true
+
+media_folder: apps/web/public/assets
+public_folder: /assets
+
+# ── Collections ────────────────────────────────────────────────────────────────
+
+collections:
+
+  # ── 1. Site Settings (settings/site.yaml → SiteConfigSchema) ─────────────────
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site Configuration
+        file: apps/web/src/content/settings/site.yaml
+        fields:
+          - { name: name,      label: Site Name,   widget: string }
+          - { name: legalName, label: Legal Name,  widget: string, required: false }
+          - { name: url,       label: Site URL,    widget: string }
+          - { name: logo,      label: Logo Path,   widget: string }
+          - name: locations
+            label: Service Locations
+            widget: list
+            fields:
+              - { name: city,   label: City,   widget: string }
+              - { name: region, label: Region, widget: string }
+          - name: contact
+            label: Contact
+            widget: object
+            required: false
+            fields:
+              - { name: email, label: Email, widget: string, required: false }
+              - { name: phone, label: Phone, widget: string, required: false }
+          - name: sameAs
+            label: Social / External URLs (sameAs)
+            widget: list
+            required: false
+            field: { name: url, label: URL, widget: string }
+          - name: defaultSeo
+            label: Default SEO
+            widget: object
+            fields:
+              - { name: title,       label: Default Title,       widget: string }
+              - { name: description, label: Default Description, widget: text }
+              - { name: ogImage,     label: OG Image Path,       widget: string, required: false }
+
+  # ── 2. Home Page (pages/home.yaml → HomeSchema) ───────────────────────────────
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home Page
+        file: apps/web/src/content/pages/home.yaml
+        fields:
+          # seo — optional override; HomeSchema.seo is optional
+          - name: seo
+            label: SEO Override
+            widget: object
+            required: false
+            fields:
+              - { name: title,       label: Title,       widget: string, required: false }
+              - { name: description, label: Description, widget: text,   required: false }
+              - { name: canonical,   label: Canonical,   widget: string, required: false }
+
+          # nav — HomeSchema.nav
+          - name: nav
+            label: Navigation
+            widget: object
+            fields:
+              - name: links
+                label: Nav Links
+                widget: list
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: href,  label: Href,  widget: string }
+              - name: cta
+                label: Nav CTA Button
+                widget: object
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: href,  label: Href,  widget: string }
+
+          # hero — HomeSchema.hero
+          - name: hero
+            label: Hero Section
+            widget: object
+            fields:
+              - { name: pill,     label: Pill Tag,  widget: string }
+              - { name: title,    label: Heading,   widget: string }
+              - { name: subtitle, label: Subtitle,  widget: text }
+              - { name: snippet,  label: Snippet,   widget: string }
+              - name: ctas
+                label: CTA Buttons
+                widget: list
+                fields:
+                  - { name: label,   label: Label,   widget: string }
+                  - { name: href,    label: Href,    widget: string }
+                  - name: variant
+                    label: Variant
+                    widget: select
+                    options: [primary, ghost-light]
+                  - { name: icon, label: Show Icon, widget: boolean }
+              - name: preview
+                label: Preview Card
+                widget: object
+                fields:
+                  - { name: url,     label: Preview URL,   widget: string }
+                  - { name: tag,     label: Tag,           widget: string }
+                  - { name: title,   label: Card Title,    widget: string }
+                  - { name: body,    label: Card Body,     widget: text }
+                  - { name: cta,     label: Card CTA Text, widget: string }
+                  - name: chips
+                    label: Tech Chips
+                    widget: list
+                    field: { name: chip, label: Chip, widget: string }
+                  - { name: logoSrc, label: Logo Src, widget: string }
+              - name: floats
+                label: Floating Badges
+                widget: list
+                fields:
+                  - { name: iconId, label: Icon ID, widget: string }
+                  - { name: label,  label: Label,   widget: string }
+                  - { name: sub,    label: Sub,     widget: string }
+                  - name: pos
+                    label: Position
+                    widget: select
+                    options: [f1, f2]
+
+          # marquee — HomeSchema.marquee
+          - name: marquee
+            label: Marquee
+            widget: object
+            fields:
+              - name: items
+                label: Items
+                widget: list
+                fields:
+                  - { name: label, label: Label, widget: string }
+
+          # painPoints — HomeSchema.painPoints
+          - name: painPoints
+            label: Pain Points Section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: intro,   label: Intro,   widget: text }
+              - name: items
+                label: Pain Points
+                widget: list
+                fields:
+                  - { name: iconId, label: Icon ID, widget: string }
+                  - { name: text,   label: Text,    widget: text }
+              - name: feature
+                label: Feature Callout
+                widget: object
+                fields:
+                  - { name: title, label: Title, widget: string }
+                  - { name: text,  label: Text,  widget: text }
+
+          # value — HomeSchema.value
+          - name: value
+            label: Value Proposition Section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - name: lead
+                label: Lead
+                widget: object
+                fields:
+                  - { name: strong, label: Strong Text, widget: string }
+                  - { name: body,   label: Body,        widget: text }
+              - name: pillars
+                label: Value Pillars
+                widget: list
+                fields:
+                  - { name: num,    label: Number, widget: string }
+                  - { name: iconId, label: Icon ID, widget: string }
+                  - { name: title,  label: Title,   widget: string }
+                  - { name: text,   label: Text,    widget: text }
+
+          # howItWorks — HomeSchema.howItWorks
+          - name: howItWorks
+            label: How It Works Section
+            widget: object
+            fields:
+              - name: steps
+                label: Steps
+                widget: list
+                fields:
+                  - { name: num,   label: Step #, widget: string }
+                  - { name: title, label: Title,  widget: string }
+                  - { name: dur,   label: Duration, widget: string }
+                  - { name: text,  label: Text,   widget: text }
+              - name: ctas
+                label: CTA Buttons
+                widget: list
+                fields:
+                  - { name: label,   label: Label,   widget: string }
+                  - { name: href,    label: Href,    widget: string }
+                  - name: variant
+                    label: Variant
+                    widget: select
+                    options: [white, ghost-light]
+                  - { name: icon, label: Show Icon, widget: boolean }
+
+          # plans — HomeSchema.plans
+          - name: plans
+            label: Pricing Plans Section
+            widget: object
+            fields:
+              - name: items
+                label: Plan Cards
+                widget: list
+                fields:
+                  - { name: name,      label: Plan Name,   widget: string }
+                  - { name: tagline,   label: Tagline,     widget: string }
+                  - { name: price,     label: Price,       widget: string }
+                  - { name: priceNote, label: Price Note,  widget: string }
+                  - { name: delivery,  label: Delivery,    widget: string }
+                  - { name: bestFor,   label: Best For,    widget: string }
+                  - name: includes
+                    label: Includes
+                    widget: list
+                    field: { name: item, label: Feature, widget: string }
+                  - name: excludes
+                    label: Excludes (optional)
+                    widget: list
+                    required: false
+                    field: { name: item, label: Feature, widget: string }
+                  - { name: ctaLabel, label: CTA Label, widget: string }
+                  - { name: ctaHref,  label: CTA Href,  widget: string }
+                  - { name: popular,  label: Popular,   widget: boolean, required: false }
+              - name: hosting
+                label: Hosting Plans
+                widget: object
+                fields:
+                  - { name: heading,    label: Heading,    widget: string }
+                  - { name: subheading, label: Subheading, widget: string }
+                  - name: cards
+                    label: Hosting Cards
+                    widget: list
+                    fields:
+                      - { name: name,  label: Name,  widget: string }
+                      - { name: price, label: Price, widget: string }
+                      - { name: desc,  label: Description, widget: text }
+                      - name: items
+                        label: Features
+                        widget: list
+                        field: { name: item, label: Feature, widget: string }
+
+          # testimonials — HomeSchema.testimonials
+          - name: testimonials
+            label: Testimonials Section
+            widget: object
+            fields:
+              - name: stats
+                label: Stats
+                widget: list
+                fields:
+                  - { name: value, label: Value, widget: string }
+                  - { name: label, label: Label, widget: string }
+              - name: items
+                label: Testimonial Cards
+                widget: list
+                fields:
+                  - { name: quote,      label: Quote,       widget: text }
+                  - { name: authorName, label: Author Name, widget: string }
+                  - { name: authorRole, label: Author Role, widget: string }
+                  - { name: initials,   label: Initials,    widget: string }
+
+          # portfolio — HomeSchema.portfolio
+          - name: portfolio
+            label: Portfolio Section
+            widget: object
+            fields:
+              - name: items
+                label: Portfolio Cards
+                widget: list
+                fields:
+                  - { name: category,    label: Category,       widget: string }
+                  - { name: title,       label: Title,          widget: string }
+                  - { name: location,    label: Location,       widget: string }
+                  - { name: description, label: Description,    widget: text }
+                  - { name: tag,         label: Plan Tag,       widget: string }
+                  - { name: thumbBg,     label: Thumb BG Color, widget: string }
+                  - { name: thumbInner,  label: Thumb Type,     widget: string }
+
+          # about — HomeSchema.about
+          - name: about
+            label: About Section
+            widget: object
+            fields:
+              - name: visual
+                label: Visual (Orbit Badges)
+                widget: object
+                fields:
+                  - name: badges
+                    label: Floating Badges
+                    widget: list
+                    fields:
+                      - { name: iconId,   label: Icon ID,   widget: string }
+                      - { name: title,    label: Title,     widget: string }
+                      - { name: subtitle, label: Subtitle,  widget: string }
+                      - name: pos
+                        label: Position
+                        widget: select
+                        options: [b1, b2, b3]
+              - name: body
+                label: Body Paragraphs
+                widget: list
+                field: { name: text, label: Paragraph, widget: text }
+              - name: diffs
+                label: Differentiators
+                widget: list
+                fields:
+                  - { name: iconId, label: Icon ID, widget: string }
+                  - { name: title,  label: Title,   widget: string }
+                  - { name: text,   label: Text,    widget: text }
+              - name: cities
+                label: Cities
+                widget: list
+                fields:
+                  - { name: name, label: City Name, widget: string }
+                  - { name: note, label: Note,      widget: string }
+
+          # faq — HomeSchema.faq
+          - name: faq
+            label: FAQ Section
+            widget: object
+            fields:
+              - name: items
+                label: FAQ Items
+                widget: list
+                fields:
+                  - { name: question, label: Question, widget: string }
+                  - { name: answer,   label: Answer,   widget: text }
+
+          # ctaStrip — HomeSchema.ctaStrip
+          - name: ctaStrip
+            label: CTA Strip Section
+            widget: object
+            fields:
+              - { name: heading,  label: Heading,  widget: string }
+              - { name: body,     label: Body,     widget: text }
+              - { name: ctaLabel, label: CTA Label, widget: string }
+              - { name: ctaHref,  label: CTA Href,  widget: string }
+
+          # contact — HomeSchema.contact
+          - name: contact
+            label: Contact Section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - name: leads
+                label: Lead Messages
+                widget: list
+                field: { name: text, label: Message, widget: string }
+              - name: altRows
+                label: Alt Contact Rows
+                widget: list
+                fields:
+                  - { name: iconId, label: Icon ID, widget: string }
+                  - { name: label,  label: Label,   widget: string }
+                  - { name: sub,    label: Sub,     widget: string }
+
+          # footer — HomeSchema.footer
+          - name: footer
+            label: Footer Section
+            widget: object
+            fields:
+              - { name: brandLink, label: Brand Link,  widget: string }
+              - { name: tagline,   label: Tagline,     widget: string }
+              - name: locations
+                label: Locations
+                widget: list
+                field: { name: location, label: Location, widget: string }
+              - name: cols
+                label: Footer Columns
+                widget: list
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - name: links
+                    label: Links
+                    widget: list
+                    fields:
+                      - { name: label, label: Label, widget: string }
+                      - { name: href,  label: Href,  widget: string }
+              - { name: copyright, label: Copyright, widget: string }
