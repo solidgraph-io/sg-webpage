@@ -15,6 +15,7 @@ interface Props {
   privacyNote?: string;
   successMsg?: string;
   formAction?: string;
+  contactState?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   privacyNote = 'We never share your information. No spam, ever.',
   successMsg = 'Thank you! We\'ll reach out within 24 business hours.',
   formAction = '/api/lead',
+  contactState,
 } = Astro.props;
 ---
 
@@ -88,6 +90,11 @@ const {
           <textarea id="message" name="message" placeholder="What do you do, who are your customers, and what do you hope your website does for you?"></textarea>
         </FormField>
       </div>
+      {/* honeypot — bots fill it; humans never see it */}
+      <div style="position:absolute;left:-9999px;top:-9999px;overflow:hidden;width:1px;height:1px" aria-hidden="true">
+        <label for="_gotcha">Leave this field empty</label>
+        <input type="text" name="_gotcha" id="_gotcha" tabindex="-1" autocomplete="off" />
+      </div>
       <div class="form-foot">
         <span class="privacy">{privacyNote}</span>
         <Button type="submit" magnetic>
@@ -95,10 +102,15 @@ const {
           <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow" /></svg>
         </Button>
       </div>
-      <div class="success-msg" id="successMsg">{successMsg}</div>
+      <div class="success-msg" id="successMsg" tabindex="-1"
+        style={contactState === 'success' ? 'display:block' : undefined}>
+        {successMsg}
+      </div>
     </form>
   </div>
 </section>
+
+<script>import '../scripts/contact-form';</script>
 
 <style>
 .contact { padding: 130px 0 100px; background: #fff; }
@@ -119,5 +131,6 @@ const {
 .form-foot { margin-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
 .form-foot .privacy { font-size: 11.5px; color: var(--muted); }
 .success-msg { display: none; margin-top: 22px; background: rgba(52,211,154,.1); color: #1a8c63; padding: 15px 18px; border-radius: 12px; font-size: 13.5px; font-weight: 500; }
+:global(.field-error) { font-size: 11.5px; color: #c0392b; margin-top: 4px; }
 @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } .field-grid { grid-template-columns: 1fr; } }
 </style>

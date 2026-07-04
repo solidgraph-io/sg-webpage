@@ -80,10 +80,14 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 |----|------|--------|
 | STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), `local_backend` para dev, OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
 
+### EPIC-06 — Leads (EN CURSO)
+| ID | Ítem | Estado |
+|----|------|--------|
+| STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email por defecto, proveedor por env) + honeypot/rate-limit + form con progressive enhancement | **Implemented** — `feature/SPEC-FORM-001-leads`; destino/credenciales pendientes del humano (EMAIL_RECIPIENT + proveedor) |
+
 ### Diferido
 | EPIC | Título | Estado |
 |------|--------|--------|
-| EPIC-06 | Leads: `/api/lead` + puerto email/CRM (el form UI ya existe en SEC-013) | Diferido |
 | EPIC-10 | Analítica first-party → Umami | Diferido |
 | EPIC-30 | Reintroducir contrato de bloques Zod para la **fábrica** (envolver los organismos) | Diferido |
 | — | Deploy a producción (DroneCI→Dokploy, listo; falta decisión humana + secretos) | Diferido |

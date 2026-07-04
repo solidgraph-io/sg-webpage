@@ -20,6 +20,8 @@ const site = await getEntry('settings', 'site');
 const home = await getEntry('pages', 'home');
 if (!site || !home) throw new Error('[SPEC-CONTENT-001/RF-6] Missing content: settings/site or pages/home');
 
+const contactState = Astro.url.searchParams.get('contact') ?? undefined;
+
 const sd = site.data;
 const hd = home.data;
 
@@ -91,6 +93,7 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
     heading={hd.contact.heading}
     leads={hd.contact.leads}
     altRows={hd.contact.altRows}
+    {...(contactState !== undefined ? { contactState } : {})}
   />
 
   <Footer
