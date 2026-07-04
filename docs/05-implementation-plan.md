@@ -72,13 +72,20 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | STORY-072 / SPEC-PERF-001 | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS | **Implemented** |
 | STORY-081 / SPEC-A11Y-001 | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI | **Implemented** |
 
-### Diferido (tras M1)
+### EPIC-05 — CMS Sveltia (`/admin`, git-based) — EN CURSO
+> El contenido ya es CMS-ready (EPIC-22). Se monta el editor Sveltia mapeando `settings/site` +
+> `pages/home`. Requiere host Git + OAuth (setup humano); `local_backend` permite probar ya.
+
+| ID | Ítem | Estado |
+|----|------|--------|
+| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), `local_backend` para dev, OAuth de producción parametrizado | **Approved** — pendiente Claude Code (+ host Git/OAuth humano) |
+
+### Diferido
 | EPIC | Título | Estado |
 |------|--------|--------|
 | EPIC-06 | Leads: `/api/lead` + puerto email/CRM (el form UI ya existe en SEC-013) | Diferido |
 | EPIC-10 | Analítica first-party → Umami | Diferido |
 | EPIC-30 | Reintroducir contrato de bloques Zod para la **fábrica** (envolver los organismos) | Diferido |
-| EPIC-05 | CMS Sveltia `/admin` | Diferido |
 | — | Deploy a producción (DroneCI→Dokploy, listo; falta decisión humana + secretos) | Diferido |
 
 ## 4. Trazabilidad

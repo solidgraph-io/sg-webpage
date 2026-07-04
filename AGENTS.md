@@ -75,9 +75,15 @@ Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-pl
 
 Ramas `main`/`develop`/`feature/*`/`hotfix/*`; la rama cita la spec
 (`feature/SPEC-BLOCK-006-pricing`). Conventional Commits con footer `[SPEC-XXX]` (commitlint).
-Scopes: `layout|atom|molecule|block|content|cms|form|seo|a11y|perf|analytics|infra`.
+Scopes: `layout|atom|molecule|block|content|cms|form|seo|a11y|perf|analytics|infra|docs`.
 PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de bloques** o el
 **layout global**.
+
+> **`docs/` SIEMPRE se commitea.** El registro SDD (specs, `docs/05`, `docs/prompts`,
+> `docs/traceability.md`, ADRs) es parte del entregable y debe versionarse **en la misma rama/PR**
+> que su implementación. Al cerrar un incremento, **`git add docs/`** junto al código (la spec que
+> pasa a Implemented/Verified viaja con su commit). `docs/` **nunca** va en `.gitignore`. El
+> `trace check` depende de `docs/specs` estando en el repo.
 
 **Gates de CI (bloqueantes):**
 ```
