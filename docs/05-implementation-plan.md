@@ -74,11 +74,12 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 ### EPIC-05 — CMS Sveltia (`/admin`, git-based) — EN CURSO
 > El contenido ya es CMS-ready (EPIC-22). Se monta el editor Sveltia mapeando `settings/site` +
-> `pages/home`. Requiere host Git + OAuth (setup humano); `local_backend` permite probar ya.
+> `pages/home`. Requiere host Git + OAuth (setup humano); la **File System Access API** (Chromium)
+> permite editar en local sin OAuth ya.
 
 | ID | Ítem | Estado |
 |----|------|--------|
-| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), `local_backend` para dev, OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
+| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), **File System Access API** para dev local (Chromium), OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
 
 ### EPIC-06 — Leads (EN CURSO)
 | ID | Ítem | Estado |

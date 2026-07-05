@@ -152,12 +152,17 @@ describe('[SPEC-CMS-001/RF-4] saving in Sveltia commits to the git repo (git-bas
   });
 });
 
-// ── RF-5: local_backend for dev without OAuth ─────────────────────────────────
+// ── RF-5: local editing via File System Access API (no proxy) ────────────────
 
-describe('[SPEC-CMS-001/RF-5] local_backend enables dev without OAuth', () => {
-  it('[SPEC-CMS-001/RF-5] config.yml has local_backend: true', () => {
+describe('[SPEC-CMS-001/RF-5] local editing via File System Access API (Chromium)', () => {
+  it('[SPEC-CMS-001/RF-5] config.yml does NOT contain local_backend (Sveltia uses File System Access)', () => {
     const src = fs.readFileSync(path.join(ADMIN_DIR, 'config.yml'), 'utf-8');
-    expect(src).toContain('local_backend: true');
+    expect(src).not.toContain('local_backend: true');
+  });
+
+  it('[SPEC-CMS-001/RF-5] config.yml documents the File System Access local editing flow', () => {
+    const src = fs.readFileSync(path.join(ADMIN_DIR, 'config.yml'), 'utf-8');
+    expect(src).toMatch(/File System Access|Work with Local Repository/i);
   });
 });
 

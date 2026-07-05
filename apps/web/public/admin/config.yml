@@ -12,8 +12,15 @@ backend:
   base_url: https://sveltia-cms-auth.REPLACE_WITH_WORKER_SUBDOMAIN.workers.dev
   auth_endpoint: auth
 
-# Dev without OAuth: run `npx @sveltia/cms-proxy-server` then open /admin — RF-5
-local_backend: true
+# ── Local editing without OAuth (RF-5) ────────────────────────────────────────
+# Sveltia uses the File System Access API — no proxy server required.
+# Chromium (Chrome/Edge/Brave) only; Firefox and Safari are not supported.
+#
+# Steps:
+#   1. pnpm dev
+#   2. Open http://localhost:4321/admin/index.html in Chrome/Edge/Brave
+#   3. Click "Work with Local Repository" and select the repo root (the folder with .git)
+#   Sveltia reads/writes content/ directly via the browser — no extra process needed.
 
 media_folder: apps/web/public/assets
 public_folder: /assets
@@ -203,7 +210,7 @@ collections:
                 label: Steps
                 widget: list
                 fields:
-                  - { name: num,   label: Step #, widget: string }
+                  - { name: num,   label: Step, widget: string }
                   - { name: title, label: Title,  widget: string }
                   - { name: dur,   label: Duration, widget: string }
                   - { name: text,  label: Text,   widget: text }
