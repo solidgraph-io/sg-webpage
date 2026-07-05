@@ -39,6 +39,25 @@ File: `docs/specs/SPEC-CONTENT-001.md`
 | INV-1 | ✅ | apps/web/src/__tests__/content-001.test.ts:212, apps/web/src/__tests__/content-001.test.ts:219 |
 | INV-2 | ✅ | apps/web/src/__tests__/content-001.test.ts:228, apps/web/src/__tests__/content-001.test.ts:233 |
 
+## ✅ SPEC-DEPLOY-001 — Status: Approved
+
+File: `docs/specs/SPEC-DEPLOY-001.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:23, apps/web/src/__tests__/deploy-001.test.ts:24, apps/web/src/__tests__/deploy-001.test.ts:28 |
+| RF-2 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:35, apps/web/src/__tests__/deploy-001.test.ts:36, apps/web/src/__tests__/deploy-001.test.ts:44, apps/web/src/__tests__/deploy-001.test.ts:48, apps/web/src/__tests__/deploy-001.test.ts:56, apps/web/src/__tests__/deploy-001.test.ts:63, apps/web/src/__tests__/deploy-001.test.ts:71 |
+| RF-3 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:81, apps/web/src/__tests__/deploy-001.test.ts:82, apps/web/src/__tests__/deploy-001.test.ts:86, apps/web/src/__tests__/deploy-001.test.ts:93, apps/web/src/__tests__/deploy-001.test.ts:100 |
+| RF-4 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:110, apps/web/src/__tests__/deploy-001.test.ts:111 |
+| RF-5 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:122, apps/web/src/__tests__/deploy-001.test.ts:123, apps/web/src/__tests__/deploy-001.test.ts:128, apps/web/src/__tests__/deploy-001.test.ts:133, apps/web/src/__tests__/deploy-001.test.ts:138 |
+| RF-6 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:147, apps/web/src/__tests__/deploy-001.test.ts:148, apps/web/src/__tests__/deploy-001.test.ts:152, apps/web/src/__tests__/deploy-001.test.ts:158, apps/web/src/__tests__/deploy-001.test.ts:164 |
+| RNF-1 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:173, apps/web/src/__tests__/deploy-001.test.ts:174 |
+| RNF-2 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:187, apps/web/src/__tests__/deploy-001.test.ts:188, apps/web/src/__tests__/deploy-001.test.ts:195 |
+| RNF-3 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:202, apps/web/src/__tests__/deploy-001.test.ts:203, apps/web/src/__tests__/deploy-001.test.ts:211, apps/web/src/__tests__/deploy-001.test.ts:216 |
+| INV-1 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:226, apps/web/src/__tests__/deploy-001.test.ts:227, apps/web/src/__tests__/deploy-001.test.ts:234 |
+| INV-2 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:244 |
+| INV-3 | ✅ | apps/web/src/__tests__/deploy-001.test.ts:253 |
+
 ## ✅ SPEC-DS-001 — Status: Implemented
 
 File: `docs/specs/SPEC-DS-001.md`
@@ -406,4 +425,4 @@ File: `docs/specs/SPEC-SEO-001.md`
 | INV-3 | ✅ | apps/web/src/__tests__/seo-001.test.ts:279, apps/web/src/__tests__/seo-001.test.ts:283 |
 
 ---
-_Total specs: 23 | Uncovered reqs in Approved specs: 0_
+_Total specs: 24 | Uncovered reqs in Approved specs: 0_

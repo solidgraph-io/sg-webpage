@@ -10,12 +10,13 @@
 #   trigger-dokploy → main, push only
 #
 # Secrets required in Drone (Settings → Secrets):
-#   TURBO_TOKEN          Turborepo Remote Cache API token
-#   TURBO_TEAM           Turborepo team/org slug
-#   TURBO_API            Self-hosted cache server URL
-#   REGISTRY_USERNAME    Private registry username
-#   REGISTRY_PASSWORD    Private registry password
-#   DOKPLOY_WEBHOOK_WEB  Dokploy deploy webhook URL for web service
+#   TURBO_TOKEN              Turborepo Remote Cache API token
+#   TURBO_TEAM               Turborepo team/org slug
+#   TURBO_API                Self-hosted cache server URL
+#   REGISTRY_USERNAME        Private registry username
+#   REGISTRY_PASSWORD        Private registry password
+#   DOKPLOY_WEBHOOK_WEB      Dokploy deploy webhook URL — prod service (main only)
+#   DOKPLOY_WEBHOOK_WEB_DEV  Dokploy deploy webhook URL — dev service (develop only)
 
 kind: pipeline
 type: docker
@@ -181,6 +182,46 @@ steps:
         from_secret: DOKPLOY_WEBHOOK_WEB
     commands:
       - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB}
+
+  # ── 7. build-push-web-dev (SPEC-DEPLOY-001/RF-2) ────────────────────────────
+  # Mirrors build-push-web for the dev stage. Tags: dev + SHA (never latest).
+  - name: build-push-web-dev
+    image: plugins/docker
+    depends_on: [build, perf-test]
+    when:
+      branch:
+        - develop
+      event:
+        - push
+    settings:
+      registry: registry.solidgraph.dev
+      repo: registry.solidgraph.dev/solidgraph-web
+      dockerfile: apps/web/Dockerfile
+      context: .
+      mtu: 1450
+      tags:
+        - dev
+        - ${DRONE_COMMIT_SHA}
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
+
+  # ── 8. trigger-dokploy-dev (SPEC-DEPLOY-001/RF-3) ───────────────────────────
+  # Triggers the Dokploy web-dev service after the dev image is published.
+  - name: trigger-dokploy-dev
+    image: curlimages/curl
+    depends_on: [build-push-web-dev]
+    when:
+      branch:
+        - develop
+      event:
+        - push
+    environment:
+      DOKPLOY_WEBHOOK_WEB_DEV:
+        from_secret: DOKPLOY_WEBHOOK_WEB_DEV
+    commands:
+      - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB_DEV}
 
 trigger:
   event:
