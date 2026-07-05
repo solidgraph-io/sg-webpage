@@ -81,17 +81,22 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 |----|------|--------|
 | STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), **File System Access API** para dev local (Chromium), OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
 
-### EPIC-06 — Leads (EN CURSO)
+### EPIC-06 — Leads (✅ Implemented — commit `123609d`; solo faltan secretos de prod)
 | ID | Ítem | Estado |
 |----|------|--------|
 | STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
+
+### EPIC-40 — Deploy stage dev (EN CURSO)
+| ID | Ítem | Estado |
+|----|------|--------|
+| STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Approved** — prompt `docs/prompts/22-deploy-dev-stage.md`; setup infra pendiente del humano (DNS, Dokploy `web-dev`, secret `DOKPLOY_WEBHOOK_WEB_DEV`, Turnstile/Resend) |
 
 ### Diferido
 | EPIC | Título | Estado |
 |------|--------|--------|
 | EPIC-10 | Analítica first-party → Umami | Diferido |
 | EPIC-30 | Reintroducir contrato de bloques Zod para la **fábrica** (envolver los organismos) | Diferido |
-| — | Deploy a producción (DroneCI→Dokploy, listo; falta decisión humana + secretos) | Diferido |
+| — | Deploy a **producción** (`main` → `solidgraph.io`, steps ya en `.drone.yml`; falta decisión humana + secretos) | Diferido |
 
 ## 4. Trazabilidad
 `scripts/trace.ts` → `docs/traceability.md`; CI falla si una spec `Approved` tiene un requisito sin test.
