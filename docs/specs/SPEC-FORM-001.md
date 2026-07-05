@@ -19,6 +19,7 @@ endpoint a un proveedor.
 - **RF-4 (progressive enhancement)** — el form de SEC-013 postea a `/api/lead`: **funciona sin JS** (POST estándar → respuesta del servidor con éxito/errores). Un **island pequeño** mejora: `fetch` + validación inline + muestra el `success-msg` del diseño **sin recargar**. Sin JS, degrada a POST normal.
 - **RF-5 (UX éxito/error)** — en éxito, se muestra el `success-msg` (del diseño); errores inline y accesibles (`aria-invalid`/`aria-describedby`). Mensajes desde el contenido (config del bloque contact).
 - **RF-6 (seguridad)** — validación/saneado del input; sin secretos en el repo (van en env/Drone); el endpoint no filtra info sensible en errores.
+- **RF-7 (env en runtime, `astro:env`)** — toda la config de env (`LEAD_*`, `RESEND_API_KEY`, `TURNSTILE_*`) se lee vía **`astro:env`** (server/secret; el site key de Turnstile server/public), **no** `process.env` ni `import.meta.env` directos. Motivo: `import.meta.env` de vars no públicas se **hornea en build**, pero el contenedor recibe las vars de **Dokploy en runtime** → hay que leerlas en runtime. Esto arregla el `500` en `pnpm dev` (Vite no vuelca `.env` a `process.env`) y el site key vacío en el contenedor. (Fix: prompt 23; rama `fix/env-runtime-astro-env`.)
 
 ## Requisitos no funcionales
 - **RNF-1 (a11y)** — errores anunciados (aria); todo operable por teclado; foco al primer error / al mensaje de éxito.

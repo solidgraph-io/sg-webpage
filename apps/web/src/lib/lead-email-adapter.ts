@@ -1,11 +1,11 @@
 import type { LeadPort, LeadPayload } from './lead-port';
 
 interface EmailEnv {
-  LEAD_PROVIDER?: string;         // resend | postmark  (default: resend)
-  LEAD_TO_EMAIL?: string;         // where leads arrive — required at delivery time
-  LEAD_FROM_EMAIL?: string;       // sender address (default: leads@solidgraph.io)
-  RESEND_API_KEY?: string;        // required when LEAD_PROVIDER=resend
-  POSTMARK_SERVER_TOKEN?: string; // required when LEAD_PROVIDER=postmark
+  LEAD_PROVIDER?: string | undefined;         // resend | postmark  (default: resend)
+  LEAD_TO_EMAIL?: string | undefined;         // where leads arrive — required at delivery time
+  LEAD_FROM_EMAIL?: string | undefined;       // sender address (default: leads@solidgraph.io)
+  RESEND_API_KEY?: string | undefined;        // required when LEAD_PROVIDER=resend
+  POSTMARK_SERVER_TOKEN?: string | undefined; // required when LEAD_PROVIDER=postmark
 }
 
 function buildText(lead: LeadPayload): string {

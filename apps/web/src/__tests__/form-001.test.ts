@@ -282,6 +282,33 @@ describe('[SPEC-FORM-001/RF-2] adapter env vars use LEAD_ prefix per spec', () =
   });
 });
 
+// ── RF-7: astro:env — runtime env reading ────────────────────────────────────
+
+describe('[SPEC-FORM-001/RF-7] env vars read via astro:env at runtime, not baked at build', () => {
+  it('[SPEC-FORM-001/RF-7] astro.config.ts defines env.schema with envField', () => {
+    const src = fs.readFileSync(path.join(WEB, 'astro.config.ts'), 'utf-8');
+    expect(src).toContain('envField');
+    expect(src).toContain('TURNSTILE_SITE_KEY');
+    expect(src).toContain('LEAD_TO_EMAIL');
+  });
+
+  it('[SPEC-FORM-001/RF-7] lead.ts POST handler reads from astro:env/server', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/pages/api/lead.ts'), 'utf-8');
+    expect(src).toContain('astro:env');
+  });
+
+  it('[SPEC-FORM-001/RF-7] lead.ts does not use process.env directly', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/pages/api/lead.ts'), 'utf-8');
+    expect(src).not.toContain('process.env');
+  });
+
+  it('[SPEC-FORM-001/RF-7] index.astro reads TURNSTILE_SITE_KEY from astro:env/server', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/pages/index.astro'), 'utf-8');
+    expect(src).toContain('astro:env/server');
+    expect(src).not.toContain('import.meta.env.TURNSTILE_SITE_KEY');
+  });
+});
+
 // ── RF-4 & RNF-3: progressive enhancement + fidelity ─────────────────────────
 
 describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS fallback)', () => {

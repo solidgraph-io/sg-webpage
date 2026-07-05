@@ -42,13 +42,8 @@ export async function handleLead(
     return redirect(request, '/?contact=success');
   }
 
-  // Turnstile — verify challenge token; skip when TURNSTILE_SECRET_KEY not set (dev mode)
-  const secretKey = process.env.TURNSTILE_SECRET_KEY;
-  const verify =
-    turnstileVerify ??
-    (secretKey
-      ? (t: string) => verifyTurnstile(t, secretKey)
-      : () => Promise.resolve(true));
+  // Turnstile — verify challenge token; skip in test/dev mode (no turnstileVerify injected)
+  const verify = turnstileVerify ?? (() => Promise.resolve(true));
   const cfToken = typeof data['cf-turnstile-response'] === 'string' ? data['cf-turnstile-response'] : '';
   if (!(await verify(cfToken))) {
     const msg = 'Invalid or expired captcha. Please try again.';
@@ -64,7 +59,7 @@ export async function handleLead(
     return redirect(request, `/?${params}`);
   }
 
-  const resolvedPort = port ?? createEmailAdapter(process.env as Record<string, string>);
+  const resolvedPort = port ?? createEmailAdapter({});
   try {
     await resolvedPort.deliver(result.data);
   } catch (err) {
@@ -78,7 +73,20 @@ export async function handleLead(
   return redirect(request, '/?contact=success');
 }
 
-export const POST: APIRoute = ({ request }) => handleLead(request);
+export const POST: APIRoute = async ({ request }) => {
+  const env = await import('astro:env/server');
+  const port = createEmailAdapter({
+    LEAD_PROVIDER: env.LEAD_PROVIDER,
+    LEAD_TO_EMAIL: env.LEAD_TO_EMAIL,
+    LEAD_FROM_EMAIL: env.LEAD_FROM_EMAIL,
+    RESEND_API_KEY: env.RESEND_API_KEY,
+  });
+  const secretKey = env.TURNSTILE_SECRET_KEY;
+  const verify = secretKey
+    ? (t: string) => verifyTurnstile(t, secretKey)
+    : () => Promise.resolve(true);
+  return handleLead(request, port, verify);
+};
 
 // Exported for testing only
 export const resetRateLimitForTesting = resetStore;
