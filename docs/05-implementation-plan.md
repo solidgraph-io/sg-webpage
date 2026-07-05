@@ -84,7 +84,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 ### EPIC-06 — Leads (EN CURSO)
 | ID | Ítem | Estado |
 |----|------|--------|
-| STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email por defecto, proveedor por env) + honeypot/rate-limit + form con progressive enhancement | **Implemented** — `feature/SPEC-FORM-001-leads`; destino/credenciales pendientes del humano (EMAIL_RECIPIENT + proveedor) |
+| STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
 
 ### Diferido
 | EPIC | Título | Estado |

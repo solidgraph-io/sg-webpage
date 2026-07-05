@@ -3,9 +3,14 @@ import { LeadSchema } from '../../lib/lead-schema';
 import type { LeadPort } from '../../lib/lead-port';
 import { checkRateLimit, resetStore } from '../../lib/rate-limit';
 import { createEmailAdapter } from '../../lib/lead-email-adapter';
+import { verifyTurnstile } from '../../lib/turnstile';
 
-// Exported for testing — pass a mock LeadPort to override the email adapter
-export async function handleLead(request: Request, port?: LeadPort): Promise<Response> {
+// Exported for testing — inject port and/or turnstileVerify to override defaults
+export async function handleLead(
+  request: Request,
+  port?: LeadPort,
+  turnstileVerify?: (token: string) => Promise<boolean>,
+): Promise<Response> {
   const isJson = (request.headers.get('accept') ?? '').includes('application/json');
 
   const ip =
@@ -35,6 +40,20 @@ export async function handleLead(request: Request, port?: LeadPort): Promise<Res
   if (gotcha.length > 0) {
     if (isJson) return json({ ok: true }, 200);
     return redirect(request, '/?contact=success');
+  }
+
+  // Turnstile — verify challenge token; skip when TURNSTILE_SECRET_KEY not set (dev mode)
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  const verify =
+    turnstileVerify ??
+    (secretKey
+      ? (t: string) => verifyTurnstile(t, secretKey)
+      : () => Promise.resolve(true));
+  const cfToken = typeof data['cf-turnstile-response'] === 'string' ? data['cf-turnstile-response'] : '';
+  if (!(await verify(cfToken))) {
+    const msg = 'Invalid or expired captcha. Please try again.';
+    if (isJson) return json({ error: msg }, 400);
+    return redirect(request, '/?contact=error');
   }
 
   const result = LeadSchema.safeParse(data);

@@ -16,6 +16,7 @@ interface Props {
   successMsg?: string;
   formAction?: string;
   contactState?: string;
+  turnstileSiteKey?: string;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   successMsg = 'Thank you! We\'ll reach out within 24 business hours.',
   formAction = '/api/lead',
   contactState,
+  turnstileSiteKey = '',
 } = Astro.props;
 ---
 
@@ -95,6 +97,9 @@ const {
         <label for="_gotcha">Leave this field empty</label>
         <input type="text" name="_gotcha" id="_gotcha" tabindex="-1" autocomplete="off" />
       </div>
+      {turnstileSiteKey && (
+        <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+      )}
       <div class="form-foot">
         <span class="privacy">{privacyNote}</span>
         <Button type="submit" magnetic>
@@ -111,6 +116,9 @@ const {
 </section>
 
 <script>import '../scripts/contact-form';</script>
+{turnstileSiteKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
 
 <style>
 .contact { padding: 130px 0 100px; background: #fff; }

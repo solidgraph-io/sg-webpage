@@ -67,20 +67,20 @@ File: `docs/specs/SPEC-FORM-001.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:55, apps/web/src/__tests__/form-001.test.ts:58, apps/web/src/__tests__/form-001.test.ts:66, apps/web/src/__tests__/form-001.test.ts:75, apps/web/src/__tests__/form-001.test.ts:83, apps/web/src/__tests__/form-001.test.ts:91, apps/web/src/__tests__/form-001.test.ts:97, apps/web/src/__tests__/form-001.test.ts:105, apps/web/src/__tests__/form-001.test.ts:399, apps/web/src/__tests__/form-001.test.ts:400, apps/web/src/__tests__/form-001.test.ts:404, apps/web/src/__tests__/form-001.test.ts:408, apps/web/src/__tests__/form-001.test.ts:412, apps/web/src/__tests__/form-001.test.ts:416 |
-| RF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:116, apps/web/src/__tests__/form-001.test.ts:119, apps/web/src/__tests__/form-001.test.ts:129, apps/web/src/__tests__/form-001.test.ts:136 |
-| RF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:146, apps/web/src/__tests__/form-001.test.ts:149, apps/web/src/__tests__/form-001.test.ts:160, apps/web/src/__tests__/form-001.test.ts:172, apps/web/src/__tests__/form-001.test.ts:173, apps/web/src/__tests__/form-001.test.ts:199 |
-| RF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:213, apps/web/src/__tests__/form-001.test.ts:214, apps/web/src/__tests__/form-001.test.ts:220, apps/web/src/__tests__/form-001.test.ts:225, apps/web/src/__tests__/form-001.test.ts:230, apps/web/src/__tests__/form-001.test.ts:236 |
-| RF-5 | ✅ | apps/web/src/__tests__/form-001.test.ts:257, apps/web/src/__tests__/form-001.test.ts:258, apps/web/src/__tests__/form-001.test.ts:264, apps/web/src/__tests__/form-001.test.ts:269, apps/web/src/__tests__/form-001.test.ts:274 |
-| RF-6 | ✅ | apps/web/src/__tests__/form-001.test.ts:283, apps/web/src/__tests__/form-001.test.ts:284, apps/web/src/__tests__/form-001.test.ts:290 |
-| RNF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:302, apps/web/src/__tests__/form-001.test.ts:303, apps/web/src/__tests__/form-001.test.ts:308 |
-| RNF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:316, apps/web/src/__tests__/form-001.test.ts:317 |
-| RNF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:242, apps/web/src/__tests__/form-001.test.ts:243, apps/web/src/__tests__/form-001.test.ts:248 |
-| RNF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:327, apps/web/src/__tests__/form-001.test.ts:328, apps/web/src/__tests__/form-001.test.ts:335 |
-| INV-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:345, apps/web/src/__tests__/form-001.test.ts:346, apps/web/src/__tests__/form-001.test.ts:351 |
-| INV-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:360 |
-| INV-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:369 |
-| INV-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:379, apps/web/src/__tests__/form-001.test.ts:380, apps/web/src/__tests__/form-001.test.ts:384, apps/web/src/__tests__/form-001.test.ts:388, apps/web/src/__tests__/form-001.test.ts:392 |
+| RF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:55, apps/web/src/__tests__/form-001.test.ts:58, apps/web/src/__tests__/form-001.test.ts:66, apps/web/src/__tests__/form-001.test.ts:75, apps/web/src/__tests__/form-001.test.ts:83, apps/web/src/__tests__/form-001.test.ts:91, apps/web/src/__tests__/form-001.test.ts:97, apps/web/src/__tests__/form-001.test.ts:105, apps/web/src/__tests__/form-001.test.ts:473, apps/web/src/__tests__/form-001.test.ts:474, apps/web/src/__tests__/form-001.test.ts:478, apps/web/src/__tests__/form-001.test.ts:482, apps/web/src/__tests__/form-001.test.ts:486, apps/web/src/__tests__/form-001.test.ts:490 |
+| RF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:116, apps/web/src/__tests__/form-001.test.ts:119, apps/web/src/__tests__/form-001.test.ts:129, apps/web/src/__tests__/form-001.test.ts:136, apps/web/src/__tests__/form-001.test.ts:262, apps/web/src/__tests__/form-001.test.ts:263, apps/web/src/__tests__/form-001.test.ts:268, apps/web/src/__tests__/form-001.test.ts:273, apps/web/src/__tests__/form-001.test.ts:278 |
+| RF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:146, apps/web/src/__tests__/form-001.test.ts:149, apps/web/src/__tests__/form-001.test.ts:160, apps/web/src/__tests__/form-001.test.ts:172, apps/web/src/__tests__/form-001.test.ts:173, apps/web/src/__tests__/form-001.test.ts:199, apps/web/src/__tests__/form-001.test.ts:213, apps/web/src/__tests__/form-001.test.ts:216, apps/web/src/__tests__/form-001.test.ts:228, apps/web/src/__tests__/form-001.test.ts:242, apps/web/src/__tests__/form-001.test.ts:254 |
+| RF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:287, apps/web/src/__tests__/form-001.test.ts:288, apps/web/src/__tests__/form-001.test.ts:294, apps/web/src/__tests__/form-001.test.ts:299, apps/web/src/__tests__/form-001.test.ts:304, apps/web/src/__tests__/form-001.test.ts:310 |
+| RF-5 | ✅ | apps/web/src/__tests__/form-001.test.ts:331, apps/web/src/__tests__/form-001.test.ts:332, apps/web/src/__tests__/form-001.test.ts:338, apps/web/src/__tests__/form-001.test.ts:343, apps/web/src/__tests__/form-001.test.ts:348 |
+| RF-6 | ✅ | apps/web/src/__tests__/form-001.test.ts:357, apps/web/src/__tests__/form-001.test.ts:358, apps/web/src/__tests__/form-001.test.ts:364 |
+| RNF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:376, apps/web/src/__tests__/form-001.test.ts:377, apps/web/src/__tests__/form-001.test.ts:382 |
+| RNF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:390, apps/web/src/__tests__/form-001.test.ts:391 |
+| RNF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:316, apps/web/src/__tests__/form-001.test.ts:317, apps/web/src/__tests__/form-001.test.ts:322 |
+| RNF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:401, apps/web/src/__tests__/form-001.test.ts:402, apps/web/src/__tests__/form-001.test.ts:409 |
+| INV-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:419, apps/web/src/__tests__/form-001.test.ts:420, apps/web/src/__tests__/form-001.test.ts:425 |
+| INV-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:434 |
+| INV-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:443 |
+| INV-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:453, apps/web/src/__tests__/form-001.test.ts:454, apps/web/src/__tests__/form-001.test.ts:458, apps/web/src/__tests__/form-001.test.ts:462, apps/web/src/__tests__/form-001.test.ts:466 |
 
 ## ✅ SPEC-INFRA-001 — Status: Implemented
 

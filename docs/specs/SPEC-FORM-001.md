@@ -14,8 +14,8 @@ endpoint a un proveedor.
 
 ## Requisitos funcionales (testeables)
 - **RF-1 (endpoint)** — `POST /api/lead` (Astro API route, Node adapter): valida el payload con **Zod** (campos del form: name, email, phone?, business?, message, …); inválido → `400` con errores por campo; válido → invoca el `LeadPort`.
-- **RF-2 (LeadPort)** — interfaz `LeadPort` + **adaptador email por defecto** (email transaccional; **proveedor configurable por env**: Resend/Postmark/SMTP). Credenciales y **email de recepción** vienen de env/secrets (**nunca** en el repo). El puerto permite añadir CRM/webhook después sin tocar el endpoint.
-- **RF-3 (anti-spam)** — **honeypot** (campo oculto; si viene relleno → se descarta silenciosamente) + **rate-limit por IP**. Opcional (config): Cloudflare **Turnstile**. Ningún spam llega al puerto.
+- **RF-2 (LeadPort)** — interfaz `LeadPort` + **adaptador email por defecto = Resend** (email transaccional; env `LEAD_PROVIDER=resend`, dejado **parametrizable** para Postmark/SMTP a futuro). Credenciales (`RESEND_API_KEY`), remitente (`LEAD_FROM_EMAIL`, dominio verificado en Resend) y **email de recepción** (`LEAD_TO_EMAIL`) vienen de env/secrets (**nunca** en el repo). El puerto permite añadir CRM/webhook después sin tocar el endpoint.
+- **RF-3 (anti-spam)** — **honeypot** (campo oculto; si viene relleno → se descarta silenciosamente) + **rate-limit por IP** + **Cloudflare Turnstile ACTIVADO**: el endpoint valida el token server-side contra `siteverify` (secret `TURNSTILE_SECRET_KEY`); el form renderiza el widget (`TURNSTILE_SITE_KEY`). Ningún spam/token inválido llega al puerto.
 - **RF-4 (progressive enhancement)** — el form de SEC-013 postea a `/api/lead`: **funciona sin JS** (POST estándar → respuesta del servidor con éxito/errores). Un **island pequeño** mejora: `fetch` + validación inline + muestra el `success-msg` del diseño **sin recargar**. Sin JS, degrada a POST normal.
 - **RF-5 (UX éxito/error)** — en éxito, se muestra el `success-msg` (del diseño); errores inline y accesibles (`aria-invalid`/`aria-describedby`). Mensajes desde el contenido (config del bloque contact).
 - **RF-6 (seguridad)** — validación/saneado del input; sin secretos en el repo (van en env/Drone); el endpoint no filtra info sensible en errores.
@@ -55,10 +55,14 @@ Scenario: inválido devuelve errores por campo
   Then responde 400 con el error del campo email (accesible en la UI)
 ```
 
-## Detente y confirma con el humano
-- **Destino de los leads:** email (proveedor: Resend / Postmark / SMTP), CRM, o webhook — confirma cuál.
-- **Email de recepción** (a dónde llegan los leads) y **credenciales del proveedor** — son secretos (env/Drone), **no** en el repo. Implementa el `LeadPort` + adaptador email con proveedor **parametrizado**; deja las credenciales/recipiente como env documentado hasta tenerlos.
-- ¿Se activa **Turnstile**? (si sí, hace falta site key/secret).
+## Decisiones cerradas (humano) + secretos pendientes
+- **Destino = email vía Resend.** El `LeadPort` sigue siendo la abstracción (CRM/webhook a futuro sin tocar el endpoint), pero el **adaptador por defecto es Resend**. El adaptador email queda **parametrizado por env** (`LEAD_PROVIDER=resend`) por si se cambia después.
+- **Turnstile = ACTIVADO.** El endpoint **verifica el token de Turnstile** (server-side, contra el endpoint `siteverify` de Cloudflare) además del honeypot + rate-limit. El widget se renderiza en el form (SEC-013).
+- **Secretos (env/Drone, NUNCA en el repo)** — dejar como `.env.example` con placeholders hasta que el humano los provea:
+  - `RESEND_API_KEY` — API key de Resend.
+  - `LEAD_FROM_EMAIL` — remitente (dominio **verificado en Resend**).
+  - `LEAD_TO_EMAIL` — email de recepción de los leads (pendiente del humano).
+  - `TURNSTILE_SITE_KEY` (público, front) + `TURNSTILE_SECRET_KEY` (server).
 
 ## Fuera de alcance
 - CRM completo (más allá de un adaptador/webhook), doble opt-in, secuencias de email → futuro.

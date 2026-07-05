@@ -208,6 +208,80 @@ describe('[SPEC-FORM-001/RF-3] rate limit blocks after threshold', () => {
   });
 });
 
+// ── RF-3: Turnstile (server-side token verification) ─────────────────────────
+
+describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
+  beforeEach(() => resetRateLimitForTesting());
+
+  it('[SPEC-FORM-001/RF-3] invalid Turnstile token (JSON) → 400, port NOT called', async () => {
+    const deliver = vi.fn();
+    const port: LeadPort = { deliver };
+    const res = await handleLead(
+      makeJsonRequest(VALID_LEAD),
+      port,
+      () => Promise.resolve(false),
+    );
+    expect(res.status).toBe(400);
+    expect(deliver).not.toHaveBeenCalled();
+  });
+
+  it('[SPEC-FORM-001/RF-3] invalid Turnstile on form POST → redirect with error', async () => {
+    const deliver = vi.fn();
+    const port: LeadPort = { deliver };
+    const res = await handleLead(
+      makeFormRequest(VALID_LEAD),
+      port,
+      () => Promise.resolve(false),
+    );
+    expect(res.status).toBeGreaterThanOrEqual(300);
+    expect(res.status).toBeLessThan(400);
+    expect(res.headers.get('location')).toContain('contact=error');
+    expect(deliver).not.toHaveBeenCalled();
+  });
+
+  it('[SPEC-FORM-001/RF-3] valid Turnstile token (injected) → port called', async () => {
+    const deliver = vi.fn().mockResolvedValue(undefined);
+    const port: LeadPort = { deliver };
+    const res = await handleLead(
+      makeJsonRequest(VALID_LEAD),
+      port,
+      () => Promise.resolve(true),
+    );
+    expect(res.status).toBe(200);
+    expect(deliver).toHaveBeenCalledOnce();
+  });
+
+  it('[SPEC-FORM-001/RF-3] Contact.astro renders Turnstile widget (cf-turnstile class)', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    expect(src).toContain('cf-turnstile');
+  });
+});
+
+// ── RF-2: env var naming (LEAD_PROVIDER / LEAD_TO_EMAIL / LEAD_FROM_EMAIL) ────
+
+describe('[SPEC-FORM-001/RF-2] adapter env vars use LEAD_ prefix per spec', () => {
+  it('[SPEC-FORM-001/RF-2] lead-email-adapter uses LEAD_PROVIDER', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/lib/lead-email-adapter.ts'), 'utf-8');
+    expect(src).toContain('LEAD_PROVIDER');
+  });
+
+  it('[SPEC-FORM-001/RF-2] lead-email-adapter uses LEAD_TO_EMAIL', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/lib/lead-email-adapter.ts'), 'utf-8');
+    expect(src).toContain('LEAD_TO_EMAIL');
+  });
+
+  it('[SPEC-FORM-001/RF-2] lead-email-adapter uses LEAD_FROM_EMAIL', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/lib/lead-email-adapter.ts'), 'utf-8');
+    expect(src).toContain('LEAD_FROM_EMAIL');
+  });
+
+  it('[SPEC-FORM-001/RF-2] .env.example documents Turnstile keys', () => {
+    const envExample = fs.readFileSync(path.join(WEB, '../../.env.example'), 'utf-8');
+    expect(envExample).toContain('TURNSTILE_SITE_KEY');
+    expect(envExample).toContain('TURNSTILE_SECRET_KEY');
+  });
+});
+
 // ── RF-4 & RNF-3: progressive enhancement + fidelity ─────────────────────────
 
 describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS fallback)', () => {

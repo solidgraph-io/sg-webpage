@@ -1,11 +1,11 @@
 import type { LeadPort, LeadPayload } from './lead-port';
 
 interface EmailEnv {
-  EMAIL_PROVIDER?: string;        // resend | postmark  (default: resend)
-  EMAIL_RECIPIENT?: string;       // where leads arrive — required at delivery time
-  EMAIL_FROM?: string;            // sender address (default: leads@solidgraph.io)
-  RESEND_API_KEY?: string;        // required when EMAIL_PROVIDER=resend
-  POSTMARK_SERVER_TOKEN?: string; // required when EMAIL_PROVIDER=postmark
+  LEAD_PROVIDER?: string;         // resend | postmark  (default: resend)
+  LEAD_TO_EMAIL?: string;         // where leads arrive — required at delivery time
+  LEAD_FROM_EMAIL?: string;       // sender address (default: leads@solidgraph.io)
+  RESEND_API_KEY?: string;        // required when LEAD_PROVIDER=resend
+  POSTMARK_SERVER_TOKEN?: string; // required when LEAD_PROVIDER=postmark
 }
 
 function buildText(lead: LeadPayload): string {
@@ -24,13 +24,13 @@ function buildText(lead: LeadPayload): string {
 }
 
 export function createEmailAdapter(env: EmailEnv): LeadPort {
-  const provider = (env.EMAIL_PROVIDER ?? 'resend').toLowerCase();
-  const from = env.EMAIL_FROM ?? 'leads@solidgraph.io';
+  const provider = (env.LEAD_PROVIDER ?? 'resend').toLowerCase();
+  const from = env.LEAD_FROM_EMAIL ?? 'leads@solidgraph.io';
 
   return {
     async deliver(lead: LeadPayload): Promise<void> {
-      const to = env.EMAIL_RECIPIENT;
-      if (!to) throw new Error('EMAIL_RECIPIENT env var is required');
+      const to = env.LEAD_TO_EMAIL;
+      if (!to) throw new Error('LEAD_TO_EMAIL env var is required');
 
       const subject = `New lead: ${lead.first_name} ${lead.last_name} (${lead.business_name})`;
       const text = buildText(lead);
