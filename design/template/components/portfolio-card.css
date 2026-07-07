@@ -4,14 +4,63 @@
    category, title, location, blurb. 3D tilt added by interactions.js.
    Depends on: tokens.css, badge.css (.p-tag)
    ========================================================================== */
-.p-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--line); background: #fff; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
-.p-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
-.p-thumb { aspect-ratio: 4/3; display: grid; place-items: center; position: relative; overflow: hidden; }
-.p-thumb svg { width: 66%; height: 66%; transition: transform .6s var(--ease); }
-.p-card:hover .p-thumb svg { transform: scale(1.06); }
-.p-meat { padding: 26px 28px 28px; }
-.p-meat .cat { font-size: 11px; color: var(--periwinkle); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
-.p-meat h3 { font-size: 19px; margin-bottom: 8px; }
-.p-meat .loc { font-size: 12px; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-.p-meat .loc svg { color: var(--periwinkle); }
-.p-meat p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.p-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  background: #fff;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+.p-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+.p-thumb {
+  aspect-ratio: 4/3;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.p-thumb svg {
+  width: 66%;
+  height: 66%;
+  transition: transform 0.6s var(--ease);
+}
+.p-card:hover .p-thumb svg {
+  transform: scale(1.06);
+}
+.p-meat {
+  padding: 26px 28px 28px;
+}
+.p-meat .cat {
+  font-size: 11px;
+  color: var(--periwinkle);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.p-meat h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.p-meat .loc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.p-meat .loc svg {
+  color: var(--periwinkle);
+}
+.p-meat p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}

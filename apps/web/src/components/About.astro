@@ -9,9 +9,21 @@ import Eyebrow from './Eyebrow.astro';
 import FloatingCard from './FloatingCard.astro';
 import DiffItem from './DiffItem.astro';
 
-interface Badge { iconId: string; title: string; subtitle: string; pos: 'b1' | 'b2' | 'b3'; }
-interface DiffEntry { iconId: string; title: string; text: string; }
-interface City { name: string; note: string; }
+interface Badge {
+  iconId: string;
+  title: string;
+  subtitle: string;
+  pos: 'b1' | 'b2' | 'b3';
+}
+interface DiffEntry {
+  iconId: string;
+  title: string;
+  text: string;
+}
+interface City {
+  name: string;
+  note: string;
+}
 
 interface Props {
   eyebrow?: string;
@@ -36,19 +48,29 @@ const {
 
 <section class="about" id="about" data-section="about" aria-labelledby="about-heading">
   <div class="container about-grid">
-
     <div class="about-visual" data-reveal="left" aria-hidden="true">
       <div class="orbit"></div>
       <div class="orbit o2"></div>
       <div class="center-logo">
         <Image src={logoAvatarFull} alt="" aria-hidden="true" loading="lazy" width={200} />
       </div>
-      {visual.badges.map((b) => (
-        <FloatingCard variant="badge" class={b.pos}>
-          <div class="ic"><svg width="18" height="18" aria-hidden="true"><use href={b.iconId} /></svg></div>
-          <div><b>{b.title}</b><span>{b.subtitle}</span></div>
-        </FloatingCard>
-      ))}
+      {
+        visual.badges.map((b) => (
+          <FloatingCard variant="badge" class={b.pos}>
+            <div class="ic">
+              <svg width="18" height="18" aria-hidden="true">
+                <use href={b.iconId} />
+              </svg>
+            </div>
+            <div>
+              <>
+                <b>{b.title}</b>
+                <span>{b.subtitle}</span>
+              </>
+            </div>
+          </FloatingCard>
+        ))
+      }
     </div>
 
     <div class="about-content" data-reveal="right">
@@ -64,49 +86,165 @@ const {
       <div class="about-cities">
         <div class="h">Proudly Serving</div>
         <div class="cities">
-          {cities.map((c) => (
-            <div class="city"><b>{c.name}</b><span>{c.note}</span></div>
-          ))}
+          {
+            cities.map((c) => (
+              <div class="city">
+                <>
+                  <b>{c.name}</b>
+                  <span>{c.note}</span>
+                </>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <style>
-.about { padding: 130px 0; background: var(--lilac-2); position: relative; overflow: hidden; }
-.about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+  .about {
+    padding: 130px 0;
+    background: var(--lilac-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+  }
 
-/* ── Orbit visual ── */
-.about-visual { position: relative; aspect-ratio: 1/1; max-width: 460px; }
-.orbit { position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(45,61,138,.2); animation: spin 40s linear infinite; }
-.orbit.o2 { inset: 14%; border-color: rgba(92,112,214,.25); animation-duration: 28s; animation-direction: reverse; }
-@media (prefers-reduced-motion: reduce) { .orbit { animation: none; } }
-.center-logo { position: absolute; inset: 27%; border-radius: 50%; background: #fff; box-shadow: var(--shadow-lg); display: grid; place-items: center; padding: 7%; }
-.center-logo img { width: 100%; height: auto; }
-.about-visual :global(.b1) { top: 2%; left: -6%; animation: bob 5s ease-in-out infinite; }
-.about-visual :global(.b2) { bottom: 22%; right: -10%; animation: bob 6s ease-in-out infinite .6s; }
-.about-visual :global(.b3) { bottom: 0%; left: 10%; animation: bob 5.4s ease-in-out infinite 1.1s; }
-@media (prefers-reduced-motion: reduce) { .about-visual :global(.b1), .about-visual :global(.b2), .about-visual :global(.b3) { animation: none; } }
+  /* ── Orbit visual ── */
+  .about-visual {
+    position: relative;
+    aspect-ratio: 1/1;
+    max-width: 460px;
+  }
+  .orbit {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(45, 61, 138, 0.2);
+    animation: spin 40s linear infinite;
+  }
+  .orbit.o2 {
+    inset: 14%;
+    border-color: rgba(92, 112, 214, 0.25);
+    animation-duration: 28s;
+    animation-direction: reverse;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit {
+      animation: none;
+    }
+  }
+  .center-logo {
+    position: absolute;
+    inset: 27%;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    place-items: center;
+    padding: 7%;
+  }
+  .center-logo img {
+    width: 100%;
+    height: auto;
+  }
+  .about-visual :global(.b1) {
+    top: 2%;
+    left: -6%;
+    animation: bob 5s ease-in-out infinite;
+  }
+  .about-visual :global(.b2) {
+    bottom: 22%;
+    right: -10%;
+    animation: bob 6s ease-in-out infinite 0.6s;
+  }
+  .about-visual :global(.b3) {
+    bottom: 0%;
+    left: 10%;
+    animation: bob 5.4s ease-in-out infinite 1.1s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .about-visual :global(.b1),
+    .about-visual :global(.b2),
+    .about-visual :global(.b3) {
+      animation: none;
+    }
+  }
 
-/* ── Content ── */
-.about h2 { margin-bottom: 20px; }
-.about-sub { color: var(--periwinkle); font-weight: 600; font-size: 14px; margin-bottom: 24px; }
-.about-body p { color: var(--muted); font-size: 14.5px; line-height: 1.8; margin-bottom: 16px; }
-.diff-list { margin-top: 34px; display: flex; flex-direction: column; gap: 18px; }
+  /* ── Content ── */
+  .about h2 {
+    margin-bottom: 20px;
+  }
+  .about-sub {
+    color: var(--periwinkle);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .about-body p {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .diff-list {
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
 
-/* ── Cities card ── */
-.about-cities { margin-top: 42px; background: #fff; border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow-sm); }
-.about-cities .h { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--periwinkle); font-weight: 700; margin-bottom: 16px; }
-.cities { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
-.city b { display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.city span { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  /* ── Cities card ── */
+  .about-cities {
+    margin-top: 42px;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .about-cities .h {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--periwinkle);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .cities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .city b {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .city span {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
 
-/* ── Responsive (AFTER base rules) ── */
-@media (max-width: 980px) {
-  .about-grid { grid-template-columns: 1fr; gap: 64px; }
-  .about-visual { margin: 0 auto; }
-  .cities { grid-template-columns: 1fr; }
-}
+  /* ── Responsive (AFTER base rules) ── */
+  @media (max-width: 980px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+    .about-visual {
+      margin: 0 auto;
+    }
+    .cities {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

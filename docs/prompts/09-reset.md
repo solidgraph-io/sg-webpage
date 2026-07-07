@@ -10,6 +10,7 @@ setup**, borrando toda la capa de página/componentes (que quedó incoherente) *
 git**, para reconstruir desde cero contra el nuevo diseño por secciones (`design/template/`).
 
 ## BORRAR (todo lo de página / estructura / componentes)
+
 - `apps/web/src/components/**` (atoms, molecules, organisms, templates) — todo.
 - `apps/web/src/content/**` (config de colecciones + `pages/*.json`).
 - `apps/web/src/layouts/**`, `apps/web/src/lib/**` (blocks.ts, seo.ts, animations.ts), `apps/web/src/styles/**` (tokens, global), `apps/web/src/pages/**`.
@@ -20,6 +21,7 @@ git**, para reconstruir desde cero contra el nuevo diseño por secciones (`desig
 - Deja `apps/web` como una **app Astro mínima que bootea**: un `src/pages/index.astro` placeholder (“SolidGraph — coming soon” o vacío), `BaseLayout` mínimo si hace falta para que compile, y nada más.
 
 ## CONSERVAR (setup inicial — NO tocar)
+
 - **Monorepo/scaffold:** `package.json` raíz, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `turbo.json`, `.gitignore`, `.env.example`.
 - **Paquetes de config:** `packages/typescript-config`, `packages/eslint-config`.
 - **Tooling:** ESLint, Prettier, commitlint; **config** de Vitest, Playwright, vitest-axe (borra los tests de componentes, **conserva** la configuración y un smoke test mínimo verde).
@@ -29,20 +31,25 @@ git**, para reconstruir desde cero contra el nuevo diseño por secciones (`desig
 - **Diseño:** `design/**` (incluye `design/template/sections/*.html`, `design/template/styleguide.html`, `design/template/index.html`, y el standalone/logos). **NO tocar.**
 
 ## Reset de git
+
 - `rm -rf .git`, luego `git init` (rama `main`).
 - Deja el working tree en el estado "solo setup" descrito arriba.
 - Un **único commit inicial**: `chore: initial project setup (monorepo + tooling + CI/Docker + harnesses + design)`.
 
 ## Plan/trazabilidad
+
 - Resetea `docs/05-implementation-plan.md` a un **stub**: conserva EPIC-01 (SPEC-INFRA-001 = Implemented) y marca el resto como "**Reset — re-planificación por el arquitecto contra `design/template`**". Regenera `docs/traceability.md` vacío/solo INFRA-001.
 
 ## Verificación final (debe quedar verde)
+
 ```
 pnpm install --frozen-lockfile && pnpm lint && pnpm type-check && pnpm test && pnpm build && pnpm trace -- --check
 ```
+
 La app mínima debe bootear (`pnpm dev`) y el trace solo debe ver `SPEC-INFRA-001` (Implemented, con sus tests de scaffold).
 
 ## Al terminar
+
 Resume qué borraste y qué conservaste, confirma que todo está verde y que el repo quedó en
 "solo setup" con git re-inicializado (un commit). **No reconstruyas componentes** — el arquitecto
 va a re-planificar las specs contra `design/template/` y te pasará el siguiente prompt.

@@ -52,8 +52,7 @@ function parseSpec(filePath: string): SpecEntry | null {
   const specId = idMatch[1];
 
   // Extract status — accept bold "**Estado:**" or plain "Estado:" / "Status:"
-  const statusMatch =
-    /(?:\*{0,2}Estado:\*{0,2}|Status:)\s*([A-Za-z]+)/i.exec(content);
+  const statusMatch = /(?:\*{0,2}Estado:\*{0,2}|Status:)\s*([A-Za-z]+)/i.exec(content);
   const status = statusMatch?.[1] ?? 'Unknown';
 
   // Extract requirement IDs
@@ -190,7 +189,9 @@ async function main(): Promise<void> {
   }
 
   lines.push('---');
-  lines.push(`_Total specs: ${specs.length} | Uncovered reqs in Approved specs: ${uncoveredApproved}_`);
+  lines.push(
+    `_Total specs: ${specs.length} | Uncovered reqs in Approved specs: ${uncoveredApproved}_`,
+  );
   lines.push('');
 
   const output = lines.join('\n');

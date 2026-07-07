@@ -206,7 +206,8 @@ describe('SPEC-SEO-001/RF-7 — single h1 and heading outline', () => {
   });
 
   it('[SPEC-SEO-001/RF-7] no other section component has <h1>', () => {
-    const files = fs.readdirSync(path.join(src, 'components'))
+    const files = fs
+      .readdirSync(path.join(src, 'components'))
       .filter((f) => f.endsWith('.astro') && f !== 'Hero.astro');
     for (const f of files) {
       const c = fs.readFileSync(path.join(src, 'components', f), 'utf-8');
@@ -260,11 +261,17 @@ describe('SPEC-SEO-001/INV-1 — no hardcoded business data', () => {
 // ── INV-2: JSON-LD required fields present ────────────────────────────────────
 describe('SPEC-SEO-001/INV-2 — JSON-LD required fields', () => {
   it('[SPEC-SEO-001/INV-2] buildLocalBusinessJsonLd output has all required LocalBusiness fields', () => {
-    const ld = JSON.parse(buildLocalBusinessJsonLd(SiteConfigSchema.parse({
-      name: 'Test Biz', url: 'https://example.com', logo: '/logo.png',
-      locations: [{ city: 'Charlotte', region: 'NC' }],
-      defaultSeo: { title: 'T', description: 'D' },
-    })));
+    const ld = JSON.parse(
+      buildLocalBusinessJsonLd(
+        SiteConfigSchema.parse({
+          name: 'Test Biz',
+          url: 'https://example.com',
+          logo: '/logo.png',
+          locations: [{ city: 'Charlotte', region: 'NC' }],
+          defaultSeo: { title: 'T', description: 'D' },
+        }),
+      ),
+    );
     expect(ld['@context']).toBeTruthy();
     expect(ld['@type']).toBeTruthy();
     expect(ld.name).toBeTruthy();

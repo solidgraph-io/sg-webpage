@@ -13,9 +13,15 @@ if (form) {
       headers: { Accept: 'application/json' },
       body: new FormData(form),
     }).catch(() => null);
-    if (!r) { setFieldErrors(form, { message: ['Network error. Please try again.'] }); return; }
-    const data: { ok?: boolean; errors?: Record<string, string[]> } = await r.json() as never;
-    if (r.ok) { showSuccess(); return; }
+    if (!r) {
+      setFieldErrors(form, { message: ['Network error. Please try again.'] });
+      return;
+    }
+    const data: { ok?: boolean; errors?: Record<string, string[]> } = (await r.json()) as never;
+    if (r.ok) {
+      showSuccess();
+      return;
+    }
     setFieldErrors(form, data.errors ?? {});
   });
 }

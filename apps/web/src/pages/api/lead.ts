@@ -44,7 +44,8 @@ export async function handleLead(
 
   // Turnstile — verify challenge token; skip in test/dev mode (no turnstileVerify injected)
   const verify = turnstileVerify ?? (() => Promise.resolve(true));
-  const cfToken = typeof data['cf-turnstile-response'] === 'string' ? data['cf-turnstile-response'] : '';
+  const cfToken =
+    typeof data['cf-turnstile-response'] === 'string' ? data['cf-turnstile-response'] : '';
   if (!(await verify(cfToken))) {
     const msg = 'Invalid or expired captcha. Please try again.';
     if (isJson) return json({ error: msg }, 400);

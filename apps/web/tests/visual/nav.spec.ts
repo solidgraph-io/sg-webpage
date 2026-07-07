@@ -51,7 +51,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-001/RNF-3] nav mobile 393 — diff vs diseño'
     sectionFile: '01-nav.html',
     selector: '.nav-inner',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'nav-mobile',
     extraCss: NAV_EXTRA_CSS,
   });

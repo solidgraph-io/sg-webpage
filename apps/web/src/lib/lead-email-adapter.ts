@@ -1,10 +1,10 @@
 import type { LeadPort, LeadPayload } from './lead-port';
 
 interface EmailEnv {
-  LEAD_PROVIDER?: string | undefined;         // resend | postmark  (default: resend)
-  LEAD_TO_EMAIL?: string | undefined;         // where leads arrive — required at delivery time
-  LEAD_FROM_EMAIL?: string | undefined;       // sender address (default: leads@solidgraph.io)
-  RESEND_API_KEY?: string | undefined;        // required when LEAD_PROVIDER=resend
+  LEAD_PROVIDER?: string | undefined; // resend | postmark  (default: resend)
+  LEAD_TO_EMAIL?: string | undefined; // where leads arrive — required at delivery time
+  LEAD_FROM_EMAIL?: string | undefined; // sender address (default: leads@solidgraph.io)
+  RESEND_API_KEY?: string | undefined; // required when LEAD_PROVIDER=resend
   POSTMARK_SERVER_TOKEN?: string | undefined; // required when LEAD_PROVIDER=postmark
 }
 
@@ -44,7 +44,6 @@ export function createEmailAdapter(env: EmailEnv): LeadPort {
           body: JSON.stringify({ from, to, subject, text }),
         });
         if (!res.ok) throw new Error(`Resend error ${res.status}`);
-
       } else if (provider === 'postmark') {
         const token = env.POSTMARK_SERVER_TOKEN;
         if (!token) throw new Error('POSTMARK_SERVER_TOKEN env var is required');
@@ -54,7 +53,6 @@ export function createEmailAdapter(env: EmailEnv): LeadPort {
           body: JSON.stringify({ From: from, To: to, Subject: subject, TextBody: text }),
         });
         if (!res.ok) throw new Error(`Postmark error ${res.status}`);
-
       } else {
         throw new Error(`Unknown EMAIL_PROVIDER: "${provider}". Valid values: resend, postmark`);
       }

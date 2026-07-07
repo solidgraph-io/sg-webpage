@@ -78,15 +78,14 @@ describe('SPEC-SEC-003/RNF-2 — perf', () => {
 // ── RNF-3: fidelidad visual ────────────────────────────────────────────────
 describe('SPEC-SEC-003/RNF-3 — fidelidad', () => {
   it('[SPEC-SEC-003/RNF-3] design source 03-marquee.html exists', () => {
-    expect(
-      fs.existsSync(path.join(ROOT, 'design/template/sections/03-marquee.html')),
-    ).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'design/template/sections/03-marquee.html'))).toBe(true);
   });
 
   it('[SPEC-SEC-003/RNF-3] Marquee CSS classes match source design', () => {
     const c = fs.readFileSync(marqueePath, 'utf-8');
     const source = fs.readFileSync(
-      path.join(ROOT, 'design/template/sections/03-marquee.html'), 'utf-8',
+      path.join(ROOT, 'design/template/sections/03-marquee.html'),
+      'utf-8',
     );
     for (const cls of ['marquee', 'marquee-track', 'item', 'dot']) {
       expect(source, `${cls} not in source`).toContain(cls);

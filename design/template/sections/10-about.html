@@ -1,88 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SolidGraph · Section · About</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../design-system/tokens.css" />
-<link rel="stylesheet" href="../design-system/base.css" />
-<link rel="stylesheet" href="../design-system/animations.css" />
-<link rel="stylesheet" href="../components/eyebrow.css" />
-<link rel="stylesheet" href="../components/floating-card.css" />
-<style>
-  /* Section layout — about + orbiting visual */
-  .about { padding: 130px 0; background: var(--lilac-2); position: relative; overflow: hidden; }
-  .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
-  .about-visual { position: relative; aspect-ratio: 1/1; max-width: 460px; }
-  .about-visual .orbit { position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(45,61,138,.2); animation: spin 40s linear infinite; }
-  .about-visual .orbit.o2 { inset: 14%; border-color: rgba(92,112,214,.25); animation-duration: 28s; animation-direction: reverse; }
-  .about-visual .center-logo { position: absolute; inset: 27%; border-radius: 50%; background: #fff; box-shadow: var(--shadow-lg); display: grid; place-items: center; padding: 7%; }
-  .about-visual .center-logo img { width: 100%; height: auto; }
-  .about-visual .b1 { top: 2%; left: -6%; animation: bob 5s ease-in-out infinite; }
-  .about-visual .b2 { bottom: 22%; right: -10%; animation: bob 6s ease-in-out infinite .6s; }
-  .about-visual .b3 { bottom: 0%; left: 10%; animation: bob 5.4s ease-in-out infinite 1.1s; }
-  .about h2 { margin-bottom: 20px; }
-  .about-sub { color: var(--periwinkle); font-weight: 600; font-size: 14px; margin-bottom: 24px; }
-  .about-body p { color: var(--muted); font-size: 14.5px; line-height: 1.8; margin-bottom: 16px; }
-  .diff-list { margin-top: 34px; display: flex; flex-direction: column; gap: 18px; }
-  .diff { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: flex-start; }
-  .diff .ic { width: 48px; height: 48px; border-radius: 13px; background: #fff; color: var(--indigo); display: grid; place-items: center; box-shadow: var(--shadow-sm); }
-  .diff h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-  .diff p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-  .about-cities { margin-top: 42px; background: #fff; border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow-sm); }
-  .about-cities .h { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--periwinkle); font-weight: 700; margin-bottom: 16px; }
-  .about-cities .cities { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
-  .about-cities .city b { display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .about-cities .city span { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  @media (max-width: 980px) { .about-grid { grid-template-columns: 1fr; gap: 64px; } .about-visual { margin: 0 auto; } .about-cities .cities { grid-template-columns: 1fr; } }
-</style>
-</head>
-<body style="background:var(--lilac-2);">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolidGraph · Section · About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../design-system/tokens.css" />
+    <link rel="stylesheet" href="../design-system/base.css" />
+    <link rel="stylesheet" href="../design-system/animations.css" />
+    <link rel="stylesheet" href="../components/eyebrow.css" />
+    <link rel="stylesheet" href="../components/floating-card.css" />
+    <style>
+      /* Section layout — about + orbiting visual */
+      .about {
+        padding: 130px 0;
+        background: var(--lilac-2);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+        aspect-ratio: 1/1;
+        max-width: 460px;
+      }
+      .about-visual .orbit {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1.5px dashed rgba(45, 61, 138, 0.2);
+        animation: spin 40s linear infinite;
+      }
+      .about-visual .orbit.o2 {
+        inset: 14%;
+        border-color: rgba(92, 112, 214, 0.25);
+        animation-duration: 28s;
+        animation-direction: reverse;
+      }
+      .about-visual .center-logo {
+        position: absolute;
+        inset: 27%;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: var(--shadow-lg);
+        display: grid;
+        place-items: center;
+        padding: 7%;
+      }
+      .about-visual .center-logo img {
+        width: 100%;
+        height: auto;
+      }
+      .about-visual .b1 {
+        top: 2%;
+        left: -6%;
+        animation: bob 5s ease-in-out infinite;
+      }
+      .about-visual .b2 {
+        bottom: 22%;
+        right: -10%;
+        animation: bob 6s ease-in-out infinite 0.6s;
+      }
+      .about-visual .b3 {
+        bottom: 0%;
+        left: 10%;
+        animation: bob 5.4s ease-in-out infinite 1.1s;
+      }
+      .about h2 {
+        margin-bottom: 20px;
+      }
+      .about-sub {
+        color: var(--periwinkle);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .about-body p {
+        color: var(--muted);
+        font-size: 14.5px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+      .diff-list {
+        margin-top: 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .diff {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .diff .ic {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        background: #fff;
+        color: var(--indigo);
+        display: grid;
+        place-items: center;
+        box-shadow: var(--shadow-sm);
+      }
+      .diff h4 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .diff p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .about-cities {
+        margin-top: 42px;
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 26px 28px;
+        box-shadow: var(--shadow-sm);
+      }
+      .about-cities .h {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--periwinkle);
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .about-cities .cities {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+      }
+      .about-cities .city b {
+        display: block;
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .about-cities .city span {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      @media (max-width: 980px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 64px;
+        }
+        .about-visual {
+          margin: 0 auto;
+        }
+        .about-cities .cities {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body style="background: var(--lilac-2)">
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+          />
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+          />
+        </symbol>
+        <symbol id="i-trend" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M22 7l-9.5 9.5-5-5L1 18M16 7h6v6"
+          />
+        </symbol>
+      </defs>
+    </svg>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
-  <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 7l-9.5 9.5-5-5L1 18M16 7h6v6"/></symbol>
-</defs></svg>
-
-<!-- ===================== ABOUT ===================== -->
-<section class="about" id="about" data-section="about" data-screen-label="About">
-  <div class="container about-grid">
-    <div class="about-visual" data-reveal="left">
-      <div class="orbit"></div>
-      <div class="orbit o2"></div>
-      <div class="center-logo"><img src="../assets/logo_avatar_full.png" alt="SolidGraph Solutions" /></div>
-      <div class="badge-card b1"><div class="ic"><svg width="18" height="18"><use href="#i-code"/></svg></div><div><b>From scratch</b><span>Custom code</span></div></div>
-      <div class="badge-card b2"><div class="ic"><svg width="18" height="18"><use href="#i-shield"/></svg></div><div><b>You own it</b><span>No lock-in</span></div></div>
-      <div class="badge-card b3"><div class="ic"><svg width="18" height="18"><use href="#i-trend"/></svg></div><div><b>Built to grow</b><span>Scales with you</span></div></div>
-    </div>
-    <div class="about-content" data-reveal="right">
-      <span class="eyebrow">About Us</span>
-      <h2 style="margin-top:18px;">We're Developers Who Build From Scratch — Not a Template Agency</h2>
-      <p class="about-sub">SolidGraph Solutions LLC — custom website development for local businesses in Charlotte and Springfield.</p>
-      <div class="about-body">
-        <p>We started SolidGraph Solutions because we kept seeing the same problem: local business owners were either stuck with a cheap template site that didn't represent them, or they'd been quoted outrageous prices by agencies that just reskinned the same WordPress theme for every client.</p>
-        <p>We build differently. Every website we create is written from scratch — custom code, custom design, built specifically for your business. No templates, no drag-and-drop builders, no shortcuts. The result is a faster, sharper, more professional website that you own completely.</p>
-        <p>We're a lean, senior-level team — which means lower costs for you and faster delivery than traditional agencies. We use modern tools and AI-assisted development to build high-quality custom websites at a fraction of what large agencies charge, without compromising on quality or craftsmanship.</p>
-      </div>
-      <div class="diff-list">
-        <div class="diff"><div class="ic"><svg width="20" height="20"><use href="#i-code"/></svg></div><div><h4>Real Custom Development</h4><p>Every website written from scratch. No templates, no page builders. Your site is yours alone — not a variation of something we've sold to 50 other businesses.</p></div></div>
-        <div class="diff"><div class="ic"><svg width="20" height="20"><use href="#i-shield"/></svg></div><div><h4>You Own Everything</h4><p>Your domain, your code, your content. We hand it all over to you at the end — no vendor lock-in, no strings attached.</p></div></div>
-        <div class="diff"><div class="ic"><svg width="20" height="20"><use href="#i-trend"/></svg></div><div><h4>Built to Grow With You</h4><p>Start with a Nano site today. When your business is ready, your custom website grows with you — no rebuilding from zero.</p></div></div>
-      </div>
-      <div class="about-cities">
-        <div class="h">Proudly Serving</div>
-        <div class="cities">
-          <div class="city"><b>Charlotte, NC</b><span>The Queen City's local businesses deserve a web presence that matches their ambition.</span></div>
-          <div class="city"><b>Springfield-Branson, MO</b><span>From the Ozarks to downtown — we help local businesses get found online.</span></div>
+    <!-- ===================== ABOUT ===================== -->
+    <section class="about" id="about" data-section="about" data-screen-label="About">
+      <div class="container about-grid">
+        <div class="about-visual" data-reveal="left">
+          <div class="orbit"></div>
+          <div class="orbit o2"></div>
+          <div class="center-logo">
+            <img src="../assets/logo_avatar_full.png" alt="SolidGraph Solutions" />
+          </div>
+          <div class="badge-card b1">
+            <div class="ic">
+              <svg width="18" height="18"><use href="#i-code" /></svg>
+            </div>
+            <div><b>From scratch</b><span>Custom code</span></div>
+          </div>
+          <div class="badge-card b2">
+            <div class="ic">
+              <svg width="18" height="18"><use href="#i-shield" /></svg>
+            </div>
+            <div><b>You own it</b><span>No lock-in</span></div>
+          </div>
+          <div class="badge-card b3">
+            <div class="ic">
+              <svg width="18" height="18"><use href="#i-trend" /></svg>
+            </div>
+            <div><b>Built to grow</b><span>Scales with you</span></div>
+          </div>
+        </div>
+        <div class="about-content" data-reveal="right">
+          <span class="eyebrow">About Us</span>
+          <h2 style="margin-top: 18px">
+            We're Developers Who Build From Scratch — Not a Template Agency
+          </h2>
+          <p class="about-sub">
+            SolidGraph Solutions LLC — custom website development for local businesses in Charlotte
+            and Springfield.
+          </p>
+          <div class="about-body">
+            <p>
+              We started SolidGraph Solutions because we kept seeing the same problem: local
+              business owners were either stuck with a cheap template site that didn't represent
+              them, or they'd been quoted outrageous prices by agencies that just reskinned the same
+              WordPress theme for every client.
+            </p>
+            <p>
+              We build differently. Every website we create is written from scratch — custom code,
+              custom design, built specifically for your business. No templates, no drag-and-drop
+              builders, no shortcuts. The result is a faster, sharper, more professional website
+              that you own completely.
+            </p>
+            <p>
+              We're a lean, senior-level team — which means lower costs for you and faster delivery
+              than traditional agencies. We use modern tools and AI-assisted development to build
+              high-quality custom websites at a fraction of what large agencies charge, without
+              compromising on quality or craftsmanship.
+            </p>
+          </div>
+          <div class="diff-list">
+            <div class="diff">
+              <div class="ic">
+                <svg width="20" height="20"><use href="#i-code" /></svg>
+              </div>
+              <div>
+                <h4>Real Custom Development</h4>
+                <p>
+                  Every website written from scratch. No templates, no page builders. Your site is
+                  yours alone — not a variation of something we've sold to 50 other businesses.
+                </p>
+              </div>
+            </div>
+            <div class="diff">
+              <div class="ic">
+                <svg width="20" height="20"><use href="#i-shield" /></svg>
+              </div>
+              <div>
+                <h4>You Own Everything</h4>
+                <p>
+                  Your domain, your code, your content. We hand it all over to you at the end — no
+                  vendor lock-in, no strings attached.
+                </p>
+              </div>
+            </div>
+            <div class="diff">
+              <div class="ic">
+                <svg width="20" height="20"><use href="#i-trend" /></svg>
+              </div>
+              <div>
+                <h4>Built to Grow With You</h4>
+                <p>
+                  Start with a Nano site today. When your business is ready, your custom website
+                  grows with you — no rebuilding from zero.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="about-cities">
+            <div class="h">Proudly Serving</div>
+            <div class="cities">
+              <div class="city">
+                <b>Charlotte, NC</b
+                ><span
+                  >The Queen City's local businesses deserve a web presence that matches their
+                  ambition.</span
+                >
+              </div>
+              <div class="city">
+                <b>Springfield-Branson, MO</b
+                ><span
+                  >From the Ozarks to downtown — we help local businesses get found online.</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<script src="../scripts/interactions.js"></script>
-</body>
+    <script src="../scripts/interactions.js"></script>
+  </body>
 </html>

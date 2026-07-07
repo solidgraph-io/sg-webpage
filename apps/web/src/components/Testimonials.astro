@@ -7,9 +7,15 @@ import SectionHead from './SectionHead.astro';
 import Eyebrow from './Eyebrow.astro';
 import TestimonialCard from './TestimonialCard.astro';
 
-interface StatItem { value: string; label: string; }
+interface StatItem {
+  value: string;
+  label: string;
+}
 interface TestimonialItem {
-  quote: string; authorName: string; authorRole: string; initials: string;
+  quote: string;
+  authorName: string;
+  authorRole: string;
+  initials: string;
 }
 
 interface Props {
@@ -38,38 +44,77 @@ const {
     </SectionHead>
 
     <div class="stats">
-      {stats.map((s, i) => (
-        <div class="stat" data-reveal style={`--d:${i * 100}ms`}>
-          <div class="v">{s.value}</div>
-          <div class="l">{s.label}</div>
-        </div>
-      ))}
+      {
+        stats.map((s, i) => (
+          <div class="stat" data-reveal style={`--d:${i * 100}ms`}>
+            <div class="v">{s.value}</div>
+            <div class="l">{s.label}</div>
+          </div>
+        ))
+      }
     </div>
 
     <div class="t-grid">
-      {items.map((item, i) => (
-        <TestimonialCard {...item} delay={`${i * 120}ms`} />
-      ))}
+      {items.map((item, i) => <TestimonialCard {...item} delay={`${i * 120}ms`} />)}
     </div>
   </div>
 </section>
 
 <style>
-/* ── Section ── */
-.testimonials { padding: 120px 0; background: var(--lilac-2); position: relative; }
+  /* ── Section ── */
+  .testimonials {
+    padding: 120px 0;
+    background: var(--lilac-2);
+    position: relative;
+  }
 
-/* ── Stats (base rules BEFORE media queries) ── */
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: 880px; margin: 0 auto 64px; }
-.stat { text-align: center; background: #fff; border-radius: var(--radius-lg); padding: 38px 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(45,61,138,.04); }
-.stat .v { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.04em; background: linear-gradient(120deg, var(--indigo), var(--periwinkle)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.stat .l { font-size: 13px; color: var(--muted); margin-top: 12px; letter-spacing: .03em; }
+  /* ── Stats (base rules BEFORE media queries) ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    max-width: 880px;
+    margin: 0 auto 64px;
+  }
+  .stat {
+    text-align: center;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 38px 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(45, 61, 138, 0.04);
+  }
+  .stat .v {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(120deg, var(--indigo), var(--periwinkle));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat .l {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.03em;
+  }
 
-/* ── Testimonial grid (base rules BEFORE media queries) ── */
-.t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  /* ── Testimonial grid (base rules BEFORE media queries) ── */
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
 
-/* ── Responsive (AFTER base rules) ── */
-@media (max-width: 880px) {
-  .stats { grid-template-columns: 1fr; }
-  .t-grid { grid-template-columns: 1fr; }
-}
+  /* ── Responsive (AFTER base rules) ── */
+  @media (max-width: 880px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
+    .t-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

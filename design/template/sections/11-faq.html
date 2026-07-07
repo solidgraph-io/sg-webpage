@@ -1,46 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SolidGraph · Section · FAQ</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../design-system/tokens.css" />
-<link rel="stylesheet" href="../design-system/base.css" />
-<link rel="stylesheet" href="../design-system/animations.css" />
-<link rel="stylesheet" href="../components/eyebrow.css" />
-<link rel="stylesheet" href="../components/section-head.css" />
-<link rel="stylesheet" href="../components/faq-item.css" />
-<style>
-  /* Section layout — FAQ list */
-  .faq { padding: 130px 0; background: #fff; }
-  .faq-list { max-width: 840px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolidGraph · Section · FAQ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../design-system/tokens.css" />
+    <link rel="stylesheet" href="../design-system/base.css" />
+    <link rel="stylesheet" href="../design-system/animations.css" />
+    <link rel="stylesheet" href="../components/eyebrow.css" />
+    <link rel="stylesheet" href="../components/section-head.css" />
+    <link rel="stylesheet" href="../components/faq-item.css" />
+    <style>
+      /* Section layout — FAQ list */
+      .faq {
+        padding: 130px 0;
+        background: #fff;
+      }
+      .faq-list {
+        max-width: 840px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===================== FAQ ===================== -->
+    <section class="faq" id="faq" data-section="faq" data-screen-label="FAQ">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow centered">FAQ</span>
+          <h2>Questions We Hear All the Time</h2>
+          <p>No jargon. Just honest answers.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" data-reveal>
+            <summary>
+              Do I need any technical knowledge to manage my website?<span class="plus">+</span>
+            </summary>
+            <div class="answer">
+              Not at all. Even though we build every website from scratch with custom code, we set
+              up a simple dashboard where you can change your text and photos with a few clicks — no
+              coding needed. It's like editing a Word document. We also send you a short video
+              tutorial walking you through it.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              What if I already have a website? Can you redesign it?<span class="plus">+</span>
+            </summary>
+            <div class="answer">
+              Absolutely. Many of our clients come to us with an outdated site they're not happy
+              with. We'll review what you have and give you an honest assessment of whether a
+              redesign or a fresh start is the better move for you.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>Do I need to buy a domain name?<span class="plus">+</span></summary>
+            <div class="answer">
+              Yes — and it's very affordable. A domain name (like www.yourbusiness.com) typically
+              costs $12–15 per year from providers like GoDaddy or Namecheap. We'll guide you
+              through the process of buying one if you don't have it already.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>How long does it take to build my website?<span class="plus">+</span></summary>
+            <div class="answer">
+              Most Nano websites are ready in 10–15 business days after we receive your content
+              (text, photos, and logo). The timeline starts once you've shared your materials with
+              us — the faster you send them, the faster we deliver.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>What happens after my website launches?<span class="plus">+</span></summary>
+            <div class="answer">
+              Your website is fully yours to manage. If you'd like us to keep it running, secure,
+              and updated, we offer monthly hosting plans starting at $35/month. There's no
+              obligation — you can manage it yourself or move it to any other host.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>Can I sell products on my website?<span class="plus">+</span></summary>
+            <div class="answer">
+              Yes — with our Pro plan. It includes a fully custom-built online store where you can
+              sell up to 100 products and accept card payments securely via Stripe. Unlike
+              template-based stores, yours is built to match your brand exactly. Our Nano and Micro
+              plans are designed for businesses that don't need online sales yet.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>Is my website protected from hackers?<span class="plus">+</span></summary>
+            <div class="answer">
+              Yes. Every custom website we build is protected by Cloudflare, the same security layer
+              used by millions of businesses worldwide. Because we build from scratch, we also avoid
+              the security vulnerabilities common in generic WordPress themes and page builders.
+              Your site stays online and protected.
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              What if I need something that's not in any of your plans?<span class="plus">+</span>
+            </summary>
+            <div class="answer">
+              Just ask. Our Enterprise plan covers custom projects, and we're always happy to talk
+              through what you need before you commit to anything. The initial conversation is
+              always free.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
 
-<!-- ===================== FAQ ===================== -->
-<section class="faq" id="faq" data-section="faq" data-screen-label="FAQ">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow centered">FAQ</span>
-      <h2>Questions We Hear All the Time</h2>
-      <p>No jargon. Just honest answers.</p>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item" data-reveal><summary>Do I need any technical knowledge to manage my website?<span class="plus">+</span></summary><div class="answer">Not at all. Even though we build every website from scratch with custom code, we set up a simple dashboard where you can change your text and photos with a few clicks — no coding needed. It's like editing a Word document. We also send you a short video tutorial walking you through it.</div></details>
-      <details class="faq-item" data-reveal><summary>What if I already have a website? Can you redesign it?<span class="plus">+</span></summary><div class="answer">Absolutely. Many of our clients come to us with an outdated site they're not happy with. We'll review what you have and give you an honest assessment of whether a redesign or a fresh start is the better move for you.</div></details>
-      <details class="faq-item" data-reveal><summary>Do I need to buy a domain name?<span class="plus">+</span></summary><div class="answer">Yes — and it's very affordable. A domain name (like www.yourbusiness.com) typically costs $12–15 per year from providers like GoDaddy or Namecheap. We'll guide you through the process of buying one if you don't have it already.</div></details>
-      <details class="faq-item" data-reveal><summary>How long does it take to build my website?<span class="plus">+</span></summary><div class="answer">Most Nano websites are ready in 10–15 business days after we receive your content (text, photos, and logo). The timeline starts once you've shared your materials with us — the faster you send them, the faster we deliver.</div></details>
-      <details class="faq-item" data-reveal><summary>What happens after my website launches?<span class="plus">+</span></summary><div class="answer">Your website is fully yours to manage. If you'd like us to keep it running, secure, and updated, we offer monthly hosting plans starting at $35/month. There's no obligation — you can manage it yourself or move it to any other host.</div></details>
-      <details class="faq-item" data-reveal><summary>Can I sell products on my website?<span class="plus">+</span></summary><div class="answer">Yes — with our Pro plan. It includes a fully custom-built online store where you can sell up to 100 products and accept card payments securely via Stripe. Unlike template-based stores, yours is built to match your brand exactly. Our Nano and Micro plans are designed for businesses that don't need online sales yet.</div></details>
-      <details class="faq-item" data-reveal><summary>Is my website protected from hackers?<span class="plus">+</span></summary><div class="answer">Yes. Every custom website we build is protected by Cloudflare, the same security layer used by millions of businesses worldwide. Because we build from scratch, we also avoid the security vulnerabilities common in generic WordPress themes and page builders. Your site stays online and protected.</div></details>
-      <details class="faq-item" data-reveal><summary>What if I need something that's not in any of your plans?<span class="plus">+</span></summary><div class="answer">Just ask. Our Enterprise plan covers custom projects, and we're always happy to talk through what you need before you commit to anything. The initial conversation is always free.</div></details>
-    </div>
-  </div>
-</section>
-
-<script src="../scripts/interactions.js"></script>
-</body>
+    <script src="../scripts/interactions.js"></script>
+  </body>
 </html>

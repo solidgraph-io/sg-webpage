@@ -15,11 +15,23 @@ const cls = ['eyebrow', centered && 'centered', extra].filter(Boolean).join(' ')
 <span class={cls}><slot /></span>
 
 <style>
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: var(--indigo); font-weight: 600; font-size: 12px;
-  letter-spacing: .26em; text-transform: uppercase;
-}
-.eyebrow::before { content: ""; width: 26px; height: 1.5px; background: var(--periwinkle); }
-.eyebrow.centered { justify-content: center; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--indigo);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 26px;
+    height: 1.5px;
+    background: var(--periwinkle);
+  }
+  .eyebrow.centered {
+    justify-content: center;
+  }
 </style>

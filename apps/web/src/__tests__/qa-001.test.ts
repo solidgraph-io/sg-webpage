@@ -107,10 +107,7 @@ describe('SPEC-QA-001 — visual gate', () => {
 
   // ── INV-2: devToolbar disabled in astro config (prevents toolbar in shots) ──
   it('[SPEC-QA-001/INV-2] devToolbar is disabled in astro.config.ts', () => {
-    const config = fs.readFileSync(
-      path.join(WEB_ROOT, 'astro.config.ts'),
-      'utf-8',
-    );
+    const config = fs.readFileSync(path.join(WEB_ROOT, 'astro.config.ts'), 'utf-8');
     expect(config).toContain('devToolbar');
     expect(config).toContain('enabled: false');
   });

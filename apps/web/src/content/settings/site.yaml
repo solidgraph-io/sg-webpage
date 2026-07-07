@@ -1,6 +1,6 @@
 name: SolidGraph Solutions
 legalName: SolidGraph Solutions LLC
-url: "https://solidgraph.dev"
+url: 'https://solidgraph.dev'
 logo: /assets/logo_avatar.png
 
 locations:
@@ -15,5 +15,5 @@ contact:
 sameAs: []
 
 defaultSeo:
-  title: "SolidGraph — Custom-Built Websites for Local Businesses"
-  description: "We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door."
+  title: 'SolidGraph — Custom-Built Websites for Local Businesses'
+  description: 'We custom-build professional websites for local businesses in Charlotte and Springfield — so more customers can find you, call you, and walk through your door.'

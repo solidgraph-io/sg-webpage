@@ -257,9 +257,20 @@ describe('[SPEC-CMS-001/INV-1] existing YAML content still validates against Zod
 
 describe('[SPEC-CMS-001/INV-2] config.yml covers all HomeSchema top-level sections', () => {
   const HOME_SECTIONS = [
-    'nav', 'hero', 'marquee', 'painPoints', 'value', 'howItWorks',
-    'plans', 'testimonials', 'portfolio', 'about', 'faq',
-    'ctaStrip', 'contact', 'footer',
+    'nav',
+    'hero',
+    'marquee',
+    'painPoints',
+    'value',
+    'howItWorks',
+    'plans',
+    'testimonials',
+    'portfolio',
+    'about',
+    'faq',
+    'ctaStrip',
+    'contact',
+    'footer',
   ] as const;
 
   for (const section of HOME_SECTIONS) {

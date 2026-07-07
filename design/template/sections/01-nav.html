@@ -1,66 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SolidGraph · Section · Nav</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../design-system/tokens.css" />
-<link rel="stylesheet" href="../design-system/base.css" />
-<link rel="stylesheet" href="../design-system/animations.css" />
-<link rel="stylesheet" href="../components/logo.css" />
-<link rel="stylesheet" href="../components/button.css" />
-<style>
-  /* Section layout — sticky floating navbar */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    transition: transform .4s var(--ease), background .4s ease, box-shadow .4s ease, padding .4s ease;
-  }
-  .nav-inner {
-    max-width: var(--max); margin: 14px auto 0; padding: 0 14px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 66px; padding-left: 22px; padding-right: 14px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.72);
-    backdrop-filter: blur(18px) saturate(1.4);
-    border: 1px solid rgba(45,61,138,.08);
-    box-shadow: 0 8px 30px -16px rgba(31,44,102,.22);
-    transition: margin .4s var(--ease), background .4s ease;
-  }
-  .nav.scrolled .nav-inner { margin-top: 8px; background: rgba(255,255,255,.88); }
-  .nav.hide { transform: translateY(-130%); }
-  .nav-links { display: flex; gap: 6px; }
-  .nav-links a {
-    font-size: 13.5px; font-weight: 500; color: var(--ink);
-    padding: 9px 15px; border-radius: 999px;
-    transition: background .2s ease, color .2s ease;
-  }
-  .nav-links a:hover { background: var(--lilac); color: var(--indigo); }
-  .nav-cta { padding: 11px 22px; font-size: 13px; }
-  @media (max-width: 900px) { .nav-links { display: none; } }
-</style>
-</head>
-<body style="min-height:120vh; background:var(--lilac-2);">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolidGraph · Section · Nav</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../design-system/tokens.css" />
+    <link rel="stylesheet" href="../design-system/base.css" />
+    <link rel="stylesheet" href="../design-system/animations.css" />
+    <link rel="stylesheet" href="../components/logo.css" />
+    <link rel="stylesheet" href="../components/button.css" />
+    <style>
+      /* Section layout — sticky floating navbar */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        transition:
+          transform 0.4s var(--ease),
+          background 0.4s ease,
+          box-shadow 0.4s ease,
+          padding 0.4s ease;
+      }
+      .nav-inner {
+        max-width: var(--max);
+        margin: 14px auto 0;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 66px;
+        padding-left: 22px;
+        padding-right: 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(18px) saturate(1.4);
+        border: 1px solid rgba(45, 61, 138, 0.08);
+        box-shadow: 0 8px 30px -16px rgba(31, 44, 102, 0.22);
+        transition:
+          margin 0.4s var(--ease),
+          background 0.4s ease;
+      }
+      .nav.scrolled .nav-inner {
+        margin-top: 8px;
+        background: rgba(255, 255, 255, 0.88);
+      }
+      .nav.hide {
+        transform: translateY(-130%);
+      }
+      .nav-links {
+        display: flex;
+        gap: 6px;
+      }
+      .nav-links a {
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--ink);
+        padding: 9px 15px;
+        border-radius: 999px;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .nav-links a:hover {
+        background: var(--lilac);
+        color: var(--indigo);
+      }
+      .nav-cta {
+        padding: 11px 22px;
+        font-size: 13px;
+      }
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body style="min-height: 120vh; background: var(--lilac-2)">
+    <!-- ===================== NAV ===================== -->
+    <header class="nav" id="nav" data-section="nav" data-screen-label="Nav">
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <img src="../assets/logo_avatar.png" alt="SolidGraph" />
+          <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
+        </a>
+        <nav class="nav-links">
+          <a href="#how-it-works">How It Works</a>
+          <a href="#plans">Our Plans</a>
+          <a href="#portfolio">Our Work</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="btn btn-primary nav-cta magnetic"
+          ><span>Get a Free Quote</span></a
+        >
+      </div>
+    </header>
 
-<!-- ===================== NAV ===================== -->
-<header class="nav" id="nav" data-section="nav" data-screen-label="Nav">
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <img src="../assets/logo_avatar.png" alt="SolidGraph" />
-      <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
-    </a>
-    <nav class="nav-links">
-      <a href="#how-it-works">How It Works</a>
-      <a href="#plans">Our Plans</a>
-      <a href="#portfolio">Our Work</a>
-      <a href="#about">About Us</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a href="#contact" class="btn btn-primary nav-cta magnetic"><span>Get a Free Quote</span></a>
-  </div>
-</header>
-
-<script src="../scripts/interactions.js"></script>
-</body>
+    <script src="../scripts/interactions.js"></script>
+  </body>
 </html>

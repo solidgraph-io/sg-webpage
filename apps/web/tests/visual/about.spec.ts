@@ -22,11 +22,14 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-010/RNF-4] about desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '10-about.html',
     selector: '.about',
     viewport: { width: 1440, height: 900 },
@@ -37,15 +40,18 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-010/RNF-4] about desktop 1440 — diff vs dise
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-010/RNF-4] about mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile gate runs in mobile project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '10-about.html',
     selector: '.about',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'about-mobile',
     extraCss: ABOUT_EXTRA_CSS,
   });

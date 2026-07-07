@@ -53,10 +53,12 @@ export const SiteConfigSchema = z.object({
   url: z.string().url(),
   logo: z.string(),
   locations: z.array(z.object({ city: z.string(), region: z.string() })),
-  contact: z.object({
-    email: z.string().email().optional(),
-    phone: z.string().optional(),
-  }).optional(),
+  contact: z
+    .object({
+      email: z.string().email().optional(),
+      phone: z.string().optional(),
+    })
+    .optional(),
   sameAs: z.array(z.string()).optional(),
   defaultSeo: z.object({
     title: z.string(),
@@ -71,11 +73,13 @@ export type SiteConfig = z.infer<typeof SiteConfigSchema>;
 
 export const HomeSchema = z.object({
   // seo is optional — if absent, defaults from SiteConfig are used
-  seo: z.object({
-    title: z.string().optional(),
-    description: z.string().optional(),
-    canonical: z.string().optional(),
-  }).optional(),
+  seo: z
+    .object({
+      title: z.string().optional(),
+      description: z.string().optional(),
+      canonical: z.string().optional(),
+    })
+    .optional(),
 
   nav: z.object({
     links: z.array(NavLink),
@@ -115,62 +119,74 @@ export const HomeSchema = z.object({
   value: z.object({
     heading: z.string(),
     lead: z.object({ strong: z.string(), body: z.string() }),
-    pillars: z.array(z.object({ num: z.string(), iconId: z.string(), title: z.string(), text: z.string() })),
+    pillars: z.array(
+      z.object({ num: z.string(), iconId: z.string(), title: z.string(), text: z.string() }),
+    ),
   }),
 
   howItWorks: z.object({
-    steps: z.array(z.object({ num: z.string(), title: z.string(), dur: z.string(), text: z.string() })),
+    steps: z.array(
+      z.object({ num: z.string(), title: z.string(), dur: z.string(), text: z.string() }),
+    ),
     ctas: z.array(HowCta),
   }),
 
   plans: z.object({
-    items: z.array(z.object({
-      name: z.string(),
-      tagline: z.string(),
-      price: z.string(),
-      priceNote: z.string(),
-      delivery: z.string(),
-      bestFor: z.string(),
-      includes: z.array(z.string()),
-      // excludes and popular are genuinely optional across plans — Enterprise has none
-      excludes: z.array(z.string()).optional(),
-      ctaLabel: z.string(),
-      ctaHref: z.string(),
-      popular: z.boolean().optional(),
-    })),
+    items: z.array(
+      z.object({
+        name: z.string(),
+        tagline: z.string(),
+        price: z.string(),
+        priceNote: z.string(),
+        delivery: z.string(),
+        bestFor: z.string(),
+        includes: z.array(z.string()),
+        // excludes and popular are genuinely optional across plans — Enterprise has none
+        excludes: z.array(z.string()).optional(),
+        ctaLabel: z.string(),
+        ctaHref: z.string(),
+        popular: z.boolean().optional(),
+      }),
+    ),
     hosting: z.object({
       heading: z.string(),
       subheading: z.string(),
-      cards: z.array(z.object({
-        name: z.string(),
-        price: z.string(),
-        desc: z.string(),
-        items: z.array(z.string()),
-      })),
+      cards: z.array(
+        z.object({
+          name: z.string(),
+          price: z.string(),
+          desc: z.string(),
+          items: z.array(z.string()),
+        }),
+      ),
     }),
   }),
 
   testimonials: z.object({
     stats: z.array(z.object({ value: z.string(), label: z.string() })),
-    items: z.array(z.object({
-      quote: z.string(),
-      authorName: z.string(),
-      authorRole: z.string(),
-      initials: z.string(),
-    })),
+    items: z.array(
+      z.object({
+        quote: z.string(),
+        authorName: z.string(),
+        authorRole: z.string(),
+        initials: z.string(),
+      }),
+    ),
   }),
 
   portfolio: z.object({
-    items: z.array(z.object({
-      category: z.string(),
-      title: z.string(),
-      // location and tag: always present in home.yaml → required in schema
-      location: z.string(),
-      description: z.string(),
-      tag: z.string(),
-      thumbBg: z.string(),
-      thumbInner: z.string(),
-    })),
+    items: z.array(
+      z.object({
+        category: z.string(),
+        title: z.string(),
+        // location and tag: always present in home.yaml → required in schema
+        location: z.string(),
+        description: z.string(),
+        tag: z.string(),
+        thumbBg: z.string(),
+        thumbInner: z.string(),
+      }),
+    ),
   }),
 
   about: z.object({
@@ -202,10 +218,12 @@ export const HomeSchema = z.object({
     brandLink: z.string(),
     tagline: z.string(),
     locations: z.array(z.string()),
-    cols: z.array(z.object({
-      heading: z.string(),
-      links: z.array(z.object({ label: z.string(), href: z.string() })),
-    })),
+    cols: z.array(
+      z.object({
+        heading: z.string(),
+        links: z.array(z.object({ label: z.string(), href: z.string() })),
+      }),
+    ),
     copyright: z.string(),
   }),
 });

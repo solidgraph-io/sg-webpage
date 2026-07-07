@@ -21,10 +21,13 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-008/RNF-4] testimonials desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '08-testimonials.html',
     selector: '.testimonials',
     viewport: { width: 1440, height: 900 },
@@ -35,14 +38,17 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-008/RNF-4] testimonials desktop 1440 — diff 
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-008/RNF-4] testimonials mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '08-testimonials.html',
     selector: '.testimonials',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'testimonials-mobile',
     extraCss: TESTIMONIALS_EXTRA_CSS,
   });

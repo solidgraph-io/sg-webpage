@@ -23,12 +23,12 @@ describe('SPEC-CONTENT-001/RF-1 — collection config', () => {
 
   it('[SPEC-CONTENT-001/RF-1] config.ts defines settings collection', () => {
     const c = fs.readFileSync(configTs, 'utf-8');
-    expect(c).toContain("settings");
-    expect(c).toContain("defineCollection");
+    expect(c).toContain('settings');
+    expect(c).toContain('defineCollection');
   });
 
   it('[SPEC-CONTENT-001/RF-1] config.ts defines pages collection', () => {
-    expect(fs.readFileSync(configTs, 'utf-8')).toContain("pages");
+    expect(fs.readFileSync(configTs, 'utf-8')).toContain('pages');
   });
 
   it('[SPEC-CONTENT-001/RF-1] config.ts uses type: data', () => {
@@ -67,8 +67,21 @@ describe('SPEC-CONTENT-001/RF-3 — pages/home data file', () => {
     expect(fs.existsSync(homeYaml)).toBe(true);
   });
 
-  const sections = ['nav', 'hero', 'marquee', 'painPoints', 'value', 'howItWorks',
-    'plans', 'testimonials', 'portfolio', 'about', 'faq', 'ctaStrip', 'contact'];
+  const sections = [
+    'nav',
+    'hero',
+    'marquee',
+    'painPoints',
+    'value',
+    'howItWorks',
+    'plans',
+    'testimonials',
+    'portfolio',
+    'about',
+    'faq',
+    'ctaStrip',
+    'contact',
+  ];
 
   for (const section of sections) {
     it(`[SPEC-CONTENT-001/RF-3] home.yaml has ${section} key`, () => {
@@ -80,12 +93,28 @@ describe('SPEC-CONTENT-001/RF-3 — pages/home data file', () => {
 // ── RF-4: index.astro has no inline content constants ─────────────────────────
 describe('SPEC-CONTENT-001/RF-4 — migration verbatim (no inline constants)', () => {
   const removedConsts = [
-    'const navLinks', 'const heroCtas', 'const heroFloats', 'const marqueeItems',
-    'const painItems', 'const painFeature', 'const valueLead', 'const valuePillars',
-    'const howSteps', 'const howCtas', 'const plans', 'const testimonialStats',
-    'const testimonials', 'const portfolioItems', 'const aboutVisual', 'const aboutBody',
-    'const aboutDiffs', 'const aboutCities', 'const contactLeads', 'const contactAltRows',
-    'const faqItems', 'const hosting',
+    'const navLinks',
+    'const heroCtas',
+    'const heroFloats',
+    'const marqueeItems',
+    'const painItems',
+    'const painFeature',
+    'const valueLead',
+    'const valuePillars',
+    'const howSteps',
+    'const howCtas',
+    'const plans',
+    'const testimonialStats',
+    'const testimonials',
+    'const portfolioItems',
+    'const aboutVisual',
+    'const aboutBody',
+    'const aboutDiffs',
+    'const aboutCities',
+    'const contactLeads',
+    'const contactAltRows',
+    'const faqItems',
+    'const hosting',
   ];
 
   for (const c of removedConsts) {
@@ -105,17 +134,17 @@ describe('SPEC-CONTENT-001/RF-4 — migration verbatim (no inline constants)', (
 
 // ── RF-5: index.astro reads from collections ──────────────────────────────────
 describe('SPEC-CONTENT-001/RF-5 — index.astro uses getEntry', () => {
-  it("[SPEC-CONTENT-001/RF-5] index.astro imports getEntry from astro:content", () => {
+  it('[SPEC-CONTENT-001/RF-5] index.astro imports getEntry from astro:content', () => {
     const c = fs.readFileSync(idx, 'utf-8');
     expect(c).toContain('astro:content');
     expect(c).toContain('getEntry');
   });
 
-  it("[SPEC-CONTENT-001/RF-5] index.astro reads settings/site", () => {
+  it('[SPEC-CONTENT-001/RF-5] index.astro reads settings/site', () => {
     expect(fs.readFileSync(idx, 'utf-8')).toContain("getEntry('settings', 'site')");
   });
 
-  it("[SPEC-CONTENT-001/RF-5] index.astro reads pages/home", () => {
+  it('[SPEC-CONTENT-001/RF-5] index.astro reads pages/home', () => {
     expect(fs.readFileSync(idx, 'utf-8')).toContain("getEntry('pages', 'home')");
   });
 });
@@ -124,7 +153,9 @@ describe('SPEC-CONTENT-001/RF-5 — index.astro uses getEntry', () => {
 describe('SPEC-CONTENT-001/RF-6 — fail-fast Zod validation', () => {
   it('[SPEC-CONTENT-001/RF-6] SiteConfigSchema validates a valid site object', () => {
     const result = SiteConfigSchema.safeParse({
-      name: 'Test Co', url: 'https://test.com', logo: '/logo.png',
+      name: 'Test Co',
+      url: 'https://test.com',
+      logo: '/logo.png',
       locations: [{ city: 'Test', region: 'TS' }],
       defaultSeo: { title: 'Test', description: 'Desc' },
     });
@@ -132,14 +163,22 @@ describe('SPEC-CONTENT-001/RF-6 — fail-fast Zod validation', () => {
   });
 
   it('[SPEC-CONTENT-001/RF-6] SiteConfigSchema rejects missing url', () => {
-    const result = SiteConfigSchema.safeParse({ name: 'Test Co', logo: '/logo.png', locations: [], defaultSeo: { title: 'T', description: 'D' } });
+    const result = SiteConfigSchema.safeParse({
+      name: 'Test Co',
+      logo: '/logo.png',
+      locations: [],
+      defaultSeo: { title: 'T', description: 'D' },
+    });
     expect(result.success).toBe(false);
   });
 
   it('[SPEC-CONTENT-001/RF-6] SiteConfigSchema rejects invalid url format', () => {
     const result = SiteConfigSchema.safeParse({
-      name: 'Test', url: 'not-a-url', logo: '/logo.png',
-      locations: [], defaultSeo: { title: 'T', description: 'D' },
+      name: 'Test',
+      url: 'not-a-url',
+      logo: '/logo.png',
+      locations: [],
+      defaultSeo: { title: 'T', description: 'D' },
     });
     expect(result.success).toBe(false);
   });
@@ -156,12 +195,16 @@ describe('SPEC-CONTENT-001/RF-6 — fail-fast Zod validation', () => {
         title: 'T',
         ctas: [{ label: 'X', href: '#', variant: 'invalid-variant' }],
       },
-      marquee: { items: [] }, painPoints: { heading: '', intro: '', items: [], feature: { title: '', text: '' } },
+      marquee: { items: [] },
+      painPoints: { heading: '', intro: '', items: [], feature: { title: '', text: '' } },
       value: { heading: '', lead: { strong: '', body: '' }, pillars: [] },
-      howItWorks: { steps: [], ctas: [] }, plans: { items: [], hosting: { heading: '', subheading: '', cards: [] } },
-      testimonials: { stats: [], items: [] }, portfolio: { items: [] },
+      howItWorks: { steps: [], ctas: [] },
+      plans: { items: [], hosting: { heading: '', subheading: '', cards: [] } },
+      testimonials: { stats: [], items: [] },
+      portfolio: { items: [] },
       about: { visual: { badges: [] }, body: [], diffs: [], cities: [] },
-      faq: { items: [] }, ctaStrip: { heading: '', body: '', ctaLabel: '', ctaHref: '' },
+      faq: { items: [] },
+      ctaStrip: { heading: '', body: '', ctaLabel: '', ctaHref: '' },
       contact: { heading: '', leads: [], altRows: [] },
     };
     const result = HomeSchema.safeParse(minimal);
@@ -219,7 +262,7 @@ describe('SPEC-CONTENT-001/INV-1 — zero hardcoded content in index.astro', () 
   it('[SPEC-CONTENT-001/INV-1] index.astro data comes only from collection entry', () => {
     const c = fs.readFileSync(idx, 'utf-8');
     expect(c).toContain('.data');
-    expect(c).not.toContain("= [");  // no array literal
+    expect(c).not.toContain('= ['); // no array literal
   });
 });
 
@@ -227,7 +270,7 @@ describe('SPEC-CONTENT-001/INV-1 — zero hardcoded content in index.astro', () 
 describe('SPEC-CONTENT-001/INV-2 — index.astro is composition-only', () => {
   it('[SPEC-CONTENT-001/INV-2] index.astro has no const object literals', () => {
     const c = fs.readFileSync(idx, 'utf-8');
-    expect(c).not.toContain('= {');  // no object literal assignments
+    expect(c).not.toContain('= {'); // no object literal assignments
   });
 
   it('[SPEC-CONTENT-001/INV-2] schemas.ts has no Astro-specific imports', () => {

@@ -1,58 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SolidGraph · Section · Footer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../design-system/tokens.css" />
-<link rel="stylesheet" href="../design-system/base.css" />
-<link rel="stylesheet" href="../design-system/animations.css" />
-<link rel="stylesheet" href="../components/logo.css" />
-<style>
-  /* Section layout — footer */
-  footer { background: var(--night-2); color: #fff; padding: 80px 0 32px; position: relative; overflow: hidden; }
-  .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 54px; border-bottom: 1px solid rgba(255,255,255,.1); position: relative; z-index: 2; }
-  .foot-brand { display: flex; flex-direction: column; gap: 20px; max-width: 290px; }
-  .foot-brand .logo-text b { color: #fff; } .foot-brand .logo-text small { color: rgba(255,255,255,.6); }
-  .foot-brand p { font-size: 13px; color: rgba(255,255,255,.62); line-height: 1.6; }
-  .foot-brand .locs { display: flex; flex-wrap: wrap; gap: 8px; }
-  .foot-brand .locs span { font-size: 11px; color: #fff; background: rgba(255,255,255,.08); padding: 6px 13px; border-radius: 999px; }
-  .foot-col h5 { color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 20px; }
-  .foot-col ul { display: flex; flex-direction: column; gap: 11px; }
-  .foot-col ul li a { font-size: 13.5px; color: rgba(255,255,255,.7); transition: color .2s ease, padding-left .2s ease; }
-  .foot-col ul li a:hover { color: #fff; padding-left: 4px; }
-  .foot-bottom { padding-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 12px; color: rgba(255,255,255,.5); position: relative; z-index: 2; }
-  .foot-bottom .legal { display: flex; gap: 18px; }
-  .foot-bottom .legal a { color: rgba(255,255,255,.5); }
-  .foot-bottom .legal a:hover { color: #fff; }
-  footer .foot-big { position: absolute; bottom: -3%; left: 0; right: 0; text-align: center; font-size: 20vw; font-weight: 800; color: rgba(255,255,255,.025); letter-spacing: -.04em; pointer-events: none; line-height: 1; z-index: 1; white-space: nowrap; }
-  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; } .foot-brand { grid-column: 1 / -1; } }
-</style>
-</head>
-<body style="background:var(--night-2);">
-
-<!-- ===================== FOOTER ===================== -->
-<footer data-section="footer" data-screen-label="Footer">
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="#" class="logo"><img src="../assets/logo_avatar.png" alt="SolidGraph" style="height:40px; filter: brightness(0) invert(1);" /><span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span></a>
-        <p>Custom-built websites for local businesses.</p>
-        <div class="locs"><span>Charlotte, NC</span><span>Springfield-Branson, MO</span></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolidGraph · Section · Footer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../design-system/tokens.css" />
+    <link rel="stylesheet" href="../design-system/base.css" />
+    <link rel="stylesheet" href="../design-system/animations.css" />
+    <link rel="stylesheet" href="../components/logo.css" />
+    <style>
+      /* Section layout — footer */
+      footer {
+        background: var(--night-2);
+        color: #fff;
+        padding: 80px 0 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 44px;
+        padding-bottom: 54px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      .foot-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 290px;
+      }
+      .foot-brand .logo-text b {
+        color: #fff;
+      }
+      .foot-brand .logo-text small {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .foot-brand p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.62);
+        line-height: 1.6;
+      }
+      .foot-brand .locs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .foot-brand .locs span {
+        font-size: 11px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 6px 13px;
+        border-radius: 999px;
+      }
+      .foot-col h5 {
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .foot-col ul {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+      .foot-col ul li a {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.7);
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+      }
+      .foot-col ul li a:hover {
+        color: #fff;
+        padding-left: 4px;
+      }
+      .foot-bottom {
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        position: relative;
+        z-index: 2;
+      }
+      .foot-bottom .legal {
+        display: flex;
+        gap: 18px;
+      }
+      .foot-bottom .legal a {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .foot-bottom .legal a:hover {
+        color: #fff;
+      }
+      footer .foot-big {
+        position: absolute;
+        bottom: -3%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 20vw;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: -0.04em;
+        pointer-events: none;
+        line-height: 1;
+        z-index: 1;
+        white-space: nowrap;
+      }
+      @media (max-width: 880px) {
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .foot-brand {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body style="background: var(--night-2)">
+    <!-- ===================== FOOTER ===================== -->
+    <footer data-section="footer" data-screen-label="Footer">
+      <div class="container">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a href="#" class="logo"
+              ><img
+                src="../assets/logo_avatar.png"
+                alt="SolidGraph"
+                style="height: 40px; filter: brightness(0) invert(1)"
+              /><span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span></a
+            >
+            <p>Custom-built websites for local businesses.</p>
+            <div class="locs"><span>Charlotte, NC</span><span>Springfield-Branson, MO</span></div>
+          </div>
+          <div class="foot-col">
+            <h5>Navigate</h5>
+            <ul>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#plans">Our Plans</a></li>
+              <li><a href="#portfolio">Our Work</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="foot-col">
+            <h5>Plans</h5>
+            <ul>
+              <li><a href="#plans">Nano — $1,300</a></li>
+              <li><a href="#plans">Micro — $2,800</a></li>
+              <li><a href="#plans">Pro — $5,500</a></li>
+              <li><a href="#plans">Enterprise</a></li>
+              <li><a href="#plans">Hosting Plans</a></li>
+            </ul>
+          </div>
+          <div class="foot-col">
+            <h5>Get in Touch</h5>
+            <ul>
+              <li><a href="mailto:hello@solidgraph.com">hello@solidgraph.com</a></li>
+              <li><a href="#contact">Free Quote</a></li>
+              <li><a href="#contact">Discovery Call</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 SolidGraph Solutions LLC. All rights reserved.</span>
+          <div class="legal">
+            <a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a>
+          </div>
+        </div>
       </div>
-      <div class="foot-col"><h5>Navigate</h5><ul><li><a href="#how-it-works">How It Works</a></li><li><a href="#plans">Our Plans</a></li><li><a href="#portfolio">Our Work</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
-      <div class="foot-col"><h5>Plans</h5><ul><li><a href="#plans">Nano — $1,300</a></li><li><a href="#plans">Micro — $2,800</a></li><li><a href="#plans">Pro — $5,500</a></li><li><a href="#plans">Enterprise</a></li><li><a href="#plans">Hosting Plans</a></li></ul></div>
-      <div class="foot-col"><h5>Get in Touch</h5><ul><li><a href="mailto:hello@solidgraph.com">hello@solidgraph.com</a></li><li><a href="#contact">Free Quote</a></li><li><a href="#contact">Discovery Call</a></li></ul></div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 SolidGraph Solutions LLC. All rights reserved.</span>
-      <div class="legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
-    </div>
-  </div>
-  <div class="foot-big">SolidGraph</div>
-</footer>
-
-</body>
+      <div class="foot-big">SolidGraph</div>
+    </footer>
+  </body>
 </html>

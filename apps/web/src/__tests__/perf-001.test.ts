@@ -106,19 +106,13 @@ describe('SPEC-PERF-001 — Performance gate', () => {
 
   describe('[SPEC-PERF-001/RF-3] fonts are self-hosted with preload', () => {
     it('[SPEC-PERF-001/RF-3] BaseLayout has Poppins 400 preload', () => {
-      const src = fs.readFileSync(
-        path.join(WEB_ROOT, 'src/layouts/BaseLayout.astro'),
-        'utf-8',
-      );
+      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/layouts/BaseLayout.astro'), 'utf-8');
       expect(src).toContain('poppins-400.woff2');
       expect(src).toContain('rel="preload"');
     });
 
     it('[SPEC-PERF-001/RF-3] no Google Fonts CDN in source styles', () => {
-      const globalCss = fs.readFileSync(
-        path.join(WEB_ROOT, 'src/styles/global.css'),
-        'utf-8',
-      );
+      const globalCss = fs.readFileSync(path.join(WEB_ROOT, 'src/styles/global.css'), 'utf-8');
       expect(globalCss).not.toMatch(/fonts\.googleapis\.com|fonts\.gstatic\.com/);
     });
 
@@ -154,10 +148,7 @@ describe('SPEC-PERF-001 — Performance gate', () => {
 
   describe('[SPEC-PERF-001/RF-5] CSS budget', () => {
     it('[SPEC-PERF-001/RF-5] no CDN CSS links in BaseLayout', () => {
-      const src = fs.readFileSync(
-        path.join(WEB_ROOT, 'src/layouts/BaseLayout.astro'),
-        'utf-8',
-      );
+      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/layouts/BaseLayout.astro'), 'utf-8');
       expect(src).not.toMatch(/cdn\.\S+\.css|googleapis\.com\/css/);
     });
 
@@ -199,10 +190,9 @@ describe('SPEC-PERF-001 — Performance gate', () => {
       const astroFiles = files.filter((f) => f.endsWith('.astro'));
       for (const file of astroFiles) {
         const src = fs.readFileSync(path.join(componentDir, file), 'utf-8');
-        expect(
-          src,
-          `${file} has unexpected client island directive`,
-        ).not.toMatch(/client:(load|visible|idle|media|only)/);
+        expect(src, `${file} has unexpected client island directive`).not.toMatch(
+          /client:(load|visible|idle|media|only)/,
+        );
       }
     });
 
@@ -253,10 +243,7 @@ describe('SPEC-PERF-001 — Performance gate', () => {
     });
 
     it('[SPEC-PERF-001/RNF-2] decorative images have empty alt (aria safe)', () => {
-      const aboutSrc = fs.readFileSync(
-        path.join(WEB_ROOT, 'src/components/About.astro'),
-        'utf-8',
-      );
+      const aboutSrc = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About.astro'), 'utf-8');
       // logo_avatar_full is decorative — must have alt=""
       expect(aboutSrc).toMatch(/alt=""/);
       expect(aboutSrc).toContain('aria-hidden="true"');

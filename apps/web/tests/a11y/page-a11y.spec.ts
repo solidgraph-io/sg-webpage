@@ -21,8 +21,9 @@ interface AxeResults {
 async function runAxe(page: Page, options: Record<string, unknown> = {}): Promise<AxeResults> {
   await page.addScriptTag({ path: axeCorePath });
   return page.evaluate((opts: Record<string, unknown>) => {
-    return (window as unknown as { axe: { run: (doc: Document, opts: unknown) => Promise<AxeResults> } })
-      .axe.run(document, opts);
+    return (
+      window as unknown as { axe: { run: (doc: Document, opts: unknown) => Promise<AxeResults> } }
+    ).axe.run(document, opts);
   }, options);
 }
 
@@ -38,9 +39,11 @@ test('[SPEC-A11Y-001/RF-1] home has 0 WCAG 2.1 AA violations', async ({ page }) 
     runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] },
   });
   const violations = results.violations;
-  const summary = violations.map(
-    (v) => `[${v.id}] ${v.description}: ${v.nodes.map((n) => n.target.join(', ')).join(' | ')}`,
-  ).join('\n');
+  const summary = violations
+    .map(
+      (v) => `[${v.id}] ${v.description}: ${v.nodes.map((n) => n.target.join(', ')).join(' | ')}`,
+    )
+    .join('\n');
   expect(violations, `Axe violations:\n${summary}`).toHaveLength(0);
 });
 
@@ -63,7 +66,9 @@ test('[SPEC-A11Y-001/RF-2] skip-link activates and sends focus to <main>', async
   expect(activeId).toBe('main-content');
 });
 
-test('[SPEC-A11Y-001/RF-2] skip-link is not visible before focus (off-screen)', async ({ page }) => {
+test('[SPEC-A11Y-001/RF-2] skip-link is not visible before focus (off-screen)', async ({
+  page,
+}) => {
   const box = await page.locator('.skip-link').boundingBox();
   if (box) {
     const viewport = page.viewportSize() ?? { width: 1440, height: 900 };
@@ -103,9 +108,10 @@ test('[SPEC-A11Y-001/RF-4] FAQ item opens with keyboard (Enter on summary)', asy
   const firstSummary = page.locator('.faq details summary').first();
   await firstSummary.focus();
   await firstSummary.press('Enter');
-  const isOpen = await page.locator('.faq details').first().evaluate(
-    (el) => (el as HTMLDetailsElement).open,
-  );
+  const isOpen = await page
+    .locator('.faq details')
+    .first()
+    .evaluate((el) => (el as HTMLDetailsElement).open);
   expect(isOpen).toBe(true);
 });
 
@@ -118,16 +124,21 @@ test('[SPEC-A11Y-001/RF-4] Nav CTA is keyboard-reachable and operable', async ({
 
 // ── RF-6: reduced-motion ──────────────────────────────────────────────────────
 
-test('[SPEC-A11Y-001/RF-6] reveal animations disabled under prefers-reduced-motion', async ({ browser }) => {
+test('[SPEC-A11Y-001/RF-6] reveal animations disabled under prefers-reduced-motion', async ({
+  browser,
+}) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce' });
   const p = await ctx.newPage();
   await p.goto('/');
   await p.waitForLoadState('networkidle');
 
-  const revealStyle = await p.locator('[data-reveal]').first().evaluate((el) => {
-    const s = window.getComputedStyle(el);
-    return { opacity: s.opacity, transform: s.transform };
-  });
+  const revealStyle = await p
+    .locator('[data-reveal]')
+    .first()
+    .evaluate((el) => {
+      const s = window.getComputedStyle(el);
+      return { opacity: s.opacity, transform: s.transform };
+    });
   // With reduced-motion, opacity should be 1 and transform should be none
   expect(revealStyle.opacity).toBe('1');
   await ctx.close();

@@ -20,21 +20,48 @@ const cls = [variant === 'hero' ? 'hero-float' : 'badge-card', extra].filter(Boo
 </div>
 
 <style>
-.hero-float {
-  position: absolute; z-index: 4; background: var(--white); border-radius: 16px;
-  padding: 13px 17px; box-shadow: var(--shadow-md);
-  display: flex; align-items: center; gap: 11px;
-}
-.hero-float :global(.ic), .badge-card :global(.ic) {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--lilac); color: var(--indigo); display: grid; place-items: center;
-}
-.hero-float :global(b), .badge-card :global(b) { font-size: 13px; color: var(--ink); display: block; font-weight: 600; }
-.hero-float :global(span), .badge-card :global(span) { font-size: 11px; color: var(--muted); }
+  .hero-float {
+    position: absolute;
+    z-index: 4;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 13px 17px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .hero-float :global(.ic),
+  .badge-card :global(.ic) {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--lilac);
+    color: var(--indigo);
+    display: grid;
+    place-items: center;
+  }
+  .hero-float :global(b),
+  .badge-card :global(b) {
+    font-size: 13px;
+    color: var(--ink);
+    display: block;
+    font-weight: 600;
+  }
+  .hero-float :global(span),
+  .badge-card :global(span) {
+    font-size: 11px;
+    color: var(--muted);
+  }
 
-.badge-card {
-  position: absolute; background: var(--white); border-radius: 14px;
-  padding: 13px 17px; box-shadow: var(--shadow-md);
-  display: flex; align-items: center; gap: 11px;
-}
+  .badge-card {
+    position: absolute;
+    background: var(--white);
+    border-radius: 14px;
+    padding: 13px 17px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
 </style>

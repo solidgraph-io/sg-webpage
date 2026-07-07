@@ -1,172 +1,500 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SolidGraph · Style Guide</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="design-system/tokens.css" />
-<link rel="stylesheet" href="design-system/base.css" />
-<link rel="stylesheet" href="design-system/animations.css" />
-<link rel="stylesheet" href="components/button.css" />
-<link rel="stylesheet" href="components/pill.css" />
-<link rel="stylesheet" href="components/eyebrow.css" />
-<link rel="stylesheet" href="components/badge.css" />
-<link rel="stylesheet" href="components/icon-box.css" />
-<link rel="stylesheet" href="components/note-bar.css" />
-<link rel="stylesheet" href="components/stat.css" />
-<link rel="stylesheet" href="components/faq-item.css" />
-<style>
-  body { background: var(--lilac-2); }
-  .sg-head { background: var(--night); color: #fff; padding: 72px 0 60px; }
-  .sg-head h1 { color: #fff; font-size: 44px; font-weight: 800; letter-spacing: -.03em; }
-  .sg-head p { color: var(--muted-d); margin-top: 14px; font-size: 15px; max-width: 60ch; }
-  section.sg { padding: 56px 0; border-bottom: 1px solid var(--line); }
-  .sg-label { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--periwinkle); font-weight: 700; margin-bottom: 24px; }
-  .sg-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-  .sg-grid { display: grid; gap: 16px; }
-  .swatches { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-  .sw { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: var(--shadow-sm); }
-  .sw .chip { height: 68px; }
-  .sw .meta { padding: 10px 13px; }
-  .sw .meta b { font-size: 12.5px; display: block; }
-  .sw .meta code { font-size: 11px; color: var(--muted); }
-  .type-row { display: flex; align-items: baseline; gap: 18px; margin-bottom: 18px; flex-wrap: wrap; }
-  .type-row .tag { font-size: 11px; color: var(--muted); font-family: monospace; min-width: 88px; }
-  .icons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 12px; }
-  .icon-cell { background: #fff; border-radius: 12px; padding: 16px 8px; text-align: center; box-shadow: var(--shadow-sm); color: var(--indigo); }
-  .icon-cell code { display: block; margin-top: 8px; font-size: 10px; color: var(--muted); }
-  .dark-demo { background: var(--night); border-radius: var(--radius-lg); padding: 30px; }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolidGraph · Style Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="design-system/tokens.css" />
+    <link rel="stylesheet" href="design-system/base.css" />
+    <link rel="stylesheet" href="design-system/animations.css" />
+    <link rel="stylesheet" href="components/button.css" />
+    <link rel="stylesheet" href="components/pill.css" />
+    <link rel="stylesheet" href="components/eyebrow.css" />
+    <link rel="stylesheet" href="components/badge.css" />
+    <link rel="stylesheet" href="components/icon-box.css" />
+    <link rel="stylesheet" href="components/note-bar.css" />
+    <link rel="stylesheet" href="components/stat.css" />
+    <link rel="stylesheet" href="components/faq-item.css" />
+    <style>
+      body {
+        background: var(--lilac-2);
+      }
+      .sg-head {
+        background: var(--night);
+        color: #fff;
+        padding: 72px 0 60px;
+      }
+      .sg-head h1 {
+        color: #fff;
+        font-size: 44px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .sg-head p {
+        color: var(--muted-d);
+        margin-top: 14px;
+        font-size: 15px;
+        max-width: 60ch;
+      }
+      section.sg {
+        padding: 56px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .sg-label {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--periwinkle);
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .sg-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .sg-grid {
+        display: grid;
+        gap: 16px;
+      }
+      .swatches {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      .sw {
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow-sm);
+      }
+      .sw .chip {
+        height: 68px;
+      }
+      .sw .meta {
+        padding: 10px 13px;
+      }
+      .sw .meta b {
+        font-size: 12.5px;
+        display: block;
+      }
+      .sw .meta code {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .type-row {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .type-row .tag {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: monospace;
+        min-width: 88px;
+      }
+      .icons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+        gap: 12px;
+      }
+      .icon-cell {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px 8px;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        color: var(--indigo);
+      }
+      .icon-cell code {
+        display: block;
+        margin-top: 8px;
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .dark-demo {
+        background: var(--night);
+        border-radius: var(--radius-lg);
+        padding: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16zM21 21l-4.3-4.3"
+          />
+        </symbol>
+        <symbol id="i-phone-off" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.7 13.3a16 16 0 0 1-3-3M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3M3 3l18 18M9.6 9.6a16 16 0 0 1-2.7-5.5A2 2 0 0 1 8.9 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5"
+          />
+        </symbol>
+        <symbol id="i-template" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 3H3v6h18V3zM10 21V12M3 12h18v9H3z"
+          />
+        </symbol>
+        <symbol id="i-dollar" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 2v20M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"
+          />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+          />
+        </symbol>
+        <symbol id="i-zap" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+          />
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+          />
+        </symbol>
+        <symbol id="i-trend" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M22 7l-9.5 9.5-5-5L1 18M16 7h6v6"
+          />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+          />
+          <circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6"
+          />
+        </symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            d="M12 6v6l4 2"
+          />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 12h14M13 5l7 7-7 7"
+          />
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"
+          />
+        </symbol>
+      </defs>
+    </svg>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16zM21 21l-4.3-4.3"/></symbol>
-  <symbol id="i-phone-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10.7 13.3a16 16 0 0 1-3-3M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3M3 3l18 18M9.6 9.6a16 16 0 0 1-2.7-5.5A2 2 0 0 1 8.9 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5"/></symbol>
-  <symbol id="i-template" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 3H3v6h18V3zM10 21V12M3 12h18v9H3z"/></symbol>
-  <symbol id="i-dollar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></symbol>
-  <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
-  <symbol id="i-zap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
-  <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 7l-9.5 9.5-5-5L1 18M16 7h6v6"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 6v6l4 2"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></symbol>
-  <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></symbol>
-</defs></svg>
+    <header class="sg-head">
+      <div class="container">
+        <span
+          class="pill"
+          style="
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+          "
+          ><span class="ping"></span> Living style guide</span
+        >
+        <h1 style="margin-top: 20px">SolidGraph Design System</h1>
+        <p>
+          Foundations and atomic components. Every token lives in
+          <code>design-system/tokens.css</code>; every component in its own file under
+          <code>components/</code>.
+        </p>
+      </div>
+    </header>
 
-<header class="sg-head">
-  <div class="container">
-    <span class="pill" style="background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.16);"><span class="ping"></span> Living style guide</span>
-    <h1 style="margin-top:20px;">SolidGraph Design System</h1>
-    <p>Foundations and atomic components. Every token lives in <code>design-system/tokens.css</code>; every component in its own file under <code>components/</code>.</p>
-  </div>
-</header>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Color · tokens.css</div>
+        <div class="sg-grid swatches">
+          <div class="sw">
+            <div class="chip" style="background: var(--ink)"></div>
+            <div class="meta"><b>Ink</b><code>--ink</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--indigo)"></div>
+            <div class="meta"><b>Indigo</b><code>--indigo</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--night)"></div>
+            <div class="meta"><b>Night</b><code>--night</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--night-2)"></div>
+            <div class="meta"><b>Night 2</b><code>--night-2</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--periwinkle)"></div>
+            <div class="meta"><b>Periwinkle</b><code>--periwinkle</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--peri-bright)"></div>
+            <div class="meta"><b>Peri Bright</b><code>--peri-bright</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--lilac)"></div>
+            <div class="meta"><b>Lilac</b><code>--lilac</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--lilac-2)"></div>
+            <div class="meta"><b>Lilac 2</b><code>--lilac-2</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--success)"></div>
+            <div class="meta"><b>Success</b><code>--success</code></div>
+          </div>
+          <div class="sw">
+            <div class="chip" style="background: var(--star)"></div>
+            <div class="meta"><b>Star</b><code>--star</code></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Color · tokens.css</div>
-    <div class="sg-grid swatches">
-      <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="meta"><b>Ink</b><code>--ink</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--indigo)"></div><div class="meta"><b>Indigo</b><code>--indigo</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--night)"></div><div class="meta"><b>Night</b><code>--night</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--night-2)"></div><div class="meta"><b>Night 2</b><code>--night-2</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--periwinkle)"></div><div class="meta"><b>Periwinkle</b><code>--periwinkle</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--peri-bright)"></div><div class="meta"><b>Peri Bright</b><code>--peri-bright</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--lilac)"></div><div class="meta"><b>Lilac</b><code>--lilac</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--lilac-2)"></div><div class="meta"><b>Lilac 2</b><code>--lilac-2</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--success)"></div><div class="meta"><b>Success</b><code>--success</code></div></div>
-      <div class="sw"><div class="chip" style="background:var(--star)"></div><div class="meta"><b>Star</b><code>--star</code></div></div>
-    </div>
-  </div>
-</section>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Typography · Poppins</div>
+        <div class="type-row">
+          <span class="tag">.display</span
+          ><span class="display" style="font-size: 56px">From Scratch</span>
+        </div>
+        <div class="type-row">
+          <span class="tag">h2</span>
+          <h2>Simple Plans. No Hidden Fees.</h2>
+        </div>
+        <div class="type-row">
+          <span class="tag">h3</span>
+          <h3>Built From Scratch</h3>
+        </div>
+        <div class="type-row">
+          <span class="tag">body</span>
+          <p style="max-width: 56ch; color: var(--muted)">
+            We custom-build professional websites for local businesses so more customers can find
+            you, call you, and walk through your door.
+          </p>
+        </div>
+        <div class="type-row">
+          <span class="tag">.grad-text</span
+          ><span class="grad-text" style="font-size: 34px; font-weight: 800"
+            >You Own It Forever.</span
+          >
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Typography · Poppins</div>
-    <div class="type-row"><span class="tag">.display</span><span class="display" style="font-size:56px;">From Scratch</span></div>
-    <div class="type-row"><span class="tag">h2</span><h2>Simple Plans. No Hidden Fees.</h2></div>
-    <div class="type-row"><span class="tag">h3</span><h3>Built From Scratch</h3></div>
-    <div class="type-row"><span class="tag">body</span><p style="max-width:56ch;color:var(--muted);">We custom-build professional websites for local businesses so more customers can find you, call you, and walk through your door.</p></div>
-    <div class="type-row"><span class="tag">.grad-text</span><span class="grad-text" style="font-size:34px;font-weight:800;">You Own It Forever.</span></div>
-  </div>
-</section>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Buttons · button.css</div>
+        <div class="sg-row">
+          <a class="btn btn-primary magnetic"
+            ><span>Primary</span> <svg width="16" height="16"><use href="#i-arrow" /></svg
+          ></a>
+          <a class="btn btn-outline"><span>Outline</span></a>
+        </div>
+        <div class="dark-demo sg-row" style="margin-top: 16px">
+          <a class="btn btn-white"><span>White</span></a>
+          <a class="btn btn-ghost-light"><span>Ghost light</span></a>
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Buttons · button.css</div>
-    <div class="sg-row">
-      <a class="btn btn-primary magnetic"><span>Primary</span> <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn-outline"><span>Outline</span></a>
-    </div>
-    <div class="dark-demo sg-row" style="margin-top:16px;">
-      <a class="btn btn-white"><span>White</span></a>
-      <a class="btn btn-ghost-light"><span>Ghost light</span></a>
-    </div>
-  </div>
-</section>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Pill · Eyebrow · Badges</div>
+        <div class="sg-row" style="margin-bottom: 22px">
+          <span class="pill" style="background: var(--lilac); color: var(--indigo)"
+            ><span class="ping"></span> Live pill</span
+          >
+          <span class="eyebrow">Why SolidGraph</span>
+          <span class="chips" style="display: inline-flex"
+            ><span>Fast</span><span>Custom</span><span>Yours</span></span
+          >
+        </div>
+        <div class="note-bar" style="margin: 0">
+          <svg width="16" height="16" style="color: var(--periwinkle)"><use href="#i-spark" /></svg>
+          Note bar — every plan is custom-built from scratch.
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Pill · Eyebrow · Badges</div>
-    <div class="sg-row" style="margin-bottom:22px;">
-      <span class="pill" style="background:var(--lilac);color:var(--indigo);"><span class="ping"></span> Live pill</span>
-      <span class="eyebrow">Why SolidGraph</span>
-      <span class="chips" style="display:inline-flex;"><span>Fast</span><span>Custom</span><span>Yours</span></span>
-    </div>
-    <div class="note-bar" style="margin:0;"><svg width="16" height="16" style="color:var(--periwinkle)"><use href="#i-spark"/></svg> Note bar — every plan is custom-built from scratch.</div>
-  </div>
-</section>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Icon boxes &amp; sprite · icon-box.css / icons.svg</div>
+        <div class="sg-row" style="margin-bottom: 26px">
+          <span class="icon-box icon-box--sm"
+            ><svg width="18" height="18"><use href="#i-zap" /></svg
+          ></span>
+          <span class="icon-box"
+            ><svg width="22" height="22"><use href="#i-code" /></svg
+          ></span>
+          <span class="icon-box icon-box--lg"
+            ><svg width="24" height="24"><use href="#i-shield" /></svg
+          ></span>
+        </div>
+        <div class="icons-grid">
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-search" /></svg><code>i-search</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-phone-off" /></svg><code>i-phone-off</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-template" /></svg><code>i-template</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-dollar" /></svg><code>i-dollar</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-code" /></svg><code>i-code</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-zap" /></svg><code>i-zap</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-shield" /></svg><code>i-shield</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-trend" /></svg><code>i-trend</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-pin" /></svg><code>i-pin</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-mail" /></svg><code>i-mail</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-clock" /></svg><code>i-clock</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-arrow" /></svg><code>i-arrow</code>
+          </div>
+          <div class="icon-cell">
+            <svg width="22" height="22"><use href="#i-spark" /></svg><code>i-spark</code>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Icon boxes &amp; sprite · icon-box.css / icons.svg</div>
-    <div class="sg-row" style="margin-bottom:26px;">
-      <span class="icon-box icon-box--sm"><svg width="18" height="18"><use href="#i-zap"/></svg></span>
-      <span class="icon-box"><svg width="22" height="22"><use href="#i-code"/></svg></span>
-      <span class="icon-box icon-box--lg"><svg width="24" height="24"><use href="#i-shield"/></svg></span>
-    </div>
-    <div class="icons-grid">
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-search"/></svg><code>i-search</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-phone-off"/></svg><code>i-phone-off</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-template"/></svg><code>i-template</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-dollar"/></svg><code>i-dollar</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-code"/></svg><code>i-code</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-zap"/></svg><code>i-zap</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-shield"/></svg><code>i-shield</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-trend"/></svg><code>i-trend</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-pin"/></svg><code>i-pin</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-mail"/></svg><code>i-mail</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-clock"/></svg><code>i-clock</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-arrow"/></svg><code>i-arrow</code></div>
-      <div class="icon-cell"><svg width="22" height="22"><use href="#i-spark"/></svg><code>i-spark</code></div>
-    </div>
-  </div>
-</section>
+    <section class="sg">
+      <div class="container">
+        <div class="sg-label">Stats · FAQ item</div>
+        <div
+          class="sg-grid"
+          style="grid-template-columns: repeat(3, 1fr); max-width: 720px; margin-bottom: 26px"
+        >
+          <div class="stat">
+            <div class="v">2 weeks</div>
+            <div class="l">Average delivery</div>
+          </div>
+          <div class="stat">
+            <div class="v">$0</div>
+            <div class="l">Hidden fees</div>
+          </div>
+          <div class="stat">
+            <div class="v">100%</div>
+            <div class="l">Satisfaction</div>
+          </div>
+        </div>
+        <div style="max-width: 720px">
+          <details class="faq-item" open>
+            <summary>Do I need any technical knowledge?<span class="plus">+</span></summary>
+            <div class="answer">
+              Not at all — we set up a simple dashboard where you can change text and photos with a
+              few clicks.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
 
-<section class="sg">
-  <div class="container">
-    <div class="sg-label">Stats · FAQ item</div>
-    <div class="sg-grid" style="grid-template-columns:repeat(3,1fr);max-width:720px;margin-bottom:26px;">
-      <div class="stat"><div class="v">2 weeks</div><div class="l">Average delivery</div></div>
-      <div class="stat"><div class="v">$0</div><div class="l">Hidden fees</div></div>
-      <div class="stat"><div class="v">100%</div><div class="l">Satisfaction</div></div>
-    </div>
-    <div style="max-width:720px;">
-      <details class="faq-item" open><summary>Do I need any technical knowledge?<span class="plus">+</span></summary><div class="answer">Not at all — we set up a simple dashboard where you can change text and photos with a few clicks.</div></details>
-    </div>
-  </div>
-</section>
+    <section class="sg" style="border: none">
+      <div class="container">
+        <p style="color: var(--muted); font-size: 13px">
+          See every component rendered in context inside <code>index.html</code>, or open a single
+          <code>sections/NN-*.html</code> to work on one organism in isolation.
+        </p>
+      </div>
+    </section>
 
-<section class="sg" style="border:none;">
-  <div class="container">
-    <p style="color:var(--muted);font-size:13px;">See every component rendered in context inside <code>index.html</code>, or open a single <code>sections/NN-*.html</code> to work on one organism in isolation.</p>
-  </div>
-</section>
-
-<script src="scripts/interactions.js"></script>
-</body>
+    <script src="scripts/interactions.js"></script>
+  </body>
 </html>

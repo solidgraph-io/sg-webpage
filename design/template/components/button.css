@@ -8,33 +8,86 @@
       <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
    ========================================================================== */
 .btn {
-  position: relative; display: inline-flex; align-items: center; gap: 10px;
-  padding: 15px 28px; border-radius: 999px;
-  font-weight: 600; font-size: 14px; letter-spacing: .01em;
-  cursor: pointer; border: none; white-space: nowrap;
-  transition: transform .35s var(--ease-spring), box-shadow .3s ease, background .3s ease, color .3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
   overflow: hidden;
 }
-.btn svg { transition: transform .35s var(--ease); }
-.btn:hover svg { transform: translateX(4px); }
-
-.btn-primary { background: var(--indigo); color: #fff; box-shadow: 0 10px 30px -8px rgba(45,61,138,.55); }
-.btn-primary::before {
-  content: ""; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(100deg, var(--periwinkle), var(--indigo));
-  opacity: 0; transition: opacity .35s ease;
+.btn svg {
+  transition: transform 0.35s var(--ease);
 }
-.btn-primary:hover::before { opacity: 1; }
-.btn-primary > * { position: relative; z-index: 1; }
-.btn-primary:hover { box-shadow: 0 16px 40px -10px rgba(92,112,214,.65); }
+.btn:hover svg {
+  transform: translateX(4px);
+}
 
-.btn-white { background: #fff; color: var(--indigo); }
-.btn-white:hover { background: var(--lilac); }
+.btn-primary {
+  background: var(--indigo);
+  color: #fff;
+  box-shadow: 0 10px 30px -8px rgba(45, 61, 138, 0.55);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(100deg, var(--periwinkle), var(--indigo));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.btn-primary:hover::before {
+  opacity: 1;
+}
+.btn-primary > * {
+  position: relative;
+  z-index: 1;
+}
+.btn-primary:hover {
+  box-shadow: 0 16px 40px -10px rgba(92, 112, 214, 0.65);
+}
 
-.btn-ghost-light { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(6px); }
-.btn-ghost-light:hover { background: rgba(255,255,255,.16); }
+.btn-white {
+  background: #fff;
+  color: var(--indigo);
+}
+.btn-white:hover {
+  background: var(--lilac);
+}
 
-.btn-outline { background: transparent; color: var(--indigo); border: 1.5px solid rgba(45,61,138,.25); }
-.btn-outline:hover { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+.btn-ghost-light {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
 
-.magnetic { transition: transform .25s var(--ease); }
+.btn-outline {
+  background: transparent;
+  color: var(--indigo);
+  border: 1.5px solid rgba(45, 61, 138, 0.25);
+}
+.btn-outline:hover {
+  background: var(--indigo);
+  color: #fff;
+  border-color: var(--indigo);
+}
+
+.magnetic {
+  transition: transform 0.25s var(--ease);
+}

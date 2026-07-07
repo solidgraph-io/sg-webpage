@@ -10,35 +10,50 @@
 
   /* ---- scroll reveal ---- */
   function initReveal(root) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    root.querySelectorAll('[data-reveal]:not(.in)').forEach(function (el) { io.observe(el); });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+    root.querySelectorAll('[data-reveal]:not(.in)').forEach(function (el) {
+      io.observe(el);
+    });
   }
 
   /* ---- sticky nav hide/show + scrolled ---- */
   function initNav() {
     var nav = document.getElementById('nav');
-    if (!nav || nav.__bound) return; nav.__bound = true;
+    if (!nav || nav.__bound) return;
+    nav.__bound = true;
     var lastY = 0;
-    global.addEventListener('scroll', function () {
-      var y = global.scrollY;
-      nav.classList.toggle('scrolled', y > 40);
-      if (y > lastY && y > 400) nav.classList.add('hide'); else nav.classList.remove('hide');
-      lastY = y;
-    }, { passive: true });
+    global.addEventListener(
+      'scroll',
+      function () {
+        var y = global.scrollY;
+        nav.classList.toggle('scrolled', y > 40);
+        if (y > lastY && y > 400) nav.classList.add('hide');
+        else nav.classList.remove('hide');
+        lastY = y;
+      },
+      { passive: true },
+    );
   }
 
   /* ---- cursor spotlight ---- */
   function initSpotlight(root) {
     root.querySelectorAll('.has-spot').forEach(function (sec) {
-      if (sec.__spot) return; sec.__spot = true;
+      if (sec.__spot) return;
+      sec.__spot = true;
       sec.addEventListener('pointermove', function (e) {
         var r = sec.getBoundingClientRect();
-        sec.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        sec.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        sec.style.setProperty('--mx', e.clientX - r.left + 'px');
+        sec.style.setProperty('--my', e.clientY - r.top + 'px');
       });
     });
   }
@@ -47,21 +62,25 @@
   function initMagnetic(root) {
     if (!fine) return;
     root.querySelectorAll('.magnetic').forEach(function (btn) {
-      if (btn.__mag) return; btn.__mag = true;
+      if (btn.__mag) return;
+      btn.__mag = true;
       btn.addEventListener('pointermove', function (e) {
         var r = btn.getBoundingClientRect();
         var x = (e.clientX - r.left - r.width / 2) * 0.25;
         var y = (e.clientY - r.top - r.height / 2) * 0.35;
         btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
       });
-      btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+      btn.addEventListener('pointerleave', function () {
+        btn.style.transform = '';
+      });
     });
   }
 
   /* ---- hero screen subtle 3D tilt on scroll ---- */
   function initHeroTilt() {
     var screen = document.getElementById('heroScreen');
-    if (!screen || screen.__tilt) return; screen.__tilt = true;
+    if (!screen || screen.__tilt) return;
+    screen.__tilt = true;
     function tilt() {
       var rect = screen.getBoundingClientRect();
       var prog = Math.min(Math.max((global.innerHeight - rect.top) / global.innerHeight, 0), 1.4);
@@ -76,14 +95,18 @@
   function initCardTilt(root) {
     if (!fine) return;
     root.querySelectorAll('.p-card, .pillar').forEach(function (card) {
-      if (card.__tilt) return; card.__tilt = true;
+      if (card.__tilt) return;
+      card.__tilt = true;
       card.addEventListener('pointermove', function (e) {
         var r = card.getBoundingClientRect();
         var rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
         var ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
-        card.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-8px)';
+        card.style.transform =
+          'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-8px)';
       });
-      card.addEventListener('pointerleave', function () { card.style.transform = ''; });
+      card.addEventListener('pointerleave', function () {
+        card.style.transform = '';
+      });
     });
   }
 
@@ -91,26 +114,30 @@
   function initCounters() {
     var statSec = document.querySelector('.stats');
     if (!statSec || statSec.__counted) return;
-    var cio = new IntersectionObserver(function (en) {
-      en.forEach(function (e) {
-        if (e.isIntersecting && !statSec.__counted) {
-          statSec.__counted = true;
-          document.querySelectorAll('[data-count]').forEach(function (el) {
-            var target = parseFloat(el.getAttribute('data-count'));
-            var pre = el.getAttribute('data-prefix') || '';
-            var suf = el.getAttribute('data-suffix') || '';
-            var dur = 1400, start = performance.now();
-            (function tick(now) {
-              var p = Math.min((now - start) / dur, 1);
-              var eased = 1 - Math.pow(1 - p, 3);
-              el.textContent = pre + Math.round(target * eased) + suf;
-              if (p < 1) requestAnimationFrame(tick);
-            })(start);
-          });
-          cio.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
+    var cio = new IntersectionObserver(
+      function (en) {
+        en.forEach(function (e) {
+          if (e.isIntersecting && !statSec.__counted) {
+            statSec.__counted = true;
+            document.querySelectorAll('[data-count]').forEach(function (el) {
+              var target = parseFloat(el.getAttribute('data-count'));
+              var pre = el.getAttribute('data-prefix') || '';
+              var suf = el.getAttribute('data-suffix') || '';
+              var dur = 1400,
+                start = performance.now();
+              (function tick(now) {
+                var p = Math.min((now - start) / dur, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = pre + Math.round(target * eased) + suf;
+                if (p < 1) requestAnimationFrame(tick);
+              })(start);
+            });
+            cio.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
     cio.observe(statSec);
   }
 
@@ -120,15 +147,22 @@
     var bars = document.querySelectorAll('.how-progress i');
     if (!steps.length || !bars.length || steps.__bound) return;
     steps.__bound = true;
-    var sio = new IntersectionObserver(function (en) {
-      en.forEach(function (e) {
-        if (e.isIntersecting) {
-          var idx = [].indexOf.call(steps, e.target);
-          bars.forEach(function (b, i) { b.classList.toggle('on', i <= idx); });
-        }
-      });
-    }, { threshold: 0.6 });
-    steps.forEach(function (s) { sio.observe(s); });
+    var sio = new IntersectionObserver(
+      function (en) {
+        en.forEach(function (e) {
+          if (e.isIntersecting) {
+            var idx = [].indexOf.call(steps, e.target);
+            bars.forEach(function (b, i) {
+              b.classList.toggle('on', i <= idx);
+            });
+          }
+        });
+      },
+      { threshold: 0.6 },
+    );
+    steps.forEach(function (s) {
+      sio.observe(s);
+    });
   }
 
   function init(root) {
@@ -145,7 +179,9 @@
 
   global.SolidGraph = { init: init };
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { init(); });
+    document.addEventListener('DOMContentLoaded', function () {
+      init();
+    });
   } else {
     init();
   }

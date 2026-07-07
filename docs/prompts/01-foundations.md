@@ -10,11 +10,14 @@ Eres un implementador en el repo `sg-webpage`. Antes de escribir nada, **lee y r
 Atomic Design + SRP) es **vinculante**.
 
 ## Objetivo de este incremento
+
 Implementar, en este orden, las specs **ya Approved**:
+
 1. `docs/specs/SPEC-INFRA-001.md` — fundaciones (monorepo Turborepo + Astro + tooling + tests + `scripts/trace.ts` + Docker/`.drone.yml` web-only).
 2. `docs/specs/SPEC-LAYOUT-001.md` — sistema de diseño base (tokens + Tailwind + Poppins self-hosted + `BaseLayout` + SEO base).
 
 ## Reglas de trabajo (no negociables)
+
 - **TDD estricto:** por cada `RF-x`/`RNF-x`/`INV-x`, escribe primero un test en **rojo** cuyo nombre **cite la spec**: `it('[SPEC-INFRA-001/RF-2] ...')`. Luego implementa el mínimo (verde) y refactoriza.
 - **Atomic Design + SRP:** componentes pequeños (una responsabilidad, ≤ ~150 líneas). En este incremento aún no hay átomos de UI, pero `BaseLayout` solo compone `<head>` + tema + slot.
 - **Contenido/estilo como dato:** nada de colores/tamaños hardcodeados fuera de `tokens.css`/config de Tailwind.
@@ -22,7 +25,8 @@ Implementar, en este orden, las specs **ya Approved**:
 - **Git:** rama `feature/SPEC-INFRA-001-foundations` (y luego `feature/SPEC-LAYOUT-001-design-system`). Conventional Commits con footer que cita la spec (p. ej. `feat(infra): scaffold turborepo [SPEC-INFRA-001]`).
 
 ## Pasos
-1. **Copia el diseño al repo** (RF-9 de INFRA-001): 
+
+1. **Copia el diseño al repo** (RF-9 de INFRA-001):
    ```
    cp "../agency-structure/Agency Structure/assets/SolidGraph Website (standalone).html" design/solidgraph-website.html
    mkdir -p design/assets && cp -r "../agency-structure/Agency Structure/assets/Logos_SolidGraph/." design/assets/
@@ -34,11 +38,13 @@ Implementar, en este orden, las specs **ya Approved**:
 5. **Actualiza** el bloque de Trazabilidad de cada spec (tests + PR) y su Estado a `Implemented`; refleja el avance en `docs/05-implementation-plan.md`.
 
 ## Detente y confirma con el humano si
+
 - Necesitas cambiar el **contrato de bloques** o el layout global de forma no prevista.
 - Vas a **activar deploy de producción** (registry/Dokploy reales) — deja el pipeline listo pero no lo dispares.
 - Vas a añadir una dependencia pesada no contemplada en la spec.
 
 ## Entregable
+
 Dos ramas/PRs (INFRA-001 y LAYOUT-001) con specs `Implemented`, tests en verde citando las specs,
 `docs/traceability.md` generado, y la web booteable (`pnpm dev`) con el tema oscuro y Poppins.
 Cuando termines, resume qué quedó y qué específica sigue (siguiente: átomos `Logo`/`Button`/`Heading`).

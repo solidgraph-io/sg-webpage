@@ -22,9 +22,42 @@ const cls = ['aurora', extra].filter(Boolean).join(' ');
 </div>
 
 <style>
-.aurora { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.aurora b { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; will-change: transform; }
-.aurora .a1 { width: 620px; height: 620px; background: #3a4db0; top: -220px; left: -120px; animation: float1 18s ease-in-out infinite; }
-.aurora .a2 { width: 540px; height: 540px; background: #5c70d6; bottom: -260px; right: -100px; animation: float2 22s ease-in-out infinite; }
-.aurora .a3 { width: 420px; height: 420px; background: #2433a0; top: 30%; right: 24%; opacity: .4; animation: float3 26s ease-in-out infinite; }
+  .aurora {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .aurora b {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .aurora .a1 {
+    width: 620px;
+    height: 620px;
+    background: #3a4db0;
+    top: -220px;
+    left: -120px;
+    animation: float1 18s ease-in-out infinite;
+  }
+  .aurora .a2 {
+    width: 540px;
+    height: 540px;
+    background: #5c70d6;
+    bottom: -260px;
+    right: -100px;
+    animation: float2 22s ease-in-out infinite;
+  }
+  .aurora .a3 {
+    width: 420px;
+    height: 420px;
+    background: #2433a0;
+    top: 30%;
+    right: 24%;
+    opacity: 0.4;
+    animation: float3 26s ease-in-out infinite;
+  }
 </style>

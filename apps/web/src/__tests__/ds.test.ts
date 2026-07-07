@@ -22,9 +22,21 @@ describe('SPEC-DS-001/RF-1 — tokens', () => {
   it('[SPEC-DS-001/RF-1] tokens.css contains all brand and neutral custom properties', () => {
     const content = fs.readFileSync(tokensPath, 'utf-8');
     for (const token of [
-      '--ink', '--indigo', '--indigo-2', '--night', '--night-2',
-      '--periwinkle', '--peri-bright', '--lilac', '--lilac-2', '--white',
-      '--muted', '--muted-d', '--line', '--success', '--star',
+      '--ink',
+      '--indigo',
+      '--indigo-2',
+      '--night',
+      '--night-2',
+      '--periwinkle',
+      '--peri-bright',
+      '--lilac',
+      '--lilac-2',
+      '--white',
+      '--muted',
+      '--muted-d',
+      '--line',
+      '--success',
+      '--star',
     ]) {
       expect(content, `missing ${token}`).toContain(`${token}:`);
     }
@@ -33,9 +45,16 @@ describe('SPEC-DS-001/RF-1 — tokens', () => {
   it('[SPEC-DS-001/RF-1] tokens.css has elevation, radius, layout, motion, type tokens', () => {
     const content = fs.readFileSync(tokensPath, 'utf-8');
     for (const token of [
-      '--shadow-sm', '--shadow-md', '--shadow-lg',
-      '--radius', '--radius-lg', '--radius-xl',
-      '--max', '--ease', '--ease-spring', '--font-sans',
+      '--shadow-sm',
+      '--shadow-md',
+      '--shadow-lg',
+      '--radius',
+      '--radius-lg',
+      '--radius-xl',
+      '--max',
+      '--ease',
+      '--ease-spring',
+      '--font-sans',
     ]) {
       expect(content, `missing ${token}`).toContain(`${token}:`);
     }
@@ -240,8 +259,15 @@ describe('SPEC-DS-001/RF-7 — BaseLayout', () => {
 describe('SPEC-DS-001/RF-8 — primitives', () => {
   const compsDir = path.join(WEB, 'src/components');
   const primitives = [
-    'Button', 'Eyebrow', 'Pill', 'Badge', 'Logo',
-    'IconBox', 'SectionHead', 'Aurora', 'FloatingCard',
+    'Button',
+    'Eyebrow',
+    'Pill',
+    'Badge',
+    'Logo',
+    'IconBox',
+    'SectionHead',
+    'Aurora',
+    'FloatingCard',
   ];
 
   it('[SPEC-DS-001/RF-8] all 9 primitive .astro files exist', () => {
@@ -336,9 +362,7 @@ describe('SPEC-DS-001/RNF-3 — styleguide fidelity', () => {
   });
 
   it('[SPEC-DS-001/RNF-3] primitive CSS class names match styleguide selectors', () => {
-    const styleguide = fs.readFileSync(
-      path.join(ROOT, 'design/template/styleguide.html'), 'utf-8',
-    );
+    const styleguide = fs.readFileSync(path.join(ROOT, 'design/template/styleguide.html'), 'utf-8');
     // Verify key class names used in styleguide exist in our components
     const compsDir = path.join(WEB, 'src/components');
     const checks: [string, string][] = [

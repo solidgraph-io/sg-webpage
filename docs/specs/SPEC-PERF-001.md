@@ -7,10 +7,12 @@
 - **Depende de:** SPEC-DS-001, SPEC-SEC-015 (home ensamblada)
 
 ## Contexto / problema
+
 La home es CSS-first con un `interactions.js` mínimo. Falta blindar la performance como **gate**:
 presupuestos Lighthouse en CI y optimización de imágenes, para que no se degrade.
 
 ## Requisitos funcionales (testeables)
+
 - **RF-1 (Lighthouse CI)** — configurar **Lighthouse CI** con presupuestos que **fallan el CI** si se superan: LCP, CLS, TBT, peso total de JS y de imágenes. Corre sobre la home (build de producción).
 - **RF-2 (imágenes)** — imágenes raster vía `astro:assets` (formatos modernos, `width`/`height` para evitar CLS, `loading=lazy` bajo el pliegue, `fetchpriority` en el LCP si aplica). Los SVG inline del diseño se mantienen.
 - **RF-3 (fuentes)** — Poppins self-hosted **preload** de los pesos usados, `font-display: swap` (ya en DS-001, aquí se verifica el preload y que no hay CDN).
@@ -18,15 +20,18 @@ presupuestos Lighthouse en CI y optimización de imágenes, para que no se degra
 - **RF-5 (CSS)** — CSS de la home dentro de presupuesto; sin CSS no usado significativo.
 
 ## Requisitos no funcionales
+
 - **RNF-1** — presupuestos alcanzables en la home actual (definir umbrales realistas y documentarlos).
 - **RNF-2 (a11y)** — la optimización no rompe contraste/foco (solapa con SPEC-A11Y-001).
 
 ## Invariantes
+
 - **INV-1** — el gate de Lighthouse es **bloqueante** en CI (como el trace/fidelidad).
 - **INV-2** — JS de cliente dentro de presupuesto; sin dependencias pesadas ni islands accidentales (test).
 - **INV-3 (SRP)** — la config de perf vive en su archivo (`lighthouserc`), no dispersa.
 
 ## Criterios de aceptación (Gherkin)
+
 ```gherkin
 Scenario: presupuesto Lighthouse bloqueante
   Given los presupuestos definidos (LCP/CLS/TBT/JS/img)
@@ -45,8 +50,10 @@ Scenario: imágenes sin CLS
 ```
 
 ## Fuera de alcance
+
 - Cabeceras de caché/CDN (infra/Traefik/Cloudflare). SEO → SPEC-SEO-001.
 
 ## Trazabilidad
+
 - **Tests:** `[SPEC-PERF-001/RF-1..5]`, `[.../RNF-1..2]`, `[.../INV-1..3]` — config Lighthouse + presupuestos, `astro:assets`, preload de fuentes, presupuesto de JS.
 - **PRs:** —

@@ -17,9 +17,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Absolute path to design/template/sections/ from monorepo root
-export const DESIGN_SECTIONS = path.resolve(
-  __dirname, '../../../..', 'design/template/sections',
-);
+export const DESIGN_SECTIONS = path.resolve(__dirname, '../../../..', 'design/template/sections');
 
 // Local Poppins fonts (same dir as served at /fonts/ in the app)
 const FONTS_DIR = path.resolve(__dirname, '../../public/fonts');
@@ -95,8 +93,8 @@ function diffPNGs(
     if (png.width === width && png.height === height) return png.data as unknown as Buffer;
     const out = Buffer.alloc(width * height * 4);
     for (let y = 0; y < height; y++) {
-      const srcRow = (y * png.width) * 4;
-      const dstRow = (y * width) * 4;
+      const srcRow = y * png.width * 4;
+      const dstRow = y * width * 4;
       png.data.copy(out, dstRow, srcRow, srcRow + width * 4);
     }
     return out;

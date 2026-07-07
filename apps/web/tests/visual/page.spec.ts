@@ -30,9 +30,20 @@ test.beforeEach(async ({ page }) => {
 test('[SPEC-SEC-015/RF-2] all 14 sections present in DOM', async ({ page }) => {
   await waitForStyles(page);
   const selectors = [
-    '.nav', '.hero', '.marquee', '.pain', '.value', '.how',
-    '.plans', '.testimonials', '.portfolio', '.about', '.faq',
-    '.cta-strip', '.contact', 'footer',
+    '.nav',
+    '.hero',
+    '.marquee',
+    '.pain',
+    '.value',
+    '.how',
+    '.plans',
+    '.testimonials',
+    '.portfolio',
+    '.about',
+    '.faq',
+    '.cta-strip',
+    '.contact',
+    'footer',
   ];
   for (const sel of selectors) {
     await expect(page.locator(sel), `${sel} should be in page`).toBeVisible();
@@ -43,9 +54,19 @@ test('[SPEC-SEC-015/RF-2] sections appear in design order (y-position)', async (
   await page.setViewportSize({ width: 1440, height: 900 });
   await waitForStyles(page);
   const ordered = [
-    '.hero', '.marquee', '.pain', '.value', '.how',
-    '.plans', '.testimonials', '.portfolio', '.about', '.faq',
-    '.cta-strip', '.contact', 'footer',
+    '.hero',
+    '.marquee',
+    '.pain',
+    '.value',
+    '.how',
+    '.plans',
+    '.testimonials',
+    '.portfolio',
+    '.about',
+    '.faq',
+    '.cta-strip',
+    '.contact',
+    'footer',
   ];
   let prevBottom = 0;
   for (const sel of ordered) {
@@ -96,7 +117,9 @@ test('[SPEC-SEC-015/INV-1] page has exactly one <h1>', async ({ page }) => {
 
 // ── Above-fold anti-regresión baseline (animations frozen) ───────────────────
 
-test('[SPEC-SEC-015/RF-4] above-fold desktop — anti-regresión baseline', async ({ page }, testInfo) => {
+test('[SPEC-SEC-015/RF-4] above-fold desktop — anti-regresión baseline', async ({
+  page,
+}, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Above-fold baseline in desktop project only');
   await page.setViewportSize({ width: 1440, height: 900 });
   await waitForStyles(page);
@@ -108,8 +131,13 @@ test('[SPEC-SEC-015/RF-4] above-fold desktop — anti-regresión baseline', asyn
   });
 });
 
-test('[SPEC-SEC-015/RF-4] above-fold mobile — anti-regresión baseline', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'mobile', 'Above-fold mobile baseline in mobile project only');
+test('[SPEC-SEC-015/RF-4] above-fold mobile — anti-regresión baseline', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'mobile',
+    'Above-fold mobile baseline in mobile project only',
+  );
   await page.setViewportSize({ width: 393, height: 852 });
   await waitForStyles(page);
   await page.addStyleTag({ content: PAGE_FREEZE_CSS });

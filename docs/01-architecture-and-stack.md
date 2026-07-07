@@ -4,6 +4,7 @@
 > Arquitectura de la fábrica: `../../agency-structure/Agency Structure/ARQUITECTURA.md`.
 
 ## 1. Qué es
+
 Sitio corporativo de **SolidGraph Solutions LLC** — agencia de webs a medida para negocios
 locales (Charlotte, NC · Springfield, MO). Implementación de referencia del **tier básico** de
 la fábrica (dogfooding). **El diseño ya está definido** (Claude Design). Copy en inglés (US),
@@ -11,20 +12,20 @@ tono honesto/anti-plantilla.
 
 ## 2. Stack (cerrado)
 
-| Capa | Decisión | Nota |
-|---|---|---|
-| Framework | **Astro** + adaptador **Node standalone** (hybrid) | Estático + endpoints (form de leads). Puerto 4321. Sin Next.js. |
-| Lenguaje | **TypeScript** strict | `astro check` en CI. |
-| Componentes | **Atomic Design + SRP** | atoms→molecules→organisms→templates→pages; componentes pequeños (ver §3). |
-| Contenido | **Astro Content Collections** (Zod) | El schema Zod es el contrato de bloques. |
-| CMS edición | **Sveltia CMS** en `/admin` (git-based) | Estático; sin servidor propio. |
-| Estilos | **Tailwind** + design tokens (§5) | daisyUI opcional (probablemente omitir: diseño bespoke). |
-| Interactividad | **Astro islands** (nav móvil, FAQ) | Mínimo JS. |
-| Monorepo | **Turborepo** + **pnpm 9.15.9** · **Node 22** | Remote cache self-hosted. Se mantiene para futuro `apps/crm`. |
-| Tests | Vitest + `astro/container` · Playwright · axe · Lighthouse CI | Ver `04` §3. |
-| CI/CD | DroneCI → Custom Registry → Dokploy → VPS/Docker | §6. |
-| Media | MinIO (S3) | Assets/media. |
-| Deploy | Imagen Docker multi-stage (Node adapter), Traefik + Cloudflare | Web = Node server ligero. |
+| Capa           | Decisión                                                       | Nota                                                                      |
+| -------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Framework      | **Astro** + adaptador **Node standalone** (hybrid)             | Estático + endpoints (form de leads). Puerto 4321. Sin Next.js.           |
+| Lenguaje       | **TypeScript** strict                                          | `astro check` en CI.                                                      |
+| Componentes    | **Atomic Design + SRP**                                        | atoms→molecules→organisms→templates→pages; componentes pequeños (ver §3). |
+| Contenido      | **Astro Content Collections** (Zod)                            | El schema Zod es el contrato de bloques.                                  |
+| CMS edición    | **Sveltia CMS** en `/admin` (git-based)                        | Estático; sin servidor propio.                                            |
+| Estilos        | **Tailwind** + design tokens (§5)                              | daisyUI opcional (probablemente omitir: diseño bespoke).                  |
+| Interactividad | **Astro islands** (nav móvil, FAQ)                             | Mínimo JS.                                                                |
+| Monorepo       | **Turborepo** + **pnpm 9.15.9** · **Node 22**                  | Remote cache self-hosted. Se mantiene para futuro `apps/crm`.             |
+| Tests          | Vitest + `astro/container` · Playwright · axe · Lighthouse CI  | Ver `04` §3.                                                              |
+| CI/CD          | DroneCI → Custom Registry → Dokploy → VPS/Docker               | §6.                                                                       |
+| Media          | MinIO (S3)                                                     | Assets/media.                                                             |
+| Deploy         | Imagen Docker multi-stage (Node adapter), Traefik + Cloudflare | Web = Node server ligero.                                                 |
 
 ## 3. Estructura del monorepo + capas atómicas
 
@@ -68,18 +69,32 @@ El `BlockRenderer` mapea `block.type` → organismo. Conversión desde el diseñ
 - **Organisms (bloques):** Nav, Hero, PainPoints, ValueProp, Process, Pricing, MaintenancePlans, Stats, Testimonials, CtaBand, About, Faq, Footer.
 
 ## 5. Marca (design tokens)
+
 `src/styles/tokens.css`; tipografía **Poppins** self-hosted.
+
 ```css
-:root{
-  --bg:#131634; --bg-deep:#0c0e23; --panel:#1f2c66; --panel-alt:#2d3d8a;
-  --brand:#3a4db0; --brand-500:#5c70d6; --brand-300:#7d8ef0; --brand-700:#2433a0;
-  --accent:#34d39a; --accent-deep:#1a8c63; --warn:#ffd166;
-  --text:#f4f6fc; --text-soft:#d8defa; --text-muted:#9aa0c4;
+:root {
+  --bg: #131634;
+  --bg-deep: #0c0e23;
+  --panel: #1f2c66;
+  --panel-alt: #2d3d8a;
+  --brand: #3a4db0;
+  --brand-500: #5c70d6;
+  --brand-300: #7d8ef0;
+  --brand-700: #2433a0;
+  --accent: #34d39a;
+  --accent-deep: #1a8c63;
+  --warn: #ffd166;
+  --text: #f4f6fc;
+  --text-soft: #d8defa;
+  --text-muted: #9aa0c4;
 }
 ```
+
 Logos/favicon de la empresa: en **`design/assets/`** → copiar los necesarios a `apps/web/public/`.
 
 ## 6. Infra y CI/CD
+
 `git push` → **DroneCI** → **Custom Registry** (`registry.solidgraph.dev`) → **Dokploy** (webhook
 por servicio) → **VPS/Docker**. **MinIO** (S3) para media. **Traefik** (vía Dokploy) TLS/routing;
 Cloudflare por encima. Pipeline web-only: `install → validate → build (turbo) → build-push-web →

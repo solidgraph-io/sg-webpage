@@ -11,14 +11,32 @@ const { label, fieldId, required = false, full = false } = Astro.props;
 
 <div class:list={['field', { full }]}>
   <label for={fieldId}>
-    {label}{required && <span class="req" aria-hidden="true">*</span>}
+    {label}{
+      required && (
+        <span class="req" aria-hidden="true">
+          *
+        </span>
+      )
+    }
   </label>
   <slot />
 </div>
 
 <style>
-.field { display: flex; flex-direction: column; gap: 7px; }
-.field.full { grid-column: 1 / -1; }
-.field label { font-size: 12px; font-weight: 600; color: var(--ink); }
-.field label .req { color: var(--periwinkle); }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .field.full {
+    grid-column: 1 / -1;
+  }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .field label .req {
+    color: var(--periwinkle);
+  }
 </style>

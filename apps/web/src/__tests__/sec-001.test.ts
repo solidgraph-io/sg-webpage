@@ -92,15 +92,14 @@ describe('SPEC-SEC-001/RNF-2 — perf', () => {
 // ── RNF-3: fidelidad visual ────────────────────────────────────────────────
 describe('SPEC-SEC-001/RNF-3 — fidelidad', () => {
   it('[SPEC-SEC-001/RNF-3] design source 01-nav.html exists', () => {
-    expect(
-      fs.existsSync(path.join(ROOT, 'design/template/sections/01-nav.html')),
-    ).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'design/template/sections/01-nav.html'))).toBe(true);
   });
 
   it('[SPEC-SEC-001/RNF-3] Nav key CSS classes match source design', () => {
     const c = fs.readFileSync(navPath, 'utf-8');
     const source = fs.readFileSync(
-      path.join(ROOT, 'design/template/sections/01-nav.html'), 'utf-8',
+      path.join(ROOT, 'design/template/sections/01-nav.html'),
+      'utf-8',
     );
     for (const cls of ['nav-inner', 'nav-links', 'nav-cta']) {
       expect(source, `${cls} not in source`).toContain(cls);

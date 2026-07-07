@@ -15,10 +15,13 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-005/RNF-4] value desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '05-value.html',
     selector: '.value',
     viewport: { width: 1440, height: 900 },
@@ -29,14 +32,17 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-005/RNF-4] value desktop 1440 — diff vs dise
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-005/RNF-4] value mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '05-value.html',
     selector: '.value',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'value-mobile',
     extraCss: HIDE_NAV_CSS,
   });

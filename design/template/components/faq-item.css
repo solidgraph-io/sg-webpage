@@ -6,10 +6,54 @@
    <details class="faq-item"><summary>Question?<span class="plus">+</span></summary>
      <div class="answer">Answer text…</div></details>
    ========================================================================== */
-.faq-item { background: var(--lilac-2); border-radius: var(--radius); border: 1px solid transparent; transition: all .4s var(--ease); }
-.faq-item[open] { background: #fff; border-color: rgba(45,61,138,.18); box-shadow: var(--shadow-sm); }
-.faq-item summary { list-style: none; cursor: pointer; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 15.5px; font-weight: 600; color: var(--ink); }
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary .plus { width: 30px; height: 30px; border-radius: 50%; background: var(--indigo); color: #fff; display: grid; place-items: center; font-size: 19px; font-weight: 400; flex-shrink: 0; transition: transform .35s var(--ease-spring), background .3s ease; }
-.faq-item[open] summary .plus { transform: rotate(135deg); background: var(--periwinkle); }
-.faq-item .answer { padding: 0 28px 26px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.faq-item {
+  background: var(--lilac-2);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: all 0.4s var(--ease);
+}
+.faq-item[open] {
+  background: #fff;
+  border-color: rgba(45, 61, 138, 0.18);
+  box-shadow: var(--shadow-sm);
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary .plus {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--indigo);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  font-weight: 400;
+  flex-shrink: 0;
+  transition:
+    transform 0.35s var(--ease-spring),
+    background 0.3s ease;
+}
+.faq-item[open] summary .plus {
+  transform: rotate(135deg);
+  background: var(--periwinkle);
+}
+.faq-item .answer {
+  padding: 0 28px 26px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}

@@ -18,11 +18,14 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-013/RNF-4] contact desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '13-contact.html',
     selector: '.contact',
     viewport: { width: 1440, height: 900 },
@@ -33,15 +36,18 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-013/RNF-4] contact desktop 1440 — diff vs di
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-013/RNF-4] contact mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile gate runs in mobile project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '13-contact.html',
     selector: '.contact',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'contact-mobile',
     extraCss: CONTACT_EXTRA_CSS,
   });

@@ -22,26 +22,59 @@ const { heading, body, ctaLabel, ctaHref } = Astro.props;
     </div>
     <Button variant="white" href={ctaHref} magnetic>
       <span>{ctaLabel}</span>
-      <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow" /></svg>
+      <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow"></use></svg>
     </Button>
   </div>
 </div>
 
 <style>
-.cta-wrap { padding: 0 32px; }
-.cta-strip {
-  background: var(--night); color: #fff; border-radius: var(--radius-xl);
-  padding: 60px 64px; margin: 90px auto 0; max-width: var(--max);
-  display: flex; align-items: center; justify-content: space-between; gap: 40px;
-  box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
-}
-.cta-strip :global(.aurora) b { opacity: .4; }
-.cta-strip-content { position: relative; z-index: 2; }
-.cta-strip h3 { color: #fff; font-size: clamp(26px, 3vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
-.cta-strip p { color: var(--muted-d); font-size: 15px; margin-top: 12px; }
-.cta-strip :global(.btn) { position: relative; z-index: 2; }
+  .cta-wrap {
+    padding: 0 32px;
+  }
+  .cta-strip {
+    background: var(--night);
+    color: #fff;
+    border-radius: var(--radius-xl);
+    padding: 60px 64px;
+    margin: 90px auto 0;
+    max-width: var(--max);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-strip :global(.aurora) b {
+    opacity: 0.4;
+  }
+  .cta-strip-content {
+    position: relative;
+    z-index: 2;
+  }
+  .cta-strip h3 {
+    color: #fff;
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .cta-strip p {
+    color: var(--muted-d);
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  .cta-strip :global(.btn) {
+    position: relative;
+    z-index: 2;
+  }
 
-@media (max-width: 720px) {
-  .cta-strip { flex-direction: column; align-items: flex-start; padding: 40px 32px; }
-}
+  @media (max-width: 720px) {
+    .cta-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px 32px;
+    }
+  }
 </style>

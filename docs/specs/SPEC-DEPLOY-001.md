@@ -7,6 +7,7 @@
 - **Depende de:** SPEC-INFRA-001 (pipeline base + Dockerfile), y el sitio completo (SEC/CONTENT/SEO/PERF/A11Y/CMS/FORM)
 
 ## Contexto / problema
+
 El pipeline (`.drone.yml`) ya corre todos los gates en `develop` y `main`, pero **solo `main`**
 publica imagen al registry y dispara Dokploy. No existe un **entorno dev** para probar y refinar el
 despliegue antes de producción. Se añade un **stage dev** que despliega en cada push a `develop`,
@@ -17,6 +18,7 @@ probar el flujo end-to-end.
 > reales) desde el arranque. Prod (`main` → `solidgraph.io`) queda **intacto**.
 
 ## Requisitos funcionales (testeables)
+
 - **RF-1 (rama develop)** — existe la rama `develop` integrando todo lo `Implemented` (content, CMS, SEO,
   perf, a11y, leads/turnstile, fix de docs). `main` no se toca en este incremento.
 - **RF-2 (build-push dev)** — nuevo step `build-push-web-dev` en `.drone.yml`: en **push a `develop`**,
@@ -36,6 +38,7 @@ probar el flujo end-to-end.
   (home 200, `/admin` carga, `POST /api/lead` con token válido entrega email).
 
 ## Requisitos no funcionales
+
 - **RNF-1 (paridad prod/dev)** — dev usa **el mismo Dockerfile y los mismos gates** que prod; la única
   diferencia es tag de imagen, webhook y valores de env. Evita "funciona en dev, rompe en prod".
 - **RNF-2 (seguridad)** — cero secretos en el repo: registry/Dokploy/Turnstile/Resend en secrets de
@@ -44,12 +47,14 @@ probar el flujo end-to-end.
   el trigger global del pipeline sigue siendo push + pull_request.
 
 ## Invariantes
+
 - **INV-1** — `main` → prod (`solidgraph.io`, tag `latest`); `develop` → dev (`dev.solidgraph.dev`, tag
   `dev`). Nunca se cruzan tags ni webhooks.
 - **INV-2** — dev no baja la barra de calidad: mismos gates bloqueantes que prod.
 - **INV-3** — sin secretos en el repo.
 
 ## Criterios de aceptación (Gherkin)
+
 ```gherkin
 Scenario: push a develop despliega dev
   Given un push a la rama develop que pasa todos los gates
@@ -69,7 +74,9 @@ Scenario: gate infiel bloquea el deploy dev
 ```
 
 ## Detente y confirma con el humano (setup fuera del repo)
+
 Claude Code **no** puede tocar Dokploy/Cloudflare/Drone-secrets. El humano configura:
+
 - **DNS:** `dev.solidgraph.dev` → VPS (Cloudflare), con Traefik enrutando al servicio dev (puerto 4321).
 - **Dokploy:** servicio `web-dev` que hace pull de `registry.solidgraph.dev/solidgraph-web:dev`, dominio
   `dev.solidgraph.dev`, y las env de RF-5 como env/secrets. Copia su **deploy webhook** →
@@ -81,12 +88,14 @@ Claude Code **no** puede tocar Dokploy/Cloudflare/Drone-secrets. El humano confi
 - **Resend:** verificar el dominio de `LEAD_FROM_EMAIL`; obtener `RESEND_API_KEY`; fijar `LEAD_TO_EMAIL`.
 
 ## Fuera de alcance
+
 - Deploy a **producción** (`main` → `solidgraph.io`) → decisión humana aparte (los steps ya existen).
 - Servicios avanzados (Strapi/Vendure) → tier avanzado de la fábrica, no aplica al sitio propio.
 - Rollback automatizado / blue-green → futuro.
 
 ## Trazabilidad
+
 - **Tests/verificación:** el pipeline dev es la prueba viva (gates + deploy). Post-deploy: smoke manual
   (home 200, `/admin`, `POST /api/lead`). Sin unit test nuevo; se valida por observación del stage.
-- **PRs:** rama `feature/SPEC-DEPLOY-001-dev-stage` → `develop`.  ·  **ADR:** ADR-0011 posible
+- **PRs:** rama `feature/SPEC-DEPLOY-001-dev-stage` → `develop`. · **ADR:** ADR-0011 posible
   ("stage dev en develop; paridad de imagen/gates con prod, difieren tag+webhook+env").

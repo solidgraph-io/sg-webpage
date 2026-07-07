@@ -20,9 +20,11 @@ Diseño (Claude Design export en design/)
         → Tests (rojo) → Implementación (verde) → Refactor
            → PR enlazada a SPEC (+ADR)
 ```
+
 Si falta la spec, el agente la crea y **pide aprobación** antes de escribir código.
 
 ### 1.1 Anatomía de una SPEC
+
 `docs/specs/SPEC-<DOMINIO>-<NNN>.md`, ID **estable**. Estado: Draft → Review → Approved →
 Implemented → Verified. Secciones: Contexto · `RF-x` (testeables) · `RNF-x` (a11y/perf/SEO/
 responsive) · `INV-x` (invariantes) · Criterios Gherkin · Fuera de alcance · Trazabilidad.
@@ -30,6 +32,7 @@ Dominios: `LAYOUT`, `ATOM`, `MOLECULE`, `BLOCK` (organismo), `CONTENT`, `CMS`, `
 `A11Y`, `PERF`, `ANALYTICS`, `INFRA`.
 
 ### 1.2 Regla de oro de trazabilidad
+
 Cada `RF-x` → ≥1 test que cita la spec: `it('[SPEC-BLOCK-006/RF-3] ...')`. `scripts/trace.ts`
 genera `docs/traceability.md`. **CI falla** si una spec `Approved` tiene un requisito sin test.
 Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-plan.md`).
@@ -55,15 +58,17 @@ Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-pl
 ## 3. Test-Driven Development (TDD) — Red → Green → Refactor
 
 ### 3.1 Pirámide (web)
-| Nivel | Herramienta | Qué cubre |
-|-------|-------------|-----------|
-| Unit/componente | Vitest + `astro/container` | render de átomos/moléculas/organismos, props → salida |
-| Contrato de contenido | Zod | `content/**` cumple el schema; props inválidas fallan (build) |
-| Accesibilidad | axe | WCAG 2.1 AA por componente y página |
-| E2E/visual | Playwright | nav, FAQ, form; **regresión visual vs. diseño** |
-| Perf | Lighthouse CI | LCP/CLS/TBT, peso JS/imágenes |
+
+| Nivel                 | Herramienta                | Qué cubre                                                     |
+| --------------------- | -------------------------- | ------------------------------------------------------------- |
+| Unit/componente       | Vitest + `astro/container` | render de átomos/moléculas/organismos, props → salida         |
+| Contrato de contenido | Zod                        | `content/**` cumple el schema; props inválidas fallan (build) |
+| Accesibilidad         | axe                        | WCAG 2.1 AA por componente y página                           |
+| E2E/visual            | Playwright                 | nav, FAQ, form; **regresión visual vs. diseño**               |
+| Perf                  | Lighthouse CI              | LCP/CLS/TBT, peso JS/imágenes                                 |
 
 ### 3.2 Reglas TDD vinculantes
+
 - Un test en rojo antes de cada comportamiento; todo bug empieza por un test que lo reproduce.
 - El **schema Zod del bloque** es la fuente de verdad.
 - Cobertura: render/adapter/endpoint ≥ 85%; resto ≥ 70% (gate CI).
@@ -86,10 +91,12 @@ PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de blo
 > `trace check` depende de `docs/specs` estando en el repo.
 
 **Gates de CI (bloqueantes):**
+
 ```
 lint → type-check (astro check) → unit+contract → a11y → build → coverage
      → trace check (spec↔test) → visual/e2e → security scan (gitleaks, npm audit)
 ```
+
 Entrega: DroneCI → Custom Registry → Dokploy → VPS/Docker (ver `docs/01` §6).
 
 ---
@@ -110,6 +117,7 @@ Entrega: DroneCI → Custom Registry → Dokploy → VPS/Docker (ver `docs/01` �
 12. **Bloques/organismos desacoplados del copy de SolidGraph** para reutilizarlos en la fábrica.
 
 ### Detente y confirma con el humano
+
 - Antes de cambiar el **contrato de bloques** (`packages/blocks-contract`).
 - Antes de tocar **CI/CD, registry o deploy de producción**.
 - Antes de añadir una **dependencia pesada** o JS de cliente no previsto en la spec.
@@ -117,6 +125,7 @@ Entrega: DroneCI → Custom Registry → Dokploy → VPS/Docker (ver `docs/01` �
 ---
 
 ## 6. Verificación antes de decir "listo"
+
 ```
 pnpm lint && pnpm type-check && pnpm test && pnpm trace -- --check
 ```

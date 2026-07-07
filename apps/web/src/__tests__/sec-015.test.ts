@@ -41,9 +41,20 @@ describe('SPEC-SEC-015/RF-1 — BaseLayout SEO', () => {
 // ── RF-2: All 14 sections in index.astro ─────────────────────────────────
 describe('SPEC-SEC-015/RF-2 — 14 sections composed', () => {
   const sections = [
-    'Nav', 'Hero', 'Marquee', 'PainPoints', 'Value',
-    'HowItWorks', 'Plans', 'Testimonials', 'Portfolio',
-    'About', 'Faq', 'CtaStrip', 'Contact', 'Footer',
+    'Nav',
+    'Hero',
+    'Marquee',
+    'PainPoints',
+    'Value',
+    'HowItWorks',
+    'Plans',
+    'Testimonials',
+    'Portfolio',
+    'About',
+    'Faq',
+    'CtaStrip',
+    'Contact',
+    'Footer',
   ];
 
   for (const name of sections) {
@@ -74,7 +85,9 @@ describe('SPEC-SEC-015/RF-3 — SEO props in index.astro', () => {
 describe('SPEC-SEC-015/RF-4 — above-fold visual gate', () => {
   it('[SPEC-SEC-015/RF-4] design template index.html source exists', () => {
     const designIndex = path.join(ROOT, 'design/template/index.html');
-    expect(fs.existsSync(designIndex), 'design/template/index.html must exist as gate source').toBe(true);
+    expect(fs.existsSync(designIndex), 'design/template/index.html must exist as gate source').toBe(
+      true,
+    );
   });
 });
 
@@ -147,9 +160,21 @@ describe('SPEC-SEC-015/INV-1 — single h1', () => {
   });
 
   it('[SPEC-SEC-015/INV-1] no other section component defines <h1>', () => {
-    const comps = ['Nav', 'Marquee', 'PainPoints', 'Value', 'HowItWorks',
-      'Plans', 'Testimonials', 'Portfolio', 'About', 'Faq', 'CtaStrip',
-      'Contact', 'Footer'];
+    const comps = [
+      'Nav',
+      'Marquee',
+      'PainPoints',
+      'Value',
+      'HowItWorks',
+      'Plans',
+      'Testimonials',
+      'Portfolio',
+      'About',
+      'Faq',
+      'CtaStrip',
+      'Contact',
+      'Footer',
+    ];
     for (const name of comps) {
       const c = fs.readFileSync(path.join(WEB, `src/components/${name}.astro`), 'utf-8');
       expect(c, `${name}.astro should not have <h1>`).not.toMatch(/<h1[\s>]/);

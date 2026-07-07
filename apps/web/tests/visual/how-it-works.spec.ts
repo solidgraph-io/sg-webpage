@@ -21,10 +21,13 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-006/RNF-4] how-it-works desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '06-how-it-works.html',
     selector: '.how',
     viewport: { width: 1440, height: 900 },
@@ -35,14 +38,17 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-006/RNF-4] how-it-works desktop 1440 — diff 
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-006/RNF-4] how-it-works mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '06-how-it-works.html',
     selector: '.how',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'how-mobile',
     extraCss: HOW_EXTRA_CSS,
   });

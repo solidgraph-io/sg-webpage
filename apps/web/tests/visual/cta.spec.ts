@@ -20,11 +20,14 @@ test.beforeEach(async ({ page }) => {
 // ── Gate: design vs implementation ───────────────────────────────────────────
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-012/RNF-4] cta desktop 1440 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '12-cta.html',
     selector: '.cta-strip',
     viewport: { width: 1440, height: 900 },
@@ -35,15 +38,18 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-012/RNF-4] cta desktop 1440 — diff vs diseñ
 });
 
 test('[SPEC-QA-001/RF-1][SPEC-SEC-012/RNF-4] cta mobile 393 — diff vs diseño', async ({
-  page, browser,
+  page,
+  browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile gate runs in mobile project only');
   await compareWithDesign({
-    astroPage: page, browser, testInfo,
+    astroPage: page,
+    browser,
+    testInfo,
     sectionFile: '12-cta.html',
     selector: '.cta-strip',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'cta-mobile',
     extraCss: CTA_EXTRA_CSS,
   });
@@ -67,9 +73,9 @@ test('[SPEC-SEC-012/RNF-4] cta mobile — anti-regresión baseline', async ({ pa
 
 test('[SPEC-SEC-012/RF-1] cta-strip has dark background (--night)', async ({ page }) => {
   await waitForStyles(page);
-  const bg = await page.locator('.cta-strip').evaluate(
-    (el) => getComputedStyle(el).backgroundColor
-  );
+  const bg = await page
+    .locator('.cta-strip')
+    .evaluate((el) => getComputedStyle(el).backgroundColor);
   expect(bg).not.toBe('rgba(0, 0, 0, 0)');
   expect(bg).not.toBe('transparent');
 });

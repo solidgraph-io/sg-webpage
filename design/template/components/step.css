@@ -8,20 +8,54 @@
      <h4>We Talk <span class="dur">30 minutes</span></h4><p>…</p></div></div>
    ========================================================================== */
 .step {
-  display: grid; grid-template-columns: auto 1fr; gap: 26px;
-  padding: 30px 32px; border-radius: var(--radius-lg);
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 26px;
+  padding: 30px 32px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(6px);
-  transition: transform .5s var(--ease), background .4s ease, border-color .4s ease;
+  transition:
+    transform 0.5s var(--ease),
+    background 0.4s ease,
+    border-color 0.4s ease;
 }
-.step:hover { transform: translateY(-4px) scale(1.01); background: rgba(255,255,255,.09); border-color: rgba(125,142,240,.4); }
+.step:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(125, 142, 240, 0.4);
+}
 .step .num {
-  font-size: 46px; font-weight: 800; line-height: 1;
-  background: linear-gradient(180deg, var(--peri-bright), rgba(125,142,240,.3));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  letter-spacing: -.04em;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(180deg, var(--peri-bright), rgba(125, 142, 240, 0.3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.04em;
 }
-.step .meat h4 { font-size: 19px; color: #fff; font-weight: 700; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.step .meat .dur { font-size: 11px; color: #fff; background: rgba(92,112,214,.55); padding: 4px 12px; border-radius: 999px; font-weight: 600; }
-.step .meat p { font-size: 13.5px; color: var(--muted-d); margin-top: 8px; line-height: 1.6; }
+.step .meat h4 {
+  font-size: 19px;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.step .meat .dur {
+  font-size: 11px;
+  color: #fff;
+  background: rgba(92, 112, 214, 0.55);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.step .meat p {
+  font-size: 13.5px;
+  color: var(--muted-d);
+  margin-top: 8px;
+  line-height: 1.6;
+}

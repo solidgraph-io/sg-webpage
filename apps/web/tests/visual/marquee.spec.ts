@@ -40,7 +40,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee mobile 393 — diff vs dise
     sectionFile: '03-marquee.html',
     selector: '.marquee',
     viewport: { width: 393, height: 300 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'marquee-mobile',
   });
 });

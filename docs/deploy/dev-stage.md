@@ -22,14 +22,14 @@ push → develop
 
 Configure these in Drone CI → Settings → Secrets:
 
-| Secret | Description | Who provides |
-|--------|-------------|--------------|
+| Secret                    | Description                                          | Who provides                                               |
+| ------------------------- | ---------------------------------------------------- | ---------------------------------------------------------- |
 | `DOKPLOY_WEBHOOK_WEB_DEV` | Deploy webhook URL for the `web-dev` Dokploy service | Human: copy from Dokploy → web-dev → Deployments → Webhook |
-| `REGISTRY_USERNAME` | Private registry username (shared with prod) | Already exists |
-| `REGISTRY_PASSWORD` | Private registry password (shared with prod) | Already exists |
-| `TURBO_TOKEN` | Turborepo Remote Cache token (shared) | Already exists |
-| `TURBO_TEAM` | Turborepo team slug (shared) | Already exists |
-| `TURBO_API` | Self-hosted cache server URL (shared) | Already exists |
+| `REGISTRY_USERNAME`       | Private registry username (shared with prod)         | Already exists                                             |
+| `REGISTRY_PASSWORD`       | Private registry password (shared with prod)         | Already exists                                             |
+| `TURBO_TOKEN`             | Turborepo Remote Cache token (shared)                | Already exists                                             |
+| `TURBO_TEAM`              | Turborepo team slug (shared)                         | Already exists                                             |
+| `TURBO_API`               | Self-hosted cache server URL (shared)                | Already exists                                             |
 
 ---
 

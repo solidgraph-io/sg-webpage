@@ -12,15 +12,18 @@ es **inerte**.
 > **Recuerda (AGENTS.md §4):** `docs/` se commitea con el incremento (`git add docs/`).
 
 ## Objetivo
+
 Implementar `docs/specs/SPEC-FORM-001.md`: endpoint `/api/lead` + `LeadPort` + anti-spam + form con
 progressive enhancement.
 
 ## Decisiones cerradas (NO preguntes)
+
 - **Destino = email vía Resend.** Adaptador por defecto Resend, `LEAD_PROVIDER=resend`, dejado parametrizable para Postmark/SMTP a futuro.
 - **Turnstile = ACTIVADO** (verificación server-side obligatoria).
 - **Secretos por env** (placeholders en `.env.example`, nunca valores reales en el repo): `RESEND_API_KEY`, `LEAD_FROM_EMAIL` (dominio verificado en Resend), `LEAD_TO_EMAIL` (recepción), `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`.
 
 ## Reglas (no negociables)
+
 - **TDD:** tests en rojo citando la spec (`it('[SPEC-FORM-001/RF-2] LeadPort receives valid lead')`).
 - **Puerto/adaptador:** `LeadPort` (interfaz) + **adaptador Resend** por defecto, **parametrizado por env** (`LEAD_PROVIDER`). El endpoint **no** conoce el proveedor. Sin secretos en el repo.
 - **Anti-spam:** honeypot (campo oculto) + rate-limit por IP + **Turnstile** (valida el token contra `siteverify` con `TURNSTILE_SECRET_KEY`; el form renderiza el widget con `TURNSTILE_SITE_KEY`); el spam / token inválido no llega al puerto (test).
@@ -31,10 +34,12 @@ progressive enhancement.
 - **Git:** rama `feature/SPEC-FORM-001-leads`; Conventional Commits `[SPEC-FORM-001]`, scope `form`; incluye `docs/`.
 
 ## Pendiente del humano (solo valores de secretos, NO bloquea la implementación)
+
 Implementa todo contra env con `.env.example` documentado. El humano proveerá después (env/Drone):
 `RESEND_API_KEY`, `LEAD_FROM_EMAIL`, `LEAD_TO_EMAIL`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`.
 
 ## Pasos
+
 1. Schema Zod del lead (mirror de los campos del form) + `/api/lead` (Node) que valida y llama al puerto.
 2. `LeadPort` + adaptador email (proveedor por env). Tests con el puerto mockeado (contrato).
 3. Anti-spam: honeypot + rate-limit (+ Turnstile opcional). Tests de que el spam no llega al puerto.
@@ -43,6 +48,7 @@ Implementa todo contra env con `.env.example` documentado. El humano proveerá d
 6. `pnpm lint && pnpm type-check && pnpm test && pnpm test:e2e && pnpm trace -- --check` verde. Estado a `Implemented`; actualiza y **commitea** `docs/05`.
 
 ## Entregable
+
 El formulario **captura de verdad**: valida, filtra spam y entrega el lead por el `LeadPort` (email
 por defecto, proveedor por env), con PE y a11y, sin tocar la fidelidad. Al terminar, resume, indica
 qué necesitas del humano (destino + credenciales + email de recepción) y confirma los diferidos

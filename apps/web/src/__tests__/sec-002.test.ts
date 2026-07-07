@@ -122,9 +122,7 @@ describe('SPEC-SEC-002/RNF-1 — a11y', () => {
   });
 
   it('[SPEC-SEC-002/RNF-1] Aurora has aria-hidden (decorative)', () => {
-    const aurora = fs.readFileSync(
-      path.join(WEB, 'src/components/Aurora.astro'), 'utf-8',
-    );
+    const aurora = fs.readFileSync(path.join(WEB, 'src/components/Aurora.astro'), 'utf-8');
     expect(aurora).toContain('aria-hidden');
   });
 });
@@ -148,15 +146,14 @@ describe('SPEC-SEC-002/RNF-3 — responsive', () => {
 // ── RNF-4: fidelidad visual ────────────────────────────────────────────────
 describe('SPEC-SEC-002/RNF-4 — fidelidad', () => {
   it('[SPEC-SEC-002/RNF-4] design source 02-hero.html exists', () => {
-    expect(
-      fs.existsSync(path.join(ROOT, 'design/template/sections/02-hero.html')),
-    ).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'design/template/sections/02-hero.html'))).toBe(true);
   });
 
   it('[SPEC-SEC-002/RNF-4] Hero key CSS classes match source design', () => {
     const c = fs.readFileSync(heroPath, 'utf-8');
     const source = fs.readFileSync(
-      path.join(ROOT, 'design/template/sections/02-hero.html'), 'utf-8',
+      path.join(ROOT, 'design/template/sections/02-hero.html'),
+      'utf-8',
     );
     for (const cls of ['hero-stage', 'hero-screen', 'hero-ctas', 'hero-float']) {
       expect(source, `${cls} not in source`).toContain(cls);

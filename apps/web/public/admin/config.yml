@@ -28,7 +28,6 @@ public_folder: /assets
 # ── Collections ────────────────────────────────────────────────────────────────
 
 collections:
-
   # ── 1. Site Settings (settings/site.yaml → SiteConfigSchema) ─────────────────
   - name: settings
     label: Site Settings
@@ -37,15 +36,15 @@ collections:
         label: Site Configuration
         file: apps/web/src/content/settings/site.yaml
         fields:
-          - { name: name,      label: Site Name,   widget: string }
-          - { name: legalName, label: Legal Name,  widget: string, required: false }
-          - { name: url,       label: Site URL,    widget: string }
-          - { name: logo,      label: Logo Path,   widget: string }
+          - { name: name, label: Site Name, widget: string }
+          - { name: legalName, label: Legal Name, widget: string, required: false }
+          - { name: url, label: Site URL, widget: string }
+          - { name: logo, label: Logo Path, widget: string }
           - name: locations
             label: Service Locations
             widget: list
             fields:
-              - { name: city,   label: City,   widget: string }
+              - { name: city, label: City, widget: string }
               - { name: region, label: Region, widget: string }
           - name: contact
             label: Contact
@@ -63,9 +62,9 @@ collections:
             label: Default SEO
             widget: object
             fields:
-              - { name: title,       label: Default Title,       widget: string }
+              - { name: title, label: Default Title, widget: string }
               - { name: description, label: Default Description, widget: text }
-              - { name: ogImage,     label: OG Image Path,       widget: string, required: false }
+              - { name: ogImage, label: OG Image Path, widget: string, required: false }
 
   # ── 2. Home Page (pages/home.yaml → HomeSchema) ───────────────────────────────
   - name: pages
@@ -81,9 +80,9 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: title,       label: Title,       widget: string, required: false }
-              - { name: description, label: Description, widget: text,   required: false }
-              - { name: canonical,   label: Canonical,   widget: string, required: false }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: description, label: Description, widget: text, required: false }
+              - { name: canonical, label: Canonical, widget: string, required: false }
 
           # nav — HomeSchema.nav
           - name: nav
@@ -95,29 +94,29 @@ collections:
                 widget: list
                 fields:
                   - { name: label, label: Label, widget: string }
-                  - { name: href,  label: Href,  widget: string }
+                  - { name: href, label: Href, widget: string }
               - name: cta
                 label: Nav CTA Button
                 widget: object
                 fields:
                   - { name: label, label: Label, widget: string }
-                  - { name: href,  label: Href,  widget: string }
+                  - { name: href, label: Href, widget: string }
 
           # hero — HomeSchema.hero
           - name: hero
             label: Hero Section
             widget: object
             fields:
-              - { name: pill,     label: Pill Tag,  widget: string }
-              - { name: title,    label: Heading,   widget: string }
-              - { name: subtitle, label: Subtitle,  widget: text }
-              - { name: snippet,  label: Snippet,   widget: string }
+              - { name: pill, label: Pill Tag, widget: string }
+              - { name: title, label: Heading, widget: string }
+              - { name: subtitle, label: Subtitle, widget: text }
+              - { name: snippet, label: Snippet, widget: string }
               - name: ctas
                 label: CTA Buttons
                 widget: list
                 fields:
-                  - { name: label,   label: Label,   widget: string }
-                  - { name: href,    label: Href,    widget: string }
+                  - { name: label, label: Label, widget: string }
+                  - { name: href, label: Href, widget: string }
                   - name: variant
                     label: Variant
                     widget: select
@@ -127,11 +126,11 @@ collections:
                 label: Preview Card
                 widget: object
                 fields:
-                  - { name: url,     label: Preview URL,   widget: string }
-                  - { name: tag,     label: Tag,           widget: string }
-                  - { name: title,   label: Card Title,    widget: string }
-                  - { name: body,    label: Card Body,     widget: text }
-                  - { name: cta,     label: Card CTA Text, widget: string }
+                  - { name: url, label: Preview URL, widget: string }
+                  - { name: tag, label: Tag, widget: string }
+                  - { name: title, label: Card Title, widget: string }
+                  - { name: body, label: Card Body, widget: text }
+                  - { name: cta, label: Card CTA Text, widget: string }
                   - name: chips
                     label: Tech Chips
                     widget: list
@@ -142,8 +141,8 @@ collections:
                 widget: list
                 fields:
                   - { name: iconId, label: Icon ID, widget: string }
-                  - { name: label,  label: Label,   widget: string }
-                  - { name: sub,    label: Sub,     widget: string }
+                  - { name: label, label: Label, widget: string }
+                  - { name: sub, label: Sub, widget: string }
                   - name: pos
                     label: Position
                     widget: select
@@ -166,19 +165,19 @@ collections:
             widget: object
             fields:
               - { name: heading, label: Heading, widget: string }
-              - { name: intro,   label: Intro,   widget: text }
+              - { name: intro, label: Intro, widget: text }
               - name: items
                 label: Pain Points
                 widget: list
                 fields:
                   - { name: iconId, label: Icon ID, widget: string }
-                  - { name: text,   label: Text,    widget: text }
+                  - { name: text, label: Text, widget: text }
               - name: feature
                 label: Feature Callout
                 widget: object
                 fields:
                   - { name: title, label: Title, widget: string }
-                  - { name: text,  label: Text,  widget: text }
+                  - { name: text, label: Text, widget: text }
 
           # value — HomeSchema.value
           - name: value
@@ -191,15 +190,15 @@ collections:
                 widget: object
                 fields:
                   - { name: strong, label: Strong Text, widget: string }
-                  - { name: body,   label: Body,        widget: text }
+                  - { name: body, label: Body, widget: text }
               - name: pillars
                 label: Value Pillars
                 widget: list
                 fields:
-                  - { name: num,    label: Number, widget: string }
+                  - { name: num, label: Number, widget: string }
                   - { name: iconId, label: Icon ID, widget: string }
-                  - { name: title,  label: Title,   widget: string }
-                  - { name: text,   label: Text,    widget: text }
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Text, widget: text }
 
           # howItWorks — HomeSchema.howItWorks
           - name: howItWorks
@@ -210,16 +209,16 @@ collections:
                 label: Steps
                 widget: list
                 fields:
-                  - { name: num,   label: Step, widget: string }
-                  - { name: title, label: Title,  widget: string }
-                  - { name: dur,   label: Duration, widget: string }
-                  - { name: text,  label: Text,   widget: text }
+                  - { name: num, label: Step, widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: dur, label: Duration, widget: string }
+                  - { name: text, label: Text, widget: text }
               - name: ctas
                 label: CTA Buttons
                 widget: list
                 fields:
-                  - { name: label,   label: Label,   widget: string }
-                  - { name: href,    label: Href,    widget: string }
+                  - { name: label, label: Label, widget: string }
+                  - { name: href, label: Href, widget: string }
                   - name: variant
                     label: Variant
                     widget: select
@@ -235,12 +234,12 @@ collections:
                 label: Plan Cards
                 widget: list
                 fields:
-                  - { name: name,      label: Plan Name,   widget: string }
-                  - { name: tagline,   label: Tagline,     widget: string }
-                  - { name: price,     label: Price,       widget: string }
-                  - { name: priceNote, label: Price Note,  widget: string }
-                  - { name: delivery,  label: Delivery,    widget: string }
-                  - { name: bestFor,   label: Best For,    widget: string }
+                  - { name: name, label: Plan Name, widget: string }
+                  - { name: tagline, label: Tagline, widget: string }
+                  - { name: price, label: Price, widget: string }
+                  - { name: priceNote, label: Price Note, widget: string }
+                  - { name: delivery, label: Delivery, widget: string }
+                  - { name: bestFor, label: Best For, widget: string }
                   - name: includes
                     label: Includes
                     widget: list
@@ -251,21 +250,21 @@ collections:
                     required: false
                     field: { name: item, label: Feature, widget: string }
                   - { name: ctaLabel, label: CTA Label, widget: string }
-                  - { name: ctaHref,  label: CTA Href,  widget: string }
-                  - { name: popular,  label: Popular,   widget: boolean, required: false }
+                  - { name: ctaHref, label: CTA Href, widget: string }
+                  - { name: popular, label: Popular, widget: boolean, required: false }
               - name: hosting
                 label: Hosting Plans
                 widget: object
                 fields:
-                  - { name: heading,    label: Heading,    widget: string }
+                  - { name: heading, label: Heading, widget: string }
                   - { name: subheading, label: Subheading, widget: string }
                   - name: cards
                     label: Hosting Cards
                     widget: list
                     fields:
-                      - { name: name,  label: Name,  widget: string }
+                      - { name: name, label: Name, widget: string }
                       - { name: price, label: Price, widget: string }
-                      - { name: desc,  label: Description, widget: text }
+                      - { name: desc, label: Description, widget: text }
                       - name: items
                         label: Features
                         widget: list
@@ -286,10 +285,10 @@ collections:
                 label: Testimonial Cards
                 widget: list
                 fields:
-                  - { name: quote,      label: Quote,       widget: text }
+                  - { name: quote, label: Quote, widget: text }
                   - { name: authorName, label: Author Name, widget: string }
                   - { name: authorRole, label: Author Role, widget: string }
-                  - { name: initials,   label: Initials,    widget: string }
+                  - { name: initials, label: Initials, widget: string }
 
           # portfolio — HomeSchema.portfolio
           - name: portfolio
@@ -300,13 +299,13 @@ collections:
                 label: Portfolio Cards
                 widget: list
                 fields:
-                  - { name: category,    label: Category,       widget: string }
-                  - { name: title,       label: Title,          widget: string }
-                  - { name: location,    label: Location,       widget: string }
-                  - { name: description, label: Description,    widget: text }
-                  - { name: tag,         label: Plan Tag,       widget: string }
-                  - { name: thumbBg,     label: Thumb BG Color, widget: string }
-                  - { name: thumbInner,  label: Thumb Type,     widget: string }
+                  - { name: category, label: Category, widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: location, label: Location, widget: string }
+                  - { name: description, label: Description, widget: text }
+                  - { name: tag, label: Plan Tag, widget: string }
+                  - { name: thumbBg, label: Thumb BG Color, widget: string }
+                  - { name: thumbInner, label: Thumb Type, widget: string }
 
           # about — HomeSchema.about
           - name: about
@@ -321,9 +320,9 @@ collections:
                     label: Floating Badges
                     widget: list
                     fields:
-                      - { name: iconId,   label: Icon ID,   widget: string }
-                      - { name: title,    label: Title,     widget: string }
-                      - { name: subtitle, label: Subtitle,  widget: string }
+                      - { name: iconId, label: Icon ID, widget: string }
+                      - { name: title, label: Title, widget: string }
+                      - { name: subtitle, label: Subtitle, widget: string }
                       - name: pos
                         label: Position
                         widget: select
@@ -337,14 +336,14 @@ collections:
                 widget: list
                 fields:
                   - { name: iconId, label: Icon ID, widget: string }
-                  - { name: title,  label: Title,   widget: string }
-                  - { name: text,   label: Text,    widget: text }
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Text, widget: text }
               - name: cities
                 label: Cities
                 widget: list
                 fields:
                   - { name: name, label: City Name, widget: string }
-                  - { name: note, label: Note,      widget: string }
+                  - { name: note, label: Note, widget: string }
 
           # faq — HomeSchema.faq
           - name: faq
@@ -356,17 +355,17 @@ collections:
                 widget: list
                 fields:
                   - { name: question, label: Question, widget: string }
-                  - { name: answer,   label: Answer,   widget: text }
+                  - { name: answer, label: Answer, widget: text }
 
           # ctaStrip — HomeSchema.ctaStrip
           - name: ctaStrip
             label: CTA Strip Section
             widget: object
             fields:
-              - { name: heading,  label: Heading,  widget: string }
-              - { name: body,     label: Body,     widget: text }
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Body, widget: text }
               - { name: ctaLabel, label: CTA Label, widget: string }
-              - { name: ctaHref,  label: CTA Href,  widget: string }
+              - { name: ctaHref, label: CTA Href, widget: string }
 
           # contact — HomeSchema.contact
           - name: contact
@@ -383,16 +382,16 @@ collections:
                 widget: list
                 fields:
                   - { name: iconId, label: Icon ID, widget: string }
-                  - { name: label,  label: Label,   widget: string }
-                  - { name: sub,    label: Sub,     widget: string }
+                  - { name: label, label: Label, widget: string }
+                  - { name: sub, label: Sub, widget: string }
 
           # footer — HomeSchema.footer
           - name: footer
             label: Footer Section
             widget: object
             fields:
-              - { name: brandLink, label: Brand Link,  widget: string }
-              - { name: tagline,   label: Tagline,     widget: string }
+              - { name: brandLink, label: Brand Link, widget: string }
+              - { name: tagline, label: Tagline, widget: string }
               - name: locations
                 label: Locations
                 widget: list
@@ -407,5 +406,5 @@ collections:
                     widget: list
                     fields:
                       - { name: label, label: Label, widget: string }
-                      - { name: href,  label: Href,  widget: string }
+                      - { name: href, label: Href, widget: string }
               - { name: copyright, label: Copyright, widget: string }

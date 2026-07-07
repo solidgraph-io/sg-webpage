@@ -72,7 +72,7 @@ steps:
     image: mcr.microsoft.com/playwright:v1.52.0-noble
     depends_on: [test]
     environment:
-      CI: "true"
+      CI: 'true'
       TURBO_TOKEN:
         from_secret: TURBO_TOKEN
       TURBO_TEAM:
@@ -92,7 +92,7 @@ steps:
     image: mcr.microsoft.com/playwright:v1.52.0-noble
     depends_on: [visual-test]
     environment:
-      CI: "true"
+      CI: 'true'
       TURBO_TOKEN:
         from_secret: TURBO_TOKEN
       TURBO_TEAM:

@@ -60,7 +60,9 @@ const isNoIndex = noIndex || import.meta.env.PUBLIC_NOINDEX === 'true';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Progressive enhancement: add .js before first paint so reveal CSS activates -->
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body>
     <!-- Skip-link: first tab stop, off-screen until focused (SPEC-A11Y-001/RF-2) -->

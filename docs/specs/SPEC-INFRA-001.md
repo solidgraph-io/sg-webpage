@@ -7,6 +7,7 @@
 - **Depende de:** —
 
 ## Contexto / problema
+
 El repo `sg-webpage` está vacío salvo los arneses (`AGENTS.md`, `CLAUDE.md`, `docs/`,
 `.claude/`) y el `design/`. Para construir cualquier átomo hace falta el **scaffold del
 monorepo** (Turborepo + `apps/web` Astro), el tooling (lint/format/commits), el **arnés de
@@ -16,10 +17,12 @@ referencia (proyecto Strapi similar) en `../agency-structure/Agency Structure/as
 **adaptarlas a web-only** (sin Strapi/`apps/cms`).
 
 ## Objetivo
+
 Dejar el monorepo ejecutable y verificable: `pnpm install && pnpm build && pnpm test &&
 pnpm trace -- --check` en verde, con `apps/web` Astro vacío pero booteable.
 
 ## Requisitos funcionales (testeables)
+
 - **RF-1** — Monorepo **Turborepo**: `pnpm-workspace.yaml`, `turbo.json`, `package.json` raíz con `packageManager: pnpm@9.15.9` y `engines.node >=22`. Corepack.
 - **RF-2** — `apps/web` = **Astro** (`@solidgraph/web`) con **`@astrojs/node` standalone** (`output: 'server'`/hybrid), **TypeScript strict**, integración **Tailwind**. `pnpm --filter @solidgraph/web build` produce `dist/client` + `dist/server`.
 - **RF-3** — Paquetes compartidos: `packages/blocks-contract` (Zod; union de bloques como placeholder tipado), `packages/typescript-config`, `packages/eslint-config`.
@@ -31,16 +34,19 @@ pnpm trace -- --check` en verde, con `apps/web` Astro vacío pero booteable.
 - **RF-9** — `design/` contiene la fuente del diseño: copiar `SolidGraph Website (standalone).html` → `design/solidgraph-website.html` y los logos → `design/assets/` desde `../agency-structure/Agency Structure/assets/`.
 
 ## Requisitos no funcionales
+
 - **RNF-1 (seguridad)** — sin secretos en el repo: `.env.example` con placeholders; `.gitignore` cubre `.env`, `node_modules`, `dist`, `.turbo`. gitleaks/`npm audit` en el paso de security scan del CI.
 - **RNF-2 (DX)** — `pnpm install --frozen-lockfile` reproducible; `pnpm dev` levanta `apps/web`; `docker compose up` corre la web en contenedor.
 - **RNF-3 (CI)** — el orden de gates de `AGENTS.md` §4 queda reflejado en `.drone.yml`/workflow.
 
 ## Invariantes
+
 - **INV-1** — Conventional Commits obligatorio (commitlint) y `pnpm install` con lockfile congelado.
 - **INV-2** — el `trace check` está presente y bloquea; ninguna spec `Approved` sin cobertura pasa CI.
 - **INV-3 (SRP)** — la config vive modular (paquetes `typescript-config`/`eslint-config` compartidos), no duplicada por app.
 
 ## Criterios de aceptación (Gherkin)
+
 ```gherkin
 Scenario: monorepo booteable
   Given un checkout limpio
@@ -62,10 +68,12 @@ Scenario: imagen de producción
 ```
 
 ## Fuera de alcance
+
 - Tokens/tipografía/BaseLayout reales → **SPEC-LAYOUT-001**.
 - Átomos, moléculas, organismos, contenido, Sveltia, form de leads, analítica.
 - Deploy real a producción (solo se deja el pipeline listo; activar es decisión humana).
 
 ## Trazabilidad
+
 - **Tests:** (al implementar) `[SPEC-INFRA-001/RF-1..9]`, `[SPEC-INFRA-001/RNF-1..3]`, `[SPEC-INFRA-001/INV-1..3]` — smoke por herramienta + test del propio `trace.ts`.
-- **PRs:** —   ·   **ADR:** ADR-0002 posible ("Astro Node adapter + Traefik + DroneCI/Dokploy").
+- **PRs:** — · **ADR:** ADR-0002 posible ("Astro Node adapter + Traefik + DroneCI/Dokploy").

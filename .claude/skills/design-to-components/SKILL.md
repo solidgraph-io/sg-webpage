@@ -23,6 +23,7 @@ fuente de verdad visual:
 ```
 design/solidgraph-website.html
 ```
+
 > Copia de referencia mientras no esté dentro del repo:
 > `../agency-structure/Agency Structure/assets/SolidGraph Website (standalone).html`.
 > Ver `design/README.md`.
@@ -37,21 +38,21 @@ compilado) y los assets en base64 en `<script type="__bundler/manifest">`. Cómo
 - **Tokens:** ya extraídos en `docs/01-architecture-and-stack.md` §5 (Poppins; navy #131634;
   azules #3a4db0/#5c70d6/#7d8ef0; acento #34d39a).
 
-No hay un MCP dedicado de Claude Design (verificado en el registro). *Solo si algún día se migra
-el diseño a Figma*, podría usarse el Figma MCP (`get_design_context`, `get_variable_defs`); por
+No hay un MCP dedicado de Claude Design (verificado en el registro). _Solo si algún día se migra
+el diseño a Figma_, podría usarse el Figma MCP (`get_design_context`, `get_variable_defs`); por
 ahora, la fuente es este HTML.
 
 **No se copia el HTML 1:1**: se descompone en Atomic Design + SRP (§1–§3).
 
 ## 1. Atomic Design — las 5 capas
 
-| Capa | Qué es | Regla | Dónde |
-|------|--------|-------|-------|
-| **Atoms** | primitivos sin lógica de negocio | no conocen el dominio; solo props visuales | `src/components/atoms/` |
-| **Molecules** | 2–3 átomos con un propósito | una responsabilidad; reutilizable | `src/components/molecules/` |
-| **Organisms** | secciones = **bloques** del contrato | componen moléculas/átomos; reciben `block` tipado | `src/components/organisms/` |
-| **Templates** | layout que ordena organismos | `BaseLayout` + `BlockRenderer` | `src/components/templates/` + `layouts/` |
-| **Pages** | página real con contenido | cargan Content Collections | `src/pages/` |
+| Capa          | Qué es                               | Regla                                             | Dónde                                    |
+| ------------- | ------------------------------------ | ------------------------------------------------- | ---------------------------------------- |
+| **Atoms**     | primitivos sin lógica de negocio     | no conocen el dominio; solo props visuales        | `src/components/atoms/`                  |
+| **Molecules** | 2–3 átomos con un propósito          | una responsabilidad; reutilizable                 | `src/components/molecules/`              |
+| **Organisms** | secciones = **bloques** del contrato | componen moléculas/átomos; reciben `block` tipado | `src/components/organisms/`              |
+| **Templates** | layout que ordena organismos         | `BaseLayout` + `BlockRenderer`                    | `src/components/templates/` + `layouts/` |
+| **Pages**     | página real con contenido            | cargan Content Collections                        | `src/pages/`                             |
 
 **Los organismos SON los bloques** del contrato (`packages/blocks-contract`). Átomos y moléculas
 son sus piezas internas; se comparten entre organismos.
@@ -108,6 +109,7 @@ Cada paso respeta la regla de oro de trazabilidad (`[SPEC-XXX/RF-y]`) y la DoD.
 - [ ] `pnpm trace -- --check` en verde; commit citando la spec.
 
 ## 5. Anti-patrones
+
 - Volcar una sección entera del diseño en un solo `.astro` gigante.
 - Duplicar markup entre organismos en vez de extraer una molécula/átomo.
 - Meter lógica de dominio o copy fijo en un átomo.

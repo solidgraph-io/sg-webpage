@@ -13,6 +13,7 @@ Fuente de verdad: **`AGENTS.md`** (importado por `CLAUDE.md`). Detalle: `docs/04
 No dupliques reglas aquí.
 
 En este repo:
+
 1. **Lee `AGENTS.md`** (reglas duras, incluye Atomic Design + SRP) y `docs/01-architecture-and-stack.md`.
 2. **¿Convertir diseño → componentes?** → usa la skill **`design-to-components`** (descomposición atómica bottom-up desde `design/`).
 3. **¿Falta la spec?** → **`/new-spec <dominio> <título>`**: crea `docs/specs/SPEC-<DOMINIO>-<NNN>.md`, regístrala en `docs/05`, pide aprobación. Sin spec aprobada no hay código.

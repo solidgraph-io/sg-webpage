@@ -38,7 +38,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-002/RNF-3] hero mobile 393 — diff vs diseño
     sectionFile: '02-hero.html',
     selector: '.hero',
     viewport: { width: 393, height: 852 },
-    threshold: 0.10,
+    threshold: 0.1,
     label: 'hero-mobile',
   });
 });
@@ -72,7 +72,7 @@ test('[SPEC-SEC-002/RNF-3] hero floats ocultos en mobile', async ({ page }) => {
   await page.setViewportSize({ width: 393, height: 852 });
   await waitForStyles(page);
   const floats = page.locator('.hero-float');
-  for (let i = 0; i < await floats.count(); i++) {
+  for (let i = 0; i < (await floats.count()); i++) {
     await expect(floats.nth(i)).not.toBeVisible();
   }
 });

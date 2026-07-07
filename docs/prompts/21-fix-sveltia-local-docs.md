@@ -9,11 +9,13 @@ Es una **corrección de documentación** (no toca render ni bundle): el flujo de
 **Sveltia CMS** está mal documentado.
 
 ## Contexto (el error)
+
 La doc actual del CMS dice usar `@sveltia/cms-proxy-server` + `local_backend`. **Eso es de Decap, no
 de Sveltia.** Ese paquete **no existe** (`npm error 404`). Sveltia **no usa proxy**: `local_backend` se
 **ignora** y en su lugar usa la **File System Access API** del navegador para leer/escribir el repo local.
 
 ## Objetivo
+
 Alinear toda la doc del `/admin` con `docs/specs/SPEC-CMS-001.md` (RF-5 ya corregido). El flujo correcto:
 
 > Editar en local **sin OAuth**: `pnpm dev` → abrir `http://localhost:4321/admin/index.html` en un
@@ -22,6 +24,7 @@ Alinear toda la doc del `/admin` con `docs/specs/SPEC-CMS-001.md` (RF-5 ya corre
 > `content/`. **Sin** `@sveltia/cms-proxy-server` ni `local_backend`.
 
 ## Pasos
+
 1. **Busca** toda mención del proxy/local_backend en el repo:
    `git grep -n -i "cms-proxy-server\|local_backend\|proxy"` (revisa `apps/web/public/admin/config.yml`,
    cualquier `README`/`.md` del admin, comentarios, y scripts de `package.json`).
@@ -38,12 +41,14 @@ Alinear toda la doc del `/admin` con `docs/specs/SPEC-CMS-001.md` (RF-5 ya corre
    (QA-001) debe seguir verde. Corre `pnpm lint && pnpm type-check && pnpm test && pnpm trace -- --check`.
 
 ## Git
+
 - Rama `fix/sveltia-local-docs`. Conventional Commit: `docs(cms): corrige flujo local de Sveltia (File System Access, no proxy)`, scope `docs`.
 - **Recuerda (AGENTS.md §4):** `docs/` se commitea con el incremento (`git add docs/`). Incluye en el
   commit el `SPEC-CMS-001.md` ya corregido si aún no estuviera trackeado, y confirma que **toda** la
   carpeta `docs/` está bajo seguimiento (no gitignored).
 
 ## Entregable
+
 La doc del `/admin` describe el flujo real (Chromium + "Work with Local Repository", sin proxy);
 cero referencias a `@sveltia/cms-proxy-server`/`local_backend`; `docs/` trackeado; gates verdes.
 Al terminar, resume qué archivos cambiaste y confirma que el OAuth de producción sigue pendiente del

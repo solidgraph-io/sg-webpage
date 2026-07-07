@@ -16,10 +16,13 @@ import { handleLead, resetRateLimitForTesting } from '../pages/api/lead';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function makeJsonRequest(body: Record<string, unknown>, headers: Record<string, string> = {}): Request {
+function makeJsonRequest(
+  body: Record<string, unknown>,
+  headers: Record<string, string> = {},
+): Request {
   return new Request('http://localhost/api/lead', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', ...headers },
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json', ...headers },
     body: JSON.stringify(body),
   });
 }
@@ -30,7 +33,7 @@ function makeFormRequest(data: Record<string, string>, ip = '10.0.0.99'): Reques
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': 'text/html',
+      Accept: 'text/html',
       'x-forwarded-for': ip,
     },
     body: form.toString(),
@@ -104,7 +107,10 @@ describe('[SPEC-FORM-001/RF-1] POST /api/lead validates payload with Zod', () =>
 
   it('[SPEC-FORM-001/RF-1] POST without JS with invalid data → redirect with error', async () => {
     const port: LeadPort = { deliver: vi.fn() };
-    const res = await handleLead(makeFormRequest(omit(VALID_LEAD, 'email') as Record<string, string>), port);
+    const res = await handleLead(
+      makeFormRequest(omit(VALID_LEAD, 'email') as Record<string, string>),
+      port,
+    );
     expect(res.status).toBeGreaterThanOrEqual(300);
     expect(res.status).toBeLessThan(400);
     expect(res.headers.get('location')).toContain('contact=error');
@@ -122,7 +128,7 @@ describe('[SPEC-FORM-001/RF-2] LeadPort delivers the lead via the injected adapt
     await handleLead(makeJsonRequest(VALID_LEAD), port);
     expect(deliver).toHaveBeenCalledOnce();
     expect(deliver).toHaveBeenCalledWith(
-      expect.objectContaining({ email: 'alice@example.com', first_name: 'Alice' })
+      expect.objectContaining({ email: 'alice@example.com', first_name: 'Alice' }),
     );
   });
 
@@ -135,7 +141,11 @@ describe('[SPEC-FORM-001/RF-2] LeadPort delivers the lead via the injected adapt
 
   it('[SPEC-FORM-001/RF-2] LeadPayload type has required fields', () => {
     const sample: LeadPayload = {
-      first_name: 'A', last_name: 'B', email: 'a@b.com', business_name: 'C', city: 'D',
+      first_name: 'A',
+      last_name: 'B',
+      email: 'a@b.com',
+      business_name: 'C',
+      city: 'D',
     };
     expect(sample.email).toBe('a@b.com');
   });
@@ -149,10 +159,7 @@ describe('[SPEC-FORM-001/RF-3] honeypot discards spam silently', () => {
   it('[SPEC-FORM-001/RF-3] honeypot field filled → 200 but port NOT called', async () => {
     const deliver = vi.fn();
     const port: LeadPort = { deliver };
-    const res = await handleLead(
-      makeJsonRequest({ ...VALID_LEAD, _gotcha: 'bot was here' }),
-      port,
-    );
+    const res = await handleLead(makeJsonRequest({ ...VALID_LEAD, _gotcha: 'bot was here' }), port);
     expect(res.status).toBe(200);
     expect(deliver).not.toHaveBeenCalled();
   });
@@ -160,10 +167,7 @@ describe('[SPEC-FORM-001/RF-3] honeypot discards spam silently', () => {
   it('[SPEC-FORM-001/RF-3] honeypot empty string → treated as empty (valid)', async () => {
     const deliver = vi.fn().mockResolvedValue(undefined);
     const port: LeadPort = { deliver };
-    const res = await handleLead(
-      makeJsonRequest({ ...VALID_LEAD, _gotcha: '' }),
-      port,
-    );
+    const res = await handleLead(makeJsonRequest({ ...VALID_LEAD, _gotcha: '' }), port);
     expect(deliver).toHaveBeenCalledOnce();
     expect(res.status).toBe(200);
   });
@@ -178,7 +182,11 @@ describe('[SPEC-FORM-001/RF-3] rate limit blocks after threshold', () => {
       const res = await handleLead(
         new Request('http://localhost/api/lead', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'x-forwarded-for': ip },
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'x-forwarded-for': ip,
+          },
           body: JSON.stringify(VALID_LEAD),
         }),
         port,
@@ -188,7 +196,11 @@ describe('[SPEC-FORM-001/RF-3] rate limit blocks after threshold', () => {
     const blocked = await handleLead(
       new Request('http://localhost/api/lead', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'x-forwarded-for': ip },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'x-forwarded-for': ip,
+        },
         body: JSON.stringify(VALID_LEAD),
       }),
       port,
@@ -216,11 +228,7 @@ describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
   it('[SPEC-FORM-001/RF-3] invalid Turnstile token (JSON) → 400, port NOT called', async () => {
     const deliver = vi.fn();
     const port: LeadPort = { deliver };
-    const res = await handleLead(
-      makeJsonRequest(VALID_LEAD),
-      port,
-      () => Promise.resolve(false),
-    );
+    const res = await handleLead(makeJsonRequest(VALID_LEAD), port, () => Promise.resolve(false));
     expect(res.status).toBe(400);
     expect(deliver).not.toHaveBeenCalled();
   });
@@ -228,11 +236,7 @@ describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
   it('[SPEC-FORM-001/RF-3] invalid Turnstile on form POST → redirect with error', async () => {
     const deliver = vi.fn();
     const port: LeadPort = { deliver };
-    const res = await handleLead(
-      makeFormRequest(VALID_LEAD),
-      port,
-      () => Promise.resolve(false),
-    );
+    const res = await handleLead(makeFormRequest(VALID_LEAD), port, () => Promise.resolve(false));
     expect(res.status).toBeGreaterThanOrEqual(300);
     expect(res.status).toBeLessThan(400);
     expect(res.headers.get('location')).toContain('contact=error');
@@ -242,11 +246,7 @@ describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
   it('[SPEC-FORM-001/RF-3] valid Turnstile token (injected) → port called', async () => {
     const deliver = vi.fn().mockResolvedValue(undefined);
     const port: LeadPort = { deliver };
-    const res = await handleLead(
-      makeJsonRequest(VALID_LEAD),
-      port,
-      () => Promise.resolve(true),
-    );
+    const res = await handleLead(makeJsonRequest(VALID_LEAD), port, () => Promise.resolve(true));
     expect(res.status).toBe(200);
     expect(deliver).toHaveBeenCalledOnce();
   });
@@ -331,7 +331,9 @@ describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS 
   it('[SPEC-FORM-001/RF-4] contact-form.ts has addEventListener submit (not onsubmit attr)', () => {
     const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
     expect(src).toContain("addEventListener('submit'");
-    expect(fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8')).not.toContain('onsubmit=');
+    expect(fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8')).not.toContain(
+      'onsubmit=',
+    );
   });
 
   it('[SPEC-FORM-001/RF-4] index.astro reads contactState from URL params', () => {
@@ -390,7 +392,9 @@ describe('[SPEC-FORM-001/RF-6] security — no secrets in repo, no info leak', (
 
   it('[SPEC-FORM-001/RF-6] endpoint returns no stack trace on 500', async () => {
     resetRateLimitForTesting();
-    const port: LeadPort = { deliver: vi.fn().mockRejectedValue(new Error('SMTP timeout at 192.168.1.1')) };
+    const port: LeadPort = {
+      deliver: vi.fn().mockRejectedValue(new Error('SMTP timeout at 192.168.1.1')),
+    };
     const res = await handleLead(makeJsonRequest(VALID_LEAD), port);
     expect(res.status).toBe(500);
     const body = await res.json();

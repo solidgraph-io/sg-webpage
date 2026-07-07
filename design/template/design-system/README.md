@@ -21,12 +21,12 @@ back into a section; a token never depends on anything.
 
 ## Foundations — `design-system/`
 
-| File            | Purpose |
-|-----------------|---------|
-| `tokens.css`    | All CSS custom properties: color, elevation, radius, layout, motion, type. **Change brand values here and the whole site updates.** |
-| `base.css`      | Reset, document defaults, typography (`.display`, `h1–h5`), `.container`, `.grad-text`, grain overlay, `.spotlight`. |
-| `animations.css`| Scroll-reveal primitives (`[data-reveal]`) + every shared `@keyframes`. |
-| `icons.svg`     | Canonical SVG sprite. Each `<symbol>` is referenced as `<use href="#i-name"/>`. |
+| File             | Purpose                                                                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `tokens.css`     | All CSS custom properties: color, elevation, radius, layout, motion, type. **Change brand values here and the whole site updates.** |
+| `base.css`       | Reset, document defaults, typography (`.display`, `h1–h5`), `.container`, `.grad-text`, grain overlay, `.spotlight`.                |
+| `animations.css` | Scroll-reveal primitives (`[data-reveal]`) + every shared `@keyframes`.                                                             |
+| `icons.svg`      | Canonical SVG sprite. Each `<symbol>` is referenced as `<use href="#i-name"/>`.                                                     |
 
 ### Design tokens (reference)
 

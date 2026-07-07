@@ -11,24 +11,88 @@
 
 /* ---- Scroll reveal (PE: only hidden when .js is active) ---- */
 .js [data-reveal] {
-  opacity: 0; transform: translateY(34px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
   transition-delay: var(--d, 0ms);
   will-change: opacity, transform;
 }
-.js [data-reveal].in { opacity: 1; transform: none; }
-.js [data-reveal="scale"] { transform: scale(.94); }
-.js [data-reveal="left"]  { transform: translateX(-40px); }
-.js [data-reveal="right"] { transform: translateX(40px); }
+.js [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+.js [data-reveal='scale'] {
+  transform: scale(0.94);
+}
+.js [data-reveal='left'] {
+  transform: translateX(-40px);
+}
+.js [data-reveal='right'] {
+  transform: translateX(40px);
+}
 @media (prefers-reduced-motion: reduce) {
-  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ---- Shared keyframes ---- */
-@keyframes ping     { 0% { transform: scale(.6); opacity: .7; } 100% { transform: scale(1.8); opacity: 0; } }
-@keyframes float1   { 0%,100% { transform: translate(0,0) scale(1); }   50% { transform: translate(60px,40px) scale(1.12); } }
-@keyframes float2   { 0%,100% { transform: translate(0,0) scale(1); }   50% { transform: translate(-50px,-40px) scale(1.08); } }
-@keyframes float3   { 0%,100% { transform: translate(0,0); }            50% { transform: translate(-40px,50px); } }
-@keyframes bob      { 0%,100% { transform: translateY(0); }             50% { transform: translateY(-12px); } }
-@keyframes spin     { to { transform: rotate(360deg); } }
-@keyframes scroll-x { to { transform: translateX(-50%); } }
+@keyframes ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.12);
+  }
+}
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, -40px) scale(1.08);
+  }
+}
+@keyframes float3 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-40px, 50px);
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes scroll-x {
+  to {
+    transform: translateX(-50%);
+  }
+}

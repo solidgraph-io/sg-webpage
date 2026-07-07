@@ -27,15 +27,15 @@ Most agencies ship a template with your logo dropped in. We build **from scratch
 
 ## What this means for you
 
-| You get | How we make sure |
-|---|---|
-| **A site built for _your_ business**, not a made-over template | Every page is hand-built from an approved design — no page builders, no bloat |
-| **A site that looks exactly like the design you signed off on** | An automated "fidelity gate" compares every section to the approved design on every build (more below) |
-| **A site that loads fast** | Performance budgets are enforced in our pipeline — if a change makes it slower, the build fails |
-| **A site everyone can use** | Accessibility (WCAG 2.1 AA) is checked automatically, not left to chance |
-| **A site Google can find** | SEO, structured data, sitemaps and social previews are built in from day one |
-| **Content _you_ own and can edit** | Your content lives in your own repository and is editable in your browser — no monthly CMS server, no lock-in |
-| **A site that works for everyone** | It stays fully usable even on slow connections or older devices |
+| You get                                                         | How we make sure                                                                                              |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **A site built for _your_ business**, not a made-over template  | Every page is hand-built from an approved design — no page builders, no bloat                                 |
+| **A site that looks exactly like the design you signed off on** | An automated "fidelity gate" compares every section to the approved design on every build (more below)        |
+| **A site that loads fast**                                      | Performance budgets are enforced in our pipeline — if a change makes it slower, the build fails               |
+| **A site everyone can use**                                     | Accessibility (WCAG 2.1 AA) is checked automatically, not left to chance                                      |
+| **A site Google can find**                                      | SEO, structured data, sitemaps and social previews are built in from day one                                  |
+| **Content _you_ own and can edit**                              | Your content lives in your own repository and is editable in your browser — no monthly CMS server, no lock-in |
+| **A site that works for everyone**                              | It stays fully usable even on slow connections or older devices                                               |
 
 ---
 
@@ -55,13 +55,13 @@ Every feature starts as a written specification with clear, testable requirement
 
 Before any change is accepted, it must pass **all** of these automatically:
 
-| Gate | What it protects |
-|---|---|
-| **Design fidelity** | The site matches the approved design, section by section |
-| **Accessibility (WCAG 2.1 AA)** | Real people — including those using screen readers or keyboards — can use it |
-| **Performance (Lighthouse budgets)** | The site stays fast; regressions block the build |
-| **Correctness (660+ automated tests)** | Features keep working as the site grows |
-| **Code quality & types** | The codebase stays maintainable and safe to change |
+| Gate                                   | What it protects                                                             |
+| -------------------------------------- | ---------------------------------------------------------------------------- |
+| **Design fidelity**                    | The site matches the approved design, section by section                     |
+| **Accessibility (WCAG 2.1 AA)**        | Real people — including those using screen readers or keyboards — can use it |
+| **Performance (Lighthouse budgets)**   | The site stays fast; regressions block the build                             |
+| **Correctness (660+ automated tests)** | Features keep working as the site grows                                      |
+| **Code quality & types**               | The codebase stays maintainable and safe to change                           |
 
 ### 4. Content you control — no lock-in
 

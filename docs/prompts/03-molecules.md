@@ -9,7 +9,9 @@ Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md`, `CLAUDE.md`,
 `spec-driven-development`). Metodología (SDD + TDD + Atomic Design + SRP) vinculante.
 
 ## Objetivo
+
 Implementar **todas las moléculas** (EPIC-03), en estas specs Approved (en orden):
+
 1. `docs/specs/SPEC-MOLECULE-001.md` — NavItem, CtaGroup, FooterColumn.
 2. `docs/specs/SPEC-MOLECULE-002.md` — TestimonialCard, FeatureItem, StepItem, StatItem, FaqItem.
 3. `docs/specs/SPEC-MOLECULE-003.md` — PlanFeature, PlanCard.
@@ -19,6 +21,7 @@ Ubicación: `apps/web/src/components/molecules/`. Fuente visual: `design/solidgr
 Los **átomos ya existen** en `apps/web/src/components/atoms/` — reutilízalos.
 
 ## Reglas (no negociables)
+
 - **TDD:** por cada `RF-x`/`RNF-x`/`INV-x`, primero un test en **rojo** que cite la spec: `it('[SPEC-MOLECULE-002/RF-5] FaqItem uses native details, no JS')`. Luego verde mínimo, luego refactor.
 - **Composición, no duplicación:** cada molécula **compone átomos existentes** (`Button`, `Icon`, `Heading`, `Prose`, `Avatar`, `Badge`, `PriceTag`, `Input`, `Textarea`). Está **prohibido** reimplementar el markup de un átomo. Test que verifique que la molécula usa el átomo.
 - **SRP:** una molécula = un archivo, una responsabilidad, ≤ ~150 líneas. `PlanCard` delega en `PlanFeature` y átomos para no crecer.
@@ -28,6 +31,7 @@ Los **átomos ya existen** en `apps/web/src/components/atoms/` — reutilízalos
 - **Git:** una rama por spec (`feature/SPEC-MOLECULE-001-nav-cta`, …); Conventional Commits con footer `[SPEC-MOLECULE-00x]`, scope `molecule`.
 
 ## Pasos por spec
+
 1. Lee la spec y abre el diseño para el look de cada molécula.
 2. Tests en rojo: render por variante (`astro/container`) + a11y (axe) + **composición** (que use los átomos) + casos clave (FaqItem sin JS, PlanFeature included/no, FormField con error, NavItem activo).
 3. Implementa componiendo átomos; estilos por tokens/utilidades.
@@ -36,10 +40,12 @@ Los **átomos ya existen** en `apps/web/src/components/atoms/` — reutilízalos
 6. Actualiza Trazabilidad + Estado (`Implemented`) de cada spec y `docs/05`.
 
 ## Detente y confirma con el humano si
+
 - Una molécula necesita componer otra molécula de forma que parezca ya un organismo → coméntalo.
 - El diseño exige una variante/estado no previsto en la spec → propón el cambio de spec antes.
 
 ## Entregable
+
 Las 11 moléculas implementadas y testeadas, specs `Implemented`, `docs/traceability.md` al día.
 Al terminar, resume y confirma que la siguiente etapa es **EPIC-04**: `SPEC-BLOCK-000`
 (BlockRenderer + contrato Zod) y luego los organismos (Nav, Hero, …).

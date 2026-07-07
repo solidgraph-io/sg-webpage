@@ -65,7 +65,8 @@ describe('SPEC-A11Y-001/RF-3 — landmark structure', () => {
   it('[SPEC-A11Y-001/RF-3] Hero is the only h1 (no duplicate heading)', () => {
     const heroC = fs.readFileSync(path.join(src, 'components/Hero.astro'), 'utf-8');
     expect(heroC).toContain('<h1');
-    const components = fs.readdirSync(path.join(src, 'components'))
+    const components = fs
+      .readdirSync(path.join(src, 'components'))
       .filter((f) => f.endsWith('.astro') && f !== 'Hero.astro');
     for (const f of components) {
       const c = fs.readFileSync(path.join(src, 'components', f), 'utf-8');
@@ -105,14 +106,14 @@ describe('SPEC-A11Y-001/RF-4 — keyboard operability (structural checks)', () =
 describe('SPEC-A11Y-001/RF-5 — contrast tokens', () => {
   it('[SPEC-A11Y-001/RF-5] tokens.css defines --ink (primary text) and --night (dark bg)', () => {
     const tokens = fs.readFileSync(path.join(src, 'styles/tokens.css'), 'utf-8');
-    expect(tokens).toContain('--ink:');    // #2b2c38 — primary text on light (high contrast)
-    expect(tokens).toContain('--night:');  // #131634 — dark section background
+    expect(tokens).toContain('--ink:'); // #2b2c38 — primary text on light (high contrast)
+    expect(tokens).toContain('--night:'); // #131634 — dark section background
   });
 
   it('[SPEC-A11Y-001/RF-5] tokens.css defines accent and brand tokens for CTAs', () => {
     const tokens = fs.readFileSync(path.join(src, 'styles/tokens.css'), 'utf-8');
-    expect(tokens).toContain('--periwinkle:');  // #5c70d6 accent
-    expect(tokens).toContain('--indigo:');      // #2d3d8a brand primary
+    expect(tokens).toContain('--periwinkle:'); // #5c70d6 accent
+    expect(tokens).toContain('--indigo:'); // #2d3d8a brand primary
   });
 });
 
@@ -187,7 +188,8 @@ describe('SPEC-A11Y-001/INV-3 — SRP: a11y primitives in layout/styles', () => 
   it('[SPEC-A11Y-001/INV-3] skip-link defined in BaseLayout, not in section components', () => {
     const c = fs.readFileSync(layout, 'utf-8');
     expect(c).toContain('skip-link');
-    const components = fs.readdirSync(path.join(src, 'components'))
+    const components = fs
+      .readdirSync(path.join(src, 'components'))
       .filter((f) => f.endsWith('.astro'));
     for (const f of components) {
       const comp = fs.readFileSync(path.join(src, 'components', f), 'utf-8');

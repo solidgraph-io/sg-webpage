@@ -8,10 +8,12 @@
 - **Fuente:** `design/template/sections/08-testimonials.html` (+ `components/{stat,testimonial-card,section-head}.css`)
 
 ## Contexto / problema
+
 "What Local Business Owners Are Saying": **clara** (`--lilac-2`) con grid de stats + tarjetas de
 testimonio. Port 1:1.
 
 ## Requisitos funcionales (testeables)
+
 - **RF-1 (stats)** — grid de `stat` blancos: valor en **gradiente** (indigo→periwinkle) + label.
 - **RF-2 (testimonials)** — `t-grid` de `TestimonialCard`: `stars` (amarillas `--star`), `quote`, y `t-author` (avatar en gradiente con iniciales + nombre + rol).
 - **RF-3 (moléculas)** — extrae `TestimonialCard` como componente propio (SRP), portando `testimonial-card.css`; usa/ajusta `stat`.
@@ -19,16 +21,19 @@ testimonio. Port 1:1.
 - **RF-5 (hooks)** — `data-reveal`/`--d` escalonados.
 
 ## Requisitos no funcionales
+
 - **RNF-1 (a11y)** — testimonios con `figure`/`blockquote`; estrellas con etiqueta accesible o `aria-hidden` + texto; contraste AA sobre claro.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — grids 3→1 columna.
 - **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `08-testimonials.html` bajo umbral (desktop+mobile).
 
 ## Invariantes
+
 - **INV-1 (SRP)** — `Testimonials.astro` ≤ ~150 líneas delegando en `TestimonialCard`/`stat`.
 - **INV-2** — color/medida por tokens; copy por props.
 
 ## Criterios de aceptación (Gherkin)
+
 ```gherkin
 Scenario: testimonials claro con estrellas y stats en gradiente
   Given stats e items
@@ -37,8 +42,10 @@ Scenario: testimonials claro con estrellas y stats en gradiente
 ```
 
 ## Fuera de alcance
+
 - Resto de secciones.
 
 ## Trazabilidad
+
 - **Tests:** `[SPEC-SEC-008/RF-1..5]`, `[.../RNF-1..4]`, `[.../INV-1..2]` — render + a11y + gate de fidelidad.
 - **PRs:** —

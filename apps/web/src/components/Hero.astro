@@ -46,125 +46,326 @@ const { pill, title, subtitle, ctas, snippet, preview, floats } = Astro.props;
   <Aurora />
   <div class="hero-grid-mesh" aria-hidden="true"></div>
   <div class="container hero-inner">
-    {pill && (
-      <div class="hero-top" data-reveal="scale">
-        <Pill ping>{pill}</Pill>
-      </div>
-    )}
+    {
+      pill && (
+        <div class="hero-top" data-reveal="scale">
+          <Pill ping>{pill}</Pill>
+        </div>
+      )
+    }
     <h1 id="hero-heading" class="display" set:html={title} />
-    {subtitle && <p class="hero-sub" data-reveal style="--d:120ms">{subtitle}</p>}
+    {
+      subtitle && (
+        <p class="hero-sub" data-reveal style="--d:120ms">
+          {subtitle}
+        </p>
+      )
+    }
     <div class="hero-ctas" data-reveal style="--d:200ms">
-      {ctas.map(cta => (
-        <Button variant={cta.variant} href={cta.href} magnetic>
-          <span>{cta.label}</span>
-          {cta.icon && <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow"/></svg>}
-        </Button>
-      ))}
+      {
+        ctas.map((cta) => (
+          <Button variant={cta.variant} href={cta.href} magnetic>
+            <span>{cta.label}</span>
+            {cta.icon && (
+              <svg width="16" height="16" aria-hidden="true">
+                <use href="/icons.svg#i-arrow" />
+              </svg>
+            )}
+          </Button>
+        ))
+      }
     </div>
-    {snippet && <p class="hero-snippet" data-reveal style="--d:280ms">{snippet}</p>}
+    {
+      snippet && (
+        <p class="hero-snippet" data-reveal style="--d:280ms">
+          {snippet}
+        </p>
+      )
+    }
 
-    {preview && (
-      <div class="hero-stage" data-reveal="scale" style="--d:360ms">
-        {floats?.map(f => (
-          <FloatingCard variant="hero" class={f.pos}>
-            <div class="ic">
-              <svg width="18" height="18" aria-hidden="true"><use href={f.iconId}/></svg>
-            </div>
-            <div><b>{f.label}</b><span>{f.sub}</span></div>
-          </FloatingCard>
-        ))}
+    {
+      preview && (
+        <div class="hero-stage" data-reveal="scale" style="--d:360ms">
+          {floats?.map((f) => (
+            <FloatingCard variant="hero" class={f.pos}>
+              <div class="ic">
+                <svg width="18" height="18" aria-hidden="true">
+                  <use href={f.iconId} />
+                </svg>
+              </div>
+              <div>
+                <b>{f.label}</b>
+                <span>{f.sub}</span>
+              </div>
+            </FloatingCard>
+          ))}
 
-        <div class="hero-screen" id="heroScreen">
-          <div class="hs-bar">
-            <i></i><i></i><i></i>
-            <div class="url">{preview.url}</div>
-          </div>
-          <div class="hs-body">
-            <div class="hs-left">
-              {preview.tag && <span class="tag">{preview.tag}</span>}
-              {preview.title && <h4 set:html={preview.title}></h4>}
-              {preview.body && <p>{preview.body}</p>}
-              {preview.cta && <span class="b">{preview.cta}</span>}
-              {preview.chips && (
-                <div class="chips">{preview.chips.map(c => <span>{c}</span>)}</div>
-              )}
+          <div class="hero-screen" id="heroScreen">
+            <div class="hs-bar">
+              <>
+                <i />
+                <i />
+                <i />
+              </>
+              <div class="url">{preview.url}</div>
             </div>
-            <div class="hs-right" aria-hidden="true">
-              <span class="ring r1"></span>
-              <span class="ring r2"></span>
-              <span class="ring r3"></span>
-              <div class="core">
-                {preview.logoSrc && <img src={preview.logoSrc} alt="SolidGraph" width="58" height="58" />}
+            <div class="hs-body">
+              <div class="hs-left">
+                {preview.tag && <span class="tag">{preview.tag}</span>}
+                {preview.title && <h4 set:html={preview.title} />}
+                {preview.body && <p>{preview.body}</p>}
+                {preview.cta && <span class="b">{preview.cta}</span>}
+                {preview.chips && (
+                  <div class="chips">
+                    {preview.chips.map((c) => (
+                      <span>{c}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div class="hs-right" aria-hidden="true">
+                <span class="ring r1" />
+                <span class="ring r2" />
+                <span class="ring r3" />
+                <div class="core">
+                  {preview.logoSrc && (
+                    <img src={preview.logoSrc} alt="SolidGraph" width="58" height="58" />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    )}
+      )
+    }
   </div>
 </section>
 
 <style>
-.hero {
-  position: relative; overflow: hidden;
-  background: var(--night); color: var(--white);
-  padding: 168px 0 120px; isolation: isolate;
-}
-.hero-grid-mesh {
-  position: absolute; inset: 0; z-index: 0; opacity: .5;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size: 54px 54px;
-  mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
-}
-.hero-inner { position: relative; z-index: 2; }
-.hero-top { display: flex; justify-content: center; margin-bottom: 30px; }
-.hero :global(.pill) {
-  background: rgba(255,255,255,.08); color: var(--white);
-  border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(6px);
-}
-.hero h1 { color: var(--white); text-align: center; max-width: 16ch; margin: 0 auto; }
-.hero-sub { text-align: center; max-width: 600px; margin: 30px auto 0; color: var(--muted-d); font-size: 18px; line-height: 1.7; }
-.hero-ctas { display: flex; gap: 14px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
-.hero-snippet { margin-top: 30px; text-align: center; color: var(--peri-bright); font-size: 13.5px; font-weight: 500; letter-spacing: .04em; }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--night);
+    color: var(--white);
+    padding: 168px 0 120px;
+    isolation: isolate;
+  }
+  .hero-grid-mesh {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .hero :global(.pill) {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(6px);
+  }
+  .hero h1 {
+    color: var(--white);
+    text-align: center;
+    max-width: 16ch;
+    margin: 0 auto;
+  }
+  .hero-sub {
+    text-align: center;
+    max-width: 600px;
+    margin: 30px auto 0;
+    color: var(--muted-d);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-snippet {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--peri-bright);
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
 
-.hero-stage { position: relative; margin: 72px auto 0; max-width: 980px; perspective: 1600px; }
-.hero-screen {
-  position: relative; border-radius: 20px; overflow: hidden;
-  box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,.12);
-  transform: rotateX(14deg) scale(.98); transform-origin: 50% 100%;
-  background: var(--white);
-}
-.hs-bar { background: #f3f5fc; padding: 12px 18px; display: flex; align-items: center; gap: 8px; }
-.hs-bar i { width: 11px; height: 11px; border-radius: 50%; background: #d8defa; }
-.hs-bar i:nth-child(1){ background:#ff6b6b; }
-.hs-bar i:nth-child(2){ background:#ffd166; }
-.hs-bar i:nth-child(3){ background:var(--success); }
-.hs-bar .url { margin-left: 12px; flex: 1; background: var(--white); border-radius: 999px; height: 22px; max-width: 280px; display: flex; align-items: center; padding: 0 12px; font-size: 10px; color: var(--muted); }
-.hs-body { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; min-height: 320px; }
-.hs-left { padding: 40px 38px; }
-.hs-left .tag { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--periwinkle); font-weight: 700; }
-.hs-left h4 { font-size: 30px; font-weight: 800; color: var(--ink); margin: 14px 0 12px; letter-spacing: -.02em; line-height: 1.05; }
-.hs-left h4 :global(b) { color: var(--indigo); }
-.hs-left p { font-size: 12px; color: var(--muted); margin-bottom: 18px; max-width: 30ch; }
-.hs-left .b { display: inline-flex; background: var(--indigo); color: var(--white); font-size: 11px; font-weight: 600; padding: 9px 18px; border-radius: 999px; }
-.hs-left .chips { margin-top: 22px; }
-.hs-left .chips span { font-size: 10px; padding: 6px 12px; border-radius: 999px; background: var(--lilac); color: var(--indigo); font-weight: 600; }
-.hs-right { background: linear-gradient(150deg, var(--indigo), var(--night)); position: relative; overflow: hidden; display: grid; place-items: center; }
-.hs-right .ring { position: absolute; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; }
-.hs-right .ring.r1 { inset: 18%; } .hs-right .ring.r2 { inset: 30%; } .hs-right .ring.r3 { inset: 42%; }
-.hs-right .core { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; box-shadow: 0 20px 50px -10px rgba(0,0,0,.4); }
-.hs-right .core img { width: 58px; }
+  .hero-stage {
+    position: relative;
+    margin: 72px auto 0;
+    max-width: 980px;
+    perspective: 1600px;
+  }
+  .hero-screen {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: rotateX(14deg) scale(0.98);
+    transform-origin: 50% 100%;
+    background: var(--white);
+  }
+  .hs-bar {
+    background: #f3f5fc;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hs-bar i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d8defa;
+  }
+  .hs-bar i:nth-child(1) {
+    background: #ff6b6b;
+  }
+  .hs-bar i:nth-child(2) {
+    background: #ffd166;
+  }
+  .hs-bar i:nth-child(3) {
+    background: var(--success);
+  }
+  .hs-bar .url {
+    margin-left: 12px;
+    flex: 1;
+    background: var(--white);
+    border-radius: 999px;
+    height: 22px;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .hs-body {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    min-height: 320px;
+  }
+  .hs-left {
+    padding: 40px 38px;
+  }
+  .hs-left .tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--periwinkle);
+    font-weight: 700;
+  }
+  .hs-left h4 {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 14px 0 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .hs-left h4 :global(b) {
+    color: var(--indigo);
+  }
+  .hs-left p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    max-width: 30ch;
+  }
+  .hs-left .b {
+    display: inline-flex;
+    background: var(--indigo);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+  }
+  .hs-left .chips {
+    margin-top: 22px;
+  }
+  .hs-left .chips span {
+    font-size: 10px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--lilac);
+    color: var(--indigo);
+    font-weight: 600;
+  }
+  .hs-right {
+    background: linear-gradient(150deg, var(--indigo), var(--night));
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .hs-right .ring {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+  }
+  .hs-right .ring.r1 {
+    inset: 18%;
+  }
+  .hs-right .ring.r2 {
+    inset: 30%;
+  }
+  .hs-right .ring.r3 {
+    inset: 42%;
+  }
+  .hs-right .core {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.4);
+  }
+  .hs-right .core img {
+    width: 58px;
+  }
 
-/* FloatingCard position overrides (hero context) */
-:global(.hero-stage .f1) { top: 18%; left: -36px; animation: bob 5s ease-in-out infinite; }
-:global(.hero-stage .f2) { bottom: 16%; right: -30px; animation: bob 6s ease-in-out infinite .8s; }
+  /* FloatingCard position overrides (hero context) */
+  :global(.hero-stage .f1) {
+    top: 18%;
+    left: -36px;
+    animation: bob 5s ease-in-out infinite;
+  }
+  :global(.hero-stage .f2) {
+    bottom: 16%;
+    right: -30px;
+    animation: bob 6s ease-in-out infinite 0.8s;
+  }
 
-@media (max-width: 760px) {
-  :global(.hero-stage .hero-float) { display: none; }
-  .hs-body { grid-template-columns: 1fr; }
-  .hs-right { min-height: 160px; }
-}
+  @media (max-width: 760px) {
+    :global(.hero-stage .hero-float) {
+      display: none;
+    }
+    .hs-body {
+      grid-template-columns: 1fr;
+    }
+    .hs-right {
+      min-height: 160px;
+    }
+  }
 </style>

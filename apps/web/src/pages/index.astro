@@ -19,7 +19,8 @@ import Footer from '../components/Footer.astro';
 
 const site = await getEntry('settings', 'site');
 const home = await getEntry('pages', 'home');
-if (!site || !home) throw new Error('[SPEC-CONTENT-001/RF-6] Missing content: settings/site or pages/home');
+if (!site || !home)
+  throw new Error('[SPEC-CONTENT-001/RF-6] Missing content: settings/site or pages/home');
 
 const contactState = Astro.url.searchParams.get('contact') ?? undefined;
 const turnstileSiteKey = TURNSTILE_SITE_KEY ?? '';
@@ -61,11 +62,7 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
     feature={hd.painPoints.feature}
   />
 
-  <Value
-    heading={hd.value.heading}
-    lead={hd.value.lead}
-    pillars={hd.value.pillars}
-  />
+  <Value heading={hd.value.heading} lead={hd.value.lead} pillars={hd.value.pillars} />
 
   <HowItWorks steps={hd.howItWorks.steps} ctas={hd.howItWorks.ctas} />
 
@@ -96,7 +93,7 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
     leads={hd.contact.leads}
     altRows={hd.contact.altRows}
     turnstileSiteKey={turnstileSiteKey}
-    {...(contactState !== undefined ? { contactState } : {})}
+    {...contactState !== undefined ? { contactState } : {}}
   />
 
   <Footer

@@ -8,7 +8,11 @@ export default defineConfig({
   env: {
     schema: {
       TURNSTILE_SITE_KEY: envField.string({ context: 'server', access: 'public', optional: true }),
-      TURNSTILE_SECRET_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      TURNSTILE_SECRET_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
       RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
       LEAD_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       LEAD_FROM_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),

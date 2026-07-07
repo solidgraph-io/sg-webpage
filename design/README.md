@@ -16,12 +16,15 @@ solidgraph-website.html
 > copian los necesarios a `apps/web/public/`.
 
 ## Qué es este archivo
+
 Un **bundle autocontenido** de Claude Design:
+
 - El markup real va como JSON en `<script type="__bundler/template">` (React/JSX compilado).
 - Los assets (imágenes/logos) van en base64 dentro de `<script type="__bundler/manifest">`.
 - Al abrirlo en un navegador se renderiza el diseño completo (requiere JS).
 
 ## Cómo se usa (skill `design-to-components`)
+
 1. **Referencia visual / regresión:** ábrelo en el navegador; es el objetivo pixel de los
    organismos (Playwright visual regression compara contra él).
 2. **Estructura y copy:** inspecciona el DOM en el navegador, o extrae texto/estilos del
@@ -30,6 +33,7 @@ Un **bundle autocontenido** de Claude Design:
    azules #3a4db0/#5c70d6/#7d8ef0; acento #34d39a).
 
 ## Inventario (secciones → organismos)
+
 Nav · Hero ("You Own Everything · Built From Scratch") · PainPoints ("The Walls You Hit") ·
 ValueProp · Process ("How It Works", 6 pasos) · Pricing ("No Hidden Fees": Nano/Micro/Pro/…) ·
 MaintenancePlans ("Keep Your Site Running Smoothly") · Stats · Testimonials · CtaBand ·

@@ -30,13 +30,13 @@ assets/                logos
 
 ## Where to make changes
 
-| I want to…                          | Edit |
-|-------------------------------------|------|
-| Rebrand colors / spacing / radius   | `design-system/tokens.css` |
-| Restyle a repeated element          | `components/<name>.css` |
-| Change a section's copy or layout   | `sections/NN-<name>.html` |
-| Add / reorder sections              | `sections/` + `SECTIONS` array in `index.html` |
-| Adjust behaviour / animations       | `scripts/interactions.js` |
+| I want to…                        | Edit                                           |
+| --------------------------------- | ---------------------------------------------- |
+| Rebrand colors / spacing / radius | `design-system/tokens.css`                     |
+| Restyle a repeated element        | `components/<name>.css`                        |
+| Change a section's copy or layout | `sections/NN-<name>.html`                      |
+| Add / reorder sections            | `sections/` + `SECTIONS` array in `index.html` |
+| Adjust behaviour / animations     | `scripts/interactions.js`                      |
 
 Full architecture notes and token reference: **`design-system/README.md`**.
 

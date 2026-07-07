@@ -40,9 +40,10 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
   // ── RF-2: apps/web is Astro with @astrojs/node ────────────────────────────
 
   it('[SPEC-INFRA-001/RF-2] apps/web package.json has astro and @astrojs/node dependencies', () => {
-    const pkg = JSON.parse(
-      fs.readFileSync(path.join(ROOT, 'apps/web/package.json'), 'utf-8'),
-    ) as { name: string; dependencies: Record<string, string> };
+    const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'apps/web/package.json'), 'utf-8')) as {
+      name: string;
+      dependencies: Record<string, string>;
+    };
     expect(pkg.name).toBe('@solidgraph/web');
     expect(pkg.dependencies).toHaveProperty('astro');
     expect(pkg.dependencies).toHaveProperty('@astrojs/node');
@@ -182,9 +183,10 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
 
   it('[SPEC-INFRA-001/RF-9] design file exists (template HTML)', () => {
     // design/template/index.html is the new per-section design source
-    const exists = fs.existsSync(path.join(ROOT, 'design/template/index.html'))
-                || fs.existsSync(path.join(ROOT, 'design/solidgraph-website.html'))
-                || fs.existsSync(path.join(ROOT, 'design/SolidGraph Website.html'));
+    const exists =
+      fs.existsSync(path.join(ROOT, 'design/template/index.html')) ||
+      fs.existsSync(path.join(ROOT, 'design/solidgraph-website.html')) ||
+      fs.existsSync(path.join(ROOT, 'design/SolidGraph Website.html'));
     expect(exists).toBe(true);
   });
 
@@ -192,9 +194,7 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
     const assetsDir = path.join(ROOT, 'design/assets');
     expect(fs.existsSync(assetsDir)).toBe(true);
     const files = fs.readdirSync(assetsDir);
-    const logoFiles = files.filter(
-      (f) => f.startsWith('logo') || f.startsWith('favicon'),
-    );
+    const logoFiles = files.filter((f) => f.startsWith('logo') || f.startsWith('favicon'));
     expect(logoFiles.length).toBeGreaterThan(0);
   });
 
@@ -252,9 +252,9 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
   });
 
   it('[SPEC-INFRA-001/RNF-2] apps/web package.json has dev script (pnpm dev levanta web)', () => {
-    const pkg = JSON.parse(
-      fs.readFileSync(path.join(ROOT, 'apps/web/package.json'), 'utf-8'),
-    ) as { scripts: Record<string, string> };
+    const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'apps/web/package.json'), 'utf-8')) as {
+      scripts: Record<string, string>;
+    };
     expect(pkg.scripts['dev']).toContain('astro dev');
   });
 
@@ -275,10 +275,7 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
 
   it('[SPEC-INFRA-001/INV-3] typescript-config/astro.json extends base (no duplication)', () => {
     const astroConfig = JSON.parse(
-      fs.readFileSync(
-        path.join(ROOT, 'packages/typescript-config/tsconfig.astro.json'),
-        'utf-8',
-      ),
+      fs.readFileSync(path.join(ROOT, 'packages/typescript-config/tsconfig.astro.json'), 'utf-8'),
     ) as { extends: string };
     expect(astroConfig.extends).toBe('./tsconfig.json');
   });

@@ -11,7 +11,9 @@ vinculante. Enfoque: **secciones directas** (organismo `.astro` por sección, po
 design system (SPEC-DS-001) y el **gate de fidelidad** (SPEC-QA-001, contra el diseño).
 
 ## Objetivo
+
 Implementar, en orden, estas specs Approved:
+
 1. `docs/specs/SPEC-SEC-004.md` — **04-pain-points** (bento, claro)
 2. `docs/specs/SPEC-SEC-005.md` — **05-value** (blanco, pilares hover-fill)
 3. `docs/specs/SPEC-SEC-006.md` — **06-how-it-works** (oscuro, sticky + duraciones)
@@ -19,6 +21,7 @@ Implementar, en orden, estas specs Approved:
 Fuente por sección: `design/template/sections/0{4,5,6}-*.html` + sus `components/*.css`.
 
 ## Reglas (no negociables)
+
 - **Port 1:1:** estructura y CSS de cada sección **tal cual** (scoped), usando primitivas (`IconBox`, `Eyebrow`, `SectionHead`, `Aurora`, `Button`). No re-traducir a Tailwind ni "interpretar".
 - **Gate de fidelidad (QA-001):** cada sección se compara **contra su HTML de diseño** (pixelmatch, umbral 8% desktop / 10% mobile). **Debe pasar** en desktop y mobile antes de `Verified`.
 - **TDD:** tests en rojo citando la spec (`it('[SPEC-SEC-004/RF-1] bento renders light with dark feature card')`), luego verde, refactor.
@@ -28,6 +31,7 @@ Fuente por sección: `design/template/sections/0{4,5,6}-*.html` + sus `component
 - **Git:** una rama por spec (`feature/SPEC-SEC-004-pain-points`, …); Conventional Commits con footer `[SPEC-SEC-00x]`, scope `section`.
 
 ## Pasos por sección
+
 1. Abre `design/template/sections/NN-*.html` + su CSS; entiende tema, estructura, hooks.
 2. Tests en rojo (estructura/tema fieles + a11y axe + props + **gate QA-001 contra el diseño** + casos clave: bento con feature oscura, pilares hover-fill, HowItWorks sticky + duraciones).
 3. Porta el organismo (CSS scoped) con las primitivas; compón en `index.astro`.
@@ -35,10 +39,12 @@ Fuente por sección: `design/template/sections/0{4,5,6}-*.html` + sus `component
 5. `pnpm lint && pnpm type-check && pnpm test && pnpm test:e2e && pnpm trace -- --check` verde. Estado de cada spec a **Verified**; actualiza `docs/05`.
 
 ## Detente y confirma con el humano si
+
 - El gate no baja del umbral por diferencias legítimas diseño↔app (repórtalo con capturas).
 - La sección necesita una primitiva que no existe en DS-001 → proponla antes.
 
 ## Entregable
+
 PainPoints + Value + HowItWorks **fieles** (gate verde contra el diseño, desktop+mobile), compuestas
 en la home, specs `Verified`, `docs/traceability.md` al día. Al terminar, resume con los % de diff y
 confirma que sigue el batch 07-plans / 08-testimonials / 09-portfolio.
