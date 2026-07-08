@@ -54,7 +54,7 @@ describe('SPEC-A11Y-001/RF-3 — landmark structure', () => {
   });
 
   it('[SPEC-A11Y-001/RF-3] Footer.astro renders a <footer> element', () => {
-    const c = fs.readFileSync(path.join(src, 'components/Footer.astro'), 'utf-8');
+    const c = fs.readFileSync(path.join(src, 'components/Footer/Footer.astro'), 'utf-8');
     expect(c).toContain('<footer');
   });
 

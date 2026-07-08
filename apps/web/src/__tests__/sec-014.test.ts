@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/Footer.astro');
+const file = path.join(WEB, 'src/components/Footer/Footer.astro');
+const scss = path.join(WEB, 'src/components/Footer/Footer.module.scss');
 
 // ── RF-1: Structure ───────────────────────────────────────────────────────
 describe('SPEC-SEC-014/RF-1 — footer structure', () => {
@@ -53,7 +54,7 @@ describe('SPEC-SEC-014/RF-2 — brand column', () => {
 // ── RF-3: Nav columns ─────────────────────────────────────────────────────
 describe('SPEC-SEC-014/RF-3 — navigation columns', () => {
   it('[SPEC-SEC-014/RF-3] has 3 .foot-col elements', () => {
-    const c = fs.readFileSync(file, 'utf-8');
+    const c = fs.readFileSync(file, 'utf-8') + fs.readFileSync(scss, 'utf-8');
     const matches = c.match(/foot-col/g);
     expect(matches?.length).toBeGreaterThanOrEqual(3);
   });
@@ -68,14 +69,14 @@ describe('SPEC-SEC-014/RF-3 — navigation columns', () => {
 // ── RNF-1: dark background ────────────────────────────────────────────────
 describe('SPEC-SEC-014/RNF-1 — dark', () => {
   it('[SPEC-SEC-014/RNF-1] uses var(--night-2)', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('var(--night-2)');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('var(--night-2)');
   });
 });
 
 // ── RNF-3: responsive ────────────────────────────────────────────────────
 describe('SPEC-SEC-014/RNF-3 — responsive', () => {
   it('[SPEC-SEC-014/RNF-3] has 880px breakpoint', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('880px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('880px');
   });
 });
 

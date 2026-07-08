@@ -1,0 +1,90 @@
+---
+import type { FooterProps } from './Footer.types';
+import { Image } from 'astro:assets';
+import styles from './Footer.module.scss';
+import logoAvatar from '../../assets/logo_avatar.png';
+
+type Props = FooterProps;
+
+const {
+  brandLink = 'https://solidgraph.dev',
+  tagline = 'Custom-built websites for local businesses.',
+  locations = ['Charlotte, NC', 'Springfield-Branson, MO'],
+  cols = [
+    {
+      heading: 'Navigate',
+      links: [
+        { label: 'How It Works', href: '#how-it-works' },
+        { label: 'Our Plans', href: '#plans' },
+        { label: 'Our Work', href: '#portfolio' },
+        { label: 'About', href: '#about' },
+        { label: 'FAQ', href: '#faq' },
+        { label: 'Contact', href: '#contact' },
+      ],
+    },
+    {
+      heading: 'Plans',
+      links: [
+        { label: 'Nano — $1,300', href: '#plans' },
+        { label: 'Micro — $2,800', href: '#plans' },
+        { label: 'Pro — $5,500', href: '#plans' },
+        { label: 'Enterprise', href: '#plans' },
+        { label: 'Hosting Plans', href: '#plans' },
+      ],
+    },
+    {
+      heading: 'Get in Touch',
+      links: [
+        { label: 'hello@solidgraph.com', href: 'mailto:hello@solidgraph.com' },
+        { label: 'Free Quote', href: '#contact' },
+        { label: 'Discovery Call', href: '#contact' },
+      ],
+    },
+  ],
+  copyright = '© 2026 SolidGraph Solutions LLC. All rights reserved.',
+} = Astro.props;
+---
+
+<footer data-section="footer">
+  <div class="container">
+    <div class={styles['foot-grid']}>
+      <div class={styles['foot-brand']}>
+        <a href={brandLink} class="logo" rel="noopener">
+          <Image
+            src={logoAvatar}
+            alt="SolidGraph"
+            style="height:40px;width:auto; filter: brightness(0) invert(1);"
+            loading="lazy"
+          />
+          <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
+        </a>
+        <p>{tagline}</p>
+        <div class={styles.locs}>
+          {locations.map((loc) => <span>{loc}</span>)}
+        </div>
+      </div>
+      {
+        cols.map((col) => (
+          <div class={styles['foot-col']}>
+            <h5>{col.heading}</h5>
+            <ul>
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class={styles['foot-bottom']}>
+      <span>{copyright}</span>
+      <div class={styles.legal}>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class={styles['foot-big']} aria-hidden="true">SolidGraph</div>
+</footer>
