@@ -1,0 +1,66 @@
+---
+import type { HowItWorksProps } from './HowItWorks.types';
+import styles from './HowItWorks.module.scss';
+import Aurora from '../Aurora.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Button from '../Button.astro';
+
+type Props = HowItWorksProps;
+
+const {
+  eyebrow = 'Our Process',
+  heading = 'How It Works',
+  lead = 'From first conversation to live website — a simple, 4-step process.',
+  steps,
+  ctas,
+} = Astro.props;
+---
+
+<section
+  class="how has-spot"
+  id="how-it-works"
+  data-section="how-it-works"
+  aria-labelledby="how-heading"
+>
+  <div class="spotlight" aria-hidden="true"></div>
+  <Aurora />
+  <div class={`container ${styles['how-grid']}`}>
+    <div class={styles['how-sticky']} data-reveal="left">
+      <Eyebrow class="eyebrow-how">{eyebrow}</Eyebrow>
+      <h2 id="how-heading">{heading}</h2>
+      <p>{lead}</p>
+      <div class={styles['how-progress']} aria-hidden="true">
+        {steps.map((_, i) => <i class:list={[i === 0 && 'on']} />)}
+      </div>
+      <div class={styles['how-ctas']}>
+        {
+          ctas.map((cta) => (
+            <Button variant={cta.variant} href={cta.href} magnetic>
+              <span>{cta.label}</span>
+              {cta.icon && (
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons.svg#i-arrow" />
+                </svg>
+              )}
+            </Button>
+          ))
+        }
+      </div>
+    </div>
+    <div class={styles.steps}>
+      {
+        steps.map((s, i) => (
+          <div class={styles.step} data-reveal="right" style={`--d:${i * 90}ms`}>
+            <span class="num">{s.num}</span>
+            <div class="meat">
+              <h4>
+                {s.title} <span class="dur">{s.dur}</span>
+              </h4>
+              <p>{s.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

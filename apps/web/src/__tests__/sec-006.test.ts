@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/HowItWorks.astro');
+const file = path.join(WEB, 'src/components/HowItWorks/HowItWorks.astro');
+const scss = path.join(WEB, 'src/components/HowItWorks/HowItWorks.module.scss');
 
 // ── RF-1: estructura/tema ──────────────────────────────────────────────────
 describe('SPEC-SEC-006/RF-1 — estructura', () => {
@@ -17,9 +18,8 @@ describe('SPEC-SEC-006/RF-1 — estructura', () => {
   });
 
   it('[SPEC-SEC-006/RF-1] has .how section with --night background', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('class="how');
-    expect(c).toContain('--night');
+    expect(fs.readFileSync(file, 'utf-8')).toContain('class="how');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('--night');
   });
 
   it('[SPEC-SEC-006/RF-1] has .how-grid (2-col) with .how-sticky (sticky left)', () => {
@@ -103,7 +103,7 @@ describe('SPEC-SEC-006/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ─────────────────────────────────────────────────────
 describe('SPEC-SEC-006/RNF-3 — responsive', () => {
   it('[SPEC-SEC-006/RNF-3] has 980px breakpoint for 1-col + sticky→static', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('980px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('980px');
   });
 });
 
@@ -118,7 +118,7 @@ describe('SPEC-SEC-006/INV-1 — SRP', () => {
 // ── INV-2: tokens / no hardcode ───────────────────────────────────────────
 describe('SPEC-SEC-006/INV-2 — tokens', () => {
   it('[SPEC-SEC-006/INV-2] uses var(--...) tokens for colors', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('var(--');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('var(--');
   });
 
   it('[SPEC-SEC-006/INV-2] composed in index.astro', () => {

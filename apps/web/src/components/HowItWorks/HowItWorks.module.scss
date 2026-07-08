@@ -1,0 +1,156 @@
+// HowItWorks.module.scss (ADR-0012)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: section root ───────────────────────────────────────────────────────
+:global(.how) {
+  background: var(--night);
+  color: #fff;
+  padding: 130px 0;
+  position: relative;
+  overflow: hidden;
+
+  :global(.aurora) b {
+    opacity: 0.35;
+  }
+
+  h2 {
+    color: #fff;
+    margin: 20px 0 16px;
+  }
+}
+
+// ── LOCAL: grid ────────────────────────────────────────────────────────────────
+.how-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+// ── LOCAL: sticky left panel ───────────────────────────────────────────────────
+.how-sticky {
+  position: sticky;
+  top: 120px;
+
+  :global(.eyebrow-how) {
+    color: var(--peri-bright);
+
+    &::before {
+      background: var(--peri-bright);
+    }
+  }
+
+  & > p {
+    color: var(--muted-d);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 38ch;
+  }
+}
+
+// ── LOCAL: progress + ctas ────────────────────────────────────────────────────
+.how-progress {
+  margin-top: 36px;
+  display: flex;
+  gap: 8px;
+
+  i {
+    height: 4px;
+    flex: 1;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    overflow: hidden;
+
+    &.on {
+      background: var(--peri-bright);
+    }
+  }
+}
+
+.how-ctas {
+  margin-top: 38px;
+  display: flex;
+  gap: 14px;
+}
+
+// ── LOCAL: step cards ─────────────────────────────────────────────────────────
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 26px;
+  padding: 30px 32px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  transition:
+    transform 0.5s var(--ease),
+    background 0.4s ease,
+    border-color 0.4s ease;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(125, 142, 240, 0.4);
+  }
+
+  // .num, .meat, .dur are plain class strings in the DOM — keep unhashed
+  :global(.num) {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(180deg, var(--peri-bright), rgba(125, 142, 240, 0.3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.04em;
+  }
+
+  :global(.meat) {
+    h4 {
+      font-size: 19px;
+      color: #fff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    :global(.dur) {
+      font-size: 11px;
+      color: #fff;
+      background: rgba(92, 112, 214, 0.55);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 13.5px;
+      color: var(--muted-d);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+  }
+}
+
+// ── RESPONSIVE (after base rules) ─────────────────────────────────────────────
+@media (max-width: 980px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .how-sticky {
+    position: static;
+  }
+}
