@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/PainPoints.astro');
+const file = path.join(WEB, 'src/components/PainPoints/PainPoints.astro');
+const scss = path.join(WEB, 'src/components/PainPoints/PainPoints.module.scss');
 
 // ── RF-1: estructura/estilo ────────────────────────────────────────────────
 describe('SPEC-SEC-004/RF-1 — estructura', () => {
@@ -17,9 +18,8 @@ describe('SPEC-SEC-004/RF-1 — estructura', () => {
   });
 
   it('[SPEC-SEC-004/RF-1] has .pain section with --lilac-2 background', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('class="pain');
-    expect(c).toContain('--lilac-2');
+    expect(fs.readFileSync(file, 'utf-8')).toContain('class="pain');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('--lilac-2');
   });
 
   it('[SPEC-SEC-004/RF-1] has .bento grid container', () => {
@@ -39,9 +39,9 @@ describe('SPEC-SEC-004/RF-1 — estructura', () => {
   });
 
   it('[SPEC-SEC-004/RF-1] bento-card CSS includes hover lift and halo', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('bento-card');
-    expect(c).toContain('translateY');
+    const all = fs.readFileSync(file, 'utf-8') + fs.readFileSync(scss, 'utf-8');
+    expect(all).toContain('bento-card');
+    expect(all).toContain('translateY');
   });
 });
 
@@ -90,11 +90,11 @@ describe('SPEC-SEC-004/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ─────────────────────────────────────────────────────
 describe('SPEC-SEC-004/RNF-3 — responsive', () => {
   it('[SPEC-SEC-004/RNF-3] bento grid has 4-col template', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('repeat(4, 1fr)');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('repeat(4, 1fr)');
   });
 
   it('[SPEC-SEC-004/RNF-3] has media query for 2-col fallback', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('@media');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('@media');
   });
 });
 
@@ -109,7 +109,7 @@ describe('SPEC-SEC-004/INV-1 — SRP', () => {
 // ── INV-2: tokens / no hardcode ───────────────────────────────────────────
 describe('SPEC-SEC-004/INV-2 — tokens', () => {
   it('[SPEC-SEC-004/INV-2] uses var(--...) tokens for colors', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('var(--');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('var(--');
   });
 
   it('[SPEC-SEC-004/INV-2] composed in index.astro', () => {

@@ -1,0 +1,149 @@
+// PainPoints.module.scss (ADR-0012)
+// Local = hashed; :global() = externally targeted (gate/Playwright/interactions.js/DS)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: section root ───────────────────────────────────────────────────────
+:global(.pain) {
+  padding: 120px 0 110px;
+  background: var(--lilac-2);
+  position: relative;
+}
+
+// ── LOCAL: bento grid ─────────────────────────────────────────────────────────
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 18px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+// ── LOCAL: bento card ─────────────────────────────────────────────────────────
+.bento-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 34px 32px;
+  border: 1px solid rgba(45, 61, 138, 0.05);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--lilac);
+    opacity: 0;
+    transition:
+      opacity 0.5s ease,
+      transform 0.6s var(--ease);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+
+    &::before {
+      opacity: 0.6;
+      transform: scale(1.3);
+    }
+
+    :global(.ic) {
+      transform: scale(1.1) rotate(-6deg);
+    }
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.ic) {
+    margin-bottom: 22px;
+    transition: transform 0.4s var(--ease-spring);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 500;
+  }
+}
+
+// ── LOCAL: span variants ──────────────────────────────────────────────────────
+.bento-wide {
+  grid-column: span 2;
+}
+
+.bento-feature {
+  grid-column: span 2;
+  grid-row: span 1;
+  background: var(--indigo);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 400;
+    margin-top: 12px;
+    font-size: 14.5px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ── RESPONSIVE (after base rules) ─────────────────────────────────────────────
+@media (max-width: 880px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento-wide,
+  .bento-feature {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 540px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .bento-wide,
+  .bento-feature {
+    grid-column: span 1;
+  }
+}

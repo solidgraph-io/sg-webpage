@@ -1,0 +1,63 @@
+---
+import type { PainPointsProps } from './PainPoints.types';
+import styles from './PainPoints.module.scss';
+import SectionHead from '../SectionHead.astro';
+import Eyebrow from '../Eyebrow.astro';
+import IconBox from '../IconBox.astro';
+
+type Props = PainPointsProps;
+
+const { eyebrow = 'The Walls You Hit', heading, intro, items, feature } = Astro.props;
+---
+
+<section class="pain" data-section="pain-points" id="pain-points" aria-labelledby="pain-heading">
+  <div class="container">
+    <SectionHead data-reveal>
+      <Eyebrow slot="eyebrow" centered>{eyebrow}</Eyebrow>
+      <h2 id="pain-heading">{heading}</h2>
+      {intro && <p>{intro}</p>}
+    </SectionHead>
+    <div class={styles.bento}>
+      {
+        items.slice(0, 2).map((item, i) => (
+          <div
+            class:list={[styles['bento-card'], item.wide && styles['bento-wide']]}
+            data-reveal
+            style={`--d:${i * 80}ms`}
+          >
+            <IconBox size="md" class="ic">
+              <svg width="24" height="24" aria-hidden="true">
+                <use href={item.iconId} />
+              </svg>
+            </IconBox>
+            <p>{item.text}</p>
+          </div>
+        ))
+      }
+      <div
+        class={styles['bento-feature']}
+        data-reveal="right"
+        style="--d:160ms; padding:8px 20px; border-width:0px; border-style:solid; border-radius:28px"
+      >
+        <h3>{feature.title}</h3>
+        <p>{feature.text}</p>
+      </div>
+      {
+        items.slice(2).map((item, i) => (
+          <div
+            class:list={[styles['bento-card'], item.wide && styles['bento-wide']]}
+            data-reveal
+            style={`--d:${(i + 1) * 80}ms`}
+          >
+            <IconBox size="md" class="ic">
+              <svg width="24" height="24" aria-hidden="true">
+                <use href={item.iconId} />
+              </svg>
+            </IconBox>
+            <p>{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

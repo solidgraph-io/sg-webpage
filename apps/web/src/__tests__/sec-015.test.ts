@@ -176,8 +176,11 @@ describe('SPEC-SEC-015/INV-1 — single h1', () => {
       'Footer',
     ];
     for (const name of comps) {
-      const c = fs.readFileSync(path.join(WEB, `src/components/${name}.astro`), 'utf-8');
-      expect(c, `${name}.astro should not have <h1>`).not.toMatch(/<h1[\s>]/);
+      const flat = path.join(WEB, `src/components/${name}.astro`);
+      const folder = path.join(WEB, `src/components/${name}/${name}.astro`);
+      const filePath = fs.existsSync(folder) ? folder : flat;
+      const c = fs.readFileSync(filePath, 'utf-8');
+      expect(c, `${name} should not have <h1>`).not.toMatch(/<h1[\s>]/);
     }
   });
 });
