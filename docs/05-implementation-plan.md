@@ -101,6 +101,13 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Approved** — prompt `docs/prompts/22-deploy-dev-stage.md`; setup infra pendiente del humano (DNS, Dokploy `web-dev`, secret `DOKPLOY_WEBHOOK_WEB_DEV`, Turnstile/Resend) |
 
+### EPIC-41 — Fix CI develop (EN CURSO)
+
+| ID  | Ítem                                                                                                                                                                                                                                                                            | Estado                                                                                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| —   | Test frágil QA-001 `0.10` (prettier normaliza `0.10`→`0.1` → validar valor numérico). **CI en rojo en `develop`.** | **Pendiente** — se resuelve junto con la reestructura |
+| —   | **Reestructura component-as-folder** (decisión: carpeta por componente + barrel `index.ts` + `*.module.css` (CSS Modules, `:global()` para design-system/JS/gate hooks) + `*.types.ts` + hueco stories/tests). Resuelve el conteo de línea al sacar CSS/tipos del `.astro`. **Piloto en Hero primero** (`prompt 25`) → validar → codificar metodología (AGENTS.md + skill) → aplicar a los ~30 componentes. Supersede el enfoque de descomposición del prompt 24. | **EN CURSO (piloto)** — `docs/prompts/25-pilot-component-folder.md` |
+
 ### Diferido
 
 | EPIC    | Título                                                                                                                                                                                                                                                                                                                                                                                         | Estado   |

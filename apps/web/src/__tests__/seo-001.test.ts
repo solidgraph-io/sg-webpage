@@ -201,14 +201,14 @@ describe('SPEC-SEO-001/RF-6 — robots.txt endpoint', () => {
 // ── RF-7: single h1 + heading outline ────────────────────────────────────────
 describe('SPEC-SEO-001/RF-7 — single h1 and heading outline', () => {
   it('[SPEC-SEO-001/RF-7] Hero is the only component with <h1>', () => {
-    const heroFile = path.join(src, 'components/Hero.astro');
+    const heroFile = path.join(src, 'components/Hero/Hero.astro');
     expect(fs.readFileSync(heroFile, 'utf-8')).toContain('<h1');
   });
 
   it('[SPEC-SEO-001/RF-7] no other section component has <h1>', () => {
     const files = fs
       .readdirSync(path.join(src, 'components'))
-      .filter((f) => f.endsWith('.astro') && f !== 'Hero.astro');
+      .filter((f) => f.endsWith('.astro'));
     for (const f of files) {
       const c = fs.readFileSync(path.join(src, 'components', f), 'utf-8');
       expect(c, `${f} should not have <h1>`).not.toMatch(/<h1[\s>]/);

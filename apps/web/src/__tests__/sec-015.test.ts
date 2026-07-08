@@ -155,7 +155,7 @@ describe('SPEC-SEC-015/INV-2 — index.astro is composition-only', () => {
 // ── INV-1: single h1 ─────────────────────────────────────────────────────
 describe('SPEC-SEC-015/INV-1 — single h1', () => {
   it('[SPEC-SEC-015/INV-1] Hero.astro uses <h1>', () => {
-    const hero = fs.readFileSync(path.join(WEB, 'src/components/Hero.astro'), 'utf-8');
+    const hero = fs.readFileSync(path.join(WEB, 'src/components/Hero/Hero.astro'), 'utf-8');
     expect(hero).toContain('<h1');
   });
 

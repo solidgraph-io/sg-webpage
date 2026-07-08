@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const heroPath = path.join(WEB, 'src/components/Hero.astro');
+const heroPath = path.join(WEB, 'src/components/Hero/Hero.astro');
+const heroScssPath = path.join(WEB, 'src/components/Hero/Hero.module.scss');
 
 // ── RF-1: estructura/estilo ─────────────────────────────────────────────────
 describe('SPEC-SEC-002/RF-1 — estructura', () => {
@@ -137,7 +138,7 @@ describe('SPEC-SEC-002/RNF-2 — perf', () => {
 // ── RNF-3: responsive ─────────────────────────────────────────────────────
 describe('SPEC-SEC-002/RNF-3 — responsive', () => {
   it('[SPEC-SEC-002/RNF-3] Hero hides floats on mobile via CSS media query', () => {
-    const c = fs.readFileSync(heroPath, 'utf-8');
+    const c = fs.readFileSync(heroScssPath, 'utf-8');
     expect(c).toContain('max-width');
     expect(c).toContain('display: none');
   });
@@ -150,14 +151,14 @@ describe('SPEC-SEC-002/RNF-4 — fidelidad', () => {
   });
 
   it('[SPEC-SEC-002/RNF-4] Hero key CSS classes match source design', () => {
-    const c = fs.readFileSync(heroPath, 'utf-8');
+    const c = fs.readFileSync(heroPath, 'utf-8') + fs.readFileSync(heroScssPath, 'utf-8');
     const source = fs.readFileSync(
       path.join(ROOT, 'design/template/sections/02-hero.html'),
       'utf-8',
     );
     for (const cls of ['hero-stage', 'hero-screen', 'hero-ctas', 'hero-float']) {
       expect(source, `${cls} not in source`).toContain(cls);
-      expect(c, `${cls} missing from Hero.astro`).toContain(cls);
+      expect(c, `${cls} missing from Hero component`).toContain(cls);
     }
   });
 });

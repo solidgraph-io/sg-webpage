@@ -63,11 +63,11 @@ describe('SPEC-A11Y-001/RF-3 — landmark structure', () => {
   });
 
   it('[SPEC-A11Y-001/RF-3] Hero is the only h1 (no duplicate heading)', () => {
-    const heroC = fs.readFileSync(path.join(src, 'components/Hero.astro'), 'utf-8');
+    const heroC = fs.readFileSync(path.join(src, 'components/Hero/Hero.astro'), 'utf-8');
     expect(heroC).toContain('<h1');
     const components = fs
       .readdirSync(path.join(src, 'components'))
-      .filter((f) => f.endsWith('.astro') && f !== 'Hero.astro');
+      .filter((f) => f.endsWith('.astro'));
     for (const f of components) {
       const c = fs.readFileSync(path.join(src, 'components', f), 'utf-8');
       expect(c, `${f} must not have <h1>`).not.toMatch(/<h1[\s>]/);

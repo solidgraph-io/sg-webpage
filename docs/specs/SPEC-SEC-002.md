@@ -26,10 +26,24 @@ preview 3D** con badges flotantes. Port 1:1.
 - **RNF-3 (responsive)** — apila; preview/floats se adaptan u ocultan en móvil.
 - **RNF-4 (fidelidad)** — **regresión visual** contra `02-hero.html`.
 
+## Estructura de archivos (component-as-folder)
+
+Hero usa la estructura **component-as-folder** (piloto `refactor/pilot-hero-component-folder`):
+
+```
+src/components/Hero/
+  Hero.astro        # template only (≤ ~150 líneas; sin <style>)
+  Hero.module.scss  # CSS Modules: local (hashed) + :global() para gate/Playwright/interactions
+  Hero.types.ts     # interfaces HeroProps, HeroCta, HeroFloat, HeroPreview
+  index.ts          # barrel: export { default } from './Hero.astro'
+```
+
+Los importadores usan `import Hero from '../components/Hero'` (resuelve vía `index.ts`).
+
 ## Invariantes
 
-- **INV-1 (SRP)** — el Hero es rico; extrae sub-piezas (preview panel, floats) a componentes propios si supera ~150 líneas.
-- **INV-2** — color/medida por tokens; copy por props; usa `Aurora`/`FloatingCard`/`Pill`/`Button`.
+- **INV-1 (SRP)** — `Hero.astro` (template) debe mantenerse bajo ~150 líneas. CSS vive en `Hero.module.scss`.
+- **INV-2** — color/medida por tokens (`var(--x)`); sin `$sass-vars`; copy por props; usa `Aurora`/`FloatingCard`/`Pill`/`Button`.
 
 ## Criterios de aceptación (Gherkin)
 

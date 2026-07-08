@@ -1,0 +1,258 @@
+// Hero.module.scss — CSS Modules pilot (SPEC-SEC-002)
+// Local  = hashed; referenced in template as class={styles['name']}
+// :global() = unhashed; referenced as plain class="name"
+//             Required for: gate selectors, Playwright locators, interactions.js hooks
+// Tokens stay as CSS custom properties (var(--x)); no $vars — SPEC-DS-001/INV-1
+
+// ── GLOBAL: section root (gate selector · Playwright · interactions.js) ───────
+:global(.hero) {
+  position: relative;
+  overflow: hidden;
+  background: var(--night);
+  color: var(--white);
+  padding: 168px 0 120px;
+  isolation: isolate;
+
+  :global(.pill) {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(6px);
+  }
+
+  h1 {
+    color: var(--white);
+    text-align: center;
+    max-width: 16ch;
+    margin: 0 auto;
+  }
+}
+
+// ── GLOBAL: grid mesh (gate hook) ─────────────────────────────────────────────
+:global(.hero-grid-mesh) {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 75%);
+}
+
+// ── GLOBAL: preview screen (Playwright locator) ───────────────────────────────
+:global(.hero-screen) {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transform: rotateX(14deg) scale(0.98);
+  transform-origin: 50% 100%;
+  background: var(--white);
+}
+
+// ── LOCAL: structural wrappers ─────────────────────────────────────────────────
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.hero-sub {
+  text-align: center;
+  max-width: 600px;
+  margin: 30px auto 0;
+  color: var(--muted-d);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-snippet {
+  margin-top: 30px;
+  text-align: center;
+  color: var(--peri-bright);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+// ── LOCAL: stage + FloatingCard position overrides ────────────────────────────
+// f1/f2 are string props passed from Hero to FloatingCard — not Hero's own classes
+.hero-stage {
+  position: relative;
+  margin: 72px auto 0;
+  max-width: 980px;
+  perspective: 1600px;
+
+  :global(.f1) {
+    top: 18%;
+    left: -36px;
+    animation: bob 5s ease-in-out infinite;
+  }
+
+  :global(.f2) {
+    bottom: 16%;
+    right: -30px;
+    animation: bob 6s ease-in-out infinite 0.8s;
+  }
+
+  @media (max-width: 760px) {
+    :global(.hero-float) {
+      display: none;
+    }
+  }
+}
+
+// ── LOCAL: browser bar simulation ─────────────────────────────────────────────
+.hs-bar {
+  background: #f3f5fc;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d8defa;
+
+    &:nth-child(1) { background: #ff6b6b; }
+    &:nth-child(2) { background: #ffd166; }
+    &:nth-child(3) { background: var(--success); }
+  }
+
+  :global(.url) {
+    margin-left: 12px;
+    flex: 1;
+    background: var(--white);
+    border-radius: 999px;
+    height: 22px;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+}
+
+// ── LOCAL: preview body grid ──────────────────────────────────────────────────
+.hs-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  min-height: 320px;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── LOCAL: left panel (tag · title · body · cta · chips) ─────────────────────
+.hs-left {
+  padding: 40px 38px;
+
+  :global(.tag) {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--periwinkle);
+    font-weight: 700;
+  }
+
+  h4 {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 14px 0 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+
+    :global(b) {
+      color: var(--indigo);
+    }
+  }
+
+  p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    max-width: 30ch;
+  }
+
+  :global(.b) {
+    display: inline-flex;
+    background: var(--indigo);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+  }
+
+  :global(.chips) {
+    margin-top: 22px;
+
+    span {
+      font-size: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--lilac);
+      color: var(--indigo);
+      font-weight: 600;
+    }
+  }
+}
+
+// ── LOCAL: right panel (gradient · rings · logo core) ────────────────────────
+// .ring/.r1-r3/.core use :global() so Playwright can target .hero .core img
+.hs-right {
+  background: linear-gradient(150deg, var(--indigo), var(--night));
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+
+  :global(.ring) {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+  }
+
+  :global(.r1) { inset: 18%; }
+  :global(.r2) { inset: 30%; }
+  :global(.r3) { inset: 42%; }
+
+  :global(.core) {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.4);
+
+    img { width: 58px; }
+  }
+
+  @media (max-width: 760px) {
+    min-height: 160px;
+  }
+}
