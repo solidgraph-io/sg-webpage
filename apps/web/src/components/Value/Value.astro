@@ -1,0 +1,41 @@
+---
+import type { ValueProps } from './Value.types';
+import styles from './Value.module.scss';
+import Eyebrow from '../Eyebrow.astro';
+import IconBox from '../IconBox.astro';
+
+type Props = ValueProps;
+
+const { eyebrow = 'Why SolidGraph', heading, lead, pillars } = Astro.props;
+---
+
+<section class="value" data-section="value" id="value" aria-labelledby="value-heading">
+  <div class="container">
+    <div class={styles['value-head']}>
+      <div data-reveal="left">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id="value-heading" set:html={heading} />
+      </div>
+      <div class={styles.lead} data-reveal="right" style="--d:120ms">
+        <span class={styles.strong}>{lead.strong}</span>
+        {lead.body}
+      </div>
+    </div>
+    <div class={styles.pillars}>
+      {
+        pillars.map((p, i) => (
+          <div class={styles.pillar} data-reveal style={`--d:${i * 90}ms`}>
+            <span class={styles.num}>{p.num}</span>
+            <IconBox size="lg" class="ic">
+              <svg width="22" height="22" aria-hidden="true">
+                <use href={p.iconId} />
+              </svg>
+            </IconBox>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

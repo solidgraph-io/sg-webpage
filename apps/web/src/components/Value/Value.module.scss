@@ -1,0 +1,147 @@
+// Value.module.scss (ADR-0012)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: section root ───────────────────────────────────────────────────────
+:global(.value) {
+  padding: 130px 0 110px;
+  position: relative;
+  overflow: hidden;
+}
+
+// ── LOCAL: value head (2-col desktop, 1-col mobile) ───────────────────────────
+.value-head {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 70px;
+  align-items: end;
+  margin-bottom: 70px;
+
+  h2 {
+    margin-top: 20px;
+  }
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+
+  .strong {
+    color: var(--ink);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 14px;
+    font-size: 18px;
+  }
+}
+
+// ── LOCAL: pillars grid ───────────────────────────────────────────────────────
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+// ── LOCAL: pillar card ────────────────────────────────────────────────────────
+.pillar {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+
+  .num {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lilac);
+    transition: color 0.4s ease;
+  }
+
+  :global(.ic) {
+    margin-bottom: 24px;
+    transition:
+      background 0.4s ease,
+      color 0.4s ease,
+      transform 0.4s var(--ease-spring);
+  }
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    transition: color 0.4s ease;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.65;
+    transition: color 0.4s ease;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(165deg, var(--indigo), var(--night));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .num {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    h3 {
+      color: #fff;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    :global(.ic) {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      transform: scale(1.08) rotate(-5deg);
+    }
+  }
+}
+
+// ── RESPONSIVE (after base rules) ─────────────────────────────────────────────
+@media (max-width: 980px) {
+  .value-head {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+}

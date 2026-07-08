@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/Value.astro');
+const file = path.join(WEB, 'src/components/Value/Value.astro');
+const scss = path.join(WEB, 'src/components/Value/Value.module.scss');
 
 // ── RF-1: estructura/tema ──────────────────────────────────────────────────
 describe('SPEC-SEC-005/RF-1 — estructura', () => {
@@ -30,9 +31,8 @@ describe('SPEC-SEC-005/RF-1 — estructura', () => {
   });
 
   it('[SPEC-SEC-005/RF-1] has .pillar elements with hover-fill (::before gradient)', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('pillar');
-    expect(c).toContain('linear-gradient');
+    expect(fs.readFileSync(file, 'utf-8')).toContain('pillar');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('linear-gradient');
   });
 
   it('[SPEC-SEC-005/RF-1] uses Eyebrow primitive', () => {
@@ -93,15 +93,15 @@ describe('SPEC-SEC-005/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ─────────────────────────────────────────────────────
 describe('SPEC-SEC-005/RNF-3 — responsive', () => {
   it('[SPEC-SEC-005/RNF-3] pillars has 4-col template', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('repeat(4, 1fr)');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('repeat(4, 1fr)');
   });
 
   it('[SPEC-SEC-005/RNF-3] has 980px breakpoint for pillar 2-col + head 1-col', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('980px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('980px');
   });
 
   it('[SPEC-SEC-005/RNF-3] has 540px breakpoint for pillar 1-col', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('540px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('540px');
   });
 });
 
@@ -116,7 +116,7 @@ describe('SPEC-SEC-005/INV-1 — SRP', () => {
 // ── INV-2: tokens / no hardcode ───────────────────────────────────────────
 describe('SPEC-SEC-005/INV-2 — tokens', () => {
   it('[SPEC-SEC-005/INV-2] uses var(--...) tokens for colors', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('var(--');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('var(--');
   });
 
   it('[SPEC-SEC-005/INV-2] composed in index.astro', () => {
