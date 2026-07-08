@@ -45,13 +45,23 @@ Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-pl
 
 - **5 capas:** `atoms → molecules → organisms → templates → pages`. Los **organismos son los
   bloques** del contrato (`packages/blocks-contract`); átomos y moléculas son sus piezas internas.
-- **SRP:** un componente = un archivo = una responsabilidad. **Ningún componente supera ~150
-  líneas**; si lo hace (o hace >1 cosa, o repite markup), se descompone. Prohibidos los
+- **SRP:** un componente = una carpeta = una responsabilidad. **El `.astro` (solo template) no supera
+  ~150 líneas**; si lo hace (o hace >1 cosa, o repite markup), se descompone. Prohibidos los
   componentes gigantes.
+- **Component-as-folder (vinculante, ver ADR-0012):** cada componente es una carpeta con
+  `Name.astro` (template) + `Name.module.scss` (CSS Modules + Sass) + `Name.types.ts` +
+  `index.ts` (barrel `export { default } from './Name.astro'`); opcional `Name.stories.*` /
+  `Name.test.ts` co-localizados. Se importa como `../components/Name`.
+  - **CSS Modules:** clases **locales por defecto** (`class={styles.x}`); **`:global()`** para lo que
+    seleccionan externos por nombre — design-system compartido, hooks de `interactions.js`, y hooks de
+    gates/Playwright. Patrón: `:global()` anidado dentro de una local. Mnemónico: **si aparece en
+    Playwright, en el JS o en un gate → `:global()`**.
+  - **Tokens = CSS custom properties** (`var(--x)`), **nunca** `$` de Sass (rompería runtime/theming).
+    Sass solo para ergonomía (nesting/mixins/`@use`); el CSS se porta verbatim salvo el nesting.
 - **Construcción bottom-up:** tokens → átomos → moléculas → organismos → template → página, para
   maximizar reutilización.
 - **Sin lógica de negocio en átomos**; sin copy/colores hardcodeados (props + tokens).
-- Ubicación: `src/components/{atoms,molecules,organisms,templates}/`.
+- Ubicación: `src/components/{atoms,molecules,organisms,templates}/Name/` (una carpeta por componente).
 
 ---
 
