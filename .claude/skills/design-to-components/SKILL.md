@@ -71,14 +71,44 @@ son sus piezas internas; se comparten entre organismos.
 
 ## 2. Single Responsibility Principle — componentes pequeños
 
-- **Un componente = un archivo = una responsabilidad.** Si hace dos cosas, se parte.
-- **Límite duro:** un componente que supere **~150 líneas** (o con >1 responsabilidad, o con
-  markup repetido) **debe** descomponerse en átomos/moléculas. Nada de componentes gigantes.
+- **Un componente = una carpeta = una responsabilidad** (vinculante, ADR-0012). Si hace dos cosas, se parte.
+- **Límite duro:** el `.astro` (template) que supere **~150 líneas** (o con >1 responsabilidad, o con
+  markup repetido) **debe** descomponerse en átomos/moléculas. El límite aplica solo al template.
 - **Extrae en cuanto se repita:** si un fragmento de markup aparece 2 veces, conviértelo en
   átomo/molécula.
 - **Sin lógica de negocio en átomos.** Los átomos no conocen `pricing`, `plan`, etc.: solo props.
 - **Contenido y color por fuera:** copy vía props desde Content Collections; color/spacing vía
-  tokens (`tokens.css` / Tailwind). Nunca hardcodear (regla dura AGENTS.md §4).
+  tokens (`var(--x)`). Nunca hardcodear (regla dura AGENTS.md §4).
+
+### 2.1 Component-as-folder (ADR-0012) — estructura obligatoria
+
+Cada componente es **una carpeta** con estos 4 archivos:
+
+```
+src/components/{atoms,molecules,organisms}/Name/
+  Name.astro          ← template only (≤ ~150 líneas)
+  Name.module.scss    ← CSS Modules + Sass; tokens via var(--x), nunca $sass-vars
+  Name.types.ts       ← interfaces/types exportadas
+  index.ts            ← barrel: export { default } from './Name.astro'
+```
+
+Se importa siempre como `../components/Name` (Vite resuelve `index.ts`).
+
+#### Reglas CSS Modules (local/global)
+
+| Selector | Cuándo usar `:global()` | Cuándo es LOCAL |
+|----------|------------------------|-----------------|
+| Raíz de sección (`.pain`, `.about`, `footer`) | Siempre → `:global(.pain)` — mantiene `class="pain"` literal en template y tests | — |
+| Clase targetada por Playwright, `interactions.js`, gate o JS externo | `:global(.contact-form)`, `:global(.plan)`, `:global(.popular)` | — |
+| Clase añadida dinámicamente por JS | `:global(.field-error)` | — |
+| Layout interno, variantes internas | — | LOCAL por defecto: `class={styles['about-grid']}` |
+| Clase de hijo de otro componente (p.ej. `.b1` en FloatingCard) | Nested: `.parent { :global(.b1) {} }` | — |
+
+**Mnemónico:** _si aparece en Playwright, en JS externo o en un gate → `:global()`_.
+
+- **Tokens:** solo `var(--x)`. **Nunca** `$sass-vars` (romperían runtime/theming — SPEC-DS-001/INV-1).
+- **`@keyframes`:** referencia animaciones globales (`animations.css`), no las redefine.
+- El límite de ~150 líneas aplica al `.astro` (template). El `.module.scss` puede ser más largo.
 
 ## 3. Flujo de conversión (bottom-up, integrado con SDD/TDD)
 
@@ -102,15 +132,22 @@ Cada paso respeta la regla de oro de trazabilidad (`[SPEC-XXX/RF-y]`) y la DoD.
 
 - [ ] Spec creada y aprobada (`/new-spec`), con RF/RNF/INV y contrato Zod.
 - [ ] Descompuesto en átomos/moléculas existentes (reutiliza; crea solo lo nuevo).
-- [ ] Ningún componente > ~150 líneas; una responsabilidad cada uno.
+- [ ] **Estructura component-as-folder (ADR-0012):** carpeta `Name/` con `Name.astro` + `Name.module.scss` + `Name.types.ts` + `index.ts`. Sin archivos `.astro` planos (fuera de carpeta).
+- [ ] **CSS Modules:** raíz de sección → `:global(.name)`; layout/variantes internas → LOCAL; JS/Playwright/gate hooks → `:global()`. Tokens solo `var(--x)`.
+- [ ] Ningún `.astro` template > ~150 líneas; una responsabilidad cada uno.
 - [ ] Sin copy/colores hardcodeados (props + tokens).
 - [ ] Tests: render (`astro/container`), contrato Zod, a11y (axe AA), regresión visual vs. diseño.
+- [ ] Tests de path actualizados a `Name/Name.astro` y `Name/Name.module.scss`; CSS-only checks leen del `.module.scss`.
 - [ ] Registrado en `BlockRenderer` (`lib/blocks.ts`) y en la union del contrato.
 - [ ] `pnpm trace -- --check` en verde; commit citando la spec.
 
 ## 5. Anti-patrones
 
 - Volcar una sección entera del diseño en un solo `.astro` gigante.
+- **Crear un `.astro` plano** (fuera de carpeta) en vez de la estructura component-as-folder (ADR-0012).
+- Mezclar CSS en `<style>` dentro del `.astro` en vez de extraerlo a `.module.scss`.
+- Usar `$sass-vars` para tokens en vez de `var(--x)` (rompe runtime theming).
+- Usar `:global()` innecesariamente cuando la clase es solo interna.
 - Duplicar markup entre organismos en vez de extraer una molécula/átomo.
 - Meter lógica de dominio o copy fijo en un átomo.
 - Saltarse la spec/tests "porque solo estoy maquetando".
