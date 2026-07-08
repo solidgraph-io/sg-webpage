@@ -118,6 +118,8 @@ lint → type-check (astro check) → unit+contract → a11y → build → cover
      → trace check (spec↔test) → visual/e2e → security scan (gitleaks, npm audit)
 ```
 
+**Playwright:** versión npm pineada exacta (sin `^`) = tag de la imagen Drone; se bumpean juntos y nunca se usa `^` en `@playwright/test`.
+
 Entrega: DroneCI → Custom Registry → Dokploy → VPS/Docker (ver `docs/01` §6).
 
 ---

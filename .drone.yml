@@ -68,8 +68,9 @@ steps:
 
   # ── 4. visual-test (design fidelity gate) ───────────────────────────────────
   # SPEC-QA-001/RF-5 — bloqueante; corre contra el build de producción (CI=true)
+  # La tag DEBE coincidir con @playwright/test en apps/web/package.json (pineado exacto; subir juntos).
   - name: visual-test
-    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
     depends_on: [test]
     environment:
       CI: 'true'
@@ -89,7 +90,7 @@ steps:
   # ── 4b. a11y gate (axe WCAG AA — SPEC-A11Y-001/RF-7, INV-1) ────────────────
   # Runs after visual-test (build already done); reuses the same server.
   - name: a11y-test
-    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
     depends_on: [visual-test]
     environment:
       CI: 'true'
@@ -131,7 +132,7 @@ steps:
   # ── 4c. perf-test (Lighthouse CI — SPEC-PERF-001/RF-1, INV-1) ───────────────
   # Runs after build (dist/ ready); lhci starts its own preview server.
   - name: perf-test
-    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
     depends_on: [build]
     when:
       branch:

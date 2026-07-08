@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "1.61.1",
     "@solidgraph/eslint-config": "workspace:*",
     "@solidgraph/typescript-config": "workspace:*",
     "@types/node": "^22.15.27",
