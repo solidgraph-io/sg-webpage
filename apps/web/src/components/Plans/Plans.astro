@@ -1,0 +1,49 @@
+---
+import type { PlansProps } from './Plans.types';
+import styles from './Plans.module.scss';
+import SectionHead from '../SectionHead.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PlanCard from '../PlanCard';
+import HostingCard from '../HostingCard.astro';
+
+type Props = PlansProps;
+
+const {
+  heading = 'Simple Plans. No Hidden Fees.',
+  subheading = 'Pick the plan that fits where your business is right now. You can always grow into a bigger one.',
+  note = 'Every plan is custom-built from scratch. No templates, no page builders, no Wix. You own 100% of the code.',
+  plans,
+  hosting,
+} = Astro.props;
+---
+
+<section class="plans" id="plans" data-section="plans" aria-labelledby="plans-heading">
+  <div class="container">
+    <SectionHead data-reveal>
+      <Eyebrow slot="eyebrow" class="centered">Pricing</Eyebrow>
+      <h2 id="plans-heading">{heading}</h2>
+      <p>{subheading}</p>
+    </SectionHead>
+
+    <div class={styles['note-bar']} data-reveal>
+      <svg width="16" height="16" style="color:var(--periwinkle)" aria-hidden="true"
+        ><use href="/icons.svg#i-spark"></use></svg
+      >
+      {note}
+    </div>
+
+    <div class={styles['plan-grid']}>
+      {plans.map((plan, i) => <PlanCard {...plan} delay={`${i * 90}ms`} />)}
+    </div>
+
+    <div class={styles.hosting}>
+      <div class={styles['hosting-head']} data-reveal>
+        <h3>{hosting.heading}</h3>
+        {hosting.subheading && <p>{hosting.subheading}</p>}
+      </div>
+      <div class={styles['hosting-grid']}>
+        {hosting.cards.map((card, i) => <HostingCard {...card} delay={`${i * 80}ms`} />)}
+      </div>
+    </div>
+  </div>
+</section>

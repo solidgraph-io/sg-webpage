@@ -1,0 +1,96 @@
+// Plans.module.scss (ADR-0012)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: section root ───────────────────────────────────────────────────────
+:global(.plans) {
+  padding: 130px 0 110px;
+  background: #fff;
+  position: relative;
+}
+
+// ── LOCAL: note bar ───────────────────────────────────────────────────────────
+.note-bar {
+  max-width: 720px;
+  margin: 0 auto 56px;
+  text-align: center;
+  background: var(--lilac);
+  padding: 15px 26px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--indigo);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+// ── LOCAL: plan grid ──────────────────────────────────────────────────────────
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+// ── LOCAL: hosting ────────────────────────────────────────────────────────────
+.hosting {
+  margin-top: 84px;
+}
+
+.hosting-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+
+  h3 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+}
+
+.hosting-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+// ── RESPONSIVE (after base rules) ─────────────────────────────────────────────
+@media (max-width: 1100px) {
+  .plan-grid {
+    grid-template-columns: 1fr 1fr;
+
+    :global(.plan.popular) {
+      transform: none;
+    }
+
+    :global(.plan.popular:hover) {
+      transform: translateY(-8px);
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .hosting-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .hosting-grid {
+    grid-template-columns: 1fr;
+  }
+}

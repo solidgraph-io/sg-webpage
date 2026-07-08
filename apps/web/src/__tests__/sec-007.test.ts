@@ -8,8 +8,10 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/Plans.astro');
-const planCard = path.join(WEB, 'src/components/PlanCard.astro');
+const file = path.join(WEB, 'src/components/Plans/Plans.astro');
+const scss = path.join(WEB, 'src/components/Plans/Plans.module.scss');
+const planCard = path.join(WEB, 'src/components/PlanCard/PlanCard.astro');
+const planCardScss = path.join(WEB, 'src/components/PlanCard/PlanCard.module.scss');
 const hostingCard = path.join(WEB, 'src/components/HostingCard.astro');
 
 // ── RF-1: Plans structure ──────────────────────────────────────────────────
@@ -19,9 +21,8 @@ describe('SPEC-SEC-007/RF-1 — plans structure', () => {
   });
 
   it('[SPEC-SEC-007/RF-1] has .plans section (white bg)', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('class="plans"');
-    expect(c).toContain('#fff');
+    expect(fs.readFileSync(file, 'utf-8')).toContain('class="plans"');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('#fff');
   });
 
   it('[SPEC-SEC-007/RF-1] has .plan-grid', () => {
@@ -131,15 +132,13 @@ describe('SPEC-SEC-007/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ────────────────────────────────────────────────────
 describe('SPEC-SEC-007/RNF-3 — responsive', () => {
   it('[SPEC-SEC-007/RNF-3] plan-grid has 1100px and 600px breakpoints', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('1100px');
-    expect(c).toContain('600px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('1100px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('600px');
   });
 
   it('[SPEC-SEC-007/RNF-3] hosting-grid has 980px and 540px breakpoints', () => {
-    const c = fs.readFileSync(file, 'utf-8');
-    expect(c).toContain('980px');
-    expect(c).toContain('540px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('980px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('540px');
   });
 });
 
@@ -159,7 +158,7 @@ describe('SPEC-SEC-007/INV-1 — SRP', () => {
 // ── INV-2: tokens ─────────────────────────────────────────────────────────
 describe('SPEC-SEC-007/INV-2 — tokens', () => {
   it('[SPEC-SEC-007/INV-2] PlanCard uses var(--...) tokens', () => {
-    expect(fs.readFileSync(planCard, 'utf-8')).toContain('var(--');
+    expect(fs.readFileSync(planCardScss, 'utf-8')).toContain('var(--');
   });
 
   it('[SPEC-SEC-007/INV-2] composed in index.astro', () => {

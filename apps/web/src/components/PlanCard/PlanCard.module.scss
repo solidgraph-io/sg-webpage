@@ -1,0 +1,244 @@
+// PlanCard.module.scss (ADR-0012)
+// .plan and .popular are :global() — Plans.module.scss targets them via .plan-grid
+// Internal content classes are local (hashed)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: card root + popular variant (cross-component target from Plans) ────
+:global(.plan) {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease),
+    border-color 0.4s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(45, 61, 138, 0.18);
+  }
+
+  &:global(.popular) {
+    background: var(--night);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.03);
+    z-index: 2;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(125, 142, 240, 0.4), transparent 65%);
+      top: -120px;
+      right: -80px;
+    }
+
+    &:hover {
+      transform: scale(1.03) translateY(-8px);
+    }
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ── LOCAL: internal content classes ───────────────────────────────────────────
+.name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--periwinkle);
+  margin-bottom: 16px;
+
+  :global(.popular) & {
+    color: var(--peri-bright);
+  }
+}
+
+.tagline {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 24px;
+  min-height: 42px;
+
+  :global(.popular) & {
+    color: var(--muted-d);
+  }
+}
+
+.price {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.03em;
+
+  :global(.popular) & {
+    color: #fff;
+  }
+}
+
+.price-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+
+  :global(.popular) & {
+    color: var(--muted-d);
+  }
+}
+
+.delivery {
+  font-size: 11.5px;
+  color: var(--indigo);
+  font-weight: 600;
+  background: var(--lilac);
+  padding: 7px 13px;
+  border-radius: 999px;
+  margin: 16px 0 20px;
+  align-self: flex-start;
+
+  :global(.popular) & {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+}
+
+.best-for {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+
+  b {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  :global(.popular) & {
+    color: var(--muted-d);
+    border-color: rgba(255, 255, 255, 0.14);
+
+    b {
+      color: rgba(255, 255, 255, 0.95);
+    }
+  }
+}
+
+.includes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-bottom: 24px;
+
+  li {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-left: 26px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--lilac)
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%232d3d8a' d='M6.5 11L3.5 8l1-1 2 2 4-4 1 1z'/></svg>")
+        center/15px no-repeat;
+    }
+  }
+
+  :global(.popular) & li {
+    color: rgba(255, 255, 255, 0.9);
+
+    &::before {
+      background: rgba(255, 255, 255, 0.16)
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='white' d='M6.5 11L3.5 8l1-1 2 2 4-4 1 1z'/></svg>")
+        center/15px no-repeat;
+    }
+  }
+}
+
+.excludes {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 26px;
+
+  li {
+    font-size: 11.5px;
+    color: #b6b8c4;
+    padding-left: 26px;
+    position: relative;
+
+    &::before {
+      content: '×';
+      position: absolute;
+      left: 5px;
+      top: -1px;
+      font-size: 14px;
+    }
+  }
+
+  :global(.popular) & li {
+    color: rgba(255, 255, 255, 0.45);
+  }
+}
+
+.plan-cta {
+  margin-top: auto;
+  text-align: center;
+  padding: 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--indigo);
+  border: 1.5px solid rgba(45, 61, 138, 0.25);
+  transition: all 0.3s var(--ease);
+
+  &:hover {
+    background: var(--indigo);
+    color: #fff;
+    border-color: var(--indigo);
+  }
+
+  :global(.popular) & {
+    background: #fff;
+    color: var(--indigo);
+    border-color: #fff;
+
+    &:hover {
+      background: var(--peri-bright);
+      color: #fff;
+      border-color: var(--peri-bright);
+    }
+  }
+}

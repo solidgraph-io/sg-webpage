@@ -1,0 +1,45 @@
+---
+import type { PlanCardProps } from './PlanCard.types';
+import styles from './PlanCard.module.scss';
+import Badge from '../Badge.astro';
+
+type Props = PlanCardProps;
+
+const {
+  name,
+  tagline,
+  price,
+  priceNote,
+  delivery,
+  bestFor,
+  includes,
+  excludes,
+  ctaLabel,
+  ctaHref,
+  popular = false,
+  delay = '0ms',
+} = Astro.props;
+---
+
+<div class:list={['plan', popular && 'popular']} data-reveal style={`--d:${delay}`}>
+  {popular && <Badge>Most Popular</Badge>}
+  <div class={styles.name}>{name}</div>
+  <p class={styles.tagline}>{tagline}</p>
+  <div class={styles.price}>{price}</div>
+  <div class={styles['price-note']}>{priceNote}</div>
+  <span class={styles.delivery}>{delivery}</span>
+  <div class={styles['best-for']}><b>Best for</b>{bestFor}</div>
+  <ul class={styles.includes}>
+    {includes.map((item) => <li>{item}</li>)}
+  </ul>
+  {
+    excludes && excludes.length > 0 && (
+      <ul class={styles.excludes}>
+        {excludes.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )
+  }
+  <a href={ctaHref} class={styles['plan-cta']}>{ctaLabel}</a>
+</div>
