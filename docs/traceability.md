@@ -86,21 +86,21 @@ File: `docs/specs/SPEC-FORM-001.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:58, apps/web/src/__tests__/form-001.test.ts:61, apps/web/src/__tests__/form-001.test.ts:69, apps/web/src/__tests__/form-001.test.ts:78, apps/web/src/__tests__/form-001.test.ts:86, apps/web/src/__tests__/form-001.test.ts:94, apps/web/src/__tests__/form-001.test.ts:100, apps/web/src/__tests__/form-001.test.ts:108, apps/web/src/__tests__/form-001.test.ts:504, apps/web/src/__tests__/form-001.test.ts:505, apps/web/src/__tests__/form-001.test.ts:509, apps/web/src/__tests__/form-001.test.ts:513, apps/web/src/__tests__/form-001.test.ts:517, apps/web/src/__tests__/form-001.test.ts:521 |
+| RF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:58, apps/web/src/__tests__/form-001.test.ts:61, apps/web/src/__tests__/form-001.test.ts:69, apps/web/src/__tests__/form-001.test.ts:78, apps/web/src/__tests__/form-001.test.ts:86, apps/web/src/__tests__/form-001.test.ts:94, apps/web/src/__tests__/form-001.test.ts:100, apps/web/src/__tests__/form-001.test.ts:108, apps/web/src/__tests__/form-001.test.ts:514, apps/web/src/__tests__/form-001.test.ts:515, apps/web/src/__tests__/form-001.test.ts:519, apps/web/src/__tests__/form-001.test.ts:523, apps/web/src/__tests__/form-001.test.ts:527, apps/web/src/__tests__/form-001.test.ts:531 |
 | RF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:122, apps/web/src/__tests__/form-001.test.ts:125, apps/web/src/__tests__/form-001.test.ts:135, apps/web/src/__tests__/form-001.test.ts:142, apps/web/src/__tests__/form-001.test.ts:262, apps/web/src/__tests__/form-001.test.ts:263, apps/web/src/__tests__/form-001.test.ts:268, apps/web/src/__tests__/form-001.test.ts:273, apps/web/src/__tests__/form-001.test.ts:278 |
 | RF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:156, apps/web/src/__tests__/form-001.test.ts:159, apps/web/src/__tests__/form-001.test.ts:167, apps/web/src/__tests__/form-001.test.ts:176, apps/web/src/__tests__/form-001.test.ts:177, apps/web/src/__tests__/form-001.test.ts:211, apps/web/src/__tests__/form-001.test.ts:225, apps/web/src/__tests__/form-001.test.ts:228, apps/web/src/__tests__/form-001.test.ts:236, apps/web/src/__tests__/form-001.test.ts:246, apps/web/src/__tests__/form-001.test.ts:254 |
 | RF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:314, apps/web/src/__tests__/form-001.test.ts:315, apps/web/src/__tests__/form-001.test.ts:321, apps/web/src/__tests__/form-001.test.ts:326, apps/web/src/__tests__/form-001.test.ts:331, apps/web/src/__tests__/form-001.test.ts:339 |
-| RF-5 | ✅ | apps/web/src/__tests__/form-001.test.ts:360, apps/web/src/__tests__/form-001.test.ts:361, apps/web/src/__tests__/form-001.test.ts:367, apps/web/src/__tests__/form-001.test.ts:372, apps/web/src/__tests__/form-001.test.ts:377 |
-| RF-6 | ✅ | apps/web/src/__tests__/form-001.test.ts:386, apps/web/src/__tests__/form-001.test.ts:387, apps/web/src/__tests__/form-001.test.ts:393 |
+| RF-5 | ✅ | apps/web/src/__tests__/form-001.test.ts:370, apps/web/src/__tests__/form-001.test.ts:371, apps/web/src/__tests__/form-001.test.ts:377, apps/web/src/__tests__/form-001.test.ts:382, apps/web/src/__tests__/form-001.test.ts:387 |
+| RF-6 | ✅ | apps/web/src/__tests__/form-001.test.ts:396, apps/web/src/__tests__/form-001.test.ts:397, apps/web/src/__tests__/form-001.test.ts:403 |
 | RF-7 | ✅ | apps/web/src/__tests__/form-001.test.ts:287, apps/web/src/__tests__/form-001.test.ts:288, apps/web/src/__tests__/form-001.test.ts:295, apps/web/src/__tests__/form-001.test.ts:300, apps/web/src/__tests__/form-001.test.ts:305 |
-| RNF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:407, apps/web/src/__tests__/form-001.test.ts:408, apps/web/src/__tests__/form-001.test.ts:413 |
-| RNF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:421, apps/web/src/__tests__/form-001.test.ts:422 |
-| RNF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:345, apps/web/src/__tests__/form-001.test.ts:346, apps/web/src/__tests__/form-001.test.ts:351 |
-| RNF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:432, apps/web/src/__tests__/form-001.test.ts:433, apps/web/src/__tests__/form-001.test.ts:440 |
-| INV-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:450, apps/web/src/__tests__/form-001.test.ts:451, apps/web/src/__tests__/form-001.test.ts:456 |
-| INV-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:465 |
-| INV-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:474 |
-| INV-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:484, apps/web/src/__tests__/form-001.test.ts:485, apps/web/src/__tests__/form-001.test.ts:489, apps/web/src/__tests__/form-001.test.ts:493, apps/web/src/__tests__/form-001.test.ts:497 |
+| RNF-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:417, apps/web/src/__tests__/form-001.test.ts:418, apps/web/src/__tests__/form-001.test.ts:423 |
+| RNF-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:431, apps/web/src/__tests__/form-001.test.ts:432 |
+| RNF-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:345, apps/web/src/__tests__/form-001.test.ts:346, apps/web/src/__tests__/form-001.test.ts:354 |
+| RNF-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:442, apps/web/src/__tests__/form-001.test.ts:443, apps/web/src/__tests__/form-001.test.ts:450 |
+| INV-1 | ✅ | apps/web/src/__tests__/form-001.test.ts:460, apps/web/src/__tests__/form-001.test.ts:461, apps/web/src/__tests__/form-001.test.ts:466 |
+| INV-2 | ✅ | apps/web/src/__tests__/form-001.test.ts:475 |
+| INV-3 | ✅ | apps/web/src/__tests__/form-001.test.ts:484 |
+| INV-4 | ✅ | apps/web/src/__tests__/form-001.test.ts:494, apps/web/src/__tests__/form-001.test.ts:495, apps/web/src/__tests__/form-001.test.ts:499, apps/web/src/__tests__/form-001.test.ts:503, apps/web/src/__tests__/form-001.test.ts:507 |
 
 ## ✅ SPEC-INFRA-001 — Status: Implemented
 
@@ -153,9 +153,9 @@ File: `docs/specs/SPEC-QA-001.md`
 | RF-4 | ✅ | apps/web/src/__tests__/qa-001.test.ts:18, apps/web/src/__tests__/qa-001.test.ts:19, apps/web/src/__tests__/qa-001.test.ts:25, apps/web/src/__tests__/qa-001.test.ts:32 |
 | RF-5 | ✅ | apps/web/src/__tests__/qa-001.test.ts:44, apps/web/src/__tests__/qa-001.test.ts:45, apps/web/src/__tests__/qa-001.test.ts:50, apps/web/src/__tests__/qa-001.test.ts:56 |
 | RNF-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:66, apps/web/src/__tests__/qa-001.test.ts:67, apps/web/src/__tests__/qa-001.test.ts:73 |
-| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:84, apps/web/src/__tests__/qa-001.test.ts:85, apps/web/src/__tests__/qa-001.test.ts:91 |
-| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:98 |
-| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:109 |
+| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:86, apps/web/src/__tests__/qa-001.test.ts:87, apps/web/src/__tests__/qa-001.test.ts:93 |
+| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:100 |
+| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:111 |
 
 ## ✅ SPEC-SEC-001 — Status: Verified
 
@@ -210,7 +210,7 @@ File: `docs/specs/SPEC-SEC-004.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-004.test.ts:15, apps/web/src/__tests__/sec-004.test.ts:19, apps/web/src/__tests__/sec-004.test.ts:25, apps/web/src/__tests__/sec-004.test.ts:29, apps/web/src/__tests__/sec-004.test.ts:33, apps/web/src/__tests__/sec-004.test.ts:37, apps/web/src/__tests__/sec-004.test.ts:41, apps/web/tests/visual/pain-points.spec.ts:68 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-004.test.ts:16, apps/web/src/__tests__/sec-004.test.ts:20, apps/web/src/__tests__/sec-004.test.ts:25, apps/web/src/__tests__/sec-004.test.ts:29, apps/web/src/__tests__/sec-004.test.ts:33, apps/web/src/__tests__/sec-004.test.ts:37, apps/web/src/__tests__/sec-004.test.ts:41, apps/web/tests/visual/pain-points.spec.ts:68 |
 | RF-2 | ✅ | apps/web/src/__tests__/sec-004.test.ts:50, apps/web/src/__tests__/sec-004.test.ts:54, apps/web/src/__tests__/sec-004.test.ts:60, apps/web/src/__tests__/sec-004.test.ts:64 |
 | RF-3 | ✅ | apps/web/src/__tests__/sec-004.test.ts:73, apps/web/src/__tests__/sec-004.test.ts:77 |
 | RNF-1 | ✅ | apps/web/src/__tests__/sec-004.test.ts:84 |
@@ -226,7 +226,7 @@ File: `docs/specs/SPEC-SEC-005.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-005.test.ts:15, apps/web/src/__tests__/sec-005.test.ts:19, apps/web/src/__tests__/sec-005.test.ts:24, apps/web/src/__tests__/sec-005.test.ts:28, apps/web/src/__tests__/sec-005.test.ts:32, apps/web/src/__tests__/sec-005.test.ts:38, apps/web/src/__tests__/sec-005.test.ts:42, apps/web/tests/visual/value.spec.ts:67 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-005.test.ts:16, apps/web/src/__tests__/sec-005.test.ts:20, apps/web/src/__tests__/sec-005.test.ts:25, apps/web/src/__tests__/sec-005.test.ts:29, apps/web/src/__tests__/sec-005.test.ts:33, apps/web/src/__tests__/sec-005.test.ts:38, apps/web/src/__tests__/sec-005.test.ts:42, apps/web/tests/visual/value.spec.ts:67 |
 | RF-2 | ✅ | apps/web/src/__tests__/sec-005.test.ts:49, apps/web/src/__tests__/sec-005.test.ts:53, apps/web/src/__tests__/sec-005.test.ts:57, apps/web/src/__tests__/sec-005.test.ts:63 |
 | RF-3 | ✅ | apps/web/src/__tests__/sec-005.test.ts:72, apps/web/src/__tests__/sec-005.test.ts:77 |
 | RNF-1 | ✅ | apps/web/src/__tests__/sec-005.test.ts:84, apps/web/src/__tests__/sec-005.test.ts:88 |
@@ -242,7 +242,7 @@ File: `docs/specs/SPEC-SEC-006.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-006.test.ts:15, apps/web/src/__tests__/sec-006.test.ts:19, apps/web/src/__tests__/sec-006.test.ts:25, apps/web/src/__tests__/sec-006.test.ts:31, apps/web/src/__tests__/sec-006.test.ts:37, apps/web/src/__tests__/sec-006.test.ts:44, apps/web/src/__tests__/sec-006.test.ts:48, apps/web/src/__tests__/sec-006.test.ts:52, apps/web/src/__tests__/sec-006.test.ts:56, apps/web/tests/visual/how-it-works.spec.ts:73 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-006.test.ts:16, apps/web/src/__tests__/sec-006.test.ts:20, apps/web/src/__tests__/sec-006.test.ts:25, apps/web/src/__tests__/sec-006.test.ts:31, apps/web/src/__tests__/sec-006.test.ts:37, apps/web/src/__tests__/sec-006.test.ts:44, apps/web/src/__tests__/sec-006.test.ts:48, apps/web/src/__tests__/sec-006.test.ts:52, apps/web/src/__tests__/sec-006.test.ts:56, apps/web/tests/visual/how-it-works.spec.ts:73 |
 | RF-2 | ✅ | apps/web/src/__tests__/sec-006.test.ts:63, apps/web/src/__tests__/sec-006.test.ts:69, apps/web/src/__tests__/sec-006.test.ts:76 |
 | RF-3 | ✅ | apps/web/src/__tests__/sec-006.test.ts:85, apps/web/src/__tests__/sec-006.test.ts:89 |
 | RNF-1 | ✅ | apps/web/src/__tests__/sec-006.test.ts:98 |
@@ -258,17 +258,17 @@ File: `docs/specs/SPEC-SEC-007.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:17, apps/web/src/__tests__/sec-007.test.ts:21, apps/web/src/__tests__/sec-007.test.ts:27, apps/web/src/__tests__/sec-007.test.ts:31, apps/web/src/__tests__/sec-007.test.ts:35, apps/web/tests/visual/plans.spec.ts:67, apps/web/tests/visual/plans.spec.ts:72 |
-| RF-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:42, apps/web/src/__tests__/sec-007.test.ts:46, apps/web/src/__tests__/sec-007.test.ts:50, apps/web/tests/visual/plans.spec.ts:79 |
-| RF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:57, apps/web/src/__tests__/sec-007.test.ts:61, apps/web/src/__tests__/sec-007.test.ts:65, apps/web/src/__tests__/sec-007.test.ts:71, apps/web/src/__tests__/sec-007.test.ts:77, apps/web/src/__tests__/sec-007.test.ts:81 |
-| RF-4 | ✅ | apps/web/src/__tests__/sec-007.test.ts:91, apps/web/src/__tests__/sec-007.test.ts:97, apps/web/src/__tests__/sec-007.test.ts:101 |
-| RF-5 | ✅ | apps/web/src/__tests__/sec-007.test.ts:109, apps/web/src/__tests__/sec-007.test.ts:115 |
-| RNF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:122, apps/web/src/__tests__/sec-007.test.ts:126 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:19, apps/web/src/__tests__/sec-007.test.ts:23, apps/web/src/__tests__/sec-007.test.ts:28, apps/web/src/__tests__/sec-007.test.ts:32, apps/web/src/__tests__/sec-007.test.ts:36, apps/web/tests/visual/plans.spec.ts:67, apps/web/tests/visual/plans.spec.ts:72 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:43, apps/web/src/__tests__/sec-007.test.ts:47, apps/web/src/__tests__/sec-007.test.ts:51, apps/web/tests/visual/plans.spec.ts:79 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:58, apps/web/src/__tests__/sec-007.test.ts:62, apps/web/src/__tests__/sec-007.test.ts:66, apps/web/src/__tests__/sec-007.test.ts:72, apps/web/src/__tests__/sec-007.test.ts:78, apps/web/src/__tests__/sec-007.test.ts:82 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-007.test.ts:92, apps/web/src/__tests__/sec-007.test.ts:98, apps/web/src/__tests__/sec-007.test.ts:102 |
+| RF-5 | ✅ | apps/web/src/__tests__/sec-007.test.ts:110, apps/web/src/__tests__/sec-007.test.ts:116 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:123, apps/web/src/__tests__/sec-007.test.ts:127 |
 | RNF-2 | ✅ | apps/web/tests/visual/plans.spec.ts:84 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:133, apps/web/src/__tests__/sec-007.test.ts:139 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-007.test.ts:134, apps/web/src/__tests__/sec-007.test.ts:139 |
 | RNF-4 | ✅ | apps/web/tests/visual/plans.spec.ts:17, apps/web/tests/visual/plans.spec.ts:34, apps/web/tests/visual/plans.spec.ts:53, apps/web/tests/visual/plans.spec.ts:59 |
-| INV-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:148, apps/web/src/__tests__/sec-007.test.ts:153 |
-| INV-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:161, apps/web/src/__tests__/sec-007.test.ts:165 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-007.test.ts:147, apps/web/src/__tests__/sec-007.test.ts:152 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-007.test.ts:160, apps/web/src/__tests__/sec-007.test.ts:164 |
 
 ## ✅ SPEC-SEC-008 — Status: Verified
 
@@ -311,17 +311,17 @@ File: `docs/specs/SPEC-SEC-010.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:16, apps/web/src/__tests__/sec-010.test.ts:20, apps/web/src/__tests__/sec-010.test.ts:26, apps/web/src/__tests__/sec-010.test.ts:32, apps/web/src/__tests__/sec-010.test.ts:36, apps/web/src/__tests__/sec-010.test.ts:40, apps/web/tests/visual/about.spec.ts:76, apps/web/tests/visual/about.spec.ts:81 |
-| RF-2 | ✅ | apps/web/src/__tests__/sec-010.test.ts:47, apps/web/src/__tests__/sec-010.test.ts:51, apps/web/src/__tests__/sec-010.test.ts:55, apps/web/tests/visual/about.spec.ts:86, apps/web/tests/visual/about.spec.ts:91 |
-| RF-3 | ✅ | apps/web/src/__tests__/sec-010.test.ts:64, apps/web/src/__tests__/sec-010.test.ts:68 |
-| RF-4 | ✅ | apps/web/src/__tests__/sec-010.test.ts:77, apps/web/src/__tests__/sec-010.test.ts:84 |
-| RF-5 | ✅ | apps/web/src/__tests__/sec-010.test.ts:91, apps/web/src/__tests__/sec-010.test.ts:96 |
-| RNF-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:103, apps/web/src/__tests__/sec-010.test.ts:107 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:17, apps/web/src/__tests__/sec-010.test.ts:21, apps/web/src/__tests__/sec-010.test.ts:27, apps/web/src/__tests__/sec-010.test.ts:33, apps/web/src/__tests__/sec-010.test.ts:37, apps/web/src/__tests__/sec-010.test.ts:41, apps/web/tests/visual/about.spec.ts:76, apps/web/tests/visual/about.spec.ts:81 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-010.test.ts:48, apps/web/src/__tests__/sec-010.test.ts:52, apps/web/src/__tests__/sec-010.test.ts:56, apps/web/tests/visual/about.spec.ts:86, apps/web/tests/visual/about.spec.ts:91 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-010.test.ts:65, apps/web/src/__tests__/sec-010.test.ts:69 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-010.test.ts:78, apps/web/src/__tests__/sec-010.test.ts:85 |
+| RF-5 | ✅ | apps/web/src/__tests__/sec-010.test.ts:92, apps/web/src/__tests__/sec-010.test.ts:97 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:104, apps/web/src/__tests__/sec-010.test.ts:108 |
 | RNF-2 | ✅ | apps/web/tests/visual/about.spec.ts:96 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-010.test.ts:114 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-010.test.ts:115 |
 | RNF-4 | ✅ | apps/web/tests/visual/about.spec.ts:24, apps/web/tests/visual/about.spec.ts:42, apps/web/tests/visual/about.spec.ts:62, apps/web/tests/visual/about.spec.ts:68 |
-| INV-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:121 |
-| INV-2 | ✅ | apps/web/src/__tests__/sec-010.test.ts:129, apps/web/src/__tests__/sec-010.test.ts:133 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-010.test.ts:122 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-010.test.ts:130, apps/web/src/__tests__/sec-010.test.ts:134 |
 
 ## ✅ SPEC-SEC-011 — Status: Approved
 
@@ -362,16 +362,16 @@ File: `docs/specs/SPEC-SEC-013.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:16, apps/web/src/__tests__/sec-013.test.ts:20, apps/web/src/__tests__/sec-013.test.ts:24, apps/web/src/__tests__/sec-013.test.ts:30, apps/web/src/__tests__/sec-013.test.ts:34 |
-| RF-2 | ✅ | apps/web/src/__tests__/sec-013.test.ts:41, apps/web/src/__tests__/sec-013.test.ts:45, apps/web/src/__tests__/sec-013.test.ts:49, apps/web/src/__tests__/sec-013.test.ts:55, apps/web/src/__tests__/sec-013.test.ts:59, apps/web/src/__tests__/sec-013.test.ts:63, apps/web/tests/visual/contact.spec.ts:83 |
-| RF-3 | ✅ | apps/web/src/__tests__/sec-013.test.ts:70, apps/web/src/__tests__/sec-013.test.ts:74, apps/web/src/__tests__/sec-013.test.ts:78, apps/web/src/__tests__/sec-013.test.ts:84, apps/web/src/__tests__/sec-013.test.ts:90, apps/web/tests/visual/contact.spec.ts:72, apps/web/tests/visual/contact.spec.ts:77 |
-| RF-4 | ✅ | apps/web/src/__tests__/sec-013.test.ts:97, apps/web/src/__tests__/sec-013.test.ts:101 |
-| RNF-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:108, apps/web/src/__tests__/sec-013.test.ts:112 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:17, apps/web/src/__tests__/sec-013.test.ts:21, apps/web/src/__tests__/sec-013.test.ts:25, apps/web/src/__tests__/sec-013.test.ts:31, apps/web/src/__tests__/sec-013.test.ts:35 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-013.test.ts:42, apps/web/src/__tests__/sec-013.test.ts:46, apps/web/src/__tests__/sec-013.test.ts:50, apps/web/src/__tests__/sec-013.test.ts:56, apps/web/src/__tests__/sec-013.test.ts:60, apps/web/src/__tests__/sec-013.test.ts:64, apps/web/tests/visual/contact.spec.ts:83 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-013.test.ts:71, apps/web/src/__tests__/sec-013.test.ts:75, apps/web/src/__tests__/sec-013.test.ts:79, apps/web/src/__tests__/sec-013.test.ts:85, apps/web/src/__tests__/sec-013.test.ts:91, apps/web/tests/visual/contact.spec.ts:72, apps/web/tests/visual/contact.spec.ts:77 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-013.test.ts:98, apps/web/src/__tests__/sec-013.test.ts:102 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:109, apps/web/src/__tests__/sec-013.test.ts:113 |
 | RNF-2 | ✅ | apps/web/tests/visual/contact.spec.ts:88 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-013.test.ts:119 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-013.test.ts:120 |
 | RNF-4 | ✅ | apps/web/tests/visual/contact.spec.ts:20, apps/web/tests/visual/contact.spec.ts:38, apps/web/tests/visual/contact.spec.ts:58, apps/web/tests/visual/contact.spec.ts:64 |
-| INV-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:126, apps/web/src/__tests__/sec-013.test.ts:130 |
-| INV-2 | ✅ | apps/web/src/__tests__/sec-013.test.ts:137 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-013.test.ts:127, apps/web/src/__tests__/sec-013.test.ts:131 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-013.test.ts:138 |
 
 ## ✅ SPEC-SEC-014 — Status: Approved
 
@@ -379,15 +379,15 @@ File: `docs/specs/SPEC-SEC-014.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:15, apps/web/src/__tests__/sec-014.test.ts:19, apps/web/src/__tests__/sec-014.test.ts:23, apps/web/src/__tests__/sec-014.test.ts:27, apps/web/src/__tests__/sec-014.test.ts:31, apps/web/tests/visual/footer.spec.ts:72 |
-| RF-2 | ✅ | apps/web/src/__tests__/sec-014.test.ts:40, apps/web/src/__tests__/sec-014.test.ts:44, apps/web/src/__tests__/sec-014.test.ts:48, apps/web/tests/visual/footer.spec.ts:84 |
-| RF-3 | ✅ | apps/web/src/__tests__/sec-014.test.ts:55, apps/web/src/__tests__/sec-014.test.ts:61, apps/web/tests/visual/footer.spec.ts:79 |
-| RNF-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:70 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:16, apps/web/src/__tests__/sec-014.test.ts:20, apps/web/src/__tests__/sec-014.test.ts:24, apps/web/src/__tests__/sec-014.test.ts:28, apps/web/src/__tests__/sec-014.test.ts:32, apps/web/tests/visual/footer.spec.ts:72 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-014.test.ts:41, apps/web/src/__tests__/sec-014.test.ts:45, apps/web/src/__tests__/sec-014.test.ts:49, apps/web/tests/visual/footer.spec.ts:84 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-014.test.ts:56, apps/web/src/__tests__/sec-014.test.ts:62, apps/web/tests/visual/footer.spec.ts:79 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:71 |
 | RNF-2 | ✅ | apps/web/tests/visual/footer.spec.ts:89 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-014.test.ts:77 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-014.test.ts:78 |
 | RNF-4 | ✅ | apps/web/tests/visual/footer.spec.ts:20, apps/web/tests/visual/footer.spec.ts:38, apps/web/tests/visual/footer.spec.ts:58, apps/web/tests/visual/footer.spec.ts:64 |
-| INV-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:84 |
-| INV-2 | ✅ | apps/web/src/__tests__/sec-014.test.ts:91 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-014.test.ts:85 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-014.test.ts:92 |
 
 ## ✅ SPEC-SEC-015 — Status: Approved
 

@@ -88,9 +88,20 @@ Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-pl
 
 ## 4. Git Flow + Conventional Commits + CI
 
-Ramas `main`/`develop`/`feature/*`/`hotfix/*`; la rama cita la spec
+Ramas `main`/`develop`/`feature/*`/`fix/*`/`hotfix/*`; la rama cita la spec
 (`feature/SPEC-BLOCK-006-pricing`). Conventional Commits con footer `[SPEC-XXX]` (commitlint).
 Scopes: `layout|atom|molecule|block|content|cms|form|seo|a11y|perf|analytics|infra|docs`.
+
+**Ciclo de vida de la rama (vinculante — no dejar ramas colgando):**
+
+- `main` = producción (`solidgraph.io`, tag `latest`). `develop` = integración (`dev.solidgraph.dev`,
+  tag `dev`). `feature/*` y `fix/*` **salen siempre de `develop`** (nunca de otra feature — prohibido
+  apilar ramas una sobre otra).
+- **Al cerrar el incremento** (gates verdes): merge (o PR auto-mergeado) de la rama a `develop` y
+  **borrar la rama** (local **y** remota). Nada de features vivas tras integrar.
+- **Release:** `develop → main` (merge). `hotfix/*` sale de `main`, vuelve a `main` **y** `develop`.
+- La rama solo existe mientras dura su incremento; si un incremento termina, su rama desaparece.
+
 PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de bloques** o el
 **layout global**.
 

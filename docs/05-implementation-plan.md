@@ -101,12 +101,11 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Approved** — prompt `docs/prompts/22-deploy-dev-stage.md`; setup infra pendiente del humano (DNS, Dokploy `web-dev`, secret `DOKPLOY_WEBHOOK_WEB_DEV`, Turnstile/Resend) |
 
-### EPIC-41 — Fix CI develop (EN CURSO)
+### EPIC-41 — Fix CI develop (✅ hecho)
 
 | ID  | Ítem                                                                                                                                                                                                                                                                            | Estado                                                                                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| —   | Test frágil QA-001 `0.10` (prettier normaliza `0.10`→`0.1` → validar valor numérico). **CI en rojo en `develop`.** | **Pendiente** — se resuelve junto con la reestructura |
-| —   | **Reestructura component-as-folder** (carpeta + barrel + `*.module.scss` (CSS Modules + Sass, `:global()` para design-system/JS/gate hooks) + `*.types.ts`). **Piloto Hero ✅** (371→112 líneas de template, barrel sin fricción, gate verde) → codificado en **ADR-0012** + AGENTS.md §2. **Rollout** a los 8 organismos restantes + fix test `0.10` + skill: `prompt 26`. Supersede el prompt 24. | **Piloto hecho; rollout EN CURSO** — `docs/prompts/26-rollout-component-folder.md` |
+| —   | **Reestructura component-as-folder** (carpeta + barrel + `*.module.scss` CSS Modules+Sass, `:global()` para design-system/JS/gate hooks + `*.types.ts`). Piloto Hero → **ADR-0012** + AGENTS.md §2 + skill `design-to-components`. **Rollout ✅** 9 organismos (Hero+8), un commit c/u, **700/700 tests**, gates verdes. Test frágil `0.10` arreglado (valor numérico). | ✅ **Hecho** — rama `refactor/component-folder-rollout` (falta integrar a `develop`) |
 
 ### Diferido
 
