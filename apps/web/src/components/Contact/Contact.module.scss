@@ -1,0 +1,166 @@
+// Contact.module.scss (ADR-0012)
+// Tokens: var(--x) only — no $sass-vars (SPEC-DS-001/INV-1)
+
+// ── GLOBAL: section root ──────────────────────────────────────────────────────
+:global(.contact) {
+  padding: 130px 0 100px;
+  background: #fff;
+
+  h2 {
+    margin: 18px 0 0;
+  }
+}
+
+// ── LOCAL: layout ──────────────────────────────────────────────────────────────
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 64px;
+  align-items: start;
+}
+
+// ── LOCAL: left column ─────────────────────────────────────────────────────────
+.contact-left {
+  // structural wrapper
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+  margin-top: 18px;
+}
+
+// ── LOCAL: alt contact card ────────────────────────────────────────────────────
+.contact-alt {
+  margin-top: 38px;
+  background: var(--lilac-2);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 12px;
+
+    :global(.ic) {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--indigo);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    b {
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 600;
+      display: block;
+    }
+
+    span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+  }
+}
+
+// ── GLOBAL: contact-form (targeted by contact-form.ts querySelector) ───────────
+:global(.contact-form) {
+  background: var(--lilac-2);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  border: 1px solid rgba(45, 61, 138, 0.05);
+
+  input,
+  select,
+  textarea {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 13px 15px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--ink);
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 4px rgba(45, 61, 138, 0.1);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+}
+
+// ── LOCAL: field grid ──────────────────────────────────────────────────────────
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+// ── LOCAL: form footer ─────────────────────────────────────────────────────────
+.form-foot {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.privacy {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+// ── LOCAL: success message ─────────────────────────────────────────────────────
+.success-msg {
+  display: none;
+  margin-top: 22px;
+  background: rgba(52, 211, 154, 0.1);
+  color: #1a8c63;
+  padding: 15px 18px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+// ── GLOBAL: field-error (dynamically applied by contact-form.ts) ───────────────
+:global(.field-error) {
+  font-size: 11.5px;
+  color: #c0392b;
+  margin-top: 4px;
+}
+
+// ── RESPONSIVE ──────────────────────────────────────────────────────────────────
+@media (max-width: 880px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+}

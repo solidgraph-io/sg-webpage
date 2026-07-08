@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const contactFile = path.join(WEB, 'src/components/Contact.astro');
+const contactFile = path.join(WEB, 'src/components/Contact/Contact.astro');
+const scss = path.join(WEB, 'src/components/Contact/Contact.module.scss');
 const formField = path.join(WEB, 'src/components/FormField.astro');
 
 // ── RF-1: FormField molecule ──────────────────────────────────────────────
@@ -117,7 +118,7 @@ describe('SPEC-SEC-013/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ────────────────────────────────────────────────────
 describe('SPEC-SEC-013/RNF-3 — responsive', () => {
   it('[SPEC-SEC-013/RNF-3] has 880px breakpoint', () => {
-    expect(fs.readFileSync(contactFile, 'utf-8')).toContain('880px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('880px');
   });
 });
 

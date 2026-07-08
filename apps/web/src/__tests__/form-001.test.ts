@@ -252,7 +252,7 @@ describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
   });
 
   it('[SPEC-FORM-001/RF-3] Contact.astro renders Turnstile widget (cf-turnstile class)', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('cf-turnstile');
   });
 });
@@ -313,25 +313,25 @@ describe('[SPEC-FORM-001/RF-7] env vars read via astro:env at runtime, not baked
 
 describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS fallback)', () => {
   it('[SPEC-FORM-001/RF-4] Contact.astro form action="/api/lead"', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('action={formAction}');
     expect(src).toContain("'/api/lead'");
   });
 
   it('[SPEC-FORM-001/RF-4] Contact.astro form method="post"', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('method="post"');
   });
 
   it('[SPEC-FORM-001/RF-4] Contact.astro has honeypot field (_gotcha)', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('_gotcha');
   });
 
   it('[SPEC-FORM-001/RF-4] contact-form.ts has addEventListener submit (not onsubmit attr)', () => {
     const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
     expect(src).toContain("addEventListener('submit'");
-    expect(fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8')).not.toContain(
+    expect(fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8')).not.toContain(
       'onsubmit=',
     );
   });
@@ -344,14 +344,24 @@ describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS 
 
 describe('[SPEC-FORM-001/RNF-3] fidelity — default form state unchanged for QA-001 gate', () => {
   it('[SPEC-FORM-001/RNF-3] success-msg has display:none in default CSS state', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
-    expect(src).toMatch(/\.success-msg\s*\{[^}]*display:\s*none/);
+    const scss = fs.readFileSync(
+      path.join(WEB, 'src/components/Contact/Contact.module.scss'),
+      'utf-8',
+    );
+    expect(scss).toMatch(/\.success-msg\s*\{[^}]*display:\s*none/);
   });
 
   it('[SPEC-FORM-001/RNF-3] Contact.astro does not hardcode success-msg as visible', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(
+      path.join(WEB, 'src/components/Contact/Contact.astro'),
+      'utf-8',
+    );
+    const scss = fs.readFileSync(
+      path.join(WEB, 'src/components/Contact/Contact.module.scss'),
+      'utf-8',
+    );
     expect(src).not.toContain('success-msg show');
-    expect(src).not.toMatch(/\.success-msg\s*\{[^}]*display:\s*block/);
+    expect(scss).not.toMatch(/\.success-msg\s*\{[^}]*display:\s*block/);
   });
 });
 
@@ -359,13 +369,13 @@ describe('[SPEC-FORM-001/RNF-3] fidelity — default form state unchanged for QA
 
 describe('[SPEC-FORM-001/RF-5] UX — success-msg and error display', () => {
   it('[SPEC-FORM-001/RF-5] Contact.astro has success-msg element', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('success-msg');
     expect(src).toContain('successMsg');
   });
 
   it('[SPEC-FORM-001/RF-5] Contact.astro shows success-msg when contactState=success (no-JS)', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain("contactState === 'success'");
   });
 
@@ -406,7 +416,7 @@ describe('[SPEC-FORM-001/RF-6] security — no secrets in repo, no info leak', (
 
 describe('[SPEC-FORM-001/RNF-1] a11y — errors announced, keyboard operable', () => {
   it('[SPEC-FORM-001/RNF-1] success-msg has tabindex for focus management', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact.astro'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('tabindex');
   });
 
