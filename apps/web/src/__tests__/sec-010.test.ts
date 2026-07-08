@@ -8,7 +8,8 @@ import { describe, it, expect } from 'vitest';
 
 const ROOT = path.resolve(import.meta.dirname, '../../../..');
 const WEB = path.join(ROOT, 'apps/web');
-const file = path.join(WEB, 'src/components/About.astro');
+const file = path.join(WEB, 'src/components/About/About.astro');
+const scss = path.join(WEB, 'src/components/About/About.module.scss');
 const diffItem = path.join(WEB, 'src/components/DiffItem.astro');
 
 // ── RF-1: Visual / orbit ─────────────────────────────────────────────────
@@ -24,7 +25,7 @@ describe('SPEC-SEC-010/RF-1 — orbit visual', () => {
   });
 
   it('[SPEC-SEC-010/RF-1] has center-logo with img', () => {
-    const c = fs.readFileSync(file, 'utf-8');
+    const c = fs.readFileSync(file, 'utf-8') + fs.readFileSync(scss, 'utf-8');
     expect(c).toContain('center-logo');
     expect(c).toContain('img');
   });
@@ -34,11 +35,11 @@ describe('SPEC-SEC-010/RF-1 — orbit visual', () => {
   });
 
   it('[SPEC-SEC-010/RF-1] orbit has spin animation', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('spin');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('spin');
   });
 
   it('[SPEC-SEC-010/RF-1] badges have bob animation', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('bob');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('bob');
   });
 });
 
@@ -94,7 +95,7 @@ describe('SPEC-SEC-010/RF-5 — hooks', () => {
   });
 
   it('[SPEC-SEC-010/RF-5] orbit respects prefers-reduced-motion', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('reduced-motion');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('reduced-motion');
   });
 });
 
@@ -112,7 +113,7 @@ describe('SPEC-SEC-010/RNF-1 — a11y', () => {
 // ── RNF-3: responsive ────────────────────────────────────────────────────
 describe('SPEC-SEC-010/RNF-3 — responsive', () => {
   it('[SPEC-SEC-010/RNF-3] has 980px breakpoint for 1-col', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('980px');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('980px');
   });
 });
 
@@ -127,7 +128,7 @@ describe('SPEC-SEC-010/INV-1 — SRP', () => {
 // ── INV-2: tokens ────────────────────────────────────────────────────────
 describe('SPEC-SEC-010/INV-2 — tokens', () => {
   it('[SPEC-SEC-010/INV-2] uses var(--lilac-2) background', () => {
-    expect(fs.readFileSync(file, 'utf-8')).toContain('var(--lilac-2)');
+    expect(fs.readFileSync(scss, 'utf-8')).toContain('var(--lilac-2)');
   });
 
   it('[SPEC-SEC-010/INV-2] composed in index.astro', () => {

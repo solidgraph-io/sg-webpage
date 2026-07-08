@@ -84,7 +84,7 @@ describe('SPEC-PERF-001 — Performance gate', () => {
     });
 
     it('[SPEC-PERF-001/RF-2] About.astro imports from astro:assets', () => {
-      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About.astro'), 'utf-8');
+      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About/About.astro'), 'utf-8');
       expect(src).toContain('astro:assets');
       expect(src).toContain('<Image');
     });
@@ -96,7 +96,7 @@ describe('SPEC-PERF-001 — Performance gate', () => {
     });
 
     it('[SPEC-PERF-001/RF-2] About logo image has empty alt (decorative)', () => {
-      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About.astro'), 'utf-8');
+      const src = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About/About.astro'), 'utf-8');
       // Decorative image should have alt="" (not missing alt)
       expect(src).toMatch(/alt=""/);
     });
@@ -243,7 +243,7 @@ describe('SPEC-PERF-001 — Performance gate', () => {
     });
 
     it('[SPEC-PERF-001/RNF-2] decorative images have empty alt (aria safe)', () => {
-      const aboutSrc = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About.astro'), 'utf-8');
+      const aboutSrc = fs.readFileSync(path.join(WEB_ROOT, 'src/components/About/About.astro'), 'utf-8');
       // logo_avatar_full is decorative — must have alt=""
       expect(aboutSrc).toMatch(/alt=""/);
       expect(aboutSrc).toContain('aria-hidden="true"');

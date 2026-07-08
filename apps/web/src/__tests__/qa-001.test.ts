@@ -76,7 +76,7 @@ describe('SPEC-QA-001 — visual gate', () => {
       );
       for (const src of specs) {
         const match = /threshold:\s*([\d.]+)/.exec(src.split('threshold: 0.08')[1] ?? src);
-        const value = match ? parseFloat(match[1]) : NaN;
+        const value = match ? parseFloat(match[1] ?? '') : NaN;
         expect(value).toBeCloseTo(0.1, 1);
       }
     });
