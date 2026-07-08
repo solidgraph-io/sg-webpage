@@ -96,13 +96,13 @@ Se importa siempre como `../components/Name` (Vite resuelve `index.ts`).
 
 #### Reglas CSS Modules (local/global)
 
-| Selector | Cuándo usar `:global()` | Cuándo es LOCAL |
-|----------|------------------------|-----------------|
-| Raíz de sección (`.pain`, `.about`, `footer`) | Siempre → `:global(.pain)` — mantiene `class="pain"` literal en template y tests | — |
-| Clase targetada por Playwright, `interactions.js`, gate o JS externo | `:global(.contact-form)`, `:global(.plan)`, `:global(.popular)` | — |
-| Clase añadida dinámicamente por JS | `:global(.field-error)` | — |
-| Layout interno, variantes internas | — | LOCAL por defecto: `class={styles['about-grid']}` |
-| Clase de hijo de otro componente (p.ej. `.b1` en FloatingCard) | Nested: `.parent { :global(.b1) {} }` | — |
+| Selector                                                             | Cuándo usar `:global()`                                                          | Cuándo es LOCAL                                   |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Raíz de sección (`.pain`, `.about`, `footer`)                        | Siempre → `:global(.pain)` — mantiene `class="pain"` literal en template y tests | —                                                 |
+| Clase targetada por Playwright, `interactions.js`, gate o JS externo | `:global(.contact-form)`, `:global(.plan)`, `:global(.popular)`                  | —                                                 |
+| Clase añadida dinámicamente por JS                                   | `:global(.field-error)`                                                          | —                                                 |
+| Layout interno, variantes internas                                   | —                                                                                | LOCAL por defecto: `class={styles['about-grid']}` |
+| Clase de hijo de otro componente (p.ej. `.b1` en FloatingCard)       | Nested: `.parent { :global(.b1) {} }`                                            | —                                                 |
 
 **Mnemónico:** _si aparece en Playwright, en JS externo o en un gate → `:global()`_.
 

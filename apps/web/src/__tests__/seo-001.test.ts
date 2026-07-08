@@ -206,9 +206,7 @@ describe('SPEC-SEO-001/RF-7 — single h1 and heading outline', () => {
   });
 
   it('[SPEC-SEO-001/RF-7] no other section component has <h1>', () => {
-    const files = fs
-      .readdirSync(path.join(src, 'components'))
-      .filter((f) => f.endsWith('.astro'));
+    const files = fs.readdirSync(path.join(src, 'components')).filter((f) => f.endsWith('.astro'));
     for (const f of files) {
       const c = fs.readFileSync(path.join(src, 'components', f), 'utf-8');
       expect(c, `${f} should not have <h1>`).not.toMatch(/<h1[\s>]/);

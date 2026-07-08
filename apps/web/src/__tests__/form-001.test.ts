@@ -331,9 +331,9 @@ describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS 
   it('[SPEC-FORM-001/RF-4] contact-form.ts has addEventListener submit (not onsubmit attr)', () => {
     const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
     expect(src).toContain("addEventListener('submit'");
-    expect(fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8')).not.toContain(
-      'onsubmit=',
-    );
+    expect(
+      fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8'),
+    ).not.toContain('onsubmit=');
   });
 
   it('[SPEC-FORM-001/RF-4] index.astro reads contactState from URL params', () => {
@@ -352,10 +352,7 @@ describe('[SPEC-FORM-001/RNF-3] fidelity — default form state unchanged for QA
   });
 
   it('[SPEC-FORM-001/RNF-3] Contact.astro does not hardcode success-msg as visible', () => {
-    const src = fs.readFileSync(
-      path.join(WEB, 'src/components/Contact/Contact.astro'),
-      'utf-8',
-    );
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     const scss = fs.readFileSync(
       path.join(WEB, 'src/components/Contact/Contact.module.scss'),
       'utf-8',
