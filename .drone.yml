@@ -184,7 +184,10 @@ steps:
     commands:
       - corepack enable
       - corepack prepare pnpm@9.15.9 --activate
-      - export CHROME_PATH=$(pnpm --filter @solidgraph/web exec node -e 'process.stdout.write(require("playwright-core").chromium.executablePath())')
+      # playwright-core es transitiva → pnpm no la symlinkea. Usar @playwright/test (dep directa,
+      # re-exporta chromium). Fallback por glob al Chromium de la imagen Playwright si la resolución falla.
+      - export CHROME_PATH=$(pnpm --filter @solidgraph/web exec node -e 'process.stdout.write(require("@playwright/test").chromium.executablePath())' 2>/dev/null || true)
+      - test -x "$CHROME_PATH" || export CHROME_PATH=$(ls -d /ms-playwright/chromium-*/chrome-linux/chrome 2>/dev/null | head -n1)
       - echo "CHROME_PATH=$CHROME_PATH" && test -x "$CHROME_PATH"
       - npx @lhci/cli@latest autorun --config=.lighthouserc.js
 
