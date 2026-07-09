@@ -108,11 +108,13 @@ describe('[SPEC-DEPLOY-001/RF-3] trigger-dokploy-dev POSTs to DOKPLOY_WEBHOOK_WE
 // ── RF-4: same gates as prod ──────────────────────────────────────────────────
 
 describe('[SPEC-DEPLOY-001/RF-4] dev deploy runs after the same gates as prod', () => {
-  it('[SPEC-DEPLOY-001/RF-4] build-push-web-dev depends on [build, perf-test]', () => {
+  it('[SPEC-DEPLOY-001/RF-4] build-push-web-dev depends on visual-test, a11y-test and perf-test', () => {
     const src = drone();
-    const idx = src.indexOf('build-push-web-dev');
+    // Use step-level search to avoid matching comments before the definition.
+    const idx = src.indexOf('- name: build-push-web-dev');
     const stepBlock = src.slice(idx, idx + 600);
-    expect(stepBlock).toContain('build');
+    expect(stepBlock).toContain('visual-test');
+    expect(stepBlock).toContain('a11y-test');
     expect(stepBlock).toContain('perf-test');
   });
 });

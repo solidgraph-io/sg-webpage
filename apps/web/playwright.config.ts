@@ -30,7 +30,11 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm build && node dist/server/entry.mjs',
+    // In CI: dist/ is pre-built by the `build` step in .drone.yml (build-once, SPEC-DEPLOY-002/RF-1).
+    // Locally: rebuild on every test run to pick up latest changes.
+    command: process.env['CI']
+      ? 'node dist/server/entry.mjs'
+      : 'pnpm build && node dist/server/entry.mjs',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env['CI'],
     env: {

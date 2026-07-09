@@ -95,17 +95,24 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
 
-### EPIC-40 — Deploy stage dev (EN CURSO)
+### EPIC-40 — Deploy stage dev (código completo; falta push + infra humana)
+
+> `develop` **verde**: 700/700 unit, 207/207 e2e, lint/type-check/trace ✓. Pipeline dev + runbook
+> (`docs/deploy/dev-stage.md`) hechos. Bloqueos restantes son **100% humanos**: `git push origin develop`
+> (SSH) y el setup de infra (DNS, Dokploy `web-dev`, secret `DOKPLOY_WEBHOOK_WEB_DEV`, Turnstile/Resend).
+
 
 | ID                          | Ítem                                                                                                                                                                | Estado                                                                                                                                                                     |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Approved** — prompt `docs/prompts/22-deploy-dev-stage.md`; setup infra pendiente del humano (DNS, Dokploy `web-dev`, secret `DOKPLOY_WEBHOOK_WEB_DEV`, Turnstile/Resend) |
+| STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Implemented (código)** — falta push + infra humana |
+| STORY-402 / SPEC-DEPLOY-002 | **Optimización pipeline (CD moderno):** build 1× + gates en **paralelo** (fidelidad ∥ a11y ∥ perf sobre un único `dist/`) + **build-once → promote-image** (prod re-taggea, no reconstruye) + perf bloqueante-paralelo. **Rechazado** el ladder de environments por rama (ADR-0013). Ningún gate eliminado. | **Approved** — prompt `docs/prompts/31-pipeline-optimization.md` |
 
 ### EPIC-41 — Fix CI develop (✅ hecho)
 
 | ID  | Ítem                                                                                                                                                                                                                                                                                                                                                                    | Estado                                                                               |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | —   | **Reestructura component-as-folder** (carpeta + barrel + `*.module.scss` CSS Modules+Sass, `:global()` para design-system/JS/gate hooks + `*.types.ts`). Piloto Hero → **ADR-0012** + AGENTS.md §2 + skill `design-to-components`. **Rollout ✅** 9 organismos (Hero+8), un commit c/u, **700/700 tests**, gates verdes. Test frágil `0.10` arreglado (valor numérico). | ✅ **Hecho** — rama `refactor/component-folder-rollout` (falta integrar a `develop`) |
+| —   | **Quitar self-baselines visuales** (`toHaveScreenshot` RNF-3/4): driftan 1px local↔contenedor CI. Se elimina el segundo gate; **el gate de fidelidad vs diseño (SPEC-QA-001) queda como único gate visual** (ADR-0014). Menos E2E, más estable. | **Approved** — prompt `docs/prompts/32-remove-self-baselines.md` |
 
 ### Diferido
 
