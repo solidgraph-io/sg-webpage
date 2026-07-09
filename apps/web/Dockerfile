@@ -50,7 +50,11 @@ ENV NODE_ENV=production \
 
 EXPOSE 4321
 
-HEALTHCHECK --interval=15s --timeout=10s --start-period=30s --retries=3 \
-  CMD wget -qO- http://localhost:4321/ || exit 1
+# Use 127.0.0.1 (not localhost): Alpine resolves localhost to ::1 (IPv6) first,
+# but Astro binds only to 0.0.0.0 (IPv4) → connection refused on ::1 → unhealthy.
+# Use node fetch (Node 22 global) instead of wget to avoid busybox quirks.
+# start-period=45s + retries=5 give the SSR server time to boot under load.
+HEALTHCHECK --interval=15s --timeout=10s --start-period=45s --retries=5 \
+  CMD node -e "fetch('http://127.0.0.1:4321/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "dist/server/entry.mjs"]
