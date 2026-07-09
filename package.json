@@ -32,7 +32,7 @@
     "apps/web/**/*.{ts,tsx,astro}": [
       "eslint --fix --max-warnings 0"
     ],
-    "**/*.{ts,tsx,astro,js,mjs,cjs,json,css,scss,md,yaml,yml}": [
+    "**/*.{ts,tsx,astro,js,mjs,cjs,json,css,scss,yaml,yml}": [
       "prettier --write --ignore-unknown"
     ]
   }

@@ -111,6 +111,12 @@ PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de blo
 > pasa a Implemented/Verified viaja con su commit). `docs/` **nunca** va en `.gitignore`. El
 > `trace check` depende de `docs/specs` estando en el repo.
 
+> **Prettier solo formatea código, NO markdown/docs.** `**/*.md`/`**/*.mdx` están en `.prettierignore`
+> (specs, ADRs, prompts, plan, README, AGENTS, CLAUDE…): los docs se escriben a mano y su formato **no**
+> es un gate de CI. El gate `prettier --check .` de CI sigue **bloqueante** para **código**
+> (ts/tsx/astro/js/css/scss/json/yaml); el que commitea corre `pnpm exec prettier --write .` (o
+> `lint-staged`) para esos archivos antes de commitear.
+
 **Gates de CI — build-once, gates en paralelo (SPEC-DEPLOY-002):**
 
 ```

@@ -33,18 +33,36 @@ describe('SPEC-QA-001 — visual gate', () => {
       // Self-baselines (toHaveScreenshot) retired: environment drift causes 1px false failures.
       // compareWithDesign (design HTML as reference) is the only visual regression mechanism.
       const sectionSpecs = [
-        'nav', 'hero', 'marquee', 'pain-points', 'value', 'how-it-works', 'plans',
-        'testimonials', 'portfolio', 'about', 'faq', 'cta', 'contact', 'footer',
+        'nav',
+        'hero',
+        'marquee',
+        'pain-points',
+        'value',
+        'how-it-works',
+        'plans',
+        'testimonials',
+        'portfolio',
+        'about',
+        'faq',
+        'cta',
+        'contact',
+        'footer',
       ];
       for (const s of sectionSpecs) {
         const src = fs.readFileSync(path.join(WEB_ROOT, `tests/visual/${s}.spec.ts`), 'utf-8');
-        expect(src, `${s}.spec.ts should still have compareWithDesign`).toContain('compareWithDesign');
+        expect(src, `${s}.spec.ts should still have compareWithDesign`).toContain(
+          'compareWithDesign',
+        );
         // Check for actual call (parenthesis) to avoid false positives from doc comments.
-        expect(src, `${s}.spec.ts must not call toHaveScreenshot (ADR-0014)`).not.toContain('toHaveScreenshot(');
+        expect(src, `${s}.spec.ts must not call toHaveScreenshot (ADR-0014)`).not.toContain(
+          'toHaveScreenshot(',
+        );
       }
       // page.spec.ts has no compareWithDesign (full-page assembly, no section reference HTML)
       const pageSrc = fs.readFileSync(path.join(WEB_ROOT, 'tests/visual/page.spec.ts'), 'utf-8');
-      expect(pageSrc, 'page.spec.ts must not call toHaveScreenshot (ADR-0014)').not.toContain('toHaveScreenshot(');
+      expect(pageSrc, 'page.spec.ts must not call toHaveScreenshot (ADR-0014)').not.toContain(
+        'toHaveScreenshot(',
+      );
     });
   });
 
