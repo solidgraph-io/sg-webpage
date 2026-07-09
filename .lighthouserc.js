@@ -7,8 +7,11 @@ module.exports = {
       startServerReadyPattern: 'Local',
       numberOfRuns: 1,
       settings: {
-        // Container (Docker root) requires --no-sandbox; --headless=new is the stable headless mode.
-        chromeFlags: '--no-sandbox --headless=new',
+        // Docker root → --no-sandbox. --headless=new = modo headless estable.
+        // --disable-dev-shm-usage: /dev/shm en contenedores es ~64MB → el tab de Chrome crashea
+        //   (TARGET_CRASHED); con este flag Chrome usa /tmp en vez de /dev/shm.
+        // --disable-gpu: sin GPU en CI, evita fallos del compositor.
+        chromeFlags: '--no-sandbox --headless=new --disable-dev-shm-usage --disable-gpu',
       },
     },
     assert: {
