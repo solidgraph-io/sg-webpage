@@ -28,11 +28,11 @@ const {
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2 id="contact-heading">{heading}</h2>
       {leads.map((p) => <p class={styles.lead}>{p}</p>)}
-      <div class={styles['contact-alt']}>
+      <div class="contact-alt">
         <h4>{altHeading}</h4>
         {
           altRows.map((row) => (
-            <div class={styles.row}>
+            <div class="row">
               <div class="ic" aria-hidden="true">
                 <svg width="14" height="14" aria-hidden="true">
                   <use href={row.iconId} />

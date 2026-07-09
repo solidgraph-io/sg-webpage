@@ -113,8 +113,10 @@
   }
 
   @media (max-width: 760px) {
+    // !important: FloatingCard uses Astro scoped <style> with display:flex — equal specificity (0,2,0)
+    // but comes after in cascade order and wins. Fix properly by migrating FloatingCard to CSS Modules.
     :global(.hero-float) {
-      display: none;
+      display: none !important;
     }
   }
 }

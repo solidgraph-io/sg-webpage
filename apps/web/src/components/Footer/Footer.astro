@@ -59,13 +59,13 @@ const {
           <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
         </a>
         <p>{tagline}</p>
-        <div class={styles.locs}>
+        <div class="locs">
           {locations.map((loc) => <span>{loc}</span>)}
         </div>
       </div>
       {
         cols.map((col) => (
-          <div class={styles['foot-col']}>
+          <div class="foot-col">
             <h5>{col.heading}</h5>
             <ul>
               {col.links.map((link) => (

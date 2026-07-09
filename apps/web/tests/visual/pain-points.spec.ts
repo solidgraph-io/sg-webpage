@@ -19,6 +19,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-004/RNF-4] pain-points desktop 1440 — diff v
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
     astroPage: page,
     browser,

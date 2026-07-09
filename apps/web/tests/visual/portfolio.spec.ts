@@ -17,6 +17,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-009/RNF-4] portfolio desktop 1440 — diff vs 
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
     astroPage: page,
     browser,

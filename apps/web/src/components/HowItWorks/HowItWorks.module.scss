@@ -75,14 +75,15 @@
   gap: 14px;
 }
 
-// ── LOCAL: step cards ─────────────────────────────────────────────────────────
+// ── LOCAL: step cards wrapper ─────────────────────────────────────────────────
 .steps {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-.step {
+// ── GLOBAL: step card (targeted by E2E tests SPEC-SEC-006/RF-1) ───────────────
+:global(.step) {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 26px;

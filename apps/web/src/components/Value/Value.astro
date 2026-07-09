@@ -21,10 +21,10 @@ const { eyebrow = 'Why SolidGraph', heading, lead, pillars } = Astro.props;
         {lead.body}
       </div>
     </div>
-    <div class={styles.pillars}>
+    <div class="pillars">
       {
         pillars.map((p, i) => (
-          <div class={styles.pillar} data-reveal style={`--d:${i * 90}ms`}>
+          <div class="pillar" data-reveal style={`--d:${i * 90}ms`}>
             <span class={styles.num}>{p.num}</span>
             <IconBox size="lg" class="ic">
               <svg width="22" height="22" aria-hidden="true">
