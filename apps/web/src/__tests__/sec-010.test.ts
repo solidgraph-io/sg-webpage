@@ -66,10 +66,10 @@ describe('SPEC-SEC-010/RF-3 — DiffItem molecule', () => {
     expect(fs.existsSync(diffItem)).toBe(true);
   });
 
-  it('[SPEC-SEC-010/RF-3] DiffItem has .ic icon + h4 + p', () => {
+  it('[SPEC-SEC-010/RF-3] DiffItem has .ic icon + h3 + p', () => {
     const c = fs.readFileSync(diffItem, 'utf-8');
     expect(c).toContain('ic');
-    expect(c).toContain('h4');
+    expect(c).toContain('h3');
   });
 });
 

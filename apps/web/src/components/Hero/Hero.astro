@@ -82,7 +82,7 @@ const { pill, title, subtitle, ctas, snippet, preview, floats } = Astro.props;
             <div class={styles['hs-body']}>
               <div class={styles['hs-left']}>
                 {preview.tag && <span class="tag">{preview.tag}</span>}
-                {preview.title && <h4 set:html={preview.title} />}
+                {preview.title && <p class={styles['preview-title']} set:html={preview.title} />}
                 {preview.body && <p>{preview.body}</p>}
                 {preview.cta && <span class="b">{preview.cta}</span>}
                 {preview.chips && (
@@ -99,7 +99,7 @@ const { pill, title, subtitle, ctas, snippet, preview, floats } = Astro.props;
                 <span class="ring r3" />
                 <div class="core">
                   {preview.logoSrc && (
-                    <img src={preview.logoSrc} alt="SolidGraph" width="58" height="58" />
+                    <img src={preview.logoSrc} alt="SolidGraph" width="196" height="294" />
                   )}
                 </div>
               </div>

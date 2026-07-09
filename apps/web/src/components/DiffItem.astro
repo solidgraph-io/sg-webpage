@@ -18,7 +18,7 @@ const { iconId, title, text } = Astro.props;
     <svg width="20" height="20" aria-hidden="true"><use href={iconId}></use></svg>
   </div>
   <div>
-    <h4>{title}</h4>
+    <h3>{title}</h3>
     <p>{text}</p>
   </div>
 </div>
@@ -40,7 +40,7 @@ const { iconId, title, text } = Astro.props;
     place-items: center;
     box-shadow: var(--shadow-sm);
   }
-  .diff h4 {
+  .diff h3 {
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 4px;
