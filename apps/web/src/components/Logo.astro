@@ -1,11 +1,6 @@
 ---
-/**
- * Logo — avatar mark + wordmark lockup.
- * Used in nav and footer. On dark surfaces parent scope can invert
- * the img (filter) and recolor .logo-text.
- */
 import { Image } from 'astro:assets';
-import logoAvatar from '../assets/logo_avatar.png';
+import logoLinear from '../assets/logo_linear_primary_288h.webp';
 
 interface Props {
   href?: string;
@@ -17,39 +12,16 @@ const cls = ['logo', extra].filter(Boolean).join(' ');
 ---
 
 <a href={href} class={cls}>
-  <Image src={logoAvatar} alt="SolidGraph" />
-  <span class="logo-text">
-    <b>SolidGraph</b>
-    <small>SOLUTIONS</small>
-  </span>
+  <Image src={logoLinear} alt="SolidGraph" />
 </a>
 
 <style>
   .logo {
     display: flex;
     align-items: center;
-    gap: 11px;
   }
   .logo img {
     height: 34px;
     width: auto;
-  }
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-  .logo-text b {
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--indigo);
-    letter-spacing: -0.02em;
-  }
-  .logo-text small {
-    font-size: 9px;
-    letter-spacing: 0.26em;
-    color: var(--ink);
-    margin-top: 3px;
-    font-weight: 600;
   }
 </style>

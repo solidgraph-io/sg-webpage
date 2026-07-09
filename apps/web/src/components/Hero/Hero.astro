@@ -1,10 +1,12 @@
 ---
 import type { HeroProps } from './Hero.types';
+import { Image } from 'astro:assets';
 import styles from './Hero.module.scss';
 import Aurora from '../Aurora.astro';
 import Pill from '../Pill.astro';
 import Button from '../Button.astro';
 import FloatingCard from '../FloatingCard.astro';
+import logoNavIcon from '../../assets/logo_nav_icon_primary_288h.webp';
 
 type Props = HeroProps;
 
@@ -98,9 +100,7 @@ const { pill, title, subtitle, ctas, snippet, preview, floats } = Astro.props;
                 <span class="ring r2" />
                 <span class="ring r3" />
                 <div class="core">
-                  {preview.logoSrc && (
-                    <img src={preview.logoSrc} alt="SolidGraph" width="196" height="294" />
-                  )}
+                  <Image src={logoNavIcon} width={58} alt="SolidGraph" loading="eager" />
                 </div>
               </div>
             </div>

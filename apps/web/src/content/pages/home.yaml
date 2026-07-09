@@ -47,7 +47,6 @@ hero:
       - Fast
       - Custom
       - Yours
-    logoSrc: /assets/logo_avatar.png
   floats:
     - iconId: /icons.svg#i-zap
       label: Live in 2 weeks

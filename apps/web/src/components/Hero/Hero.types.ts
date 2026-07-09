@@ -12,7 +12,6 @@ export interface HeroPreview {
   body?: string;
   cta?: string;
   chips?: string[];
-  logoSrc?: string;
 }
 
 export interface HeroCta {

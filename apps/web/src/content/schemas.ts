@@ -100,7 +100,6 @@ export const HomeSchema = z.object({
       body: z.string(),
       cta: z.string(),
       chips: z.array(z.string()),
-      logoSrc: z.string(),
     }),
     floats: z.array(HeroFloat),
   }),

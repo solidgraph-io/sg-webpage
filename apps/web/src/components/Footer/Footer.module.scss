@@ -28,14 +28,6 @@
   gap: 20px;
   max-width: 290px;
 
-  :global(.logo-text) b {
-    color: #fff;
-  }
-
-  :global(.logo-text) small {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
   p {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.62);

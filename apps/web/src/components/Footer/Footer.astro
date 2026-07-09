@@ -2,7 +2,7 @@
 import type { FooterProps } from './Footer.types';
 import { Image } from 'astro:assets';
 import styles from './Footer.module.scss';
-import logoAvatar from '../../assets/logo_avatar.png';
+import logoContrast from '../../assets/logo_full_contrast_icon_288h.webp';
 
 type Props = FooterProps;
 
@@ -51,12 +51,11 @@ const {
       <div class={styles['foot-brand']}>
         <a href={brandLink} class="logo" rel="noopener">
           <Image
-            src={logoAvatar}
+            src={logoContrast}
             alt="SolidGraph"
-            style="height:40px;width:auto; filter: brightness(0) invert(1);"
+            style="height:40px;width:auto;"
             loading="lazy"
           />
-          <span class="logo-text"><b>SolidGraph</b><small>SOLUTIONS</small></span>
         </a>
         <p>{tagline}</p>
         <div class="locs">
