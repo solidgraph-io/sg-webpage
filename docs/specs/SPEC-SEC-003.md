@@ -20,7 +20,7 @@ Banda oscura con texto en scroll continuo (CSS `scroll-x`), pausa en hover. Port
 
 - **RNF-1 (a11y)** — el marquee no atrapa foco; contenido legible; respeta `prefers-reduced-motion` (la animación se detiene/reduce).
 - **RNF-2 (perf)** — animación CSS pura; sin JS.
-- **RNF-3 (fidelidad)** — **regresión visual** contra `03-marquee.html`.
+- **RNF-3 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff impl vs `03-marquee.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per ADR-0014 (drift de entorno).
 
 ## Invariantes
 

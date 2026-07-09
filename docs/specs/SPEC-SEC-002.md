@@ -24,7 +24,7 @@ preview 3D** con badges flotantes. Port 1:1.
 - **RNF-1 (a11y)** — un solo `<h1>`; `section` etiquetada; contraste AA sobre oscuro; aurora/preview decorativos con `aria-hidden` donde aplique.
 - **RNF-2 (perf)** — animaciones CSS + módulo global; imágenes optimizadas.
 - **RNF-3 (responsive)** — apila; preview/floats se adaptan u ocultan en móvil.
-- **RNF-4 (fidelidad)** — **regresión visual** contra `02-hero.html`.
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff impl vs `02-hero.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per ADR-0014 (drift de entorno).
 
 ## Estructura de archivos (component-as-folder)
 

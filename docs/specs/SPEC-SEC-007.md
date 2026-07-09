@@ -25,7 +25,7 @@
 - **RNF-1 (a11y)** — plan destacado con `Badge`/texto (no solo color); headings de plan correctos; CTAs foco visible; contraste AA (incl. texto claro sobre la card oscura).
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — plan-grid 4→2→1; `popular` deja de escalarse en móvil; hosting 4→2→1.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `07-plans.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `07-plans.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

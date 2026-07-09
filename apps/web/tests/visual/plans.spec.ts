@@ -49,20 +49,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-007/RNF-4] plans mobile 393 — diff vs diseñ
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-007/RNF-4] plans desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.plans')).toHaveScreenshot('plans-desktop.png');
-});
-
-test('[SPEC-SEC-007/RNF-4] plans mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.plans')).toHaveScreenshot('plans-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-007/RF-1] plans has 4 plan cards', async ({ page }) => {

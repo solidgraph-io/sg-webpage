@@ -53,20 +53,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-014/RNF-4] footer mobile 393 — diff vs dise�
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-014/RNF-4] footer desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('footer')).toHaveScreenshot('footer-desktop.png');
-});
-
-test('[SPEC-SEC-014/RNF-4] footer mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('footer')).toHaveScreenshot('footer-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-014/RF-1] footer has dark background', async ({ page }) => {

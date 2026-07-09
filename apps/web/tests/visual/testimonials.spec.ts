@@ -54,20 +54,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-008/RNF-4] testimonials mobile 393 — diff vs
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-008/RNF-4] testimonials desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.testimonials')).toHaveScreenshot('testimonials-desktop.png');
-});
-
-test('[SPEC-SEC-008/RNF-4] testimonials mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.testimonials')).toHaveScreenshot('testimonials-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-008/RF-1] has 3 stat cards', async ({ page }) => {

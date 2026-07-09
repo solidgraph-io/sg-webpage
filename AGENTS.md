@@ -74,7 +74,7 @@ Jerarquía: `EPIC → STORY → SPEC → tests + PR` (`docs/05-implementation-pl
 | Unit/componente       | Vitest + `astro/container` | render de átomos/moléculas/organismos, props → salida         |
 | Contrato de contenido | Zod                        | `content/**` cumple el schema; props inválidas fallan (build) |
 | Accesibilidad         | axe                        | WCAG 2.1 AA por componente y página                           |
-| E2E/visual            | Playwright                 | nav, FAQ, form; **regresión visual vs. diseño**               |
+| E2E/visual            | Playwright                 | nav, FAQ, form; **regresión visual = vs diseño** (`compareWithDesign`; ADR-0014: sin self-baselines) |
 | Perf                  | Lighthouse CI              | LCP/CLS/TBT, peso JS/imágenes                                 |
 
 ### 3.2 Reglas TDD vinculantes

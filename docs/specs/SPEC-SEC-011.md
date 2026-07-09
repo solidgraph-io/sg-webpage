@@ -23,7 +23,7 @@
 - **RNF-1 (a11y)** — disclosure operable por teclado sin JS; contraste AA sobre claro.
 - **RNF-2 (perf)** — sin JS por sección (FAQ nativo; rotate por CSS).
 - **RNF-3 (responsive)** — lista fluida.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `11-faq.html` bajo umbral (desktop+mobile). _(Capturar un estado consistente: cerrado por defecto, o abrir el primero como en el diseño.)_
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `11-faq.html` bajo umbral (desktop+mobile). _(Estado consistente: cerrado por defecto.)_ Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

@@ -14,7 +14,7 @@ const ROOT = path.resolve(__dirname, '../../../..');
 const WEB_ROOT = path.resolve(__dirname, '../..');
 
 describe('SPEC-QA-001 — visual gate', () => {
-  // ── RF-4: baselines regenerated only after gate passes ─────────────────────
+  // ── RF-4: compareWithDesign is the sole visual regression gate (ADR-0014) ───
   describe('[SPEC-QA-001/RF-4] helpers expose compareWithDesign as the primary gate', () => {
     it('[SPEC-QA-001/RF-4] helpers.ts exports compareWithDesign', async () => {
       const helpersPath = path.join(WEB_ROOT, 'tests/visual/helpers.ts');
@@ -29,14 +29,22 @@ describe('SPEC-QA-001 — visual gate', () => {
       expect(src).toContain('pixelmatch(');
     });
 
-    it('[SPEC-QA-001/RF-4] anti-regression toHaveScreenshot only in tests that also run the gate', () => {
-      const specs = ['nav', 'hero', 'marquee'].map((s) =>
-        fs.readFileSync(path.join(WEB_ROOT, `tests/visual/${s}.spec.ts`), 'utf-8'),
-      );
-      for (const src of specs) {
-        expect(src).toContain('compareWithDesign');
-        expect(src).toContain('toHaveScreenshot');
+    it('[SPEC-QA-001/RF-4] compareWithDesign is sole visual gate — no self-baselines (ADR-0014)', () => {
+      // Self-baselines (toHaveScreenshot) retired: environment drift causes 1px false failures.
+      // compareWithDesign (design HTML as reference) is the only visual regression mechanism.
+      const sectionSpecs = [
+        'nav', 'hero', 'marquee', 'pain-points', 'value', 'how-it-works', 'plans',
+        'testimonials', 'portfolio', 'about', 'faq', 'cta', 'contact', 'footer',
+      ];
+      for (const s of sectionSpecs) {
+        const src = fs.readFileSync(path.join(WEB_ROOT, `tests/visual/${s}.spec.ts`), 'utf-8');
+        expect(src, `${s}.spec.ts should still have compareWithDesign`).toContain('compareWithDesign');
+        // Check for actual call (parenthesis) to avoid false positives from doc comments.
+        expect(src, `${s}.spec.ts must not call toHaveScreenshot (ADR-0014)`).not.toContain('toHaveScreenshot(');
       }
+      // page.spec.ts has no compareWithDesign (full-page assembly, no section reference HTML)
+      const pageSrc = fs.readFileSync(path.join(WEB_ROOT, 'tests/visual/page.spec.ts'), 'utf-8');
+      expect(pageSrc, 'page.spec.ts must not call toHaveScreenshot (ADR-0014)').not.toContain('toHaveScreenshot(');
     });
   });
 

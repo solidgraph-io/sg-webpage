@@ -55,20 +55,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-012/RNF-4] cta mobile 393 — diff vs diseño'
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-012/RNF-4] cta desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.cta-strip')).toHaveScreenshot('cta-desktop.png');
-});
-
-test('[SPEC-SEC-012/RNF-4] cta mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.cta-strip')).toHaveScreenshot('cta-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-012/RF-1] cta-strip has dark background (--night)', async ({ page }) => {

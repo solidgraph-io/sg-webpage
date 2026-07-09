@@ -17,7 +17,7 @@ en el orden del diseño, con el `<head>`/SEO base, y verificar la **página comp
 - **RF-1 (orden)** — `index.astro` compone las 14 secciones en el **orden de `design/template/index.html`**: Nav, Hero, Marquee, PainPoints, Value, HowItWorks, Plans, Testimonials, Portfolio, About, Faq, CtaStrip, Contact, Footer.
 - **RF-2 (datos)** — todo el contenido vive en **datos tipados** (p. ej. `src/content/home.ts` o similar), no hardcodeado en los componentes. Un único origen de datos de la home.
 - **RF-3 (`<head>`/SEO base)** — `BaseLayout` recibe `seo` real (title, description, canonical desde `PUBLIC_SITE_URL`, Open Graph básico, favicon, `lang`). _(JSON-LD/sitemap/robots avanzados → EPIC-07, diferido.)_
-- **RF-4 (fidelidad de página)** — **gate QA-001 a nivel de página**: la home completa se compara contra `design/template/index.html` (por viewport, con las zonas de animación no determinista estabilizadas). Diff bajo umbral (desktop+mobile).
+- **RF-4 (fidelidad de página)** — `design/template/index.html` existe como fuente de referencia. La fidelidad de página completa se alcanza via los gates por sección (SPEC-SEC-001..014 compareWithDesign). Self-baselines de página (`toHaveScreenshot` en page.spec.ts) retirados per ADR-0014 (drift de entorno, 1 px → falsos fallos).
 - **RF-5 (integración)** — `interactions.js` opera sobre toda la página (reveal/nav/magnetic) con progressive enhancement; sin errores de consola.
 
 ## Requisitos no funcionales

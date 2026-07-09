@@ -45,14 +45,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-003/RNF-3] marquee mobile 393 — diff vs dise
   });
 });
 
-// ── Anti-regresión ─────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-003/RNF-3] marquee desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.marquee')).toHaveScreenshot('marquee-desktop.png');
-});
-
 // ── Comportamiento ─────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-003/RNF-3] marquee animación pausa en hover', async ({ page }) => {

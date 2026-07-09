@@ -55,20 +55,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-013/RNF-4] contact mobile 393 — diff vs dise
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-013/RNF-4] contact desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.contact')).toHaveScreenshot('contact-desktop.png');
-});
-
-test('[SPEC-SEC-013/RNF-4] contact mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.contact')).toHaveScreenshot('contact-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-013/RF-3] contact has 8 form fields', async ({ page }) => {

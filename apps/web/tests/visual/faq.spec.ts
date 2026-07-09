@@ -52,20 +52,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-011/RNF-4] faq mobile 393 — diff vs diseño'
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-011/RNF-4] faq desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.faq')).toHaveScreenshot('faq-desktop.png');
-});
-
-test('[SPEC-SEC-011/RNF-4] faq mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.faq')).toHaveScreenshot('faq-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-011/RF-1] faq has 8 faq-item details', async ({ page }) => {

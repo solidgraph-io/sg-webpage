@@ -50,20 +50,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-004/RNF-4] pain-points mobile 393 — diff vs 
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-004/RNF-4] pain-points desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.pain')).toHaveScreenshot('pain-desktop.png');
-});
-
-test('[SPEC-SEC-004/RNF-4] pain-points mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.pain')).toHaveScreenshot('pain-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-004/RF-1] pain-points has bento grid and feature card', async ({ page }) => {

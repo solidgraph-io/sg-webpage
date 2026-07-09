@@ -23,7 +23,7 @@
 - **RNF-1 (a11y)** — heading correcto; contraste AA (texto claro sobre la tarjeta oscura); foco visible en el CTA.
 - **RNF-2 (perf)** — animación CSS; sin JS por sección.
 - **RNF-3 (responsive)** — la tarjeta apila en móvil como el diseño.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `12-cta.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `12-cta.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

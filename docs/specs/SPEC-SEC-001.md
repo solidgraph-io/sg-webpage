@@ -22,7 +22,7 @@ Barra de navegación. Se porta 1:1 desde su HTML de sección, usando las primiti
 
 - **RNF-1 (a11y)** — `<nav aria-label>`, `aria-current` en el activo, menú operable por teclado, contraste AA (ink/indigo sobre glass).
 - **RNF-2 (perf)** — sin JS propio (usa el módulo global).
-- **RNF-3 (fidelidad)** — **regresión visual** (Playwright) contra `01-nav.html`.
+- **RNF-3 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff impl vs `01-nav.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per ADR-0014 (drift de entorno).
 
 ## Invariantes
 

@@ -55,20 +55,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-006/RNF-4] how-it-works mobile 393 — diff vs
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-006/RNF-4] how-it-works desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.how')).toHaveScreenshot('how-desktop.png');
-});
-
-test('[SPEC-SEC-006/RNF-4] how-it-works mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.how')).toHaveScreenshot('how-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-006/RF-1] how has 4 step cards', async ({ page }) => {

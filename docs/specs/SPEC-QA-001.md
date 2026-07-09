@@ -19,7 +19,7 @@ convertir la fidelidad en un **gate real**: comparar la implementación contra e
 - **RF-1 (design-as-reference)** — cada test visual de sección captura (a) la sección renderizada de la app y (b) la sección del diseño `design/template/sections/NN-*.html`, **en el mismo viewport/device**, y **compara ambas** (pixelmatch). **Falla** si el ratio de diferencia supera el umbral (`maxDiffPixelRatio` ≈ 0.08 desktop / 0.10 mobile). El **diseño es la referencia**, no la implementación.
 - **RF-2 (sin artefactos)** — desactivar la **dev toolbar de Astro** en las capturas (`devToolbar.enabled=false` o correr contra el build/preview, no dev). Ninguna captura debe incluir UI de dev.
 - **RF-3 (assets + fuentes)** — garantizar que **fuentes** (waitForFonts) y **assets locales** (logos) cargan en ambas capturas; corregir rutas de logo (copiar a `public/` + `src` correcto) para que **no haya imágenes rotas**.
-- **RF-4 (re-baseline)** — los baselines de implementación solo se (re)generan **después** de que el diff contra el diseño pase el umbral. El diff contra el diseño es el gate; el baseline de implementación queda como anti-regresión secundario.
+- **RF-4 (sole gate)** — `compareWithDesign` (diff impl vs diseño, pixelmatch) es el **único** mecanismo de regresión visual. Los self-baselines (`toHaveScreenshot` contra sí mismos) están **retirados** per ADR-0014: generan falsos fallos por drift de entorno (WSL vs imagen Playwright noble, ~1 px de diferencia) sin añadir cobertura real frente al diseño. La fidelidad se certifica comparando directamente contra el HTML de diseño.
 - **RF-5 (CI)** — el gate de fidelidad corre en el pipeline (bloqueante) junto a lint/type-check/test/trace.
 
 ## Requisitos no funcionales

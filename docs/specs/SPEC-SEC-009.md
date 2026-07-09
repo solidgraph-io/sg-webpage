@@ -23,7 +23,7 @@
 - **RNF-1 (a11y)** — headings; thumbs decorativos `aria-hidden` o con alt significativo; contraste AA.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — 3→1 columna.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `09-portfolio.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `09-portfolio.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

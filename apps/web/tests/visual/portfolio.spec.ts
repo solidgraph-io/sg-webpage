@@ -48,20 +48,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-009/RNF-4] portfolio mobile 393 — diff vs di
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-009/RNF-4] portfolio desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.portfolio')).toHaveScreenshot('portfolio-desktop.png');
-});
-
-test('[SPEC-SEC-009/RNF-4] portfolio mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.portfolio')).toHaveScreenshot('portfolio-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-009/RF-1] portfolio has 3 cards', async ({ page }) => {

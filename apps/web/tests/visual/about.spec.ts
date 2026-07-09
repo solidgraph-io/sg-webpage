@@ -57,20 +57,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-010/RNF-4] about mobile 393 — diff vs diseñ
   });
 });
 
-// ── Anti-regresión ────────────────────────────────────────────────────────────
-
-test('[SPEC-SEC-010/RNF-4] about desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.about')).toHaveScreenshot('about-desktop.png');
-});
-
-test('[SPEC-SEC-010/RNF-4] about mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.about')).toHaveScreenshot('about-mobile.png');
-});
-
 // ── Comportamiento ────────────────────────────────────────────────────────────
 
 test('[SPEC-SEC-010/RF-1] about has orbit rings', async ({ page }) => {

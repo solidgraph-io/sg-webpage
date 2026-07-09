@@ -23,7 +23,7 @@ hover-fill. Port 1:1.
 - **RNF-1 (a11y)** — headings; contraste AA en reposo y en hover-fill (texto blanco sobre oscuro); foco visible.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — 2col→1col en cabecera; pillars 4→2→1.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `05-value.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `05-value.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

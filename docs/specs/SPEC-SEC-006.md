@@ -23,7 +23,7 @@ pasos con duración. Port 1:1.
 - **RNF-1 (a11y)** — pasos como lista/ordinal semántica; sticky no atrapa foco; contraste AA (claro sobre oscuro).
 - **RNF-2 (perf)** — sticky/hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — 2col→1col (sticky→estático) en móvil.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `06-how-it-works.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `06-how-it-works.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

@@ -25,7 +25,7 @@ testimonio. Port 1:1.
 - **RNF-1 (a11y)** — testimonios con `figure`/`blockquote`; estrellas con etiqueta accesible o `aria-hidden` + texto; contraste AA sobre claro.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — grids 3→1 columna.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `08-testimonials.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `08-testimonials.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

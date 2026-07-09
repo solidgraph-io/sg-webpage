@@ -22,7 +22,7 @@
 - **RNF-1 (a11y)** — headings correctos; contraste AA (ink sobre claro; blanco sobre la card oscura); iconos decorativos `aria-hidden`.
 - **RNF-2 (perf)** — hover/animación CSS; sin JS por sección.
 - **RNF-3 (responsive)** — bento 4→2→1 columnas como el diseño.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `04-pain-points.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `04-pain-points.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 

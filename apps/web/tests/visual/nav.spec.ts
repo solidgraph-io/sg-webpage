@@ -2,8 +2,7 @@
  * SPEC-SEC-001/RNF-3 + SPEC-QA-001/RF-1 — Nav visual gate
  *
  * Gate principal: compara .nav de la app contra 01-nav.html del diseño con pixelmatch.
- * Falla si diff > umbral. Baselines de anti-regresión (toHaveScreenshot) se regeneran
- * SOLO después de que el gate pase.
+ * Falla si diff > umbral. Per ADR-0014, self-baselines retirados; solo compareWithDesign.
  */
 
 import { test, expect } from '@playwright/test';
@@ -56,28 +55,6 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-001/RNF-3] nav mobile 393 — diff vs diseño'
     label: 'nav-mobile',
     extraCss: NAV_EXTRA_CSS,
   });
-});
-
-// ── Anti-regresión (baseline = impl correcta post-gate) ───────────────────────
-
-test('[SPEC-SEC-001/RNF-3] nav desktop — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await expect(page.locator('.nav')).toHaveScreenshot('nav-desktop.png');
-});
-
-test('[SPEC-SEC-001/RNF-3] nav mobile — anti-regresión baseline', async ({ page }) => {
-  await page.setViewportSize({ width: 393, height: 852 });
-  await waitForStyles(page);
-  await expect(page.locator('.nav')).toHaveScreenshot('nav-mobile.png');
-});
-
-test('[SPEC-SEC-001/RNF-3] nav scrolled state', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await waitForStyles(page);
-  await page.evaluate(() => window.scrollBy(0, 250));
-  await page.waitForTimeout(500);
-  await expect(page.locator('.nav')).toHaveScreenshot('nav-scrolled.png');
 });
 
 // ── Comportamiento ─────────────────────────────────────────────────────────────

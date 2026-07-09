@@ -23,7 +23,7 @@ Port 1:1.
 - **RNF-1 (a11y)** — landmark `<footer>`; enlaces descriptivos; watermark decorativo `aria-hidden`; contraste AA (claro sobre oscuro).
 - **RNF-2 (perf)** — sin JS por sección.
 - **RNF-3 (responsive)** — `foot-grid` colapsa como el diseño.
-- **RNF-4 (fidelidad)** — **gate QA-001**: diff contra `14-footer.html` bajo umbral (desktop+mobile).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `14-footer.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes
 
