@@ -43,8 +43,8 @@
   }
 }
 
-// ── LOCAL: location pills ──────────────────────────────────────────────────────
-.locs {
+// ── GLOBAL: location pills (targeted by E2E tests SPEC-SEC-014/RF-2) ──────────
+:global(.locs) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -58,37 +58,35 @@
   }
 }
 
-// ── LOCAL: nav columns (flat rules for multiple foot-col references) ───────────
-.foot-col {
-  // nav column wrapper
-}
+// ── GLOBAL: nav columns (targeted by E2E tests SPEC-SEC-014/RF-3) ─────────────
+:global(.foot-col) {
+  h5 {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
 
-.foot-col h5 {
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
 
-.foot-col ul {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
+    li a {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.7);
+      transition:
+        color 0.2s ease,
+        padding-left 0.2s ease;
 
-.foot-col ul li a {
-  font-size: 13.5px;
-  color: rgba(255, 255, 255, 0.7);
-  transition:
-    color 0.2s ease,
-    padding-left 0.2s ease;
-}
-
-.foot-col ul li a:hover {
-  color: #fff;
-  padding-left: 4px;
+      &:hover {
+        color: #fff;
+        padding-left: 4px;
+      }
+    }
+  }
 }
 
 // ── LOCAL: bottom bar ──────────────────────────────────────────────────────────

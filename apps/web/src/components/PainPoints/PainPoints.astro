@@ -17,7 +17,7 @@ const { eyebrow = 'The Walls You Hit', heading, intro, items, feature } = Astro.
       <h2 id="pain-heading">{heading}</h2>
       {intro && <p>{intro}</p>}
     </SectionHead>
-    <div class={styles.bento}>
+    <div class="bento">
       {
         items.slice(0, 2).map((item, i) => (
           <div
@@ -35,7 +35,7 @@ const { eyebrow = 'The Walls You Hit', heading, intro, items, feature } = Astro.
         ))
       }
       <div
-        class={styles['bento-feature']}
+        class="bento-feature"
         data-reveal="right"
         style="--d:160ms; padding:8px 20px; border-width:0px; border-style:solid; border-radius:28px"
       >

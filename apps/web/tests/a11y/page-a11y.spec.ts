@@ -29,7 +29,8 @@ async function runAxe(page: Page, options: Record<string, unknown> = {}): Promis
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('domcontentloaded');
+  await page.locator('main').waitFor();
 });
 
 // ── RF-1: 0 WCAG AA violations ────────────────────────────────────────────────

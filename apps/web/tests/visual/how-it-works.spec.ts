@@ -24,6 +24,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-006/RNF-4] how-it-works desktop 1440 — diff 
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
     astroPage: page,
     browser,

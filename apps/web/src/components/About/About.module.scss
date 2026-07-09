@@ -21,7 +21,27 @@
   align-items: center;
 }
 
-// ── LOCAL: orbit visual ────────────────────────────────────────────────────────
+// ── GLOBAL: orbit visual (targeted by E2E tests SPEC-SEC-010 + ABOUT_EXTRA_CSS freeze) ──────────
+:global(.orbit) {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(45, 61, 138, 0.2);
+  animation: spin 40s linear infinite;
+
+  &:global(.o2) {
+    inset: 14%;
+    border-color: rgba(92, 112, 214, 0.25);
+    animation-duration: 28s;
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+// ── LOCAL: orbit visual wrapper ────────────────────────────────────────────────
 .about-visual {
   position: relative;
   aspect-ratio: 1/1;
@@ -51,25 +71,6 @@
     :global(.b3) {
       animation: none;
     }
-  }
-}
-
-.orbit {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(45, 61, 138, 0.2);
-  animation: spin 40s linear infinite;
-
-  &.o2 {
-    inset: 14%;
-    border-color: rgba(92, 112, 214, 0.25);
-    animation-duration: 28s;
-    animation-direction: reverse;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
   }
 }
 
@@ -113,6 +114,23 @@
   gap: 18px;
 }
 
+// ── GLOBAL: city card (targeted by E2E tests SPEC-SEC-010/RF-2) ───────────────
+:global(.city) {
+  b {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+}
+
 // ── LOCAL: cities card ──────────────────────────────────────────────────────────
 .about-cities {
   margin-top: 42px;
@@ -135,22 +153,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 26px;
-}
-
-.city {
-  b {
-    display: block;
-    color: var(--ink);
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  span {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
 }
 
 // ── RESPONSIVE ──────────────────────────────────────────────────────────────────

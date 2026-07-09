@@ -27,6 +27,7 @@ test('[SPEC-QA-001/RF-1][SPEC-SEC-001/RNF-3] nav desktop 1440 — diff vs diseñ
   page,
   browser,
 }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop gate runs in desktop project only');
   await compareWithDesign({
     astroPage: page,
     browser,
