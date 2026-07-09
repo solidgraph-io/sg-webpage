@@ -13,7 +13,7 @@ presupuestos Lighthouse en CI y optimización de imágenes, para que no se degra
 
 ## Requisitos funcionales (testeables)
 
-- **RF-1 (Lighthouse CI)** — configurar **Lighthouse CI** con presupuestos que **fallan el CI** si se superan: LCP, CLS, TBT, peso total de JS y de imágenes. Corre sobre la home (build de producción).
+- **RF-1 (Lighthouse CI)** — configurar **Lighthouse CI** con presupuestos que **fallan el CI** si se superan. Corre sobre la home (build de producción). Budgets actuales (CI-safe, todos `error`): LCP ≤ 3500ms, CLS ≤ 0.1, TBT ≤ 900ms. TBT es la métrica más ruidosa (dependiente del runner); 900ms absorbe el ruido de CI sin enmascarar regresiones reales (saltos de cientos de ms). Apretar con datos reales de prod.
 - **RF-2 (imágenes)** — imágenes raster vía `astro:assets` (formatos modernos, `width`/`height` para evitar CLS, `loading=lazy` bajo el pliegue, `fetchpriority` en el LCP si aplica). Los SVG inline del diseño se mantienen.
 - **RF-3 (fuentes)** — Poppins self-hosted **preload** de los pesos usados, `font-display: swap` (ya en DS-001, aquí se verifica el preload y que no hay CDN).
 - **RF-4 (presupuesto de JS)** — el JS de cliente se mantiene en presupuesto: `interactions.js` ≤ ~5 KB gz + (futuro) hook de métricas; test que verifica que no se cuela JS pesado/island accidental.
