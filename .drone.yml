@@ -205,7 +205,7 @@ steps:
         - push
     settings:
       registry: registry.solidgraph.dev
-      repo: registry.solidgraph.dev/solidgraph-web
+      repo: registry.solidgraph.dev/sg-webpage
       dockerfile: apps/web/Dockerfile
       context: .
       mtu: 1450
@@ -251,7 +251,7 @@ steps:
         - push
     settings:
       registry: registry.solidgraph.dev
-      repo: registry.solidgraph.dev/solidgraph-web
+      repo: registry.solidgraph.dev/sg-webpage
       dockerfile: apps/web/Dockerfile
       context: .
       mtu: 1450
@@ -283,8 +283,8 @@ steps:
   #     - crane auth login registry.solidgraph.dev
   #         -u $${REGISTRY_USERNAME} -p $${REGISTRY_PASSWORD}
   #     - crane copy
-  #         registry.solidgraph.dev/solidgraph-web:sha-${DRONE_COMMIT_SHA}
-  #         registry.solidgraph.dev/solidgraph-web:latest
+  #         registry.solidgraph.dev/sg-webpage:sha-${DRONE_COMMIT_SHA}
+  #         registry.solidgraph.dev/sg-webpage:latest
   #   # Para usar Drone promotion event en lugar de push:
   #   #   when: { event: [promote], target: [production] }
   #   #   Invocar: drone deploy <repo> <build-number> production

@@ -22,7 +22,7 @@ probar el flujo end-to-end.
 - **RF-1 (rama develop)** — existe la rama `develop` integrando todo lo `Implemented` (content, CMS, SEO,
   perf, a11y, leads/turnstile, fix de docs). `main` no se toca en este incremento.
 - **RF-2 (build-push dev)** — nuevo step `build-push-web-dev` en `.drone.yml`: en **push a `develop`**,
-  construye `apps/web/Dockerfile` y publica a `registry.solidgraph.dev/solidgraph-web` con tags
+  construye `apps/web/Dockerfile` y publica a `registry.solidgraph.dev/sg-webpage` con tags
   **`dev`** + `${DRONE_COMMIT_SHA}` (NO `latest`, que es de prod). Reusa `REGISTRY_USERNAME/PASSWORD`.
 - **RF-3 (trigger dev)** — nuevo step `trigger-dokploy-dev`: en push a `develop`, tras el push de imagen,
   hace `POST` al **`DOKPLOY_WEBHOOK_WEB_DEV`** (secret nuevo de Drone). El de prod
@@ -78,7 +78,7 @@ Scenario: gate infiel bloquea el deploy dev
 Claude Code **no** puede tocar Dokploy/Cloudflare/Drone-secrets. El humano configura:
 
 - **DNS:** `dev.solidgraph.dev` → VPS (Cloudflare), con Traefik enrutando al servicio dev (puerto 4321).
-- **Dokploy:** servicio `web-dev` que hace pull de `registry.solidgraph.dev/solidgraph-web:dev`, dominio
+- **Dokploy:** servicio `web-dev` que hace pull de `registry.solidgraph.dev/sg-webpage:dev`, dominio
   `dev.solidgraph.dev`, y las env de RF-5 como env/secrets. Copia su **deploy webhook** →
   secret de Drone `DOKPLOY_WEBHOOK_WEB_DEV`.
 - **Drone secrets:** añadir `DOKPLOY_WEBHOOK_WEB_DEV` (y confirmar que `REGISTRY_USERNAME/PASSWORD` ya

@@ -10,7 +10,7 @@ push → develop
   → install → validate → test+trace → visual-test → a11y-test → build → perf-test
       → build-push-web-dev  (tags: dev + SHA)
           → trigger-dokploy-dev  (POST DOKPLOY_WEBHOOK_WEB_DEV)
-              → Dokploy pulls registry.solidgraph.dev/solidgraph-web:dev
+              → Dokploy pulls registry.solidgraph.dev/sg-webpage:dev
                   → serves dev.solidgraph.dev
 ```
 
@@ -38,7 +38,7 @@ Configure these in Drone CI → Settings → Secrets:
 Create a new service in Dokploy:
 
 - **Name:** `web-dev`
-- **Image:** `registry.solidgraph.dev/solidgraph-web:dev`
+- **Image:** `registry.solidgraph.dev/sg-webpage:dev`
 - **Domain:** `dev.solidgraph.dev`
 - **Port:** `4321`
 
