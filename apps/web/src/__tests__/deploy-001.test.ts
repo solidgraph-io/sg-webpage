@@ -41,8 +41,8 @@ describe('[SPEC-DEPLOY-001/RF-2] build-push-web-dev publishes dev image to regis
     expect(stepBlock).toContain('plugins/docker');
   });
 
-  it('[SPEC-DEPLOY-001/RF-2] build-push-web-dev targets registry.solidgraph.dev/solidgraph-web', () => {
-    expect(drone()).toContain('registry.solidgraph.dev/solidgraph-web');
+  it('[SPEC-DEPLOY-001/RF-2] build-push-web-dev targets registry.solidgraph.dev/sg-webpage', () => {
+    expect(drone()).toContain('registry.solidgraph.dev/sg-webpage');
   });
 
   it('[SPEC-DEPLOY-001/RF-2] build-push-web-dev uses dev tag (not latest)', () => {
