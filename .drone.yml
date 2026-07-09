@@ -184,6 +184,8 @@ steps:
     commands:
       - corepack enable
       - corepack prepare pnpm@9.15.9 --activate
+      - export CHROME_PATH=$(pnpm --filter @solidgraph/web exec node -e 'process.stdout.write(require("playwright-core").chromium.executablePath())')
+      - echo "CHROME_PATH=$CHROME_PATH" && test -x "$CHROME_PATH"
       - npx @lhci/cli@latest autorun --config=.lighthouserc.js
 
   # ── 7. Docker push dev (SPEC-DEPLOY-001/RF-2, SPEC-DEPLOY-002/RF-4) ──────────

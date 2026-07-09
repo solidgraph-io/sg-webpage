@@ -170,11 +170,11 @@ File: `docs/specs/SPEC-QA-001.md`
 | RF-2 | ✅ | apps/web/tests/visual/hero.spec.ts:74, apps/web/tests/visual/marquee.spec.ts:61, apps/web/tests/visual/nav.spec.ts:71 |
 | RF-3 | ✅ | apps/web/tests/visual/hero.spec.ts:66, apps/web/tests/visual/nav.spec.ts:62 |
 | RF-4 | ✅ | apps/web/src/__tests__/qa-001.test.ts:18, apps/web/src/__tests__/qa-001.test.ts:19, apps/web/src/__tests__/qa-001.test.ts:25, apps/web/src/__tests__/qa-001.test.ts:32 |
-| RF-5 | ✅ | apps/web/src/__tests__/qa-001.test.ts:52, apps/web/src/__tests__/qa-001.test.ts:53, apps/web/src/__tests__/qa-001.test.ts:58, apps/web/src/__tests__/qa-001.test.ts:66 |
-| RNF-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:78, apps/web/src/__tests__/qa-001.test.ts:79, apps/web/src/__tests__/qa-001.test.ts:85 |
-| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:98, apps/web/src/__tests__/qa-001.test.ts:99, apps/web/src/__tests__/qa-001.test.ts:105 |
-| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:112 |
-| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:123 |
+| RF-5 | ✅ | apps/web/src/__tests__/qa-001.test.ts:70, apps/web/src/__tests__/qa-001.test.ts:71, apps/web/src/__tests__/qa-001.test.ts:76, apps/web/src/__tests__/qa-001.test.ts:84 |
+| RNF-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:96, apps/web/src/__tests__/qa-001.test.ts:97, apps/web/src/__tests__/qa-001.test.ts:103 |
+| RNF-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:116, apps/web/src/__tests__/qa-001.test.ts:117, apps/web/src/__tests__/qa-001.test.ts:123 |
+| INV-1 | ✅ | apps/web/src/__tests__/qa-001.test.ts:130 |
+| INV-2 | ✅ | apps/web/src/__tests__/qa-001.test.ts:141 |
 
 ## ✅ SPEC-SEC-001 — Status: Verified
 

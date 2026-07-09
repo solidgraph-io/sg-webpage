@@ -6,6 +6,10 @@ module.exports = {
       startServerCommand: 'pnpm --filter @solidgraph/web preview --port 4321',
       startServerReadyPattern: 'Local',
       numberOfRuns: 1,
+      settings: {
+        // Container (Docker root) requires --no-sandbox; --headless=new is the stable headless mode.
+        chromeFlags: '--no-sandbox --headless=new',
+      },
     },
     assert: {
       // SPEC-PERF-001/RF-1 — blocking performance budgets
