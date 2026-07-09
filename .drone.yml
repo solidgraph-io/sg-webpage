@@ -1,13 +1,35 @@
 # SolidGraph Solutions LLC — DroneCI Pipeline (web-only)
-# SPEC-INFRA-001/RF-8
+# SPEC-INFRA-001/RF-8 · SPEC-DEPLOY-002
 #
-# Gates (in dependency order):
-#   install    → all branches, all events
-#   validate   → all branches (lint + type-check + prettier)
-#   test       → all branches (vitest + trace check)
-#   build      → develop + main, push only
-#   build-push-web → main, push only (docker → registry)
-#   trigger-dokploy → main, push only
+# Gates (dependency graph — build-once, gates en paralelo):
+#
+#   install → validate → test → build ────────────────────────────────────────┐
+#                                      └→ install-glibc → visual-test ─┐      │
+#                                                        → a11y-test   ─┼────→ push-dev → deploy-dev  (develop)
+#                                                        → perf-test*  ─┘      push-prod → deploy      (main/stub→promote)
+#
+# * perf-test: bloqueante en develop/main push; skip en feature/PR (event push solo).
+# (push-dev = step §7; deploy-dev = step §8; push-prod = step §9; deploy = step §10)
+#
+# build-once (SPEC-DEPLOY-002/RF-1):
+#   Un único `pnpm build` produce apps/web/dist/.
+#   visual-test, a11y-test y perf-test consumen ese dist sin reconstruir.
+#
+# install-glibc: pnpm install con imagen noble (glibc) una sola vez para los tres gates.
+#   El step install usa node:22-alpine (musl); binarios nativos (sharp, etc.) no son
+#   portables entre musl y glibc. Un step de install dedicado con la imagen Playwright
+#   produce node_modules compatibles que visual/a11y/perf reutilizan sin reinstalar.
+#
+# promote-image (SPEC-DEPLOY-002/RF-4 — STUB, prod no activo):
+#   develop → build Docker: tags dev + sha-<SHA>  (artefacto certificado)
+#   main    → RETAG sha-<SHA> → latest            (sin reconstruir, cuando prod esté activo)
+#   Requisito: main fast-forward desde develop (mismo SHA) para que sha-<SHA> exista.
+#   Hasta que prod esté activo, main conserva build-push-web (rebuild) para no romperse.
+#
+# Caching:
+#   Turbo remote cache (TURBO_TOKEN/TEAM/API): caches builds entre runs (validate/test/build).
+#   pnpm store (intra-run): el workspace /drone/src se comparte entre steps del mismo run;
+#   para cache inter-run del store, usar meltwater/drone-cache con volumen montado en el runner.
 #
 # Secrets required in Drone (Settings → Secrets):
 #   TURBO_TOKEN              Turborepo Remote Cache API token
@@ -17,6 +39,9 @@
 #   REGISTRY_PASSWORD        Private registry password
 #   DOKPLOY_WEBHOOK_WEB      Dokploy deploy webhook URL — prod service (main only)
 #   DOKPLOY_WEBHOOK_WEB_DEV  Dokploy deploy webhook URL — dev service (develop only)
+#
+# Playwright version: tag DEBE coincidir exactamente con @playwright/test en apps/web/package.json.
+# Bump imagen + paquete JUNTOS; nunca usar ^ en @playwright/test (AGENTS.md §4).
 
 kind: pipeline
 type: docker
@@ -66,57 +91,13 @@ steps:
       - pnpm test
       - pnpm trace -- --check
 
-  # ── 4. visual-test (design fidelity gate) ───────────────────────────────────
-  # SPEC-QA-001/RF-5 — bloqueante; corre contra el build de producción (CI=true)
-  # La tag DEBE coincidir con @playwright/test en apps/web/package.json (pineado exacto; subir juntos).
-  - name: visual-test
-    image: mcr.microsoft.com/playwright:v1.61.1-noble
-    depends_on: [test]
-    environment:
-      CI: 'true'
-      TURBO_TOKEN:
-        from_secret: TURBO_TOKEN
-      TURBO_TEAM:
-        from_secret: TURBO_TEAM
-      TURBO_API:
-        from_secret: TURBO_API
-    commands:
-      - corepack enable
-      - corepack prepare pnpm@9.15.9 --activate
-      - pnpm install --frozen-lockfile
-      - pnpm --filter @solidgraph/web build
-      - pnpm --filter @solidgraph/web test:e2e
-
-  # ── 4b. a11y gate (axe WCAG AA — SPEC-A11Y-001/RF-7, INV-1) ────────────────
-  # Runs after visual-test (build already done); reuses the same server.
-  - name: a11y-test
-    image: mcr.microsoft.com/playwright:v1.61.1-noble
-    depends_on: [visual-test]
-    environment:
-      CI: 'true'
-      TURBO_TOKEN:
-        from_secret: TURBO_TOKEN
-      TURBO_TEAM:
-        from_secret: TURBO_TEAM
-      TURBO_API:
-        from_secret: TURBO_API
-    commands:
-      - corepack enable
-      - corepack prepare pnpm@9.15.9 --activate
-      - pnpm install --frozen-lockfile
-      - pnpm --filter @solidgraph/web build
-      - pnpm --filter @solidgraph/web exec playwright test tests/a11y/
-
-  # ── 5. build ─────────────────────────────────────────────────────────────────
+  # ── 4. build (build-once — SPEC-DEPLOY-002/RF-1) ────────────────────────────
+  # Produce apps/web/dist/ UNA sola vez; los gates posteriores lo consumen sin reconstruir.
+  # Sin condición `when`: corre en todas las ramas (feature/PR incluidas) porque
+  # visual-test y a11y-test también necesitan el dist en pull_request.
   - name: build
     image: node:22-alpine
-    depends_on: [visual-test, a11y-test]
-    when:
-      branch:
-        - develop
-        - main
-      event:
-        - push
+    depends_on: [test]
     environment:
       TURBO_TOKEN:
         from_secret: TURBO_TOKEN
@@ -129,11 +110,71 @@ steps:
       - corepack prepare pnpm@9.15.9 --activate
       - pnpm build
 
-  # ── 4c. perf-test (Lighthouse CI — SPEC-PERF-001/RF-1, INV-1) ───────────────
-  # Runs after build (dist/ ready); lhci starts its own preview server.
-  - name: perf-test
+  # ── 5. install-glibc ────────────────────────────────────────────────────────
+  # SPEC-DEPLOY-002/RF-1 — una sola instalación glibc para los tres gates Playwright.
+  # El step `install` (Alpine/musl) produce node_modules con binarios musl (sharp, etc.).
+  # Este step reinstala en el workspace con la imagen Playwright (Ubuntu Noble/glibc)
+  # para que el servidor SSR `node dist/server/entry.mjs` pueda cargar módulos nativos.
+  # visual-test, a11y-test y perf-test dependen de este step y NO reinstalan.
+  - name: install-glibc
     image: mcr.microsoft.com/playwright:v1.61.1-noble
     depends_on: [build]
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm install --frozen-lockfile
+
+  # ── 6. visual-test (design fidelity gate — SPEC-QA-001/RF-5) ────────────────
+  # Bloqueante. Consume dist/ ya construido (playwright.config.ts webServer = 'node
+  # dist/server/entry.mjs' cuando CI=true, sin rebuild).
+  # Corre en paralelo con a11y-test y perf-test (todos depends_on: [install-glibc]).
+  - name: visual-test
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    depends_on: [install-glibc]
+    environment:
+      CI: 'true'
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm --filter @solidgraph/web test:e2e
+
+  # ── 6b. a11y gate (axe WCAG AA — SPEC-A11Y-001/RF-7, INV-1) ────────────────
+  # Corre en paralelo con visual-test (ambos depends_on: [install-glibc]).
+  # Consume dist/ ya construido; no reinstala ni reconstruye.
+  - name: a11y-test
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    depends_on: [install-glibc]
+    environment:
+      CI: 'true'
+      TURBO_TOKEN:
+        from_secret: TURBO_TOKEN
+      TURBO_TEAM:
+        from_secret: TURBO_TEAM
+      TURBO_API:
+        from_secret: TURBO_API
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm --filter @solidgraph/web exec playwright test tests/a11y/
+
+  # ── 6c. perf-test (Lighthouse CI — SPEC-PERF-001/RF-1, SPEC-DEPLOY-002/RF-3) ─
+  # Perf sigue bloqueante pero ya NO serializa: corre en paralelo con visual y a11y.
+  # Solo en develop/main push (no en PRs — demasiado lento por commit en feature).
+  # lhci levanta el servidor con `astro preview` que consume dist/ ya construido.
+  #
+  # Sub-opción nightly (NO por default — activar si se prioriza velocidad de deploy):
+  #   Mover este step a una corrida cron comentando `when` y añadiendo:
+  #   trigger: { event: [cron], cron: [nightly-perf] }
+  #   Con cron de Drone: `drone cron add solidgraph-webpage nightly-perf "@daily"`
+  - name: perf-test
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    depends_on: [install-glibc]
     when:
       branch:
         - develop
@@ -143,52 +184,15 @@ steps:
     commands:
       - corepack enable
       - corepack prepare pnpm@9.15.9 --activate
-      - pnpm install --frozen-lockfile
       - npx @lhci/cli@latest autorun --config=.lighthouserc.js
 
-  # ── 5. build-push-web ────────────────────────────────────────────────────────
-  - name: build-push-web
-    image: plugins/docker
-    depends_on: [build, perf-test]
-    when:
-      branch:
-        - main
-      event:
-        - push
-    settings:
-      registry: registry.solidgraph.dev
-      repo: registry.solidgraph.dev/solidgraph-web
-      dockerfile: apps/web/Dockerfile
-      context: .
-      mtu: 1450
-      tags:
-        - ${DRONE_COMMIT_SHA}
-        - latest
-      username:
-        from_secret: REGISTRY_USERNAME
-      password:
-        from_secret: REGISTRY_PASSWORD
-
-  # ── 6. trigger-dokploy ───────────────────────────────────────────────────────
-  - name: trigger-dokploy
-    image: curlimages/curl
-    depends_on: [build-push-web]
-    when:
-      branch:
-        - main
-      event:
-        - push
-    environment:
-      DOKPLOY_WEBHOOK_WEB:
-        from_secret: DOKPLOY_WEBHOOK_WEB
-    commands:
-      - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB}
-
-  # ── 7. build-push-web-dev (SPEC-DEPLOY-001/RF-2) ────────────────────────────
-  # Mirrors build-push-web for the dev stage. Tags: dev + SHA (never latest).
+  # ── 7. Docker push dev (SPEC-DEPLOY-001/RF-2, SPEC-DEPLOY-002/RF-4) ──────────
+  # build-once: construye la imagen Docker UNA vez en develop.
+  # Tags: dev (canal) + sha-<SHA> (artefacto inmutable certificado por los gates).
+  # La imagen sha-<SHA> es la que prod promoverá a latest — ver stub §9.
   - name: build-push-web-dev
     image: plugins/docker
-    depends_on: [build, perf-test]
+    depends_on: [visual-test, a11y-test, perf-test]
     when:
       branch:
         - develop
@@ -202,14 +206,13 @@ steps:
       mtu: 1450
       tags:
         - dev
-        - ${DRONE_COMMIT_SHA}
+        - sha-${DRONE_COMMIT_SHA}
       username:
         from_secret: REGISTRY_USERNAME
       password:
         from_secret: REGISTRY_PASSWORD
 
-  # ── 8. trigger-dokploy-dev (SPEC-DEPLOY-001/RF-3) ───────────────────────────
-  # Triggers the Dokploy web-dev service after the dev image is published.
+  # ── 8. Trigger deploy dev (SPEC-DEPLOY-001/RF-3) ────────────────────────────
   - name: trigger-dokploy-dev
     image: curlimages/curl
     depends_on: [build-push-web-dev]
@@ -223,6 +226,78 @@ steps:
         from_secret: DOKPLOY_WEBHOOK_WEB_DEV
     commands:
       - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB_DEV}
+
+  # ── 9. build-push-web (main) ─────────────────────────────────────────────────
+  # ESTADO ACTUAL (prod no activo): rebuild Docker para main; tags sha-<SHA> + latest.
+  # Conserva el comportamiento actual para no romper prod hasta que esté activo.
+  #
+  # OBJETIVO — promote-image (SPEC-DEPLOY-002/RF-4):
+  #   Cuando prod esté activo, REEMPLAZAR este step por `promote-image` (ver stub abajo).
+  #   Requisito: main debe ser fast-forward desde develop (mismo SHA) para que la imagen
+  #   sha-<SHA> ya exista en el registry (construida y certificada en develop).
+  #   Alternativa: usar Drone promotion event (`drone deploy`) en lugar de push en main.
+  - name: build-push-web
+    image: plugins/docker
+    depends_on: [visual-test, a11y-test, perf-test]
+    when:
+      branch:
+        - main
+      event:
+        - push
+    settings:
+      registry: registry.solidgraph.dev
+      repo: registry.solidgraph.dev/solidgraph-web
+      dockerfile: apps/web/Dockerfile
+      context: .
+      mtu: 1450
+      tags:
+        - sha-${DRONE_COMMIT_SHA}
+        - latest
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
+
+  # ── [STUB] promote-image — activar cuando prod esté en vivo ─────────────────
+  # Reemplaza build-push-web cuando prod esté activo. Retag in-registry:
+  #   sha-<SHA> (certificado en develop) → latest
+  # Sin reconstruir ni re-correr gates (SPEC-DEPLOY-002/RF-4, INV-2).
+  #
+  # - name: promote-image
+  #   image: gcr.io/go-containerregistry/crane:debug
+  #   depends_on: [visual-test, a11y-test, perf-test]
+  #   when:
+  #     branch: [main]
+  #     event: [push]
+  #   environment:
+  #     REGISTRY_USERNAME:
+  #       from_secret: REGISTRY_USERNAME
+  #     REGISTRY_PASSWORD:
+  #       from_secret: REGISTRY_PASSWORD
+  #   commands:
+  #     - crane auth login registry.solidgraph.dev
+  #         -u $${REGISTRY_USERNAME} -p $${REGISTRY_PASSWORD}
+  #     - crane copy
+  #         registry.solidgraph.dev/solidgraph-web:sha-${DRONE_COMMIT_SHA}
+  #         registry.solidgraph.dev/solidgraph-web:latest
+  #   # Para usar Drone promotion event en lugar de push:
+  #   #   when: { event: [promote], target: [production] }
+  #   #   Invocar: drone deploy <repo> <build-number> production
+
+  # ── 10. trigger-dokploy ──────────────────────────────────────────────────────
+  - name: trigger-dokploy
+    image: curlimages/curl
+    depends_on: [build-push-web]
+    when:
+      branch:
+        - main
+      event:
+        - push
+    environment:
+      DOKPLOY_WEBHOOK_WEB:
+        from_secret: DOKPLOY_WEBHOOK_WEB
+    commands:
+      - curl -sf -X POST $${DOKPLOY_WEBHOOK_WEB}
 
 trigger:
   event:

@@ -111,14 +111,29 @@ PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de blo
 > pasa a Implemented/Verified viaja con su commit). `docs/` **nunca** va en `.gitignore`. El
 > `trace check` depende de `docs/specs` estando en el repo.
 
-**Gates de CI (bloqueantes):**
+**Gates de CI — build-once, gates en paralelo (SPEC-DEPLOY-002):**
 
 ```
-lint → type-check (astro check) → unit+contract → a11y → build → coverage
-     → trace check (spec↔test) → visual/e2e → security scan (gitleaks, npm audit)
+install → validate → test → build (dist/, todas las ramas)
+                              └→ install-glibc → visual-test ─┐
+                                               → a11y-test   ─┼→ build-push-web-dev → trigger-dokploy-dev  (develop)
+                                               → perf-test*  ─┘  build-push-web    → trigger-dokploy        (main)
 ```
 
-**Playwright:** versión npm pineada exacta (sin `^`) = tag de la imagen Drone; se bumpean juntos y nunca se usa `^` en `@playwright/test`.
+- **build-once:** un único `pnpm build` produce `apps/web/dist/`; visual/a11y/perf lo consumen sin reconstruir.
+- **install-glibc:** una sola instalación con imagen Playwright (Ubuntu Noble/glibc) para los tres gates.
+  El step `install` usa Alpine (musl); `install-glibc` re-instala para módulos nativos SSR en runtime.
+- **Gates en paralelo:** `visual-test`, `a11y-test` y `perf-test` corren concurrentes (todos `depends_on: [install-glibc]`).
+- **`perf-test`\*** bloqueante pero no serializa; solo en `develop`/`main` push (skip en feature/PR).
+- **promote-image (stub — prod no activo):** `develop` construye imagen Docker con `sha-<SHA>` + `dev`.
+  Cuando prod esté activo, `main` re-taggea `sha-<SHA>` → `latest` sin reconstruir ni re-correr gates
+  (paridad de bits dev↔prod). Hasta entonces, `main` conserva el rebuild con `build-push-web`.
+- **`main` fast-forward:** `develop → main` debe ser `--ff-only` (mismo SHA) para que la imagen
+  `sha-<SHA>` ya exista en el registry cuando se active el promote.
+
+**Playwright:** versión npm pineada exacta (sin `^`) = tag de la imagen Drone; se bumpean juntos. El
+`webServer` en `playwright.config.ts` usa `node dist/server/entry.mjs` cuando `CI=true` (sin rebuild);
+localmente reconstruye con `pnpm build && node dist/server/entry.mjs`.
 
 Entrega: DroneCI → Custom Registry → Dokploy → VPS/Docker (ver `docs/01` §6).
 

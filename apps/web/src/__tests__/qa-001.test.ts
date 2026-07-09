@@ -47,18 +47,22 @@ describe('SPEC-QA-001 — visual gate', () => {
       expect(drone).toContain('name: visual-test');
     });
 
-    it('[SPEC-QA-001/RF-5] visual-test depends on test (order enforced)', () => {
+    it('[SPEC-QA-001/RF-5] visual-test depends on install-glibc (order enforced after build-once)', () => {
       const drone = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
       const vtBlock = drone.slice(drone.indexOf('name: visual-test'));
-      expect(vtBlock).toContain('depends_on: [test]');
+      // build-once: visual-test depends on install-glibc (which depends on build → test).
+      // build-push-web-dev/prod depend on visual-test, enforcing the gate-blocks-deploy invariant.
+      expect(vtBlock).toContain('depends_on: [install-glibc]');
     });
 
-    it('[SPEC-QA-001/RF-5] build step depends on visual-test (blocks deploy)', () => {
+    it('[SPEC-QA-001/RF-5] build-push-web-dev depends on visual-test (gate blocks deploy)', () => {
       const drone = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
-      const buildBlock = drone.slice(drone.indexOf('name: build'));
-      // depends_on may include additional gates (a11y-test etc.) after visual-test
-      expect(buildBlock).toContain('visual-test');
-      expect(buildBlock.slice(0, 100)).toContain('depends_on');
+      const idx = drone.indexOf('- name: build-push-web-dev');
+      const pushDevBlock = drone.slice(idx, idx + 400);
+      // build-push-web-dev must wait for all three gates (visual ∥ a11y ∥ perf).
+      expect(pushDevBlock).toContain('visual-test');
+      expect(pushDevBlock).toContain('a11y-test');
+      expect(pushDevBlock.slice(0, 150)).toContain('depends_on');
     });
   });
 
