@@ -4,6 +4,7 @@ import styles from './Contact.module.scss';
 import Eyebrow from '../Eyebrow.astro';
 import Button from '../Button.astro';
 import FormField from '../FormField.astro';
+import ConfirmCard from '../ConfirmCard.astro';
 
 type Props = ContactProps;
 
@@ -14,8 +15,10 @@ const {
   altHeading = 'Prefer a direct conversation?',
   altRows,
   submitLabel = 'Send My Request',
+  submittingLabel = 'Sending…',
   privacyNote = 'We never share your information. No spam, ever.',
   successMsg = "Thank you! We'll reach out within 24 business hours.",
+  confirmTitle = 'Request received!',
   formAction = '/api/lead',
   contactState,
   turnstileSiteKey = '',
@@ -52,22 +55,28 @@ const {
     <form class="contact-form" data-reveal="right" action={formAction} method="post">
       <div class={styles['field-grid']}>
         <FormField label="First Name" fieldId="first_name" required>
-          <input id="first_name" type="text" name="first_name" required />
+          <input id="first_name" type="text" name="first_name" autocomplete="given-name" required />
         </FormField>
         <FormField label="Last Name" fieldId="last_name" required>
-          <input id="last_name" type="text" name="last_name" required />
+          <input id="last_name" type="text" name="last_name" autocomplete="family-name" required />
         </FormField>
         <FormField label="Email Address" fieldId="email" required>
-          <input id="email" type="email" name="email" required />
+          <input id="email" type="email" name="email" autocomplete="email" required />
         </FormField>
         <FormField label="Phone Number" fieldId="phone">
-          <input id="phone" type="tel" name="phone" />
+          <input id="phone" type="tel" name="phone" autocomplete="tel" />
         </FormField>
         <FormField label="Business Name" fieldId="business_name" required>
-          <input id="business_name" type="text" name="business_name" required />
+          <input
+            id="business_name"
+            type="text"
+            name="business_name"
+            autocomplete="organization"
+            required
+          />
         </FormField>
         <FormField label="City" fieldId="city" required>
-          <select id="city" name="city" required>
+          <select id="city" name="city" autocomplete="address-level2" required>
             <option value="">Select your city...</option>
             <option>Charlotte, NC</option>
             <option>Springfield, MO</option>
@@ -108,7 +117,7 @@ const {
       }
       <div class={styles['form-foot']}>
         <span class={styles.privacy}>{privacyNote}</span>
-        <Button type="submit" magnetic>
+        <Button type="submit" magnetic data-submitting-label={submittingLabel}>
           <span>{submitLabel}</span>
           <svg width="16" height="16" aria-hidden="true"><use href="/icons.svg#i-arrow"></use></svg>
         </Button>
@@ -122,6 +131,7 @@ const {
         {successMsg}
       </div>
     </form>
+    <ConfirmCard id="confirmCard" title={confirmTitle} message={successMsg} />
   </div>
 </section>
 

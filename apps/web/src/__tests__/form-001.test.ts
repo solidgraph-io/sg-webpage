@@ -328,8 +328,8 @@ describe('[SPEC-FORM-001/RF-4] form has PE structure (action + method for no-JS 
     expect(src).toContain('_gotcha');
   });
 
-  it('[SPEC-FORM-001/RF-4] contact-form.ts has addEventListener submit (not onsubmit attr)', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
+  it('[SPEC-FORM-001/RF-4] contact-form entry has addEventListener submit (not onsubmit attr)', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form/index.ts'), 'utf-8');
     expect(src).toContain("addEventListener('submit'");
     expect(
       fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8'),
@@ -376,14 +376,14 @@ describe('[SPEC-FORM-001/RF-5] UX — success-msg and error display', () => {
     expect(src).toContain("contactState === 'success'");
   });
 
-  it('[SPEC-FORM-001/RF-5] contact-form.ts sets aria-describedby on errored fields', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
+  it('[SPEC-FORM-001/RF-5] contact-form sets aria-describedby on errored fields', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form/validate.ts'), 'utf-8');
     expect(src).toContain('aria-describedby');
   });
 
-  it('[SPEC-FORM-001/RF-5] JS success handler focuses the success message (a11y)', () => {
-    const script = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
-    expect(script).toContain('successMsg');
+  it('[SPEC-FORM-001/RF-5] JS success handler focuses the confirmation (a11y; card per SPEC-FORM-002/RF-4)', () => {
+    const script = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form/state.ts'), 'utf-8');
+    expect(script).toContain('confirmCard');
     expect(script).toContain('.focus()');
   });
 });
@@ -418,7 +418,7 @@ describe('[SPEC-FORM-001/RNF-1] a11y — errors announced, keyboard operable', (
   });
 
   it('[SPEC-FORM-001/RNF-1] JS handler sets aria-invalid on errored fields', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
+    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form/validate.ts'), 'utf-8');
     expect(src).toContain('aria-invalid');
   });
 });
@@ -426,11 +426,14 @@ describe('[SPEC-FORM-001/RNF-1] a11y — errors announced, keyboard operable', (
 // ── RNF-2: perf — small island ────────────────────────────────────────────────
 
 describe('[SPEC-FORM-001/RNF-2] perf — no heavy client-side dependencies', () => {
-  it('[SPEC-FORM-001/RNF-2] contact-form.ts does not import heavyweight libs', () => {
-    const src = fs.readFileSync(path.join(WEB, 'src/scripts/contact-form.ts'), 'utf-8');
-    expect(src).not.toContain("import 'react'");
-    expect(src).not.toContain('import React');
-    expect(src).not.toContain('import axios');
+  it('[SPEC-FORM-001/RNF-2] contact-form modules do not import heavyweight libs', () => {
+    const dir = path.join(WEB, 'src/scripts/contact-form');
+    for (const f of fs.readdirSync(dir)) {
+      const src = fs.readFileSync(path.join(dir, f), 'utf-8');
+      expect(src).not.toContain("import 'react'");
+      expect(src).not.toContain('import React');
+      expect(src).not.toContain('import axios');
+    }
   });
 });
 

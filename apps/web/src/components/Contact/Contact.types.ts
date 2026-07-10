@@ -10,8 +10,10 @@ export interface ContactProps {
   altHeading?: string;
   altRows: AltRow[];
   submitLabel?: string;
+  submittingLabel?: string;
   privacyNote?: string;
   successMsg?: string;
+  confirmTitle?: string;
   formAction?: string;
   contactState?: string;
   turnstileSiteKey?: string;

@@ -1,0 +1,58 @@
+---
+/**
+ * ConfirmCard — post-submit confirmation card (SPEC-FORM-002/RF-4).
+ * Hidden by default (fidelity: idle render unchanged, QA-001); the contact-form
+ * script reveals it in `success` and moves focus to it (aria-live announces).
+ */
+interface Props {
+  id: string;
+  title: string;
+  message: string;
+}
+
+const { id, title, message } = Astro.props;
+---
+
+<div class="confirm-card" id={id} role="status" aria-live="polite" tabindex="-1" hidden>
+  <div class="confirm-icon" aria-hidden="true">
+    <svg width="26" height="26" aria-hidden="true"><use href="/icons.svg#i-check"></use></svg>
+  </div>
+  <h3>{title}</h3>
+  <p>{message}</p>
+</div>
+
+<style>
+  .confirm-card {
+    background: var(--lilac-2);
+    border: 1px solid rgba(45, 61, 138, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 56px 40px;
+    text-align: center;
+    outline: none;
+  }
+
+  .confirm-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--success);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0;
+  }
+</style>

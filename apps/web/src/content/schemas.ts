@@ -210,6 +210,10 @@ export const HomeSchema = z.object({
     heading: z.string(),
     leads: z.array(z.string()),
     altRows: z.array(z.object({ iconId: z.string(), label: z.string(), sub: z.string() })),
+    // confirmation copy is content, editable via CMS (SPEC-FORM-002/RF-4);
+    // the component provides defaults when absent
+    successMsg: z.string().optional(),
+    confirmTitle: z.string().optional(),
   }),
 
   // footer: required (always in home.yaml); sub-fields required since home.yaml always provides them

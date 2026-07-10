@@ -102,6 +102,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 | ID                        | Ítem                                                                                                                                                  | Estado                                                                                                                                     |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
+| STORY-062 / SPEC-FORM-002 | UX del form: validación en tiempo real (espejo del Zod server), máquina de estados `idle/submitting/success/error`, tarjeta de confirmación accesible, `autocomplete` | **Implemented** — `feat/form-ux` (prompt 44); PE intacta, sin deps nuevas, QA-001 sin cambios |
 
 ### EPIC-40 — Deploy stage dev (código completo; falta push + infra humana)
 

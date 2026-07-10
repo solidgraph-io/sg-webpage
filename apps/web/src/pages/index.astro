@@ -94,6 +94,8 @@ const planItems = hd.plans.items.map(({ excludes, popular, ...rest }) => ({
     altRows={hd.contact.altRows}
     turnstileSiteKey={turnstileSiteKey}
     {...contactState !== undefined ? { contactState } : {}}
+    {...hd.contact.successMsg !== undefined ? { successMsg: hd.contact.successMsg } : {}}
+    {...hd.contact.confirmTitle !== undefined ? { confirmTitle: hd.contact.confirmTitle } : {}}
   />
 
   <Footer

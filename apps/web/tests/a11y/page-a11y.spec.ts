@@ -3,29 +3,8 @@
  * Runs axe-core against the built home page. Blocking in CI.
  */
 
-import { test, expect, type Page } from '@playwright/test';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const axeCorePath: string = require.resolve('axe-core');
-
-interface AxeViolation {
-  id: string;
-  description: string;
-  nodes: { target: string[] }[];
-}
-interface AxeResults {
-  violations: AxeViolation[];
-}
-
-async function runAxe(page: Page, options: Record<string, unknown> = {}): Promise<AxeResults> {
-  await page.addScriptTag({ path: axeCorePath });
-  return page.evaluate((opts: Record<string, unknown>) => {
-    return (
-      window as unknown as { axe: { run: (doc: Document, opts: unknown) => Promise<AxeResults> } }
-    ).axe.run(document, opts);
-  }, options);
-}
+import { test, expect } from '@playwright/test';
+import { runAxe, formatViolations } from './helpers';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -40,12 +19,7 @@ test('[SPEC-A11Y-001/RF-1] home has 0 WCAG 2.1 AA violations', async ({ page }) 
     runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] },
   });
   const violations = results.violations;
-  const summary = violations
-    .map(
-      (v) => `[${v.id}] ${v.description}: ${v.nodes.map((n) => n.target.join(', ')).join(' | ')}`,
-    )
-    .join('\n');
-  expect(violations, `Axe violations:\n${summary}`).toHaveLength(0);
+  expect(violations, `Axe violations:\n${formatViolations(violations)}`).toHaveLength(0);
 });
 
 // ── RF-2: skip-link is first tab stop ─────────────────────────────────────────
@@ -131,16 +105,12 @@ test('[SPEC-A11Y-001/RF-6] reveal animations disabled under prefers-reduced-moti
   const ctx = await browser.newContext({ reducedMotion: 'reduce' });
   const p = await ctx.newPage();
   await p.goto('/');
-  await p.waitForLoadState('networkidle');
 
-  const revealStyle = await p
-    .locator('[data-reveal]')
-    .first()
-    .evaluate((el) => {
-      const s = window.getComputedStyle(el);
-      return { opacity: s.opacity, transform: s.transform };
-    });
+  // Poll the computed style instead of waiting for networkidle: third-party
+  // beacons (e.g. Turnstile's challenge traffic when TURNSTILE_SITE_KEY is
+  // set) keep the network busy indefinitely and would starve the wait.
+  const reveal = p.locator('[data-reveal]').first();
   // With reduced-motion, opacity should be 1 and transform should be none
-  expect(revealStyle.opacity).toBe('1');
+  await expect.poll(() => reveal.evaluate((el) => window.getComputedStyle(el).opacity)).toBe('1');
   await ctx.close();
 });
