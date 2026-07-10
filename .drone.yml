@@ -3,9 +3,9 @@
 #
 # Gates (dependency graph — build-once, gates en paralelo):
 #
-#   install → validate → test → build ────────────────────────────────────────┐
-#                                      └→ install-glibc → visual-test ─┐      │
-#                                                        → a11y-test   ─┼────→ push-dev → deploy-dev  (develop)
+#   install → validate → test ──→ build ──────────────────────────────────────┐
+#          └→ okf-check ────────────┘  └→ install-glibc → visual-test ─┐      │
+#             (docs bundle)                              → a11y-test   ─┼────→ push-dev → deploy-dev  (develop)
 #                                                        → perf-test*  ─┘      push-prod → deploy      (main/stub→promote)
 #
 # * perf-test: bloqueante en develop/main push; skip en feature/PR (event push solo).
@@ -91,13 +91,26 @@ steps:
       - pnpm test
       - pnpm trace -- --check
 
+  # ── 3b. okf-check (SPEC-DOCS-OKF-001/RF-7) ──────────────────────────────────
+  # Gate de conformidad del knowledge bundle docs/ — su propio step, en paralelo
+  # con validate/test (no toca el build de la app). Falla el pipeline ante
+  # violaciones duras (RF-1/2/3) o índices desactualizados (okf:index --check).
+  - name: okf-check
+    image: node:22-alpine
+    depends_on: [install]
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@9.15.9 --activate
+      - pnpm okf:check
+      - pnpm okf:index -- --check
+
   # ── 4. build (build-once — SPEC-DEPLOY-002/RF-1) ────────────────────────────
   # Produce apps/web/dist/ UNA sola vez; los gates posteriores lo consumen sin reconstruir.
   # Sin condición `when`: corre en todas las ramas (feature/PR incluidas) porque
   # visual-test y a11y-test también necesitan el dist en pull_request.
   - name: build
     image: node:22-alpine
-    depends_on: [test]
+    depends_on: [test, okf-check]
     environment:
       TURBO_TOKEN:
         from_secret: TURBO_TOKEN

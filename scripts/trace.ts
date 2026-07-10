@@ -16,6 +16,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Script is always run from the monorepo root (pnpm -w run trace)
 const ROOT = process.cwd();
@@ -42,12 +43,22 @@ interface SpecEntry {
 
 // ─── Parse specs ──────────────────────────────────────────────────────────────
 
-function parseSpec(filePath: string): SpecEntry | null {
+// Spec IDs support compound domains (SPEC-DOCS-OKF-001) and digits after the
+// leading letter of each segment (SPEC-A11Y-001) — the trailing \d+ is the NNN
+export const SPEC_ID_RE = /^(SPEC-[A-Z][A-Z0-9]*(?:-[A-Z][A-Z0-9]*)*-\d+)/;
+
+// Citation form in tests: [SPEC-XXX-NNN/RF-y] (same domain support as SPEC_ID_RE)
+export const CITATION_RE =
+  /\[((SPEC-[A-Z][A-Z0-9]*(?:-[A-Z][A-Z0-9]*)*-\d+)\/((?:RF|RNF|INV)-\d+))\]/;
+
+// Not specs: the template (Reference) and OKF reserved files (index/log)
+const NON_SPEC_FILES = new Set(['SPEC-TEMPLATE.md', 'index.md', 'log.md']);
+
+export function parseSpec(filePath: string): SpecEntry | null {
   const content = fs.readFileSync(filePath, 'utf-8');
   const fileName = path.basename(filePath, '.md');
 
-  // Extract spec ID from filename (e.g. SPEC-INFRA-001)
-  const idMatch = /^(SPEC-[A-Z]+-\d+)/.exec(fileName);
+  const idMatch = SPEC_ID_RE.exec(fileName);
   if (!idMatch?.[1]) return null;
   const specId = idMatch[1];
 
@@ -72,6 +83,26 @@ function parseSpec(filePath: string): SpecEntry | null {
   return { file: path.relative(ROOT, filePath), specId, status, requirements };
 }
 
+// A spec file the matrix cannot see (unparseable ID) or that contributes no
+// recognizable requirements would silently escape the gate — that is an error,
+// not a skip (lesson from SPEC-DOCS-OKF-001 being invisible in Phase 1).
+export function validateSpecFiles(specFiles: string[]): string[] {
+  const problems: string[] = [];
+  for (const filePath of specFiles) {
+    const base = path.basename(filePath);
+    if (NON_SPEC_FILES.has(base)) continue;
+    const entry = parseSpec(filePath);
+    if (!entry) {
+      problems.push(`${base}: filename does not parse to a spec ID (SPEC-<DOMAIN>-<NNN>)`);
+      continue;
+    }
+    if (entry.requirements.length === 0) {
+      problems.push(`${base}: no recognizable requirements (RF/RNF/INV) — invisible to the gate`);
+    }
+  }
+  return problems;
+}
+
 // ─── Parse test citations ─────────────────────────────────────────────────────
 
 async function collectCitations(): Promise<Map<string, string[]>> {
@@ -91,7 +122,7 @@ async function collectCitations(): Promise<Map<string, string[]>> {
 
     lines.forEach((line, idx) => {
       // Match [SPEC-XXX-NNN/RF-y] or [SPEC-XXX-NNN/RNF-y] or [SPEC-XXX-NNN/INV-y]
-      const citPattern = /\[((SPEC-[A-Z]+-\d+)\/((?:RF|RNF|INV)-\d+))\]/g;
+      const citPattern = new RegExp(CITATION_RE.source, 'g');
       let match: RegExpExecArray | null;
       while ((match = citPattern.exec(line)) !== null) {
         const key = match[1]!; // e.g. SPEC-INFRA-001/RF-1
@@ -130,6 +161,10 @@ async function main(): Promise<void> {
     .filter((f) => f.endsWith('.md'))
     .map((f) => path.join(SPECS_DIR, f))
     .sort();
+
+  // No spec may be invisible to the gate (unparseable ID / zero requirements)
+  const invisible = validateSpecFiles(specFiles);
+  for (const p of invisible) console.error(`[trace] ERROR: ${p}`);
 
   const specs: SpecEntry[] = [];
   for (const f of specFiles) {
@@ -208,6 +243,13 @@ async function main(): Promise<void> {
   fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
   console.log(`[trace] wrote ${OUTPUT_FILE}`);
 
+  if (CHECK_MODE && invisible.length > 0) {
+    console.error(
+      `[trace] FAIL: ${invisible.length} spec file(s) invisible to the matrix (see errors above).`,
+    );
+    process.exit(1);
+  }
+
   if (CHECK_MODE && uncoveredApproved > 0) {
     console.error(
       `[trace] FAIL: ${uncoveredApproved} requirement(s) in Approved specs lack test coverage.`,
@@ -221,4 +263,6 @@ async function main(): Promise<void> {
   }
 }
 
-void main();
+const isMain =
+  process.argv[1] !== undefined && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) void main();

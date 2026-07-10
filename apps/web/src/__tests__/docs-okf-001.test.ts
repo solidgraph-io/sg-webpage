@@ -153,6 +153,7 @@ describe('[SPEC-DOCS-OKF-001/RF-5] bundle-relative links must resolve', () => {
   it('[SPEC-DOCS-OKF-001/RF-5] resolving link (with anchor) → no warning', () => {
     const dir = makeBundle({
       'index.md': ROOT_INDEX,
+      'specs/index.md': '# Catalog\n', // avoids the RF-8 missing-index warning
       'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nSee [B](/specs/b.md#schema).\n',
       'specs/b.md': VALID_CONCEPT,
     });
@@ -186,7 +187,7 @@ describe('[SPEC-DOCS-OKF-001/RF-6] CLI exit codes', () => {
   });
 });
 
-// ── RF-7: okf:check wired as repo script (CI step lands in Phase 4) ───────────
+// ── RF-7: okf:check wired as repo script + CI gate ────────────────────────────
 
 describe('[SPEC-DOCS-OKF-001/RF-7] pnpm okf:check wiring', () => {
   it('[SPEC-DOCS-OKF-001/RF-7] root package.json exposes okf:check like trace', () => {
@@ -195,6 +196,23 @@ describe('[SPEC-DOCS-OKF-001/RF-7] pnpm okf:check wiring', () => {
     };
     expect(pkg.scripts['okf:check']).toContain('scripts/okf-check.ts');
     expect(pkg.scripts['trace']).toBeDefined(); // runs alongside trace
+  });
+
+  it('[SPEC-DOCS-OKF-001/RF-7] CI runs okf:check + okf:index --check in its own step', () => {
+    const drone = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
+    const idx = drone.indexOf('- name: okf-check\n');
+    expect(idx).toBeGreaterThan(-1);
+    const block = drone.slice(idx, idx + 500);
+    expect(block).toContain('pnpm okf:check');
+    expect(block).toContain('pnpm okf:index -- --check');
+    expect(block).not.toContain('pnpm build'); // its own step, not the app build
+  });
+
+  it('[SPEC-DOCS-OKF-001/RF-7] build (and thus deploy) is gated on okf-check', () => {
+    const drone = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
+    const idx = drone.indexOf('- name: build\n');
+    const block = drone.slice(idx, idx + 300);
+    expect(block).toContain('okf-check');
   });
 });
 

@@ -111,6 +111,12 @@ PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de blo
 > pasa a Implemented/Verified viaja con su commit). `docs/` **nunca** va en `.gitignore`. El
 > `trace check` depende de `docs/specs` estando en el repo.
 
+> **OKF (SPEC-DOCS-OKF-001):** todo `.md` nuevo bajo `docs/` nace con **frontmatter OKF**
+> (`type` según la taxonomía de la spec: `Spec|ADR|Prompt|Architecture|Methodology|Plan|Runbook|
+> Index|Reference`) y su carpeta mantiene su `index.md` regenerándolo con **`pnpm okf:index`**.
+> **`pnpm okf:check` debe estar verde antes de abrir PR** (corre en CI junto a `trace`; un índice
+> desactualizado falla `okf:index -- --check`).
+
 > **Prettier solo formatea código, NO markdown/docs.** `**/*.md`/`**/*.mdx` están en `.prettierignore`
 > (specs, ADRs, prompts, plan, README, AGENTS, CLAUDE…): los docs se escriben a mano y su formato **no**
 > es un gate de CI. El gate `prettier --check .` de CI sigue **bloqueante** para **código**
@@ -120,13 +126,15 @@ PR enlaza SPEC(+ADR) con checklist; revisión extra si toca el **contrato de blo
 **Gates de CI — build-once, gates en paralelo (SPEC-DEPLOY-002):**
 
 ```
-install → validate → test → build (dist/, todas las ramas)
-                              └→ install-glibc → visual-test ─┐
-                                               → a11y-test   ─┼→ build-push-web-dev → trigger-dokploy-dev  (develop)
-                                               → perf-test*  ─┘  build-push-web    → trigger-dokploy        (main)
+install → validate → test ──→ build (dist/, todas las ramas)
+       └→ okf-check ────────────┘└→ install-glibc → visual-test ─┐
+          (docs/ bundle)                          → a11y-test   ─┼→ build-push-web-dev → trigger-dokploy-dev  (develop)
+                                                  → perf-test*  ─┘  build-push-web    → trigger-dokploy        (main)
 ```
 
 - **build-once:** un único `pnpm build` produce `apps/web/dist/`; visual/a11y/perf lo consumen sin reconstruir.
+- **`okf-check`:** conformidad OKF de `docs/` (`pnpm okf:check` + `pnpm okf:index -- --check`) en su
+  propio step, paralelo a validate/test; `build` depende de él (SPEC-DOCS-OKF-001/RF-7).
 - **install-glibc:** una sola instalación con imagen Playwright (Ubuntu Noble/glibc) para los tres gates.
   El step `install` usa Alpine (musl); `install-glibc` re-instala para módulos nativos SSR en runtime.
 - **Gates en paralelo:** `visual-test`, `a11y-test` y `perf-test` corren concurrentes (todos `depends_on: [install-glibc]`).

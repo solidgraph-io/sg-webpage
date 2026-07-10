@@ -20,16 +20,19 @@ es un *concepto* con frontmatter tipado; este índice es el catálogo top-level 
 
 ## Secciones
 
-- **[specs/](/specs/SPEC-TEMPLATE.md)** — `type: Spec` (+ la plantilla como `Reference`).
-  Reglas de cada incremento: RF/RNF/INV testeables, criterios Gherkin, trazabilidad.
-- **[adr/](/adr/0015-adopt-open-knowledge-format-okf.md)** — `type: ADR`. Decisiones de
-  arquitectura (component-as-folder, build-once, design-gate, OKF).
-- **[prompts/](/prompts/41-okf-phase1-frontmatter.md)** — `type: Prompt`. Registro SDD de
-  los prompts de implementación que dirigieron cada incremento.
-- **[deploy/](/deploy/dev-stage.md)** — `type: Runbook`. Operación del stage dev
-  (DroneCI → Registry → Dokploy → VPS).
+Cada subdirectorio tiene su `index.md` de *progressive disclosure* (OKF §6), generado por
+`pnpm okf:index` (no editar a mano; el bloque siguiente lo mantiene el generador).
+
+<!-- okf:index:start -->
+- **[adr/](/adr/index.md)** — 4 conceptos · type: ADR
+- **[deploy/](/deploy/index.md)** — 1 concepto · type: Runbook
+- **[prompts/](/prompts/index.md)** — 43 conceptos · type: Prompt
+- **[specs/](/specs/index.md)** — 28 conceptos · type: Reference, Spec
+<!-- okf:index:end -->
 
 ## Conformidad
 
 `pnpm okf:check` valida el bundle: frontmatter parseable + `type` no vacío en cada
-concepto y `okf_version` en este índice (duro); taxonomía y enlaces rotos (warning).
+concepto y `okf_version` en este índice (duro); taxonomía, enlaces rotos e índices de
+subdirectorio ausentes (warning). `pnpm okf:index -- --check` falla si un índice quedó
+desactualizado; ambos corren en CI junto a `pnpm trace`.

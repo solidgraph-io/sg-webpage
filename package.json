@@ -14,7 +14,8 @@
     "test": "turbo test",
     "test:e2e": "turbo test:e2e",
     "trace": "npx tsx scripts/trace.ts",
-    "okf:check": "npx tsx scripts/okf-check.ts"
+    "okf:check": "npx tsx scripts/okf-check.ts",
+    "okf:index": "npx tsx scripts/okf-index.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

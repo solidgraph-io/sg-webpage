@@ -13,6 +13,7 @@
  *   RF-4  warn    `type` outside the project taxonomy
  *   RF-5  warn    bundle-relative links (/….md) that do not resolve
  *   RF-6  exit    exit ≠ 0 only for RF-1/RF-2/RF-3; warnings keep exit 0
+ *   RF-8  warn    non-empty subdirectory without its index.md (§6, `pnpm okf:index`)
  *
  * Reserved files (index.md, log.md) are never concepts (INV-2); only the
  * bundle-root index.md carries frontmatter (okf_version).
@@ -140,6 +141,21 @@ export function checkBundle(bundleRoot: string): OkfResult {
     // ── RF-4: type in project taxonomy (warning) ────────────────────────────
     if (!(TAXONOMY as readonly string[]).includes(type)) {
       warnings.push(`[RF-4] ${rel}: type "${type}" outside taxonomy (${TAXONOMY.join('|')})`);
+    }
+  }
+
+  // ── RF-8: non-empty subdirs should carry a progressive-disclosure index ──
+  // Non-empty = ≥1 direct non-reserved .md (same rule as okf-index)
+  for (const entry of fs.readdirSync(bundleRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = path.join(bundleRoot, entry.name);
+    const hasConcepts = fs
+      .readdirSync(dir, { withFileTypes: true })
+      .some((e) => e.isFile() && e.name.endsWith('.md') && !RESERVED.has(e.name));
+    if (hasConcepts && !fs.existsSync(path.join(dir, 'index.md'))) {
+      warnings.push(
+        `[RF-8] ${entry.name}/: non-empty directory lacks index.md (run \`pnpm okf:index\`)`,
+      );
     }
   }
 

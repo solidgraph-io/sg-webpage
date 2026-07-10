@@ -9,7 +9,7 @@ timestamp: 2026-07-10T21:23:58.667Z
 # SPEC-DOCS-OKF-001 — `docs/` como Knowledge Bundle OKF conformante
 
 - **ID:** SPEC-DOCS-OKF-001
-- **Estado:** Approved <!-- Draft → Review → Approved → Implemented → Verified -->
+- **Estado:** Implemented <!-- Draft → Review → Approved → Implemented → Verified -->
 - **Épica / Story:** EPIC-DOCS / STORY-OKF
 - **Capa atómica:** — (documentación / tooling, no UI)
 - **Depende de:** ADR-0015 (adopción de OKF)
@@ -46,7 +46,10 @@ consumo permisivo de OKF (duro solo en lo mínimo; el resto, advertencia).
   **duras**: RF-1 (falta `okf_version` en index raíz), RF-2 (frontmatter no parseable) o RF-3 (`type`
   ausente/vacío).
 - **RF-7** — `pnpm okf:check` corre en CI junto a `pnpm trace` (no bloquea el build de la app; es su propio
-  step).
+  step). **Es el mecanismo que hace que OKF se aplique siempre**: ningún doc no conformante llega a `develop`.
+- **RF-8** — Cada **subdirectorio no vacío** bajo `docs/` (`specs/`, `adr/`, `prompts/`, `deploy/`) **debería**
+  tener su `index.md` de *progressive disclosure* (§6). Su ausencia es **warning**, no error (recomendado, no
+  requerido por §9). El índice raíz enlaza a los índices de subdirectorio.
 
 ## Requisitos no funcionales
 

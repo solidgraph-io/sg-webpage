@@ -267,8 +267,8 @@ describe('SPEC-INFRA-001 — Monorepo fundaciones', () => {
 
   it('[SPEC-INFRA-001/RNF-3] .drone.yml build step depends on test (gates ordered)', () => {
     const content = fs.readFileSync(path.join(ROOT, '.drone.yml'), 'utf-8');
-    // build depends on test (which includes trace check)
-    expect(content).toContain('depends_on: [test]');
+    // build depends on test (trace check) and okf-check (SPEC-DOCS-OKF-001/RF-7)
+    expect(content).toContain('depends_on: [test, okf-check]');
   });
 
   // ── INV-3: SRP — config lives in modular packages ─────────────────────────
