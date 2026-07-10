@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 05 — Organismos (para Claude Code)"
+description: "Implementar los 13 organismos contra el contrato ya congelado (SPEC-BLOCK-000, Implemented), en estas specs Approved y en este orden:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 05 — Organismos (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

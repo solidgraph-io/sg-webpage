@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-006 — Sección 06: How It Works (sticky)"
+description: "\"How It Works\": sección oscura (--night, aurora tenue) a 2 columnas: izquierda sticky + pasos con duración."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-006 — Sección 06: How It Works (sticky)
 
 - **ID:** SPEC-SEC-006

@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-010 — Sección 10: About (órbita/ciudades)"
+description: "\"Developers Who Build From Scratch\": clara (--lilac-2), 2 columnas: visual con órbita animada + contenido (diffs + ciudades)."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-010 — Sección 10: About (órbita/ciudades)
 
 - **ID:** SPEC-SEC-010

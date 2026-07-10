@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-015 — Ensamblado: index + `<head>`/SEO base + fidelidad de página completa"
+description: "Las 14 secciones están construidas y verificadas por separado."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-015 — Ensamblado: index + `<head>`/SEO base + fidelidad de página completa
 
 - **ID:** SPEC-SEC-015

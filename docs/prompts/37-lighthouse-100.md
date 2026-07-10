@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 37 — Lighthouse a 100: orden de headings (a11y) + aspect-ratio de imagen (best practices)"
+description: "El sitio saca Perf 100 / A11y 99 / Best Practices 96 / SEO 100."
+tags: [prompt]
+timestamp: 2026-07-09T18:49:21-04:00
+---
+
 # Prompt 37 — Lighthouse a 100: orden de headings (a11y) + aspect-ratio de imagen (best practices)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Pulido de calidad; no toca lógica.

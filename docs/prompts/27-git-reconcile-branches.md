@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 27 — Reconciliar ramas (git-flow): consolidar en `develop` y borrar sprawl"
+description: "Se acumularon muchas ramas sin cerrar (probablemente cortadas una sobre otra, por eso el working tree tiene todo)."
+tags: [prompt]
+timestamp: 2026-07-08T17:55:17-04:00
+---
+
 # Prompt 27 — Reconciliar ramas (git-flow): consolidar en `develop` y borrar sprawl
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. **Operación git delicada: AUDITA y

@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 23 — Fix crítico: leer env en runtime con `astro:env` (para Claude Code)"
+description: "Define el esquema en astro.config.ts (env.schema, envField) y lee desde astro:env, para que dev (.env en la raíz, respetando el envDir actual) y el contenedor (env de Dokploy en r…"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 23 — Fix crítico: leer env en runtime con `astro:env` (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. **Prioritario: bloquea el deploy dev.**

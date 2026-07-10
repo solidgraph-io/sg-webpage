@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 13 — Secciones 04–06: PainPoints + Value + HowItWorks (para Claude Code)"
+description: "Implementar, en orden, estas specs Approved:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 13 — Secciones 04–06: PainPoints + Value + HowItWorks (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

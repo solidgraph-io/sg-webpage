@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 18 — Capa de contenido CMS-ready (para Claude Code)"
+description: "Implementar docs/specs/SPEC-CONTENT-001.md: capa de contenido CMS-ready + migración verbatim."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 18 — Capa de contenido CMS-ready (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. **Va antes del SEO.**

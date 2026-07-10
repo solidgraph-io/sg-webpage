@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 21 — Corregir la doc del `/admin` (Sveltia: proxy → File System Access) + tracking de `docs/`"
+description: "Alinear toda la doc del /admin con docs/specs/SPEC-CMS-001.md (RF-5 ya corregido)."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 21 — Corregir la doc del `/admin` (Sveltia: proxy → File System Access) + tracking de `docs/`
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

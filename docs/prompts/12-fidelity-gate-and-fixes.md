@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 12 — Gate de fidelidad + corrección de Nav/Hero/Marquee (para Claude Code)"
+description: "Implementar docs/specs/SPEC-QA-001.md y corregir SEC-001/002/003 hasta que el diff contra el diseño pase."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 12 — Gate de fidelidad + corrección de Nav/Hero/Marquee (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

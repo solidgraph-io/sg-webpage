@@ -1,3 +1,11 @@
+---
+type: Runbook
+title: "Dev Stage — `dev.solidgraph.dev` Runbook"
+description: "push → develop → install → validate → test+trace → visual-test → a11y-test → build → perf-test → build-push-web-dev (tags: dev + SHA) → trigger-dokploy-dev (POST DOKPLOYWEBHOOKWEB…"
+tags: [deploy]
+timestamp: 2026-07-09T15:30:58-04:00
+---
+
 # Dev Stage — `dev.solidgraph.dev` Runbook
 
 > **SPEC-DEPLOY-001/RF-6** — Runbook for the dev stage pipeline.

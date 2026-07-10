@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 39 — Usar el variante de logo correcto en cada contexto (navbar / footer / hero)"
+description: "Usar el variante de logo correcto en cada contexto (navbar / footer / hero)"
+tags: [prompt]
+timestamp: 2026-07-09T19:50:12-04:00
+---
+
 # Prompt 39 — Usar el variante de logo correcto en cada contexto (navbar / footer / hero)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Corrección de branding + assets.

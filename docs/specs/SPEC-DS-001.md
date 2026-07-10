@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-DS-001 — Sistema de diseño (foundation, portado de design/template)"
+description: "El nuevo diseño (design/template/) trae el sistema de diseño ya modular: design-system/ {tokens,base,animations}.css + components/.css + scripts/interactions.js."
+tags: [ds]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-DS-001 — Sistema de diseño (foundation, portado de design/template)
 
 - **ID:** SPEC-DS-001

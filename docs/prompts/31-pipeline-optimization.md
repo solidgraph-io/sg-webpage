@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 31 — Optimizar el pipeline: build-once + gates en paralelo + promote-image"
+description: "Eliminar la redundancia del pipeline (build 3–4× → 1×), correr los gates pesados en paralelo, y dejar prod como promoción de la misma imagen (no rebuild)."
+tags: [prompt]
+timestamp: 2026-07-08T23:13:03-04:00
+---
+
 # Prompt 31 — Optimizar el pipeline: build-once + gates en paralelo + promote-image
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa `docs/specs/SPEC-DEPLOY-002.md`

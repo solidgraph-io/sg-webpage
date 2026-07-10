@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 09 — RESET a estado inicial (para Claude Code)"
+description: "RESET a estado inicial (para Claude Code)"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 09 — RESET a estado inicial (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. **Operación destructiva** —

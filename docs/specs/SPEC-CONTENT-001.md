@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-CONTENT-001 — Capa de contenido CMS-ready (Content Collections + Zod)"
+description: "Tras el rebuild v3, todo el contenido de la home vive inline como constantes const en index.astro (navLinks, hero, marquee, painItems…)."
+tags: [content]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-CONTENT-001 — Capa de contenido CMS-ready (Content Collections + Zod)
 
 - **ID:** SPEC-CONTENT-001

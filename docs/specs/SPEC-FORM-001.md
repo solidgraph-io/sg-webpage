@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-FORM-001 — Captación de leads: `/api/lead` + `LeadPort` + anti-spam"
+description: "La UI del formulario de contacto existe (SEC-013) pero es inerte."
+tags: [form]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-FORM-001 — Captación de leads: `/api/lead` + `LeadPort` + anti-spam
 
 - **ID:** SPEC-FORM-001

@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 15 — Secciones 10–12: About + FAQ + CTA (para Claude Code)"
+description: "Implementar, en orden, estas specs Approved:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 15 — Secciones 10–12: About + FAQ + CTA (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

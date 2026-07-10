@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-009 — Sección 09: Portfolio"
+description: "\"Our Work\": blanca (#fff) con grid de tarjetas de trabajos + CTA central."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-009 — Sección 09: Portfolio
 
 - **ID:** SPEC-SEC-009

@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEO-001 — SEO de lanzamiento: metadatos, OG, JSON-LD, sitemap, robots"
+description: "La home ya tiene SEO base (title/description en BaseLayout)."
+tags: [seo]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-SEO-001 — SEO de lanzamiento: metadatos, OG, JSON-LD, sitemap, robots
 
 - **ID:** SPEC-SEO-001

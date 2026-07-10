@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-012 — Sección 12: CTA strip"
+description: "\"Get a Website Like This\": NO es sección oscura completa — es un contenedor claro con una tarjeta oscura flotante redondeada."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-012 — Sección 12: CTA strip
 
 - **ID:** SPEC-SEC-012

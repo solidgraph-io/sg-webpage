@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 29 — Sincronizar versión de Playwright (npm ↔ imagen Drone)"
+description: "Sincronizar versión de Playwright (npm ↔ imagen Drone)"
+tags: [prompt]
+timestamp: 2026-07-08T19:36:42-04:00
+---
+
 # Prompt 29 — Sincronizar versión de Playwright (npm ↔ imagen Drone)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Desbloquea el gate E2E (visual/a11y/perf).

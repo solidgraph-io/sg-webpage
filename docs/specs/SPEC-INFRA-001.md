@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-INFRA-001 — Fundaciones: monorepo Turborepo + tooling + testing + CI + trace"
+description: "Dejar el monorepo ejecutable y verificable: pnpm install && pnpm build && pnpm test && pnpm trace -- --check en verde, con apps/web Astro vacío pero booteable."
+tags: [infra]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-INFRA-001 — Fundaciones: monorepo Turborepo + tooling + testing + CI + trace
 
 - **ID:** SPEC-INFRA-001

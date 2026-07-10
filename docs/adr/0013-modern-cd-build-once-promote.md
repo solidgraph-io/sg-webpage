@@ -1,3 +1,11 @@
+---
+type: ADR
+title: "ADR-0013 — CD moderno: build-once + promote-image; se rechaza el ladder de environments"
+description: "Adoptamos las prácticas de entrega continua moderna (trunk-based / DORA), right-sized para un sitio productizado operado por una persona:"
+tags: [adr]
+timestamp: 2026-07-08T23:13:03-04:00
+---
+
 # ADR-0013 — CD moderno: build-once + promote-image; se rechaza el ladder de environments
 
 - **Estado:** Accepted (2026-07)

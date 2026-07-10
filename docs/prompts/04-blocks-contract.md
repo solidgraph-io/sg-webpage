@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 04 — Contrato de bloques + BlockRenderer (para Claude Code)"
+description: "Implementar docs/specs/SPEC-BLOCK-000.md: el contrato de bloques (13 schemas Zod + shared + Page), el wiring a Content Collections y el BlockRenderer."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 04 — Contrato de bloques + BlockRenderer (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

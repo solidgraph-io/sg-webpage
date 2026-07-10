@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-001 — Sección 01: Nav"
+description: "Barra de navegación."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-001 — Sección 01: Nav
 
 - **ID:** SPEC-SEC-001

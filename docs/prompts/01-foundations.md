@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 01 — Fundaciones + sistema de diseño (para Claude Code)"
+description: "Implementar, en este orden, las specs ya Approved:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 01 — Fundaciones + sistema de diseño (para Claude Code)
 
 > Pégale esto a Claude Code ejecutando **en la raíz del repo `sg-webpage`**.

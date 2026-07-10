@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-007 — Sección 07: Plans (+ hosting)"
+description: "\"No Hidden Fees\": la sección más rica."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-007 — Sección 07: Plans (+ hosting)
 
 - **ID:** SPEC-SEC-007

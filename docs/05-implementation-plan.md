@@ -1,3 +1,11 @@
+---
+type: Plan
+title: "05 — Plan de Implementación Trazable (sg-webpage)"
+description: "EPIC-XX → STORY-XXX → SPEC-DOM-NNN → tests + PR"
+tags: [plan]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # 05 — Plan de Implementación Trazable (sg-webpage)
 
 > **Estado:** Reset 2026-07-01 — re-planificación contra `design/template/` pendiente del arquitecto.

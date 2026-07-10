@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-011 — Sección 11: FAQ"
+description: "\"Questions We Hear All the Time\": blanca (#fff), lista de FAQ con disclosure nativo."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-011 — Sección 11: FAQ
 
 - **ID:** SPEC-SEC-011

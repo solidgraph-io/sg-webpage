@@ -1,3 +1,11 @@
+---
+type: Architecture
+title: "01 — Arquitectura y Stack (SolidGraph Website / sg-webpage)"
+description: "Sitio corporativo de SolidGraph Solutions LLC — agencia de webs a medida para negocios locales (Charlotte, NC · Springfield, MO)."
+tags: [architecture, stack]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # 01 — Arquitectura y Stack (SolidGraph Website / sg-webpage)
 
 > Contexto y decisiones técnicas. Reglas: `../AGENTS.md`. Metodología: `04-engineering-methodology.md`.

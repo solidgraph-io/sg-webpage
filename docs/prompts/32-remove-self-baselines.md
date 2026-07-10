@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 32 — Quitar los self-baselines visuales (diseño = único gate de regresión visual)"
+description: "Los baselines toHaveScreenshot anti-regresión fallan en CI por drift de entorno: se generaron en WSL pero el CI usa el contenedor Playwright, y el layout difiere 1px (unas seccion…"
+tags: [prompt]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # Prompt 32 — Quitar los self-baselines visuales (diseño = único gate de regresión visual)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa `ADR-0014`. Desbloquea el gate

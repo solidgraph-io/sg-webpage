@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 22 — Stage dev: push a `develop` + deploy continuo (para Claude Code)"
+description: "Stage dev: push a `develop` + deploy continuo (para Claude Code)"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 22 — Stage dev: push a `develop` + deploy continuo (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

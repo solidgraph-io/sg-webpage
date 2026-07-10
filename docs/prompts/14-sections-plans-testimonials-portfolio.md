@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 14 — Secciones 07–09: Plans + Testimonials + Portfolio (para Claude Code)"
+description: "Implementar, en orden, estas specs Approved:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 14 — Secciones 07–09: Plans + Testimonials + Portfolio (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

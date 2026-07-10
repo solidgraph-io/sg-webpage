@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 03 — Moléculas (para Claude Code)"
+description: "Implementar todas las moléculas (EPIC-03), en estas specs Approved (en orden):"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 03 — Moléculas (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

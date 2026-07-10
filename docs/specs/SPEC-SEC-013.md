@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-013 — Sección 13: Contact (UI del formulario)"
+description: "\"Get a Free Quote\": sección clara con formulario + info de contacto."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-013 — Sección 13: Contact (UI del formulario)
 
 - **ID:** SPEC-SEC-013

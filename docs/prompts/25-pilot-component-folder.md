@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 25 — PILOTO: componente-en-carpeta (barrel + CSS Modules + types) en Hero"
+description: "Validar la nueva estructura component-as-folder en un solo componente (Hero) y reportar qué funciona y qué fricciona, para luego codificarla como metodología."
+tags: [prompt]
+timestamp: 2026-07-08T00:08:46-04:00
+---
+
 # Prompt 25 — PILOTO: componente-en-carpeta (barrel + CSS Modules + types) en Hero
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. **Es un piloto para VALIDAR el patrón**

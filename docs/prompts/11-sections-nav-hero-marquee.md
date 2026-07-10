@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 11 — Secciones 01–03: Nav + Hero + Marquee (para Claude Code)"
+description: "Implementar, en orden, estas specs Approved (una por sección):"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 11 — Secciones 01–03: Nav + Hero + Marquee (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

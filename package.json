@@ -13,7 +13,8 @@
     "type-check": "turbo type-check",
     "test": "turbo test",
     "test:e2e": "turbo test:e2e",
-    "trace": "npx tsx scripts/trace.ts"
+    "trace": "npx tsx scripts/trace.ts",
+    "okf:check": "npx tsx scripts/okf-check.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -26,7 +27,8 @@
     "tsx": "^4.19.4",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0"
+    "typescript-eslint": "^8.34.0",
+    "yaml": "^2.9.0"
   },
   "lint-staged": {
     "apps/web/**/*.{ts,tsx,astro}": [

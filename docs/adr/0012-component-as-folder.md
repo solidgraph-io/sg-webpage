@@ -1,3 +1,11 @@
+---
+type: ADR
+title: "ADR-0012 — Component-as-folder: barrel + CSS Modules (SCSS) + types"
+description: "Cada componente es una carpeta:"
+tags: [adr]
+timestamp: 2026-07-08T14:59:14-04:00
+---
+
 # ADR-0012 — Component-as-folder: barrel + CSS Modules (SCSS) + types
 
 - **Estado:** Accepted (validado por el piloto de `Hero`, 2026-07)

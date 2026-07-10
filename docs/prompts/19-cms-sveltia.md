@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 19 — CMS Sveltia (`/admin`) (para Claude Code)"
+description: "Implementar docs/specs/SPEC-CMS-001.md: Sveltia CMS en /admin, git-based, mapeando las colecciones existentes."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 19 — CMS Sveltia (`/admin`) (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

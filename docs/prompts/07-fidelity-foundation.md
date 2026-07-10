@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 07 — Corrección de fidelidad: sistema de diseño v2 + contrato v2 (para Claude Code)"
+description: "Implementar, en orden, estas specs Approved:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 07 — Corrección de fidelidad: sistema de diseño v2 + contrato v2 (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

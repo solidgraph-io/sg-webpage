@@ -1,3 +1,11 @@
+---
+type: Methodology
+title: "04 — Metodología de Ingeniería: SDD + TDD + Atomic Design + Arneses de IA"
+description: "Nada se implementa sin spec:"
+tags: [methodology]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # 04 — Metodología de Ingeniería: SDD + TDD + Atomic Design + Arneses de IA
 
 > **Estado:** v1 · Metodología **vinculante** (la hacen cumplir CI y los arneses `../AGENTS.md` /

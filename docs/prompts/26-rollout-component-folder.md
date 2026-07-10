@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 26 — Rollout component-as-folder a los organismos restantes + fix test `0.10`"
+description: "Rollout component-as-folder a los organismos restantes + fix test `0.10`"
+tags: [prompt]
+timestamp: 2026-07-08T14:53:25-04:00
+---
+
 # Prompt 26 — Rollout component-as-folder a los organismos restantes + fix test `0.10`
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. El piloto de Hero ya validó el patrón

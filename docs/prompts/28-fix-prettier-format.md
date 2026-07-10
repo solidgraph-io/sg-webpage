@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 28 — Fix gate de formato (prettier) + prevención durable"
+description: "El gate npx prettier --check ."
+tags: [prompt]
+timestamp: 2026-07-08T18:44:37-04:00
+---
+
 # Prompt 28 — Fix gate de formato (prettier) + prevención durable
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Corrige el CI (prettier `--check` en rojo)

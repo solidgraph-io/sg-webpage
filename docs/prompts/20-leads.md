@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 20 — Captación de leads (`/api/lead` + LeadPort) (para Claude Code)"
+description: "Implementar docs/specs/SPEC-FORM-001.md: endpoint /api/lead + LeadPort + anti-spam + form con progressive enhancement."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 20 — Captación de leads (`/api/lead` + LeadPort) (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

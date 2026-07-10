@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 02 — Átomos (para Claude Code)"
+description: "Implementar todos los átomos del sistema de diseño, en estas specs ya Approved (en orden):"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 02 — Átomos (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

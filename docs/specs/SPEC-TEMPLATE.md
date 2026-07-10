@@ -1,3 +1,11 @@
+---
+type: Reference
+title: "SPEC-<DOMINIO>-<NNN> — <título>"
+description: "Qué debe lograr, en una frase."
+tags: [template]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-<DOMINIO>-<NNN> — <título>
 
 - **ID:** SPEC-<DOMINIO>-<NNN> <!-- estable, nunca se reutiliza ni renumera -->

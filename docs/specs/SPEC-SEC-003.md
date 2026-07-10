@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-003 — Sección 03: Marquee"
+description: "Banda oscura con texto en scroll continuo (CSS scroll-x), pausa en hover."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-003 — Sección 03: Marquee
 
 - **ID:** SPEC-SEC-003

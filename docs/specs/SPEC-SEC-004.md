@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-004 — Sección 04: Pain Points (bento)"
+description: "\"The Walls You Hit\": sección clara (--lilac-2) con bento grid."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-004 — Sección 04: Pain Points (bento)
 
 - **ID:** SPEC-SEC-004

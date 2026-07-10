@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 38 — Best Practices a 100: aspect-ratio del logo del hero (fix CSS)"
+description: "Best Practices a 100: aspect-ratio del logo del hero (fix CSS)"
+tags: [prompt]
+timestamp: 2026-07-09T19:50:12-04:00
+---
+
 # Prompt 38 — Best Practices a 100: aspect-ratio del logo del hero (fix CSS)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Cierra el último gap de Lighthouse.

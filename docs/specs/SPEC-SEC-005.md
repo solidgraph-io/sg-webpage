@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-005 — Sección 05: Value (propuesta de valor)"
+description: "\"We Build It From Scratch…\": sección blanca (#fff) con cabecera a 2 columnas y 4 pilares con hover-fill."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-005 — Sección 05: Value (propuesta de valor)
 
 - **ID:** SPEC-SEC-005

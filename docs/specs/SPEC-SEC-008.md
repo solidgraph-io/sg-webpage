@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-008 — Sección 08: Testimonials (+ stats)"
+description: "\"What Local Business Owners Are Saying\": clara (--lilac-2) con grid de stats + tarjetas de testimonio."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-008 — Sección 08: Testimonials (+ stats)
 
 - **ID:** SPEC-SEC-008

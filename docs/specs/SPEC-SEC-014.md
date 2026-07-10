@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-014 — Sección 14: Footer"
+description: "Pie oscuro (--night-2) con marca, columnas de enlaces, barra legal y watermark gigante."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-014 — Sección 14: Footer
 
 - **ID:** SPEC-SEC-014

@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-DEPLOY-002 — Optimización del pipeline: build-once, gates en paralelo, promote-image"
+description: "El pipeline actual (.drone.yml) es serial y redundante: install → validate → test → visual-test → a11y-test → build → perf-test → build-push → trigger."
+tags: [deploy]
+timestamp: 2026-07-08T23:13:03-04:00
+---
+
 # SPEC-DEPLOY-002 — Optimización del pipeline: build-once, gates en paralelo, promote-image
 
 - **ID:** SPEC-DEPLOY-002

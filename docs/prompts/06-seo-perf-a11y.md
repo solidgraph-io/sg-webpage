@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 06 — SEO + Performance + Accesibilidad (para Claude Code)"
+description: "Pulido de lanzamiento (M1), en estas specs Approved y en este orden:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 06 — SEO + Performance + Accesibilidad (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

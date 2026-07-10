@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-SEC-002 — Sección 02: Hero"
+description: "El hero: sección oscura (--night) con aurora, pill, titular, CTAs, snippet y el panel de preview 3D con badges flotantes."
+tags: [sec]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-SEC-002 — Sección 02: Hero
 
 - **ID:** SPEC-SEC-002

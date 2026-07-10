@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-DEPLOY-001 — Stage dev: deploy continuo desde `develop` (registry + Dokploy)"
+description: "El pipeline (.drone.yml) ya corre todos los gates en develop y main, pero solo main publica imagen al registry y dispara Dokploy."
+tags: [deploy]
+timestamp: 2026-07-09T15:30:58-04:00
+---
+
 # SPEC-DEPLOY-001 — Stage dev: deploy continuo desde `develop` (registry + Dokploy)
 
 - **ID:** SPEC-DEPLOY-001

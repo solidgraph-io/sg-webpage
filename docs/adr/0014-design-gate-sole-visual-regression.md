@@ -1,3 +1,11 @@
+---
+type: ADR
+title: "ADR-0014 — El gate de fidelidad contra el diseño es el único gate de regresión visual"
+description: "Se eliminan los self-baselines toHaveScreenshot (RNF-3/RNF-4) del CI."
+tags: [adr]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # ADR-0014 — El gate de fidelidad contra el diseño es el único gate de regresión visual
 
 - **Estado:** Accepted (2026-07)

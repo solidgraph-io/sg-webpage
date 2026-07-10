@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 08 — Fase A: re-skin de organismos (para Claude Code)"
+description: "Re-skinnear los 12 organismos existentes al tema y estructura correctos (v2), en estas specs Approved y en orden:"
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 08 — Fase A: re-skin de organismos (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`.

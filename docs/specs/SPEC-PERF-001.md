@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-PERF-001 — Performance: presupuestos Lighthouse + imágenes"
+description: "La home es CSS-first con un interactions.js mínimo."
+tags: [perf]
+timestamp: 2026-07-09T16:37:21-04:00
+---
+
 # SPEC-PERF-001 — Performance: presupuestos Lighthouse + imágenes
 
 - **ID:** SPEC-PERF-001

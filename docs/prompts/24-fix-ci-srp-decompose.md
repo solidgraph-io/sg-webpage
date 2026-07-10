@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 24 — Arreglar CI en `develop`: test frágil `0.10` + descomposición SRP (para Claude Code)"
+description: "src/tests/qa-001.test.ts → [SPEC-QA-001/RNF-1] mobile threshold is 0.10 … lee el código fuente de tests/visual/{nav,hero,marquee}.spec.ts y busca el string literal '0.10'."
+tags: [prompt]
+timestamp: 2026-07-08T14:59:14-04:00
+---
+
 # Prompt 24 — Arreglar CI en `develop`: test frágil `0.10` + descomposición SRP (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Bloquea el pipeline dev (10 tests en rojo).

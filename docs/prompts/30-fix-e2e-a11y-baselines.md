@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 30 — Endurecer E2E: a11y `networkidle` + regenerar baselines post-refactor"
+description: "Endurecer E2E: a11y `networkidle` + regenerar baselines post-refactor"
+tags: [prompt]
+timestamp: 2026-07-08T20:43:20-04:00
+---
+
 # Prompt 30 — Endurecer E2E: a11y `networkidle` + regenerar baselines post-refactor
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Deja el gate E2E de `develop` verde

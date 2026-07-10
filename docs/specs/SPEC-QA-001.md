@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-QA-001 — Gate de fidelidad: regresión visual contra el DISEÑO (no contra sí misma)"
+description: "La regresión visual actual usa como baseline la propia implementación, así que un organismo infiel pasa en verde."
+tags: [qa]
+timestamp: 2026-07-09T00:32:49-04:00
+---
+
 # SPEC-QA-001 — Gate de fidelidad: regresión visual contra el DISEÑO (no contra sí misma)
 
 - **ID:** SPEC-QA-001

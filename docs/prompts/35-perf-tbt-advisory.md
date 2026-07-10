@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 35 — Perf: subir el budget de TBT a un techo CI-safe (sigue bloqueante)"
+description: "El gate perf-test (Lighthouse CI) ya funciona."
+tags: [prompt]
+timestamp: 2026-07-09T16:37:21-04:00
+---
+
 # Prompt 35 — Perf: subir el budget de TBT a un techo CI-safe (sigue bloqueante)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Ajuste de política de budget (SPEC-PERF-001).

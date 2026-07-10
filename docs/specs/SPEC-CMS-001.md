@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-CMS-001 — CMS Sveltia (`/admin`, git-based) sobre las colecciones CMS-ready"
+description: "El contenido ya vive en Content Collections editables por archivo (SPEC-CONTENT-001)."
+tags: [cms]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-CMS-001 — CMS Sveltia (`/admin`, git-based) sobre las colecciones CMS-ready
 
 - **ID:** SPEC-CMS-001

@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 36 — Fix HEALTHCHECK del Dockerfile (Swarm mata el contenedor por unhealthy)"
+description: "Fix HEALTHCHECK del Dockerfile (Swarm mata el contenedor por unhealthy)"
+tags: [prompt]
+timestamp: 2026-07-09T17:50:15-04:00
+---
+
 # Prompt 36 — Fix HEALTHCHECK del Dockerfile (Swarm mata el contenedor por unhealthy)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Bloquea el deploy dev (contenedor unhealthy).

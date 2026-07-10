@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 33 — Fix perf-test: `lhci` no encuentra Chrome (apuntar al Chromium de Playwright)"
+description: "Fix perf-test: `lhci` no encuentra Chrome (apuntar al Chromium de Playwright)"
+tags: [prompt]
+timestamp: 2026-07-09T01:13:14-04:00
+---
+
 # Prompt 33 — Fix perf-test: `lhci` no encuentra Chrome (apuntar al Chromium de Playwright)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Desbloquea el gate `perf-test`.

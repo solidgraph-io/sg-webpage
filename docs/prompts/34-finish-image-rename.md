@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 34 — Completar rename de imagen `solidgraph-web` → `sg-webpage` (test + consistencia)"
+description: "La imagen del registry se renombró registry.solidgraph.dev/solidgraph-web → registry.solidgraph.dev/sg-webpage (el nombre viejo colisiona con otro proyecto ya publicado)."
+tags: [prompt]
+timestamp: 2026-07-09T15:39:28-04:00
+---
+
 # Prompt 34 — Completar rename de imagen `solidgraph-web` → `sg-webpage` (test + consistencia)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Cierra un rename dejado a medias.

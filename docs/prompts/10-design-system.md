@@ -1,3 +1,11 @@
+---
+type: Prompt
+title: "Prompt 10 — Sistema de diseño (foundation) (para Claude Code)"
+description: "Implementar docs/specs/SPEC-DS-001.md: portar la foundation del diseño y las primitivas compartidas."
+tags: [prompt]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # Prompt 10 — Sistema de diseño (foundation) (para Claude Code)
 
 > Pégale esto a Claude Code en la raíz del repo `sg-webpage` (tras el reset).

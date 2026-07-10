@@ -1,3 +1,11 @@
+---
+type: Spec
+title: "SPEC-A11Y-001 — Accesibilidad transversal (WCAG 2.1 AA)"
+description: "Cada sección se testeó con axe, pero falta la auditoría a nivel de página y los detalles transversales (skip-link, orden de foco, landmarks, reduced-motion) + un gate que evite re…"
+tags: [spec]
+timestamp: 2026-07-07T12:44:46-04:00
+---
+
 # SPEC-A11Y-001 — Accesibilidad transversal (WCAG 2.1 AA)
 
 - **ID:** SPEC-A11Y-001
