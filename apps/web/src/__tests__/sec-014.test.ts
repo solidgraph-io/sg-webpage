@@ -49,6 +49,16 @@ describe('SPEC-SEC-014/RF-2 — brand column', () => {
   it('[SPEC-SEC-014/RF-2] has location pills (.locs)', () => {
     expect(fs.readFileSync(file, 'utf-8')).toContain('locs');
   });
+
+  it('[SPEC-SEC-014/RF-2] full badge shows at 64px, centered in the brand column', () => {
+    const astro = fs.readFileSync(file, 'utf-8');
+    // 40px left-aligned read as an afterthought (prompt 48); the stacked
+    // badge anchors the column at 64px, horizontally centered
+    expect(astro).toContain('height:64px');
+    expect(astro).toContain('height={128}'); // emit 2x for retina
+    const scss = fs.readFileSync(file.replace('.astro', '.module.scss'), 'utf-8');
+    expect(scss).toMatch(/\.foot-brand[\s\S]*?:global\(\.logo\)\s*\{[^}]*align-self:\s*center/);
+  });
 });
 
 // ── RF-3: Nav columns ─────────────────────────────────────────────────────

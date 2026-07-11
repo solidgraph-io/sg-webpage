@@ -28,6 +28,15 @@ describe('SPEC-SEC-001/RF-1 — estructura', () => {
     expect(c).toContain("Button.astro'");
   });
 
+  it('[SPEC-SEC-001/RF-1] Logo lockup shows at 44px and emits 96px for retina', () => {
+    const logo = fs.readFileSync(path.resolve(__dirname, '../components/Logo.astro'), 'utf-8');
+    // 34px made the wordmark illegible (prompt 48); display 44px, emit 2x
+    expect(logo).toContain('height: 44px');
+    expect(logo).toContain('height={96}');
+    expect(logo).toContain('densities={[1, 2]}');
+    expect(logo).toContain('width: auto');
+  });
+
   it('[SPEC-SEC-001/RF-1] Nav has .nav-links desktop link list', () => {
     expect(fs.readFileSync(navPath, 'utf-8')).toContain('nav-links');
   });

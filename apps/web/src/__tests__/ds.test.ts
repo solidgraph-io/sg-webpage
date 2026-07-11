@@ -287,6 +287,17 @@ describe('SPEC-DS-001/RF-8 — primitives', () => {
     expect(fs.readFileSync(path.join(compsDir, 'Button.astro'), 'utf-8')).toContain('magnetic');
   });
 
+  it('[SPEC-DS-001/RF-8] Button wraps its slot in .btn__label above the hover overlay', () => {
+    const c = fs.readFileSync(path.join(compsDir, 'Button.astro'), 'utf-8');
+    // loose text nodes paint below the positioned ::before gradient; the
+    // single wrapper span keeps every caption above it on hover
+    expect(c).toMatch(/<span class="btn__label">\s*<slot \/>\s*<\/span>/);
+    expect(c).not.toContain('.btn-primary > *');
+    const label = c.match(/\.btn__label\s*\{[^}]*\}/)?.[0] ?? '';
+    expect(label).toContain('z-index: 1');
+    expect(label).toContain('position: relative');
+  });
+
   it('[SPEC-DS-001/RF-8] Pill has .ping sub-element', () => {
     expect(fs.readFileSync(path.join(compsDir, 'Pill.astro'), 'utf-8')).toContain('ping');
   });

@@ -20,7 +20,7 @@ const Tag = href ? 'a' : 'button';
 ---
 
 <Tag class={cls} href={href} {...rest}>
-  <slot />
+  <span class="btn__label"><slot /></span>
 </Tag>
 
 <style>
@@ -28,7 +28,6 @@ const Tag = href ? 'a' : 'button';
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     padding: 15px 28px;
     border-radius: 999px;
     font-weight: 600;
@@ -44,6 +43,16 @@ const Tag = href ? 'a' : 'button';
       color 0.3s ease;
     overflow: hidden;
   }
+  /* single wrapper for the slot: loose text nodes would otherwise paint
+     below the positioned ::before overlay and vanish on hover */
+  .btn__label {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .btn svg {
     transition: transform 0.35s var(--ease);
   }
@@ -67,10 +76,6 @@ const Tag = href ? 'a' : 'button';
   }
   .btn-primary:hover::before {
     opacity: 1;
-  }
-  .btn-primary > * {
-    position: relative;
-    z-index: 1;
   }
   .btn-primary:hover {
     box-shadow: 0 16px 40px -10px rgba(92, 112, 214, 0.65);

@@ -12,7 +12,7 @@ const cls = ['logo', extra].filter(Boolean).join(' ');
 ---
 
 <a href={href} class={cls}>
-  <Image src={logoLinear} alt="SolidGraph" height={68} densities={[1, 2]} />
+  <Image src={logoLinear} alt="SolidGraph" height={96} densities={[1, 2]} />
 </a>
 
 <style>
@@ -21,7 +21,8 @@ const cls = ['logo', extra].filter(Boolean).join(' ');
     align-items: center;
   }
   .logo img {
-    height: 34px;
+    /* 34px made the wordmark illegible; emitted at 96px so 2x stays sharp */
+    height: 44px;
     width: auto;
   }
 </style>
