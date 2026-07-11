@@ -5,6 +5,12 @@ export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   devToolbar: { enabled: false },
+  build: {
+    // single-page site: inlining the ~10 KiB stylesheet removes the
+    // render-blocking request from the critical path (SPEC-FORM-001/RNF-2);
+    // losing cross-navigation CSS caching is an acceptable trade-off here
+    inlineStylesheets: 'always',
+  },
   env: {
     schema: {
       // 'secret' = runtime read (Dokploy injects env at runtime, not at build;

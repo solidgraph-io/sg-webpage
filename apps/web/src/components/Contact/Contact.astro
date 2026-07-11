@@ -142,9 +142,5 @@ const {
 
 <script>
   import '../../scripts/contact-form';
+  import '../../scripts/turnstile-lazy';
 </script>
-{
-  turnstileSiteKey && (
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
-  )
-}

@@ -468,6 +468,29 @@ describe('[SPEC-FORM-001/RNF-2] perf — no heavy client-side dependencies', () 
       expect(src).not.toContain('import axios');
     }
   });
+
+  it('[SPEC-FORM-001/RNF-2] Turnstile api.js is not loaded eagerly from Contact.astro', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
+    // no <script src="…turnstile…"> in the rendered HTML — the lazy loader
+    // injects it when the contact section nears the viewport
+    expect(src).not.toContain('src="https://challenges.cloudflare.com');
+    expect(src).toContain('turnstile-lazy');
+    expect(src).toContain('cf-turnstile'); // the widget div itself stays
+  });
+
+  it('[SPEC-FORM-001/RNF-2] turnstile-lazy defers api.js to viewport, injecting it once', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/scripts/turnstile-lazy.ts'), 'utf-8');
+    expect(src).toContain('IntersectionObserver');
+    expect(src).toContain('https://challenges.cloudflare.com/turnstile/v0/api.js');
+    expect(src).toContain('.cf-turnstile');
+    expect(src).toContain('rootMargin');
+    expect(src.split('\n').length).toBeLessThanOrEqual(150); // SRP, FORM-002/INV-2
+  });
+
+  it('[SPEC-FORM-001/RNF-2] critical CSS is inlined (no render-blocking stylesheet link)', () => {
+    const src = fs.readFileSync(path.join(WEB, 'astro.config.ts'), 'utf-8');
+    expect(src).toContain("inlineStylesheets: 'always'");
+  });
 });
 
 // ── RNF-4: reliability ────────────────────────────────────────────────────────
