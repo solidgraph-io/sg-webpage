@@ -7,7 +7,9 @@ export default defineConfig({
   devToolbar: { enabled: false },
   env: {
     schema: {
-      TURNSTILE_SITE_KEY: envField.string({ context: 'server', access: 'public', optional: true }),
+      // 'secret' = runtime read (Dokploy injects env at runtime, not at build;
+      // 'public' would bake in empty). Does not hide it from the HTML.
+      TURNSTILE_SITE_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
       TURNSTILE_SECRET_KEY: envField.string({
         context: 'server',
         access: 'secret',

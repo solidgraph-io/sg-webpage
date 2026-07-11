@@ -307,6 +307,21 @@ describe('[SPEC-FORM-001/RF-7] env vars read via astro:env at runtime, not baked
     expect(src).toContain('astro:env/server');
     expect(src).not.toContain('import.meta.env.TURNSTILE_SITE_KEY');
   });
+
+  it("[SPEC-FORM-001/RF-7] every env var is access: 'secret' (public gets inlined at build)", () => {
+    // server+public vars are baked into the build, but the container only gets
+    // its env from Dokploy at runtime — a public TURNSTILE_SITE_KEY bakes in
+    // empty and the widget never renders (prompt 45). 'secret' = runtime read;
+    // it does NOT hide the site key from the HTML (data-sitekey still emits).
+    const src = fs.readFileSync(path.join(WEB, 'astro.config.ts'), 'utf-8');
+    const fields = src.match(/envField\.string\(\{[^}]*\}/g) ?? [];
+    expect(fields.length).toBeGreaterThanOrEqual(6);
+    for (const field of fields) {
+      expect(field).toContain("context: 'server'");
+      expect(field).toContain("access: 'secret'");
+    }
+    expect(src).not.toContain("access: 'public'");
+  });
 });
 
 // ── RF-4 & RNF-3: progressive enhancement + fidelity ─────────────────────────
