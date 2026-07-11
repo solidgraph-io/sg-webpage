@@ -255,6 +255,24 @@ describe('[SPEC-FORM-001/RF-3] Turnstile blocks invalid/missing tokens', () => {
     const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
     expect(src).toContain('cf-turnstile');
   });
+
+  it('[SPEC-FORM-001/RF-3] Turnstile widget uses flexible size to match the form width', () => {
+    const src = fs.readFileSync(path.join(WEB, 'src/components/Contact/Contact.astro'), 'utf-8');
+    const widget = src.match(/<div[^>]*class="cf-turnstile"[\s\S]*?\/>/)?.[0] ?? '';
+    expect(widget).toContain('data-size="flexible"');
+    expect(widget).toContain('data-theme="light"');
+  });
+
+  it('[SPEC-FORM-001/RF-3] Turnstile container gets spacing from the form styles', () => {
+    // the widget is a branded Cloudflare iframe — we only control container
+    // spacing (margin), data-theme and data-size; never its inner styles
+    const scss = fs.readFileSync(
+      path.join(WEB, 'src/components/Contact/Contact.module.scss'),
+      'utf-8',
+    );
+    const rule = scss.match(/:global\(\.cf-turnstile\)\s*\{[^}]*\}/)?.[0] ?? '';
+    expect(rule).toContain('margin-top');
+  });
 });
 
 // ── RF-2: env var naming (LEAD_PROVIDER / LEAD_TO_EMAIL / LEAD_FROM_EMAIL) ────

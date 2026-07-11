@@ -147,6 +147,13 @@
   font-weight: 500;
 }
 
+// ── GLOBAL: Turnstile container (branded Cloudflare iframe — spacing only,
+// its inner styles are not ours to touch) ──────────────────────────────────────
+:global(.cf-turnstile) {
+  margin-top: 24px; // same rhythm as .form-foot, separates it from the textarea
+  margin-bottom: 4px;
+}
+
 // ── GLOBAL: field-error (dynamically applied by contact-form.ts) ───────────────
 :global(.field-error) {
   font-size: 11.5px;

@@ -112,7 +112,12 @@ const {
       </div>
       {
         turnstileSiteKey && (
-          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" />
+          <div
+            class="cf-turnstile"
+            data-sitekey={turnstileSiteKey}
+            data-theme="light"
+            data-size="flexible"
+          />
         )
       }
       <div class={styles['form-foot']}>
