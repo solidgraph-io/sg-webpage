@@ -100,16 +100,19 @@
   max-width: 980px;
   perspective: 1600px;
 
+  // global() around the NAME: CSS Modules localizes animation-name values,
+  // so a bare `bob` compiles to a hash that misses the global @keyframes.
+  // (`global(x)` function form — the `:global(x)` pseudo doesn't parse in values)
   :global(.f1) {
     top: 18%;
     left: -36px;
-    animation: bob 5s ease-in-out infinite;
+    animation: global(bob) 5s ease-in-out infinite;
   }
 
   :global(.f2) {
     bottom: 16%;
     right: -30px;
-    animation: bob 6s ease-in-out infinite 0.8s;
+    animation: global(bob) 6s ease-in-out infinite 0.8s;
   }
 
   @media (max-width: 760px) {

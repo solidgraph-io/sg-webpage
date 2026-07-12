@@ -52,7 +52,14 @@ src/components/Name/
    - **Tokens siguen siendo CSS custom properties** (`var(--x)`), **nunca** variables Sass (`$x`) —
      preservan runtime/theming (SPEC-DS-001/INV-1). Sass solo para ergonomía (nesting, mixins, `@use`);
      **no** se cambian valores (el CSS se porta verbatim salvo el nesting).
-   - `@keyframes` globales (p. ej. `animations.css`) se **referencian** desde el módulo sin redefinir.
+   - `@keyframes` globales (p. ej. `animations.css`) se **referencian** desde el módulo sin redefinir,
+     **envolviendo el nombre en `global()`**: `animation: global(bob) 5s ease-in-out infinite;`.
+     CSS Modules **localiza el valor de `animation-name`** por defecto — un `animation: bob …` a secas
+     compila a un hash (`_bob_xxxx`) que no existe en el CSS global y la animación muere **en silencio**
+     (`:global()` en el *selector* no basta: selector y valor se localizan por separado). Es la forma
+     **función** `global(x)`, no el pseudo `:global(x)` — el pseudo no parsea dentro de un valor
+     (Sass: "Expected expression"; PostCSS: "Double colon"). Guardián: `tests/e2e/animations.spec.ts`
+     verifica el `animation-name` **computado** en runtime (SPEC-DS-001/RF-4).
 3. **SRP de línea** aplica al **`.astro` (solo template)**, ~≤150 líneas; el CSS ya no cuenta (vive en
    `.module.scss`). El límite deja de penalizar el CSS portado.
 

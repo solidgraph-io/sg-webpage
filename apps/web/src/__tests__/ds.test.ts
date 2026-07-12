@@ -155,6 +155,10 @@ describe('SPEC-DS-001/RF-4 — animations', () => {
   });
 
   it('[SPEC-DS-001/RF-4] animations.css has all required @keyframes', () => {
+    // Existence here does NOT mean they apply: CSS Modules localizes
+    // animation-name values, so a module referencing `bob` can silently miss
+    // these keyframes. The runtime guard is tests/e2e/animations.spec.ts,
+    // which asserts the COMPUTED animation-name on the page.
     const c = fs.readFileSync(animPath, 'utf-8');
     for (const kf of ['ping', 'float1', 'float2', 'float3', 'bob', 'spin', 'scroll-x']) {
       expect(c, `missing @keyframes ${kf}`).toContain(`@keyframes ${kf}`);
