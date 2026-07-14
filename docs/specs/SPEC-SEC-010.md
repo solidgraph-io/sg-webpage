@@ -32,7 +32,9 @@ animada** + contenido (diffs + ciudades). Port 1:1.
 
 - **RNF-1 (a11y)** — headings; órbita/badges decorativos `aria-hidden`; contraste AA sobre claro.
 - **RNF-2 (perf)** — animación CSS; sin JS por sección.
-- **RNF-3 (responsive)** — 2col→1col; visual centrado en móvil.
+- **RNF-3 (responsive)** — 2col→1col; visual centrado en móvil; badges flotantes **ocultos ≤760px**
+  (tamaño fijo en px sobre un `.about-visual` que encoge → se solapan; paridad con `.hero-float`.
+  La información persiste en la `diff-list`. Decisión humana, prompt 50).
 - **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `10-about.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
 
 ## Invariantes

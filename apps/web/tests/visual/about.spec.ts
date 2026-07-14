@@ -69,6 +69,32 @@ test('[SPEC-SEC-010/RF-1] about has 3 badge-cards', async ({ page }) => {
   await expect(page.locator('.about .badge-card')).toHaveCount(3);
 });
 
+// No RF covers per-breakpoint badge visibility; RNF-3 (responsive) is the
+// closest — fixed-px cards over a shrinking .about-visual overlap on mobile,
+// so they hide under 760px (parity with .hero-float; the info lives on in
+// the diff-list). Prompt 50.
+test('[SPEC-SEC-010/RNF-3] badges .b1/.b2/.b3 hidden on mobile (430×932)', async ({ page }) => {
+  await page.setViewportSize({ width: 430, height: 932 });
+  await waitForStyles(page);
+  for (const sel of ['.about .b1', '.about .b2', '.about .b3']) {
+    await expect(page.locator(sel)).toBeHidden();
+  }
+  // only the badges get display:none — the orbit stays un-hidden. (Its 0×0
+  // collapse on mobile is pre-existing and matches the design: `margin: 0 auto`
+  // defeats grid stretch and every child is absolutely positioned.)
+  for (const orbit of await page.locator('.about .orbit').all()) {
+    expect(await orbit.evaluate((el) => getComputedStyle(el).display)).not.toBe('none');
+  }
+});
+
+test('[SPEC-SEC-010/RF-1] badges .b1/.b2/.b3 visible on desktop (1440)', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await waitForStyles(page);
+  for (const sel of ['.about .b1', '.about .b2', '.about .b3']) {
+    await expect(page.locator(sel)).toBeVisible();
+  }
+});
+
 test('[SPEC-SEC-010/RF-2] about has 3 diff items', async ({ page }) => {
   await waitForStyles(page);
   await expect(page.locator('.about .diff')).toHaveCount(3);

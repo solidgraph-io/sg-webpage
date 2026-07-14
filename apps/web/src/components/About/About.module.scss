@@ -75,6 +75,19 @@
       animation: none;
     }
   }
+
+  @media (max-width: 760px) {
+    // Fixed-px cards over a shrinking .about-visual overlap each other on
+    // mobile → hide, parity with .hero-float (same breakpoint); the same three
+    // points live on in the diff-list below.
+    // !important: FloatingCard uses Astro scoped <style> with display:flex — equal specificity (0,2,0)
+    // but comes after in cascade order and wins. Fix properly by migrating FloatingCard to CSS Modules.
+    :global(.b1),
+    :global(.b2),
+    :global(.b3) {
+      display: none !important;
+    }
+  }
 }
 
 .center-logo {
