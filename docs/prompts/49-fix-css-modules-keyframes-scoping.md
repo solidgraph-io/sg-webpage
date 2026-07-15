@@ -13,8 +13,8 @@ timestamp: 2026-07-11T04:10:00Z
 
 ---
 
-Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4, **ADR-0012** (component-as-folder / CSS Modules) y
-**SPEC-DS-001** (tokens + `animations.css`, RF-4: keyframes compartidos).
+Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4, **[ADR-0012](/adr/0012-component-as-folder.md)** (component-as-folder / CSS Modules) y
+**[SPEC-DS-001](/specs/SPEC-DS-001.md)** (tokens + `animations.css`, RF-4: keyframes compartidos).
 
 ## Bug
 

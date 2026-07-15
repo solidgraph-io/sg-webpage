@@ -15,7 +15,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md`, `CLAUDE.md`,
 `docs/01-architecture-and-stack.md`, `../agency-structure/Agency Structure/ARQUITECTURA.md` (tier
 básico = Sveltia git-based) y las skills. Metodología (SDD + TDD + Atomic Design + SRP) vinculante.
-El contenido ya es **CMS-ready** (SPEC-CONTENT-001: colecciones `settings/site` + `pages/home`).
+El contenido ya es **CMS-ready** ([SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md): colecciones `settings/site` + `pages/home`).
 
 ## Objetivo
 

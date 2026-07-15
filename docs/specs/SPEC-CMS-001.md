@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-05 / STORY-051 (CMS)
 - **Capa atómica:** CMS / admin (estático)
-- **Depende de:** SPEC-CONTENT-001 (colecciones `settings/site` + `pages/home`)
+- **Depende de:** [SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md) (colecciones `settings/site` + `pages/home`)
 
 ## Contexto / problema
 

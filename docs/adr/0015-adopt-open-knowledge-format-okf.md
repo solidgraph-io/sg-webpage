@@ -47,7 +47,7 @@ Nuestra metodología ya es, de facto, "conocimiento como código": `docs/specs`,
 split **arquitecto (cura specs/ADRs/prompts) → implementador (Claude Code escribe código+tests)** y consumo
 **multi-agente** (Claude, Claude Code, Codex, Gemini). Eso es exactamente el patrón que OKF estandariza,
 pero hoy lo hacemos **ad-hoc**: sin frontmatter tipado, sin índices de disclosure, con trazabilidad en una
-matriz aparte y referencias en prosa ("SPEC-QA-001") en vez de enlaces navegables.
+matriz aparte y referencias en prosa ("[SPEC-QA-001](/specs/SPEC-QA-001.md)") en vez de enlaces navegables.
 
 ## Decisión
 

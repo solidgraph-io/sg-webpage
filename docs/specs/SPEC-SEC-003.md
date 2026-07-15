@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
-- **Depende de:** SPEC-DS-001
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md)
 - **Fuente:** `design/template/sections/03-marquee.html` (+ `components/marquee.css`)
 
 ## Contexto / problema
@@ -28,7 +28,7 @@ Banda oscura con texto en scroll continuo (CSS `scroll-x`), pausa en hover. Port
 
 - **RNF-1 (a11y)** — el marquee no atrapa foco; contenido legible; respeta `prefers-reduced-motion` (la animación se detiene/reduce).
 - **RNF-2 (perf)** — animación CSS pura; sin JS.
-- **RNF-3 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff impl vs `03-marquee.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per ADR-0014 (drift de entorno).
+- **RNF-3 (fidelidad)** — **gate compareWithDesign** ([SPEC-QA-001](/specs/SPEC-QA-001.md)): diff impl vs `03-marquee.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md) (drift de entorno).
 
 ## Invariantes
 

@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-08 / STORY-081 (accesibilidad)
 - **Capa atómica:** cross-cutting (layout + CI)
-- **Depende de:** SPEC-DS-001, SPEC-SEC-015 (home ensamblada)
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md), [SPEC-SEC-015](/specs/SPEC-SEC-015.md) (home ensamblada)
 
 ## Contexto / problema
 
@@ -62,7 +62,7 @@ Scenario: navegación por teclado completa
 
 ## Fuera de alcance
 
-- Copy/SEO (SPEC-SEO-001), presupuestos de perf (SPEC-PERF-001).
+- Copy/SEO ([SPEC-SEO-001](/specs/SPEC-SEO-001.md)), presupuestos de perf ([SPEC-PERF-001](/specs/SPEC-PERF-001.md)).
 
 ## Trazabilidad
 

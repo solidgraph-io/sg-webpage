@@ -12,7 +12,7 @@ timestamp: 2026-07-09T16:37:21-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-07 / STORY-072 (performance)
 - **Capa atómica:** cross-cutting (build + CI)
-- **Depende de:** SPEC-DS-001, SPEC-SEC-015 (home ensamblada)
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md), [SPEC-SEC-015](/specs/SPEC-SEC-015.md) (home ensamblada)
 
 ## Contexto / problema
 
@@ -30,7 +30,7 @@ presupuestos Lighthouse en CI y optimización de imágenes, para que no se degra
 ## Requisitos no funcionales
 
 - **RNF-1** — presupuestos alcanzables en la home actual (definir umbrales realistas y documentarlos).
-- **RNF-2 (a11y)** — la optimización no rompe contraste/foco (solapa con SPEC-A11Y-001).
+- **RNF-2 (a11y)** — la optimización no rompe contraste/foco (solapa con [SPEC-A11Y-001](/specs/SPEC-A11Y-001.md)).
 
 ## Invariantes
 
@@ -59,7 +59,7 @@ Scenario: imágenes sin CLS
 
 ## Fuera de alcance
 
-- Cabeceras de caché/CDN (infra/Traefik/Cloudflare). SEO → SPEC-SEO-001.
+- Cabeceras de caché/CDN (infra/Traefik/Cloudflare). SEO → [SPEC-SEO-001](/specs/SPEC-SEO-001.md).
 
 ## Trazabilidad
 

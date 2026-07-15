@@ -14,7 +14,7 @@ timestamp: 2026-07-11T02:40:00Z
 ---
 
 Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4 y las skills (tokens, component-as-folder, SRP).
-Contexto: **SPEC-FORM-001** (Turnstile en el form) y **SPEC-SEC-013** (UI del form).
+Contexto: **[SPEC-FORM-001](/specs/SPEC-FORM-001.md)** (Turnstile en el form) y **[SPEC-SEC-013](/specs/SPEC-SEC-013.md)** (UI del form).
 
 ## Problema
 

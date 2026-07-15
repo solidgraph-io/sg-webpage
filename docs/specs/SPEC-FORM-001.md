@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-06 / STORY-061 (leads)
 - **Capa atómica:** feature (endpoint + form behavior)
-- **Depende de:** SPEC-SEC-013 (UI del form), SPEC-CONTENT-001 (config del bloque contact), SPEC-DS-001 (Node adapter)
+- **Depende de:** [SPEC-SEC-013](/specs/SPEC-SEC-013.md) (UI del form), [SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md) (config del bloque contact), [SPEC-DS-001](/specs/SPEC-DS-001.md) (Node adapter)
 
 ## Contexto / problema
 

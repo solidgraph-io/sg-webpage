@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-20 / STORY-201
 - **Capa atómica:** foundation
-- **Depende de:** SPEC-INFRA-001
+- **Depende de:** [SPEC-INFRA-001](/specs/SPEC-INFRA-001.md)
 
 ## Contexto / problema
 
@@ -69,7 +69,7 @@ Scenario: styleguide fiel
 
 ## Fuera de alcance
 
-- Las 14 secciones/organismos → SPEC-SEC-001..014.
+- Las 14 secciones/organismos → [SPEC-SEC-001](/specs/SPEC-SEC-001.md)..014.
 - Moléculas específicas de sección (bento-card, plan-card, testimonial-card, etc.) → van con su sección.
 - Contrato de bloques, CMS, leads, SEO/analítica avanzados.
 

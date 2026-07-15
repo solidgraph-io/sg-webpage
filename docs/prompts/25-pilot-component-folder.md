@@ -39,7 +39,7 @@ src/components/Hero/
 1. **CSS → `Hero.module.scss`**: mueve el `<style>` del `.astro` al `.module.scss`, portando las reglas
    **lo más verbatim posible** (puedes usar nesting de SCSS para compactar, pero **no** cambies valores).
    Elimina el `<style>` del `.astro`. **Los tokens siguen siendo CSS custom properties** (`var(--x)`);
-   **NO** conviertas tokens a variables Sass (`$x`) — romperían el runtime/theming (SPEC-DS-001/INV-1).
+   **NO** conviertas tokens a variables Sass (`$x`) — romperían el runtime/theming ([SPEC-DS-001](/specs/SPEC-DS-001.md)/INV-1).
    Sass solo para ergonomía (nesting, mixins, `@use`).
 2. **Frontera local/global (CRÍTICO)** — en `Hero.module.css`:
    - **Local** (hasheadas) = clases propias e internas de Hero.
@@ -69,7 +69,7 @@ pnpm lint && pnpm type-check && pnpm test && pnpm test:e2e && pnpm trace -- --ch
 
 ## Git
 - Rama `refactor/pilot-hero-component-folder`; Conventional Commits (scope `hero`); incluye `docs/`.
-- Actualiza **SPEC-SEC-002** (INV-1): nueva estructura de carpeta; mantiene `Verified` **solo tras**
+- Actualiza **[SPEC-SEC-002](/specs/SPEC-SEC-002.md)** (INV-1): nueva estructura de carpeta; mantiene `Verified` **solo tras**
   re-pasar el gate.
 
 ## Entregable — REPORTE para decidir la metodología

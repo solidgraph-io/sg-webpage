@@ -14,7 +14,7 @@ timestamp: 2026-07-11T03:10:00Z
 ---
 
 Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4 y las skills (tokens, component-as-folder, SRP).
-Contexto: **SPEC-FORM-001** (Turnstile, **RNF-2 perf**) y **SPEC-FORM-002** (island del form).
+Contexto: **[SPEC-FORM-001](/specs/SPEC-FORM-001.md)** (Turnstile, **RNF-2 perf**) y **[SPEC-FORM-002](/specs/SPEC-FORM-002.md)** (island del form).
 
 ## Problema (medido en móvil, prod)
 

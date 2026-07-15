@@ -33,7 +33,7 @@ Rediseña `.drone.yml` así:
 3. **Paraleliza:** `visual-test`, `a11y-test` y `perf-test` → **todos** `depends_on: [build]` (quita
    `a11y depends_on visual`). Corren concurrentes contra el mismo `dist/`.
 4. **Deploy tras los gates:** `build-push-web-dev` → `depends_on: [visual-test, a11y-test, perf-test]`
-   (esperan en paralelo, no en serie). `perf` **sigue bloqueante** (honra SPEC-PERF-001/README), pero ya
+   (esperan en paralelo, no en serie). `perf` **sigue bloqueante** (honra [SPEC-PERF-001](/specs/SPEC-PERF-001.md)/README), pero ya
    no serializa.
 5. **Caching:** documenta/usa cache del pnpm store + Turbo remote cache para que el build único sea rápido
    y persista entre corridas. Cuida que el store se comparta entre el step `node` y los steps con imagen

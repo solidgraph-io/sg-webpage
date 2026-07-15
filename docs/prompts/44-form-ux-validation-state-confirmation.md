@@ -8,13 +8,13 @@ timestamp: 2026-07-11T01:10:00Z
 
 # Prompt 44 — UX del formulario: validación real-time + estados + confirmación + autocomplete
 
-> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa **SPEC-FORM-002**. TDD + trazabilidad.
+> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa **[SPEC-FORM-002](/specs/SPEC-FORM-002.md)**. TDD + trazabilidad.
 > Rama `feat/form-ux` **desde `develop`**; al terminar y verde: **merge y borra la rama**.
 
 ---
 
 Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4, **SPEC-FORM-002** (`docs/specs/SPEC-FORM-002.md`),
-y de contexto **SPEC-FORM-001** (endpoint + PE) y **SPEC-SEC-013** (UI del form).
+y de contexto **[SPEC-FORM-001](/specs/SPEC-FORM-001.md)** (endpoint + PE) y **[SPEC-SEC-013](/specs/SPEC-SEC-013.md)** (UI del form).
 
 ## Qué construir (capa JS de UX, sobre la base progresiva existente)
 
@@ -44,7 +44,7 @@ Estados `idle | submitting | success | error` en vanilla TS (sin librerías):
 
 - En `success`, **reemplaza el `<form>`** por una **tarjeta de confirmación** (ícono check de `icons.svg` +
   mensaje de gracias del contenido — reutiliza el `successMsg`/config del bloque contact; si necesitas un
-  título corto, tómalo de la config con un default, citando SPEC-CONTENT-001; evita hardcodear copy).
+  título corto, tómalo de la config con un default, citando [SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md); evita hardcodear copy).
 - `role="status"` + `aria-live="polite"`, **foco** movido a la tarjeta. (Sustituye el patrón actual de banner
   + `inert`.)
 - Markup **oculto por defecto** en `Contact.astro` (no visible en `idle`) → **QA-001 no cambia**.

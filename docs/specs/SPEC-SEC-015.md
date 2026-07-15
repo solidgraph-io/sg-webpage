@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Approved
 - **Épica / Story:** EPIC-21 / STORY-211 (ensamblado)
 - **Capa atómica:** page / template
-- **Depende de:** SPEC-SEC-001..014, SPEC-QA-001
+- **Depende de:** [SPEC-SEC-001](/specs/SPEC-SEC-001.md)..014, [SPEC-QA-001](/specs/SPEC-QA-001.md)
 - **Fuente:** `design/template/index.html` (orden y ensamblado de las 14 secciones)
 
 ## Contexto / problema
@@ -25,7 +25,7 @@ en el orden del diseño, con el `<head>`/SEO base, y verificar la **página comp
 - **RF-1 (orden)** — `index.astro` compone las 14 secciones en el **orden de `design/template/index.html`**: Nav, Hero, Marquee, PainPoints, Value, HowItWorks, Plans, Testimonials, Portfolio, About, Faq, CtaStrip, Contact, Footer.
 - **RF-2 (datos)** — todo el contenido vive en **datos tipados** (p. ej. `src/content/home.ts` o similar), no hardcodeado en los componentes. Un único origen de datos de la home.
 - **RF-3 (`<head>`/SEO base)** — `BaseLayout` recibe `seo` real (title, description, canonical desde `PUBLIC_SITE_URL`, Open Graph básico, favicon, `lang`). _(JSON-LD/sitemap/robots avanzados → EPIC-07, diferido.)_
-- **RF-4 (fidelidad de página)** — `design/template/index.html` existe como fuente de referencia. La fidelidad de página completa se alcanza via los gates por sección (SPEC-SEC-001..014 compareWithDesign). Self-baselines de página (`toHaveScreenshot` en page.spec.ts) retirados per ADR-0014 (drift de entorno, 1 px → falsos fallos).
+- **RF-4 (fidelidad de página)** — `design/template/index.html` existe como fuente de referencia. La fidelidad de página completa se alcanza via los gates por sección (SPEC-SEC-001..014 compareWithDesign). Self-baselines de página (`toHaveScreenshot` en page.spec.ts) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md) (drift de entorno, 1 px → falsos fallos).
 - **RF-5 (integración)** — `interactions.js` opera sobre toda la página (reveal/nav/magnetic) con progressive enhancement; sin errores de consola.
 
 ## Requisitos no funcionales

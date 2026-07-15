@@ -8,7 +8,7 @@ timestamp: 2026-07-11T02:00:00Z
 
 # Prompt 45 — Turnstile no carga en prod (site key horneada vacía en build)
 
-> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa **SPEC-FORM-001/RF-7** (aclaración).
+> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa **[SPEC-FORM-001](/specs/SPEC-FORM-001.md)/RF-7** (aclaración).
 > Cambio pequeño de config + un test estático + verificación. TDD + trazabilidad. Todo va contra `develop`.
 
 ---

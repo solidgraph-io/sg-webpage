@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
-- **Depende de:** SPEC-DS-001, SPEC-QA-001
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md), [SPEC-QA-001](/specs/SPEC-QA-001.md)
 - **Fuente:** `design/template/sections/05-value.html` (+ `components/{pillar,icon-box,eyebrow}.css`)
 
 ## Contexto / problema
@@ -31,7 +31,7 @@ hover-fill. Port 1:1.
 - **RNF-1 (a11y)** — headings; contraste AA en reposo y en hover-fill (texto blanco sobre oscuro); foco visible.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — 2col→1col en cabecera; pillars 4→2→1.
-- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `05-value.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `05-value.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md).
 
 ## Invariantes
 

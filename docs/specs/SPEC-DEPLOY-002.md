@@ -12,7 +12,7 @@ timestamp: 2026-07-08T23:13:03-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-40 / STORY-402 (optimización CI/CD)
 - **Capa atómica:** infra / CI-CD
-- **Depende de:** SPEC-INFRA-001, SPEC-DEPLOY-001 (a la que refina), SPEC-QA-001, SPEC-A11Y-001, SPEC-PERF-001
+- **Depende de:** [SPEC-INFRA-001](/specs/SPEC-INFRA-001.md), [SPEC-DEPLOY-001](/specs/SPEC-DEPLOY-001.md) (a la que refina), [SPEC-QA-001](/specs/SPEC-QA-001.md), [SPEC-A11Y-001](/specs/SPEC-A11Y-001.md), [SPEC-PERF-001](/specs/SPEC-PERF-001.md)
 - **Supersede:** el flujo de `build`/`visual-test`/`a11y-test`/`perf-test`/`build-push-*` de SPEC-DEPLOY-001 (RNF-1, INV-1/2)
 
 ## Contexto / problema
@@ -23,7 +23,7 @@ La app se **construye 3–4 veces** (`visual-test`, `a11y-test`, `perf-test` cad
 `pnpm install` + `pnpm build`, más el step `build`); los pasos pesados corren **en serie** (`a11y`
 depende de `visual`); y el **deploy espera a `perf`** (`build-push-* depends_on [build, perf-test]`).
 
-**Decisión (consensuada, ver ADR-0013):** aplicar prácticas de CD moderno (trunk-based / DORA) sin
+**Decisión (consensuada, ver [ADR-0013](/adr/0013-modern-cd-build-once-promote.md)):** aplicar prácticas de CD moderno (trunk-based / DORA) sin
 introducir un **ladder de environments por rama** (`dev/qa/homo/prod` = anti-patrón legacy). Se mantiene
 `develop`(dev) + `main`(prod). El cambio de valor es: **construir una vez, correr los gates una vez en
 paralelo, y promover el mismo artefacto** (build-once → promote-image), no reconstruir por entorno.

@@ -64,7 +64,7 @@ Button/IconBox/FloatingCard/SectionHead antes de crear nuevos):
   **no** editando los límites ni los tests de línea. Si creas sub-componentes con su propia spec/atómica,
   añade sus tests.
 - **Contenido y props intactos** — cero cambios de copy; solo estructura. El contenido sigue viniendo de
-  las Content Collections (SPEC-CONTENT-001).
+  las Content Collections ([SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md)).
 - **Fidelidad = la guarda:** al terminar, corre el **gate QA-001** (visual vs diseño) y verifica **verde**
   en las secciones tocadas + página completa. Esto prueba que la descomposición no cambió el render.
 - **a11y y perf** siguen verdes (axe de página, Lighthouse budgets).

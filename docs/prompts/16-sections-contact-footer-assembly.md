@@ -14,7 +14,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 
 Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md`, `CLAUDE.md`,
 `docs/01-architecture-and-stack.md` y las skills. Metodología (SDD + TDD + Atomic Design + SRP)
-vinculante. Enfoque: **secciones directas** + **gate de fidelidad** (SPEC-QA-001, contra el diseño).
+vinculante. Enfoque: **secciones directas** + **gate de fidelidad** ([SPEC-QA-001](/specs/SPEC-QA-001.md), contra el diseño).
 
 ## Objetivo
 

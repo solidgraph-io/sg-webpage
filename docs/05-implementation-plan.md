@@ -29,7 +29,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                         | Ítem                                                           | Estado             |
 | -------------------------- | -------------------------------------------------------------- | ------------------ |
-| STORY-011 / SPEC-INFRA-001 | Scaffold monorepo + tooling + CI + `scripts/trace.ts` + Docker | ✅ **Implemented** |
+| STORY-011 / [SPEC-INFRA-001](/specs/SPEC-INFRA-001.md) | Scaffold monorepo + tooling + CI + `scripts/trace.ts` + Docker | ✅ **Implemented** |
 | STORY-012                  | Arneses IA (AGENTS/CLAUDE), comandos SDD/TDD, skills           | ✅ Done            |
 
 ## 3. Reconstrucción v3 (contra `design/template/`)
@@ -44,28 +44,28 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                      | Ítem                                                                                                                                                                                                                                                                         | Estado             |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| STORY-201 / SPEC-DS-001 | Port de `design-system/{tokens,base,animations}.css` + Poppins + `BaseLayout` + `scripts/interactions.js` (reveal/magnetic/nav, progressive enhancement) + átomos/utilidades compartidas (button, eyebrow, pill, badge, logo, icon-box, section-head, aurora, floating-card) | ✅ **Implemented** |
+| STORY-201 / [SPEC-DS-001](/specs/SPEC-DS-001.md) | Port de `design-system/{tokens,base,animations}.css` + Poppins + `BaseLayout` + `scripts/interactions.js` (reveal/magnetic/nav, progressive enhancement) + átomos/utilidades compartidas (button, eyebrow, pill, badge, logo, icon-box, section-head, aurora, floating-card) | ✅ **Implemented** |
 
 ### EPIC-21 — Secciones (una spec por sección, 1:1 con `design/template/sections/`)
 
 | ID           | Sección                                                                            | Estado                                                                                |
 | ------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| SPEC-QA-001  | **Gate de fidelidad** (regresión visual contra el DISEÑO, sin dev toolbar, assets) | ✅ **Implemented** — harness pixelmatch + drone blocker activos                       |
-| SPEC-SEC-001 | 01-nav                                                                             | ✅ **Verified** — diff 0.00% desktop / 0.45% mobile vs diseño                         |
-| SPEC-SEC-002 | 02-hero                                                                            | ✅ **Verified** — diff 2.0% desktop / 4.4% mobile vs diseño                           |
-| SPEC-SEC-003 | 03-marquee                                                                         | ✅ **Verified** — diff 2.4% desktop / 2.3% mobile vs diseño                           |
-| SPEC-SEC-004 | 04-pain-points (bento)                                                             | ✅ **Verified** — diff 0.28% desktop / 1.95% mobile vs diseño                         |
-| SPEC-SEC-005 | 05-value                                                                           | ✅ **Verified** — diff 3.84% desktop / 5.81% mobile vs diseño                         |
-| SPEC-SEC-006 | 06-how-it-works (sticky)                                                           | ✅ **Verified** — diff 0.34% desktop / 1.15% mobile vs diseño                         |
-| SPEC-SEC-007 | 07-plans (+ hosting)                                                               | ✅ **Verified** — diff 1.35% desktop / 6.51% mobile vs diseño                         |
-| SPEC-SEC-008 | 08-testimonials (+ stats)                                                          | ✅ **Verified** — diff 0.44% desktop / 1.84% mobile vs diseño                         |
-| SPEC-SEC-009 | 09-portfolio                                                                       | ✅ **Verified** — diff 0.98% desktop / 0.67% mobile vs diseño                         |
-| SPEC-SEC-010 | 10-about (órbita/ciudades)                                                         | ✅ **Verified** — diff 4.92% desktop / 6.91% mobile vs diseño                         |
-| SPEC-SEC-011 | 11-faq                                                                             | ✅ **Verified** — diff 0.56% desktop / 8.74% mobile vs diseño                         |
-| SPEC-SEC-012 | 12-cta                                                                             | ✅ **Verified** — diff 1.97% desktop / 0.20% mobile vs diseño                         |
-| SPEC-SEC-013 | 13-contact (UI del form; envío → EPIC-06)                                          | ✅ **Verified** — diff 7.10% desktop / 7.78% mobile vs diseño                         |
-| SPEC-SEC-014 | 14-footer                                                                          | ✅ **Verified** — diff 1.46% desktop / 3.28% mobile vs diseño                         |
-| SPEC-SEC-015 | index.astro — ensamblado + orden + `<head>`/SEO base + fidelidad de página         | ✅ **Verified** — 14 secciones, orden correcto, SEO OK, h1 único, baseline above-fold |
+| [SPEC-QA-001](/specs/SPEC-QA-001.md)  | **Gate de fidelidad** (regresión visual contra el DISEÑO, sin dev toolbar, assets) | ✅ **Implemented** — harness pixelmatch + drone blocker activos                       |
+| [SPEC-SEC-001](/specs/SPEC-SEC-001.md) | 01-nav                                                                             | ✅ **Verified** — diff 0.00% desktop / 0.45% mobile vs diseño                         |
+| [SPEC-SEC-002](/specs/SPEC-SEC-002.md) | 02-hero                                                                            | ✅ **Verified** — diff 2.0% desktop / 4.4% mobile vs diseño                           |
+| [SPEC-SEC-003](/specs/SPEC-SEC-003.md) | 03-marquee                                                                         | ✅ **Verified** — diff 2.4% desktop / 2.3% mobile vs diseño                           |
+| [SPEC-SEC-004](/specs/SPEC-SEC-004.md) | 04-pain-points (bento)                                                             | ✅ **Verified** — diff 0.28% desktop / 1.95% mobile vs diseño                         |
+| [SPEC-SEC-005](/specs/SPEC-SEC-005.md) | 05-value                                                                           | ✅ **Verified** — diff 3.84% desktop / 5.81% mobile vs diseño                         |
+| [SPEC-SEC-006](/specs/SPEC-SEC-006.md) | 06-how-it-works (sticky)                                                           | ✅ **Verified** — diff 0.34% desktop / 1.15% mobile vs diseño                         |
+| [SPEC-SEC-007](/specs/SPEC-SEC-007.md) | 07-plans (+ hosting)                                                               | ✅ **Verified** — diff 1.35% desktop / 6.51% mobile vs diseño                         |
+| [SPEC-SEC-008](/specs/SPEC-SEC-008.md) | 08-testimonials (+ stats)                                                          | ✅ **Verified** — diff 0.44% desktop / 1.84% mobile vs diseño                         |
+| [SPEC-SEC-009](/specs/SPEC-SEC-009.md) | 09-portfolio                                                                       | ✅ **Verified** — diff 0.98% desktop / 0.67% mobile vs diseño                         |
+| [SPEC-SEC-010](/specs/SPEC-SEC-010.md) | 10-about (órbita/ciudades)                                                         | ✅ **Verified** — diff 4.92% desktop / 6.91% mobile vs diseño                         |
+| [SPEC-SEC-011](/specs/SPEC-SEC-011.md) | 11-faq                                                                             | ✅ **Verified** — diff 0.56% desktop / 8.74% mobile vs diseño                         |
+| [SPEC-SEC-012](/specs/SPEC-SEC-012.md) | 12-cta                                                                             | ✅ **Verified** — diff 1.97% desktop / 0.20% mobile vs diseño                         |
+| [SPEC-SEC-013](/specs/SPEC-SEC-013.md) | 13-contact (UI del form; envío → EPIC-06)                                          | ✅ **Verified** — diff 7.10% desktop / 7.78% mobile vs diseño                         |
+| [SPEC-SEC-014](/specs/SPEC-SEC-014.md) | 14-footer                                                                          | ✅ **Verified** — diff 1.46% desktop / 3.28% mobile vs diseño                         |
+| [SPEC-SEC-015](/specs/SPEC-SEC-015.md) | index.astro — ensamblado + orden + `<head>`/SEO base + fidelidad de página         | ✅ **Verified** — 14 secciones, orden correcto, SEO OK, h1 único, baseline above-fold |
 
 ### EPIC-22 — Contenido CMS-ready (prerequisito de SEO)
 
@@ -75,7 +75,7 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                           | Ítem                                                                                                                               | Estado                                                     |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| STORY-221 / SPEC-CONTENT-001 | Content Collections (`settings/site` + `pages/home`) + migración verbatim del contenido inline + `index.astro` lee de la colección | **Implemented** — `feature/SPEC-CONTENT-001-content-layer` |
+| STORY-221 / [SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md) | Content Collections (`settings/site` + `pages/home`) + migración verbatim del contenido inline + `index.astro` lee de la colección | **Implemented** — `feature/SPEC-CONTENT-001-content-layer` |
 
 ### EPIC-07/08 — SEO + Performance + Accesibilidad (M1, EN CURSO)
 
@@ -83,9 +83,9 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                        | Ítem                                                                                       | Estado          |
 | ------------------------- | ------------------------------------------------------------------------------------------ | --------------- |
-| STORY-071 / SPEC-SEO-001  | Metadatos, OG, **JSON-LD LocalBusiness**, canonical, sitemap, robots + `SiteConfig` tipado | **Implemented** |
-| STORY-072 / SPEC-PERF-001 | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS        | **Implemented** |
-| STORY-081 / SPEC-A11Y-001 | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI        | **Implemented** |
+| STORY-071 / [SPEC-SEO-001](/specs/SPEC-SEO-001.md)  | Metadatos, OG, **JSON-LD LocalBusiness**, canonical, sitemap, robots + `SiteConfig` tipado | **Implemented** |
+| STORY-072 / [SPEC-PERF-001](/specs/SPEC-PERF-001.md) | Presupuestos **Lighthouse CI** (gate) + imágenes `astro:assets` + presupuesto de JS        | **Implemented** |
+| STORY-081 / [SPEC-A11Y-001](/specs/SPEC-A11Y-001.md) | Auditoría WCAG AA de página + **skip-link** (oculto hasta foco) + teclado + gate CI        | **Implemented** |
 
 ### EPIC-05 — CMS Sveltia (`/admin`, git-based) — EN CURSO
 
@@ -95,14 +95,14 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                       | Ítem                                                                                                                                                         | Estado                                                                                       |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| STORY-051 / SPEC-CMS-001 | Sveltia en `/admin` + `config.yml` (file collections → colecciones), **File System Access API** para dev local (Chromium), OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
+| STORY-051 / [SPEC-CMS-001](/specs/SPEC-CMS-001.md) | Sveltia en `/admin` + `config.yml` (file collections → colecciones), **File System Access API** para dev local (Chromium), OAuth de producción parametrizado | **Implemented** — `feature/SPEC-CMS-001-sveltia`; OAuth pendiente de client_id/secret humano |
 
 ### EPIC-06 — Leads (✅ Implemented — commit `123609d`; solo faltan secretos de prod)
 
 | ID                        | Ítem                                                                                                                                                  | Estado                                                                                                                                     |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| STORY-061 / SPEC-FORM-001 | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
-| STORY-062 / SPEC-FORM-002 | UX del form: validación en tiempo real (espejo del Zod server), máquina de estados `idle/submitting/success/error`, tarjeta de confirmación accesible, `autocomplete` | **Implemented** — `feat/form-ux` (prompt 44); PE intacta, sin deps nuevas, QA-001 sin cambios |
+| STORY-061 / [SPEC-FORM-001](/specs/SPEC-FORM-001.md) | `/api/lead` (Node) + `LeadPort` (email Resend, `LEAD_PROVIDER`) + honeypot/rate-limit + **Cloudflare Turnstile** (server-side `siteverify`) + form PE | **Implemented** — `feature/SPEC-FORM-001-turnstile`; credenciales pendientes del humano (`LEAD_TO_EMAIL`, `RESEND_API_KEY`, `TURNSTILE_*`) |
+| STORY-062 / [SPEC-FORM-002](/specs/SPEC-FORM-002.md) | UX del form: validación en tiempo real (espejo del Zod server), máquina de estados `idle/submitting/success/error`, tarjeta de confirmación accesible, `autocomplete` | **Implemented** — `feat/form-ux` (prompt 44); PE intacta, sin deps nuevas, QA-001 sin cambios |
 
 ### EPIC-40 — Deploy stage dev (código completo; falta push + infra humana)
 
@@ -113,21 +113,21 @@ Estados de spec: Planned · Draft · Approved · Implemented · Verified.
 
 | ID                          | Ítem                                                                                                                                                                | Estado                                                                                                                                                                     |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| STORY-401 / SPEC-DEPLOY-001 | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Implemented (código)** — falta push + infra humana |
-| STORY-402 / SPEC-DEPLOY-002 | **Optimización pipeline (CD moderno):** build 1× + gates en **paralelo** (fidelidad ∥ a11y ∥ perf sobre un único `dist/`) + **build-once → promote-image** (prod re-taggea, no reconstruye) + perf bloqueante-paralelo. **Rechazado** el ladder de environments por rama (ADR-0013). Ningún gate eliminado. | ✅ **Implemented** — `.drone.yml` reescrito, `playwright.config` sin rebuild en CI, promote-image stub, AGENTS §4 actualizado |
+| STORY-401 / [SPEC-DEPLOY-001](/specs/SPEC-DEPLOY-001.md) | Rama `develop` + pipeline dev aditivo (`build-push-web-dev` tag `dev`, `trigger-dokploy-dev`) → `dev.solidgraph.dev`, leads reales (Resend+Turnstile); prod intacto | **Implemented (código)** — falta push + infra humana |
+| STORY-402 / [SPEC-DEPLOY-002](/specs/SPEC-DEPLOY-002.md) | **Optimización pipeline (CD moderno):** build 1× + gates en **paralelo** (fidelidad ∥ a11y ∥ perf sobre un único `dist/`) + **build-once → promote-image** (prod re-taggea, no reconstruye) + perf bloqueante-paralelo. **Rechazado** el ladder de environments por rama ([ADR-0013](/adr/0013-modern-cd-build-once-promote.md)). Ningún gate eliminado. | ✅ **Implemented** — `.drone.yml` reescrito, `playwright.config` sin rebuild en CI, promote-image stub, AGENTS §4 actualizado |
 
 ### EPIC-41 — Fix CI develop (✅ hecho)
 
 | ID  | Ítem                                                                                                                                                                                                                                                                                                                                                                    | Estado                                                                               |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| —   | **Reestructura component-as-folder** (carpeta + barrel + `*.module.scss` CSS Modules+Sass, `:global()` para design-system/JS/gate hooks + `*.types.ts`). Piloto Hero → **ADR-0012** + AGENTS.md §2 + skill `design-to-components`. **Rollout ✅** 9 organismos (Hero+8), un commit c/u, **700/700 tests**, gates verdes. Test frágil `0.10` arreglado (valor numérico). | ✅ **Hecho** — rama `refactor/component-folder-rollout` (falta integrar a `develop`) |
-| —   | **Quitar self-baselines visuales** (`toHaveScreenshot` RNF-3/4): driftan 1px local↔contenedor CI. Se elimina el segundo gate; **el gate de fidelidad vs diseño (SPEC-QA-001) queda como único gate visual** (ADR-0014). Menos E2E, más estable. | **Approved** — prompt `docs/prompts/32-remove-self-baselines.md` |
+| —   | **Reestructura component-as-folder** (carpeta + barrel + `*.module.scss` CSS Modules+Sass, `:global()` para design-system/JS/gate hooks + `*.types.ts`). Piloto Hero → **[ADR-0012](/adr/0012-component-as-folder.md)** + AGENTS.md §2 + skill `design-to-components`. **Rollout ✅** 9 organismos (Hero+8), un commit c/u, **700/700 tests**, gates verdes. Test frágil `0.10` arreglado (valor numérico). | ✅ **Hecho** — rama `refactor/component-folder-rollout` (falta integrar a `develop`) |
+| —   | **Quitar self-baselines visuales** (`toHaveScreenshot` RNF-3/4): driftan 1px local↔contenedor CI. Se elimina el segundo gate; **el gate de fidelidad vs diseño (SPEC-QA-001) queda como único gate visual** ([ADR-0014](/adr/0014-design-gate-sole-visual-regression.md)). Menos E2E, más estable. | **Approved** — prompt `docs/prompts/32-remove-self-baselines.md` |
 
 ### EPIC-DOCS — `docs/` como Knowledge Bundle OKF (ADR-0015)
 
 | ID                            | Ítem                                                                                                                                                                                                                                                                                                                       | Estado                                                                                                       |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| STORY-OKF / SPEC-DOCS-OKF-001 | **Fase 1:** frontmatter tipado en todo `docs/**/*.md` + `docs/index.md` raíz + checker `pnpm okf:check` (RF-1..6). **Fase 2:** índices por carpeta (`pnpm okf:index`, RF-8) + gate CI `okf-check` (RF-7) + gobernanza AGENTS.md/`/new-spec` + fix del gate de trace (specs con dominio compuesto/dígitos eran invisibles). | ✅ **Implemented** — prompts 41 y 43; Fases 3–5 (enlaces masivos, `log.md`, réplica a la fábrica) pendientes |
+| STORY-OKF / [SPEC-DOCS-OKF-001](/specs/SPEC-DOCS-OKF-001.md) | **Fase 1:** frontmatter tipado en todo `docs/**/*.md` + `docs/index.md` raíz + checker `pnpm okf:check` (RF-1..6). **Fase 2:** índices por carpeta (`pnpm okf:index`, RF-8) + gate CI `okf-check` (RF-7) + gobernanza AGENTS.md/`/new-spec` + fix del gate de trace (specs con dominio compuesto/dígitos eran invisibles). | ✅ **Implemented** — prompts 41 y 43; Fases 3–5 (enlaces masivos, `log.md`, réplica a la fábrica) pendientes |
 
 ### Diferido
 

@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
-- **Depende de:** SPEC-DS-001
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md)
 - **Fuente:** `design/template/sections/02-hero.html` (+ `components/{aurora,floating-card,pill,button,icon-box}.css`)
 
 ## Contexto / problema
@@ -32,7 +32,7 @@ preview 3D** con badges flotantes. Port 1:1.
 - **RNF-1 (a11y)** — un solo `<h1>`; `section` etiquetada; contraste AA sobre oscuro; aurora/preview decorativos con `aria-hidden` donde aplique.
 - **RNF-2 (perf)** — animaciones CSS + módulo global; imágenes optimizadas.
 - **RNF-3 (responsive)** — apila; preview/floats se adaptan u ocultan en móvil.
-- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff impl vs `02-hero.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per ADR-0014 (drift de entorno).
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** ([SPEC-QA-001](/specs/SPEC-QA-001.md)): diff impl vs `02-hero.html` bajo umbral. Self-baselines (`toHaveScreenshot`) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md) (drift de entorno).
 
 ## Estructura de archivos (component-as-folder)
 
@@ -64,7 +64,7 @@ Scenario: Hero fiel con preview 3D
 
 ## Fuera de alcance
 
-- Marquee (SPEC-SEC-003), resto de secciones.
+- Marquee ([SPEC-SEC-003](/specs/SPEC-SEC-003.md)), resto de secciones.
 
 ## Trazabilidad
 

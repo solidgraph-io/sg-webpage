@@ -12,7 +12,7 @@ timestamp: 2026-07-11T01:00:00Z
 - **Estado:** Implemented <!-- Draft → Review → Approved → Implemented → Verified -->
 - **Épica / Story:** EPIC-06 / STORY-062 (form UX)
 - **Capa atómica:** feature (comportamiento de cliente del form)
-- **Depende de:** SPEC-FORM-001 (endpoint `/api/lead` + PE), SPEC-SEC-013 (UI del form), SPEC-A11Y-001
+- **Depende de:** [SPEC-FORM-001](/specs/SPEC-FORM-001.md) (endpoint `/api/lead` + PE), [SPEC-SEC-013](/specs/SPEC-SEC-013.md) (UI del form), [SPEC-A11Y-001](/specs/SPEC-A11Y-001.md)
 
 ## Contexto / problema
 

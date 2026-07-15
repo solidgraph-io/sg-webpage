@@ -77,4 +77,4 @@ funcionen igual.
 Todas las lecturas de env de runtime pasan por `astro:env`; el form entrega en local con `.env`; el
 contenedor leerá las vars de Dokploy en runtime (sin hornearlas en build). Resume los archivos tocados y
 confirma que el gate de fidelidad sigue verde. Nota: este fix **debe ir en `develop` antes** de validar el
-stage dev (SPEC-DEPLOY-001).
+stage dev ([SPEC-DEPLOY-001](/specs/SPEC-DEPLOY-001.md)).

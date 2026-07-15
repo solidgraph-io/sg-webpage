@@ -12,7 +12,7 @@ timestamp: 2026-07-09T15:30:58-04:00
 - **Estado:** Approved
 - **Épica / Story:** EPIC-40 / STORY-401 (deploy dev)
 - **Capa atómica:** infra / CI-CD
-- **Depende de:** SPEC-INFRA-001 (pipeline base + Dockerfile), y el sitio completo (SEC/CONTENT/SEO/PERF/A11Y/CMS/FORM)
+- **Depende de:** [SPEC-INFRA-001](/specs/SPEC-INFRA-001.md) (pipeline base + Dockerfile), y el sitio completo (SEC/CONTENT/SEO/PERF/A11Y/CMS/FORM)
 
 ## Contexto / problema
 

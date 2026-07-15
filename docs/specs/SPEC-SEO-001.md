@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-07 / STORY-071 (SEO)
 - **Capa atómica:** cross-cutting (layout + build)
-- **Depende de:** SPEC-DS-001 (BaseLayout/seo base), SPEC-SEC-015 (home ensamblada), **SPEC-CONTENT-001** (SiteConfig CMS-editable)
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md) (BaseLayout/seo base), [SPEC-SEC-015](/specs/SPEC-SEC-015.md) (home ensamblada), **[SPEC-CONTENT-001](/specs/SPEC-CONTENT-001.md)** (SiteConfig CMS-editable)
 
 ## Contexto / problema
 
@@ -62,7 +62,7 @@ Scenario: robots noindex en staging
 
 ## Fuera de alcance
 
-- Optimización de imágenes/perf → SPEC-PERF-001. Auditoría a11y → SPEC-A11Y-001.
+- Optimización de imágenes/perf → [SPEC-PERF-001](/specs/SPEC-PERF-001.md). Auditoría a11y → [SPEC-A11Y-001](/specs/SPEC-A11Y-001.md).
 
 ## Trazabilidad
 

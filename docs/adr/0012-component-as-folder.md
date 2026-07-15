@@ -10,7 +10,7 @@ timestamp: 2026-07-08T14:59:14-04:00
 
 - **Estado:** Accepted (validado por el piloto de `Hero`, 2026-07)
 - **Contexto atómico:** arquitectura de componentes (transversal)
-- **Relacionado:** SPEC-DS-001 (port de CSS, tokens = fuente única), SPEC-QA-001 (gate de fidelidad),
+- **Relacionado:** [SPEC-DS-001](/specs/SPEC-DS-001.md) (port de CSS, tokens = fuente única), [SPEC-QA-001](/specs/SPEC-QA-001.md) (gate de fidelidad),
   AGENTS.md §2 (Atomic Design + SRP)
 
 ## Contexto

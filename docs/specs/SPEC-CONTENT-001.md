@@ -12,7 +12,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 - **Estado:** Implemented
 - **Épica / Story:** EPIC-22 / STORY-221 (contenido CMS-ready)
 - **Capa atómica:** content / data
-- **Depende de:** SPEC-SEC-015 (home ensamblada), SPEC-QA-001 (gate de fidelidad)
+- **Depende de:** [SPEC-SEC-015](/specs/SPEC-SEC-015.md) (home ensamblada), [SPEC-QA-001](/specs/SPEC-QA-001.md) (gate de fidelidad)
 
 ## Contexto / problema
 
@@ -66,7 +66,7 @@ Scenario: fail-fast
 ## Fuera de alcance
 
 - Config del **admin Sveltia** (mapeo colección→panel) → **EPIC-05**.
-- SEO/JSON-LD/sitemap (consume `settings/site`) → **SPEC-SEO-001**.
+- SEO/JSON-LD/sitemap (consume `settings/site`) → **[SPEC-SEO-001](/specs/SPEC-SEO-001.md)**.
 - Reintroducir el contrato de bloques/BlockRenderer para la fábrica → EPIC-30.
 
 ## Trazabilidad

@@ -10,7 +10,7 @@ timestamp: 2026-07-08T23:13:03-04:00
 
 - **Estado:** Accepted (2026-07)
 - **Contexto:** infra / CI-CD
-- **Relacionado:** SPEC-DEPLOY-002 (implementación), SPEC-DEPLOY-001, AGENTS.md §4
+- **Relacionado:** [SPEC-DEPLOY-002](/specs/SPEC-DEPLOY-002.md) (implementación), [SPEC-DEPLOY-001](/specs/SPEC-DEPLOY-001.md), AGENTS.md §4
 
 ## Contexto
 

@@ -22,7 +22,7 @@ Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md` (§2 actualizad
 local/`:global()` + `Hero.types.ts`). **Replica ese patrón exacto.**
 
 ## Tarea A — migrar los 8 organismos restantes a component-as-folder
-Para cada uno, aplica ADR-0012 (carpeta + `Name.astro` solo template + `Name.module.scss` +
+Para cada uno, aplica [ADR-0012](/adr/0012-component-as-folder.md) (carpeta + `Name.astro` solo template + `Name.module.scss` +
 `Name.types.ts` + `index.ts` barrel), portando el `<style>` a SCSS con la regla local/`:global()`:
 
 | Componente | Límite `.astro` |

@@ -38,7 +38,7 @@ diseño pase.
 
 ## Pasos
 
-1. Implementa el harness de SPEC-QA-001 (comparación impl-vs-diseño, sin dev toolbar, assets/fuentes) + tests.
+1. Implementa el harness de [SPEC-QA-001](/specs/SPEC-QA-001.md) (comparación impl-vs-diseño, sin dev toolbar, assets/fuentes) + tests.
 2. Corre el gate: verás fallar Hero/Marquee (y Nav por el logo). Corrige cada sección hasta pasar el umbral en desktop y mobile.
 3. Regenera baselines de implementación **solo** tras pasar el diff vs. diseño.
 4. `pnpm lint && pnpm type-check && pnpm test && pnpm test:e2e && pnpm trace -- --check` en verde. Actualiza Estado de SEC-001/002/003 a **Verified** (fidelidad confirmada) y `docs/05`.

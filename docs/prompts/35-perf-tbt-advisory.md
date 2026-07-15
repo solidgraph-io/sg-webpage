@@ -8,7 +8,7 @@ timestamp: 2026-07-09T16:37:21-04:00
 
 # Prompt 35 — Perf: subir el budget de TBT a un techo CI-safe (sigue bloqueante)
 
-> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Ajuste de política de budget (SPEC-PERF-001).
+> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Ajuste de política de budget ([SPEC-PERF-001](/specs/SPEC-PERF-001.md)).
 
 ---
 

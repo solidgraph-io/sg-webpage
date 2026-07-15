@@ -16,7 +16,7 @@ Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md`, `CLAUDE.md`,
 `docs/01-architecture-and-stack.md` y las skills. Metodología (SDD + TDD + Atomic Design + SRP)
 vinculante. Enfoque: **secciones directas** (organismo `.astro` por sección, portado 1:1 desde
 `design/template/sections/`, compuesto en `index.astro`; contenido en datos tipados). El
-design-system y las primitivas ya existen (SPEC-DS-001, Implemented).
+design-system y las primitivas ya existen ([SPEC-DS-001](/specs/SPEC-DS-001.md), Implemented).
 
 ## Objetivo
 

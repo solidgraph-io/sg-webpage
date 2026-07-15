@@ -14,7 +14,7 @@ timestamp: 2026-07-11T04:40:00Z
 ---
 
 Eres un implementador en `sg-webpage`. Lee `AGENTS.md` §4 y las skills (tokens, component-as-folder, SRP).
-Contexto: **SPEC-SEC-010** (sección About) y **ADR-0012**.
+Contexto: **[SPEC-SEC-010](/specs/SPEC-SEC-010.md)** (sección About) y **[ADR-0012](/adr/0012-component-as-folder.md)**.
 
 ## Bug
 

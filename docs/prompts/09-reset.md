@@ -46,7 +46,7 @@ git**, para reconstruir desde cero contra el nuevo diseño por secciones (`desig
 
 ## Plan/trazabilidad
 
-- Resetea `docs/05-implementation-plan.md` a un **stub**: conserva EPIC-01 (SPEC-INFRA-001 = Implemented) y marca el resto como "**Reset — re-planificación por el arquitecto contra `design/template`**". Regenera `docs/traceability.md` vacío/solo INFRA-001.
+- Resetea `docs/05-implementation-plan.md` a un **stub**: conserva EPIC-01 ([SPEC-INFRA-001](/specs/SPEC-INFRA-001.md) = Implemented) y marca el resto como "**Reset — re-planificación por el arquitecto contra `design/template`**". Regenera `docs/traceability.md` vacío/solo INFRA-001.
 
 ## Verificación final (debe quedar verde)
 

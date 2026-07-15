@@ -20,7 +20,7 @@ Eres un implementador en `sg-webpage`. Lee `AGENTS.md`, `docs/adr/0014-design-ga
 Los baselines `toHaveScreenshot` anti-regresión fallan en CI por **drift de entorno**: se generaron en WSL
 pero el CI usa el contenedor Playwright, y el layout difiere **1px** (unas secciones 1px más altas, otras
 1px más bajas → ~8-9% de píxeles → fallan). El **gate de fidelidad contra el diseño** (`compareWithDesign`)
-está **verde**. Decisión (ADR-0014): **el gate del diseño es el único gate de regresión visual**; se
+está **verde**. Decisión ([ADR-0014](/adr/0014-design-gate-sole-visual-regression.md)): **el gate del diseño es el único gate de regresión visual**; se
 eliminan los self-baselines.
 
 ## Tareas
@@ -33,7 +33,7 @@ eliminan los self-baselines.
      **a11y** y **perf**.
 3. **Actualiza specs:**
    - Cada `SPEC-SEC-*` afectada: **retira** el `RNF` de anti-regresión (self-baseline) y añade nota: "la
-     regresión visual la cubre el gate de fidelidad (SPEC-QA-001); sin self-baselines (frágiles a entorno)".
+     regresión visual la cubre el gate de fidelidad ([SPEC-QA-001](/specs/SPEC-QA-001.md)); sin self-baselines (frágiles a entorno)".
    - `SPEC-QA-001`: codifica que `compareWithDesign` es el **único** gate de regresión visual; los
      self-baselines se retiran por dependientes de entorno. Cita ADR-0014.
    - `AGENTS.md` §3.1 (fila E2E/visual): si menciona baselines, actualízala a "regresión visual = vs diseño".

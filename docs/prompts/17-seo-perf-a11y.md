@@ -15,7 +15,7 @@ timestamp: 2026-07-07T12:44:46-04:00
 Eres un implementador en `sg-webpage`. Lee y respeta `AGENTS.md`, `CLAUDE.md`,
 `docs/01-architecture-and-stack.md` y las skills. Metodología (SDD + TDD + Atomic Design + SRP)
 vinculante. La home ya es **fiel al diseño** (M0) y está protegida por el **gate de fidelidad**
-(SPEC-QA-001). Este incremento es pulido de lanzamiento; **no debe alterar el render visible**
+([SPEC-QA-001](/specs/SPEC-QA-001.md)). Este incremento es pulido de lanzamiento; **no debe alterar el render visible**
 (el gate de fidelidad debe seguir verde).
 
 ## Objetivo

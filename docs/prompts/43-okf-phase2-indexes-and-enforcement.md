@@ -8,8 +8,8 @@ timestamp: 2026-07-10T22:05:00Z
 
 # Prompt 43 — OKF Fase 2: índices por carpeta + aplicación permanente
 
-> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa RF-7/RF-8 de SPEC-DOCS-OKF-001
-> (Fase 2 de ADR-0015, con el gate CI adelantado). TDD + trazabilidad. Contra `develop`.
+> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa RF-7/RF-8 de [SPEC-DOCS-OKF-001](/specs/SPEC-DOCS-OKF-001.md)
+> (Fase 2 de [ADR-0015](/adr/0015-adopt-open-knowledge-format-okf.md), con el gate CI adelantado). TDD + trazabilidad. Contra `develop`.
 > Rama `feat/okf-phase2-indexes` **desde `develop`**; al terminar y verde: **merge y borra la rama**.
 
 ---

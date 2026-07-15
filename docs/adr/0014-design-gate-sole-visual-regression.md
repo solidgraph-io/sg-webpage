@@ -10,7 +10,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 
 - **Estado:** Accepted (2026-07)
 - **Contexto:** QA / testing visual
-- **Relacionado:** SPEC-QA-001 (gate de fidelidad), SPEC-SEC-001..014 (RNF de anti-regresión), ADR-0012
+- **Relacionado:** [SPEC-QA-001](/specs/SPEC-QA-001.md) (gate de fidelidad), [SPEC-SEC-001](/specs/SPEC-SEC-001.md)..014 (RNF de anti-regresión), [ADR-0012](/adr/0012-component-as-folder.md)
 
 ## Contexto
 

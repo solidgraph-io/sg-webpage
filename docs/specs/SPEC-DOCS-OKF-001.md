@@ -12,7 +12,7 @@ timestamp: 2026-07-10T21:23:58.667Z
 - **Estado:** Implemented <!-- Draft → Review → Approved → Implemented → Verified -->
 - **Épica / Story:** EPIC-DOCS / STORY-OKF
 - **Capa atómica:** — (documentación / tooling, no UI)
-- **Depende de:** ADR-0015 (adopción de OKF)
+- **Depende de:** [ADR-0015](/adr/0015-adopt-open-knowledge-format-okf.md) (adopción de OKF)
 
 ## Contexto / problema
 

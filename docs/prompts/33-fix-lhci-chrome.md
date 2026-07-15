@@ -44,7 +44,7 @@ commands:
   `chromeFlags`, asegúrate de `--headless=new --no-sandbox` (contenedor).
 
 ## Reglas / alcance
-- **perf sigue bloqueante** en `develop`/`main` (SPEC-DEPLOY-002/RF-3). No lo muevas a nightly aquí
+- **perf sigue bloqueante** en `develop`/`main` ([SPEC-DEPLOY-002](/specs/SPEC-DEPLOY-002.md)/RF-3). No lo muevas a nightly aquí
   (esa sub-opción ya está documentada en `.drone.yml` como flag reversible; NO la actives salvo que se pida).
 - Solo tocas el step `perf-test` del `.drone.yml` (y `.lighthouserc.js` si hace falta ajustar flags).
 

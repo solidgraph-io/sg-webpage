@@ -8,7 +8,7 @@ timestamp: 2026-07-09T15:30:58-04:00
 
 # Dev Stage — `dev.solidgraph.dev` Runbook
 
-> **SPEC-DEPLOY-001/RF-6** — Runbook for the dev stage pipeline.
+> **[SPEC-DEPLOY-001](/specs/SPEC-DEPLOY-001.md)/RF-6** — Runbook for the dev stage pipeline.
 > The dev stage deploys automatically on every push to `develop` that passes all gates.
 
 ## Architecture

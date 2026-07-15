@@ -2,4 +2,5 @@
 
 # deploy/
 
+* [Cloudflare Cache Rules — assets con hash de /_astro/](cloudflare-cache-rules.md) - Regla de Cloudflare que cachea /_astro/* (assets con hash de contenido) 1 año en navegador y edge. Resuelve el insight de Lighthouse 'efficient cache policy'. Config de dashboard (ops), documentada aquí por trazabilidad.
 * [Dev Stage — `dev.solidgraph.dev` Runbook](dev-stage.md) - push → develop → install → validate → test+trace → visual-test → a11y-test → build → perf-test → build-push-web-dev (tags: dev + SHA) → trigger-dokploy-dev (POST DOKPLOYWEBHOOKWEB…

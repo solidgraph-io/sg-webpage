@@ -8,7 +8,7 @@ timestamp: 2026-07-10T21:23:58.637Z
 
 # Prompt 41 — OKF Fase 1: frontmatter + tipos + index raíz (con `okf:check` en TDD)
 
-> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa SPEC-DOCS-OKF-001 (Fase 1 de ADR-0015).
+> Pégale esto a Claude Code en la raíz del repo `sg-webpage`. Implementa [SPEC-DOCS-OKF-001](/specs/SPEC-DOCS-OKF-001.md) (Fase 1 de [ADR-0015](/adr/0015-adopt-open-knowledge-format-okf.md)).
 > Cambio **docs + un script/tests de tooling**; no toca código de la app.
 
 ---

@@ -27,7 +27,7 @@ En `tests/a11y/` el `beforeEach` usa `page.waitForLoadState('networkidle')`, que
 
 ## Tarea B — regenerar baselines anti-regresión (About/Contact/Footer) — CON GUARDA
 Tras el refactor component-as-folder, las baselines `toHaveScreenshot` de esas 3 secciones no matchean.
-**Orden obligatorio (SPEC-QA-001):**
+**Orden obligatorio ([SPEC-QA-001](/specs/SPEC-QA-001.md)):**
 1. **Primero** corre el **gate de fidelidad** (`compareWithDesign` vs el diseño) de About, Contact y Footer.
    - Si **verde** (diff bajo umbral): el render sigue fiel; el mismatch es solo del PNG viejo (el CSS
      Modules movió sub-píxeles dentro de tolerancia). Procede al paso 2.

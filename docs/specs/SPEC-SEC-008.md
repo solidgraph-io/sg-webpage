@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Verified
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
-- **Depende de:** SPEC-DS-001, SPEC-QA-001
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md), [SPEC-QA-001](/specs/SPEC-QA-001.md)
 - **Fuente:** `design/template/sections/08-testimonials.html` (+ `components/{stat,testimonial-card,section-head}.css`)
 
 ## Contexto / problema
@@ -33,7 +33,7 @@ testimonio. Port 1:1.
 - **RNF-1 (a11y)** — testimonios con `figure`/`blockquote`; estrellas con etiqueta accesible o `aria-hidden` + texto; contraste AA sobre claro.
 - **RNF-2 (perf)** — hover por CSS; sin JS por sección.
 - **RNF-3 (responsive)** — grids 3→1 columna.
-- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `08-testimonials.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `08-testimonials.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md).
 
 ## Invariantes
 

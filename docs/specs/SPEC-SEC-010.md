@@ -12,7 +12,7 @@ timestamp: 2026-07-09T00:32:49-04:00
 - **Estado:** Approved
 - **Épica / Story:** EPIC-21 / STORY-210 (secciones)
 - **Capa atómica:** organism (sección) — port directo
-- **Depende de:** SPEC-DS-001, SPEC-QA-001
+- **Depende de:** [SPEC-DS-001](/specs/SPEC-DS-001.md), [SPEC-QA-001](/specs/SPEC-QA-001.md)
 - **Fuente:** `design/template/sections/10-about.html` (+ `components/{floating-card,icon-box,eyebrow}.css`)
 
 ## Contexto / problema
@@ -35,7 +35,7 @@ animada** + contenido (diffs + ciudades). Port 1:1.
 - **RNF-3 (responsive)** — 2col→1col; visual centrado en móvil; badges flotantes **ocultos ≤760px**
   (tamaño fijo en px sobre un `.about-visual` que encoge → se solapan; paridad con `.hero-float`.
   La información persiste en la `diff-list`. Decisión humana, prompt 50).
-- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `10-about.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per ADR-0014.
+- **RNF-4 (fidelidad)** — **gate compareWithDesign** (SPEC-QA-001): diff contra `10-about.html` bajo umbral (desktop+mobile). Self-baselines (`toHaveScreenshot`) retirados per [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md).
 
 ## Invariantes
 

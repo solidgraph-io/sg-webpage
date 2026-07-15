@@ -51,4 +51,4 @@ compartidas**. Fuente: `design/template/design-system/{tokens,base,animations}.c
 
 Foundation + primitivas fieles al `styleguide.html`, PE + reduced-motion, todo verde, `interactions.js`
 en su sitio. La home sigue siendo placeholder (las secciones llegan después). Al terminar, resume y
-confirma que sigue **SPEC-SEC-001 (01-nav)** y el resto de secciones 1:1 con `design/template/sections/`.
+confirma que sigue **[SPEC-SEC-001](/specs/SPEC-SEC-001.md) (01-nav)** y el resto de secciones 1:1 con `design/template/sections/`.
