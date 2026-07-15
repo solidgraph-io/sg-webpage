@@ -9,6 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { checkBundle, TAXONOMY } from '../../../../scripts/okf-check';
+import { buildIndexes } from '../../../../scripts/okf-index';
 
 const ROOT = path.resolve(__dirname, '../../../..');
 const DOCS = path.join(ROOT, 'docs');
@@ -161,6 +162,39 @@ describe('[SPEC-DOCS-OKF-001/RF-5] bundle-relative links must resolve', () => {
   });
 });
 
+// ── RF-5: links inside code zones are examples, not relations (prompt 52) ─────
+
+describe('[SPEC-DOCS-OKF-001/RF-5] links inside code zones are ignored', () => {
+  it('[SPEC-DOCS-OKF-001/RF-5] broken link inside a code fence → no warning', () => {
+    const dir = makeBundle({
+      'index.md': ROOT_INDEX,
+      'specs/index.md': '# Catalog\n',
+      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\n```\n[ejemplo](/specs/NO-EXISTE.md)\n```\n',
+    });
+    expect(checkBundle(dir).warnings).toEqual([]);
+  });
+
+  it('[SPEC-DOCS-OKF-001/RF-5] broken link inside inline code → no warning', () => {
+    const dir = makeBundle({
+      'index.md': ROOT_INDEX,
+      'specs/index.md': '# Catalog\n',
+      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nEjemplo literal: `[x](/specs/NO-EXISTE.md)`.\n',
+    });
+    expect(checkBundle(dir).warnings).toEqual([]);
+  });
+
+  it('[SPEC-DOCS-OKF-001/RF-5] same broken link in prose still warns (only code is masked)', () => {
+    const dir = makeBundle({
+      'index.md': ROOT_INDEX,
+      'specs/index.md': '# Catalog\n',
+      'specs/a.md':
+        '---\ntype: Spec\n---\n\n# A\n\n[x](/specs/NO-EXISTE.md) y `[x](/specs/NO-EXISTE.md)`.\n',
+    });
+    const { warnings } = checkBundle(dir);
+    expect(warnings.filter((w) => w.includes('NO-EXISTE.md'))).toHaveLength(1);
+  });
+});
+
 // ── RF-6: exit codes — hard fails only on RF-1/RF-2/RF-3 ─────────────────────
 
 describe('[SPEC-DOCS-OKF-001/RF-6] CLI exit codes', () => {
@@ -250,7 +284,8 @@ describe('[SPEC-DOCS-OKF-001/RNF-2] checker perf and dependencies', () => {
     const imports = [...src.matchAll(/^import .* from '([^']+)';$/gm)].map((m) => m[1] ?? '');
     expect(imports.length).toBeGreaterThan(0);
     for (const imp of imports) {
-      expect(imp.startsWith('node:') || imp === 'yaml').toBe(true);
+      // local './' helpers (md-zones) keep the zero-external-deps intent
+      expect(imp.startsWith('node:') || imp === 'yaml' || imp.startsWith('./')).toBe(true);
     }
   });
 });
@@ -295,6 +330,16 @@ describe('[SPEC-DOCS-OKF-001/INV-2] index.md / log.md reserved', () => {
     const res = checkBundle(dir);
     expect(res.errors).toEqual([]);
     expect(res.concepts).toBe(1); // only specs/a.md counts as a concept
+  });
+
+  it('[SPEC-DOCS-OKF-001/INV-2] real docs/log.md: reserved, ISO-dated, never indexed (OKF §7)', () => {
+    const log = fs.readFileSync(path.join(DOCS, 'log.md'), 'utf-8');
+    expect(log.startsWith('---')).toBe(false); // reserved: no frontmatter
+    expect(log).toMatch(/\*\*\d{4}-\d{2}-\d{2}\*\*/); // ISO YYYY-MM-DD entries
+    // the index generator never lists log.md as a concept
+    for (const content of buildIndexes(DOCS).values()) {
+      expect(content).not.toContain('(log.md)');
+    }
   });
 });
 

@@ -77,11 +77,11 @@ Scenario: imagen de producción
 
 ## Fuera de alcance
 
-- Tokens/tipografía/BaseLayout reales → **SPEC-LAYOUT-001**.
+- Tokens/tipografía/BaseLayout reales → [SPEC-DS-001](/specs/SPEC-DS-001.md) (design system).
 - Átomos, moléculas, organismos, contenido, Sveltia, form de leads, analítica.
 - Deploy real a producción (solo se deja el pipeline listo; activar es decisión humana).
 
 ## Trazabilidad
 
 - **Tests:** (al implementar) `[SPEC-INFRA-001/RF-1..9]`, `[SPEC-INFRA-001/RNF-1..3]`, `[SPEC-INFRA-001/INV-1..3]` — smoke por herramienta + test del propio `trace.ts`.
-- **PRs:** — · **ADR:** ADR-0002 posible ("Astro Node adapter + Traefik + DroneCI/Dokploy").
+- **PRs:** — · **ADR:** — (posible ADR futuro: "Astro Node adapter + Traefik + DroneCI/Dokploy"; nunca se escribió — la numeración pre-reset quedó retirada).

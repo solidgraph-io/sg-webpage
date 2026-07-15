@@ -87,4 +87,4 @@ Scenario: inválido devuelve errores por campo
 ## Trazabilidad
 
 - **Tests:** `[SPEC-FORM-001/RF-1..6]`, `[.../RNF-1..4]`, `[.../INV-1..4]` — validación del endpoint, honeypot/rate-limit, PE (POST sin JS), a11y de errores, LeadPort mockeado (contrato), gate de fidelidad intacto.
-- **PRs:** — · **ADR:** ADR-0010 posible ("leads tras LeadPort; email por defecto, proveedor por env").
+- **PRs:** — · **ADR:** — (posible ADR futuro: "leads tras LeadPort; email por defecto, proveedor por env").

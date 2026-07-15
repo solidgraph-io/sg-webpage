@@ -72,4 +72,4 @@ Scenario: fail-fast
 ## Trazabilidad
 
 - **Tests:** `[SPEC-CONTENT-001/RF-1..7]`, `[.../RNF-1..2]`, `[.../INV-1..2]` — parse de schemas, migración verbatim (contenido idéntico), index lee de colección, fail-fast, gate de fidelidad intacto.
-- **PRs:** — · **ADR:** ADR-0008 posible ("contenido en Content Collections CMS-ready; Sveltia mapea sin migración").
+- **PRs:** — · **ADR:** — (posible ADR futuro: "contenido en Content Collections CMS-ready; Sveltia mapea sin migración").

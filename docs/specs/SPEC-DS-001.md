@@ -76,4 +76,4 @@ Scenario: styleguide fiel
 ## Trazabilidad
 
 - **Tests:** `[SPEC-DS-001/RF-1..8]`, `[.../RNF-1..3]`, `[.../INV-1..4]` — tokens verbatim, no-CDN de fuentes, reveal PE, reduced-motion, variantes de Button, regresión visual del styleguide.
-- **PRs:** — · **ADR:** ADR-0006 posible ("port de CSS del diseño tal cual; sin Tailwind para el CSS del sitio").
+- **PRs:** — · **ADR:** [ADR-0012](/adr/0012-component-as-folder.md) (CSS Modules + tokens; el CSS del diseño se porta verbatim, sin Tailwind).

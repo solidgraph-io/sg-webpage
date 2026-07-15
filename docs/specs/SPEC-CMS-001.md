@@ -75,4 +75,4 @@ Scenario: /admin no afecta el sitio
 ## Trazabilidad
 
 - **Tests:** `[SPEC-CMS-001/RF-1..6]`, `[.../RNF-1..3]`, `[.../INV-1..3]` — presencia/estructura del `config.yml`, paridad config↔schema (o smoke de validez), `/admin` sin impacto en el bundle del sitio, gate de fidelidad intacto.
-- **PRs:** — · **ADR:** ADR-0009 posible ("Sveltia CMS git-based sobre Content Collections; sin servidor").
+- **PRs:** — · **ADR:** — (posible ADR futuro: "Sveltia CMS git-based sobre Content Collections; sin servidor").

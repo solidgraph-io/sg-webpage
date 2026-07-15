@@ -105,5 +105,5 @@ Claude Code **no** puede tocar Dokploy/Cloudflare/Drone-secrets. El humano confi
 
 - **Tests/verificación:** el pipeline dev es la prueba viva (gates + deploy). Post-deploy: smoke manual
   (home 200, `/admin`, `POST /api/lead`). Sin unit test nuevo; se valida por observación del stage.
-- **PRs:** rama `feature/SPEC-DEPLOY-001-dev-stage` → `develop`. · **ADR:** ADR-0011 posible
-  ("stage dev en develop; paridad de imagen/gates con prod, difieren tag+webhook+env").
+- **PRs:** rama `feature/SPEC-DEPLOY-001-dev-stage` → `develop`. · **ADR:** — (posible ADR futuro:
+  "stage dev en develop; paridad de imagen/gates con prod, difieren tag+webhook+env").

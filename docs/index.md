@@ -17,6 +17,7 @@ es un *concepto* con frontmatter tipado; este índice es el catálogo top-level 
 - [05 — Plan de implementación](/05-implementation-plan.md) — épicas, stories y specs con
   su estado; registro vivo del plan.
 - [Traceability Matrix](/traceability.md) — matriz spec ↔ test generada por `pnpm trace`.
+- [Log del bundle](/log.md) — historial cronológico curado de decisiones (OKF §7, reservado).
 
 ## Secciones
 
@@ -26,7 +27,7 @@ Cada subdirectorio tiene su `index.md` de *progressive disclosure* (OKF §6), ge
 <!-- okf:index:start -->
 - **[adr/](/adr/index.md)** — 4 conceptos · type: ADR
 - **[deploy/](/deploy/index.md)** — 2 conceptos · type: Runbook
-- **[prompts/](/prompts/index.md)** — 51 conceptos · type: Prompt
+- **[prompts/](/prompts/index.md)** — 52 conceptos · type: Prompt
 - **[specs/](/specs/index.md)** — 29 conceptos · type: Reference, Spec
 <!-- okf:index:end -->
 

@@ -23,6 +23,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
+import { maskCodeZones } from './md-zones';
 
 export const TAXONOMY = [
   'Spec',
@@ -105,9 +106,12 @@ export function checkBundle(bundleRoot: string): OkfResult {
     const content = fs.readFileSync(file, 'utf-8');
 
     // ── RF-5: bundle-relative links must resolve (warning) — all files ─────
+    // Links inside code zones (fences/inline code/frontmatter) are examples,
+    // not relations → masked out of the scan (prompt 52).
+    const linkScan = maskCodeZones(content);
     let link: RegExpExecArray | null;
     BUNDLE_LINK_RE.lastIndex = 0;
-    while ((link = BUNDLE_LINK_RE.exec(content)) !== null) {
+    while ((link = BUNDLE_LINK_RE.exec(linkScan)) !== null) {
       const target = path.join(bundleRoot, link[1]!);
       if (!fs.existsSync(target)) {
         warnings.push(`[RF-5] ${rel}: broken bundle link ${link[1]}`);

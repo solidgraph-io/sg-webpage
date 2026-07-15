@@ -72,4 +72,4 @@ Scenario: fidelidad verde real
 ## Trazabilidad
 
 - **Tests:** `[SPEC-QA-001/RF-1..5]`, `[.../RNF-1..2]`, `[.../INV-1..2]` — comparación impl-vs-diseño, ausencia de dev toolbar, assets/fuentes, corrección Hero/Marquee/Nav.
-- **PRs:** — · **ADR:** ADR-0007 posible ("fidelidad = regresión visual contra el diseño como gate").
+- **PRs:** — · **ADR:** [ADR-0014](/adr/0014-design-gate-sole-visual-regression.md) (fidelidad = el gate contra el diseño como única regresión visual).
