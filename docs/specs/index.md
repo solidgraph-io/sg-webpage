@@ -4,6 +4,7 @@
 
 * [SPEC-A11Y-001 — Accesibilidad transversal (WCAG 2.1 AA)](SPEC-A11Y-001.md) - Cada sección se testeó con axe, pero falta la auditoría a nivel de página y los detalles transversales (skip-link, orden de foco, landmarks, reduced-motion) + un gate que evite re…
 * [SPEC-CMS-001 — CMS Sveltia (`/admin`, git-based) sobre las colecciones CMS-ready](SPEC-CMS-001.md) - El contenido ya vive en Content Collections editables por archivo (SPEC-CONTENT-001).
+* [SPEC-CMS-002 — Puente de auth del CMS (Cloudflare Access → token de servicio) sin OAuth de GitHub](SPEC-CMS-002.md) - Worker minúsculo que, tras validar Cloudflare Access, entrega a Sveltia el token de una cuenta de servicio por el handshake postMessage de Netlify/Decap, sin el roundtrip de OAuth de GitHub. Hace el CMS agnóstico al cliente (ADR-0017). Spike validado.
 * [SPEC-CONTENT-001 — Capa de contenido CMS-ready (Content Collections + Zod)](SPEC-CONTENT-001.md) - Tras el rebuild v3, todo el contenido de la home vive inline como constantes const en index.astro (navLinks, hero, marquee, painItems…).
 * [SPEC-DEPLOY-001 — Stage dev: deploy continuo desde `develop` (registry + Dokploy)](SPEC-DEPLOY-001.md) - El pipeline (.drone.yml) ya corre todos los gates en develop y main, pero solo main publica imagen al registry y dispara Dokploy.
 * [SPEC-DEPLOY-002 — Optimización del pipeline: build-once, gates en paralelo, promote-image](SPEC-DEPLOY-002.md) - El pipeline actual (.drone.yml) es serial y redundante: install → validate → test → visual-test → a11y-test → build → perf-test → build-push → trigger.

@@ -3,4 +3,5 @@
 # deploy/
 
 * [Cloudflare Cache Rules — assets con hash de /_astro/](cloudflare-cache-rules.md) - Regla de Cloudflare que cachea /_astro/* (assets con hash de contenido) 1 año en navegador y edge. Resuelve el insight de Lighthouse 'efficient cache policy'. Config de dashboard (ops), documentada aquí por trazabilidad.
+* [CMS Sveltia — auth de producción agnóstica al cliente (Cloudflare Access + Worker puente)](cms-oauth-relay.md) - Activar el login de producción del CMS (SPEC-CMS-001/RF-6, ADR-0017): Cloudflare Access delante de /admin (login sin GitHub) + un Worker puente que entrega a Sveltia el token de una identidad de servicio para commitear. Incluye el spike de validación del contrato de token de Sveltia. Infra/secretos del humano.
 * [Dev Stage — `dev.solidgraph.dev` Runbook](dev-stage.md) - push → develop → install → validate → test+trace → visual-test → a11y-test → build → perf-test → build-push-web-dev (tags: dev + SHA) → trigger-dokploy-dev (POST DOKPLOYWEBHOOKWEB…

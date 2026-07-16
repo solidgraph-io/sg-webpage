@@ -28,7 +28,7 @@ CI/build). No hay servidor de CMS 24/7 (coherente con el tier básico de la fáb
 - **RF-3 (paridad de campos)** — los campos del `config.yml` **reflejan los schemas Zod** de `SPEC-CONTENT-001` (mismos campos/estructura). Editar y guardar produce contenido **válido** (el build fail-fast lo verifica). _(Recomendado: un test de paridad config↔schema, o al menos un smoke que valide el contenido de ejemplo.)_
 - **RF-4 (flujo git-based)** — guardar en Sveltia **commitea al repo** (rama configurable) vía la API de Git; el push dispara el pipeline (DroneCI→build). Documentado.
 - **RF-5 (dev sin OAuth — File System Access API)** — Sveltia **NO usa proxy** (a diferencia de Decap; `local_backend` se ignora). Para editar en local sin OAuth: `pnpm dev` + abrir `http://localhost:4321/admin/index.html` en **Chromium** (Chrome/Edge/Brave), pulsar **"Work with Local Repository"** y seleccionar la raíz del repo (con `.git`). Escribe directo en `content/`. Documentar así (sin `@sveltia/cms-proxy-server`, que no existe).
-- **RF-6 (auth producción)** — login vía **OAuth del host Git** (GitHub/GitLab/Gitea) con acceso solo al repo. Documentar el setup (OAuth App / relay); **requiere secretos y decisión humana** (ver "Detente").
+- **RF-6 (auth producción — agnóstica al cliente)** — el cliente es no técnico y **no** usa GitHub. Login vía **Cloudflare Access** (email/Google, sin GitHub) delante de `/admin`, y un **Worker puente** que entrega a Sveltia el token de una **identidad de servicio** para commitear al repo. Modelo y análisis en **[ADR-0017](/adr/0017-cms-client-agnostic-auth-cloudflare-access-bridge.md)** (reemplaza el OAuth por-editor original). **Requiere secretos + decisión humana + un spike** (contrato de token de Sveltia).
 
 ## Requisitos no funcionales
 
@@ -71,6 +71,7 @@ Scenario: /admin no afecta el sitio
 - **Host = GitHub, repo `solidgraph-io/sg-webpage`, rama `main`.** El `backend` de Sveltia es `github`.
 - **Auth de producción:** login con **GitHub OAuth App** (o GitHub App). Sveltia con backend `github` sobre github.com necesita un **OAuth relay** (p. ej. Cloudflare Worker `sveltia-cms-auth`, o equivalente) que intercambie el code por token — **`client_id`/`client_secret` son secretos** (van en el Worker/relay, **no** en el repo). Documentar el setup del relay.
 - **Detente y pide al humano:** las **credenciales de la OAuth App de GitHub** (client id/secret) y la URL del relay. Hasta tenerlas, el flujo local (File System Access API, Chromium) permite editar sin OAuth, y el OAuth queda documentado/parametrizado.
+- **Activación de RF-6 (producción):** modelo **Cloudflare Access + Worker puente** ([ADR-0017](/adr/0017-cms-client-agnostic-auth-cloudflare-access-bridge.md)); procedimiento en el runbook [cms-oauth-relay](/deploy/cms-oauth-relay.md). El OAuth por-editor original queda descartado.
 
 ## Trazabilidad
 

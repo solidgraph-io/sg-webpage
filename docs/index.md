@@ -25,10 +25,10 @@ Cada subdirectorio tiene su `index.md` de *progressive disclosure* (OKF §6), ge
 `pnpm okf:index` (no editar a mano; el bloque siguiente lo mantiene el generador).
 
 <!-- okf:index:start -->
-- **[adr/](/adr/index.md)** — 5 conceptos · type: ADR
-- **[deploy/](/deploy/index.md)** — 2 conceptos · type: Runbook
-- **[prompts/](/prompts/index.md)** — 54 conceptos · type: Prompt
-- **[specs/](/specs/index.md)** — 29 conceptos · type: Reference, Spec
+- **[adr/](/adr/index.md)** — 6 conceptos · type: ADR
+- **[deploy/](/deploy/index.md)** — 3 conceptos · type: Runbook
+- **[prompts/](/prompts/index.md)** — 57 conceptos · type: Prompt
+- **[specs/](/specs/index.md)** — 30 conceptos · type: Reference, Spec
 <!-- okf:index:end -->
 
 ## Conformidad

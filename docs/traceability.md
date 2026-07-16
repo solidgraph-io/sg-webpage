@@ -48,6 +48,25 @@ File: `docs/specs/SPEC-CMS-001.md`
 | INV-2 | ✅ | apps/web/src/__tests__/cms-001.test.ts:258, apps/web/src/__tests__/cms-001.test.ts:277 |
 | INV-3 | ✅ | apps/web/src/__tests__/cms-001.test.ts:286, apps/web/src/__tests__/cms-001.test.ts:287, apps/web/src/__tests__/cms-001.test.ts:295 |
 
+## ✅ SPEC-CMS-002 — Status: Approved
+
+File: `docs/specs/SPEC-CMS-002.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ✅ | workers/cms-auth/test/auth.test.ts:61, workers/cms-auth/test/auth.test.ts:62, workers/cms-auth/test/auth.test.ts:74 |
+| RF-2 | ✅ | workers/cms-auth/test/auth.test.ts:92, workers/cms-auth/test/auth.test.ts:93, workers/cms-auth/test/auth.test.ts:100, workers/cms-auth/test/auth.test.ts:107, workers/cms-auth/test/auth.test.ts:119 |
+| RF-3 | ✅ | apps/web/src/__tests__/cms-002.test.ts:34, workers/cms-auth/test/auth.test.ts:128, workers/cms-auth/test/auth.test.ts:129, workers/cms-auth/test/auth.test.ts:140 |
+| RF-4 | ✅ | workers/cms-auth/test/auth.test.ts:154, workers/cms-auth/test/auth.test.ts:155, workers/cms-auth/test/auth.test.ts:162, workers/cms-auth/test/auth.test.ts:167 |
+| RF-5 | ✅ | apps/web/src/__tests__/cms-002.test.ts:76, apps/web/src/__tests__/cms-002.test.ts:77 |
+| RF-6 | ✅ | apps/web/src/__tests__/cms-002.test.ts:90, apps/web/src/__tests__/cms-002.test.ts:91 |
+| RNF-1 | ✅ | workers/cms-auth/test/auth.test.ts:177, workers/cms-auth/test/auth.test.ts:178 |
+| RNF-2 | ✅ | apps/web/src/__tests__/cms-002.test.ts:45, apps/web/src/__tests__/cms-002.test.ts:46, apps/web/src/__tests__/cms-002.test.ts:52 |
+| RNF-3 | ✅ | workers/cms-auth/test/auth.test.ts:82 |
+| INV-1 | ✅ | workers/cms-auth/test/auth.test.ts:93, workers/cms-auth/test/auth.test.ts:100, workers/cms-auth/test/auth.test.ts:107 |
+| INV-2 | ✅ | apps/web/src/__tests__/cms-002.test.ts:27, apps/web/src/__tests__/cms-002.test.ts:28, apps/web/src/__tests__/cms-002.test.ts:34 |
+| INV-3 | ✅ | apps/web/src/__tests__/cms-002.test.ts:103, apps/web/src/__tests__/cms-002.test.ts:104 |
+
 ## ✅ SPEC-CONTENT-001 — Status: Implemented
 
 File: `docs/specs/SPEC-CONTENT-001.md`
@@ -513,4 +532,4 @@ File: `docs/specs/SPEC-SEO-001.md`
 | INV-3 | ✅ | apps/web/src/__tests__/seo-001.test.ts:284, apps/web/src/__tests__/seo-001.test.ts:288 |
 
 ---
-_Total specs: 28 | Uncovered reqs in Approved specs: 0_
+_Total specs: 29 | Uncovered reqs in Approved specs: 0_

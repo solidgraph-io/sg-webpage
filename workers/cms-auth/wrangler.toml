@@ -1,0 +1,20 @@
+# cms-auth — Worker puente de auth del CMS (SPEC-CMS-002 / ADR-0017)
+# Deploy SEPARADO del sitio Astro. Procedimiento completo: DEPLOY.md
+# y el runbook docs/deploy/cms-oauth-relay.md.
+
+name = "sg-cms-auth"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+[vars]
+# Team de Cloudflare Access (URL completa, es también el `iss` del JWT)
+TEAM_DOMAIN = "https://REPLACE-TEAM.cloudflareaccess.com"
+# AUD de la Access App que cubre /admin/* y la ruta de este Worker
+ACCESS_AUD = "REPLACE_ACCESS_APP_AUD"
+# Dominios que pueden pedir el token (coma-separados; admite *.dominio)
+ALLOWED_DOMAINS = "sg-webpage.solidgraph.dev"
+
+# ── SECRETS — NUNCA en este archivo ni en el repo (SPEC-CMS-002/INV-2) ─────────
+# GITHUB_SERVICE_TOKEN: PAT fine-grained de la cuenta de servicio con
+# `Contents: read/write` SOLO sobre solidgraph-io/sg-webpage.
+# Alta:  npx wrangler secret put GITHUB_SERVICE_TOKEN

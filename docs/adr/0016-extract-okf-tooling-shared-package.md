@@ -73,10 +73,12 @@ compartida**. Repo pequeño con su propio CI de publicación al registry. El **c
 - **Plan de migración (fasado, cada fase = un prompt):**
   1. **Extraer + empaquetar + publicar** `@solidgraph-io/okf-tools` (según opción A/B que elijas) con sus tests.
   2. **sg-webpage consume el paquete** (dogfood): reemplaza `scripts/okf-*.ts` por la devDependency; gates
-     verdes idénticos.
-  3. **Guani adopta OKF** consumiendo el paquete: frontmatter + `index.md` raíz + índices + `okf:link` + `log.md`
-     + wiring en CI + ADR espejo en Guani; apuntar su `AGENTS.md`/`CLAUDE.md` al `index.md` raíz.
-  4. **Más adelante:** agency-structure y otros repos (fuera de alcance ahora).
+     verdes idénticos. **(Hecho.)**
+  3. **Replicación documentada:** la metodología de adopción (repo-agnóstica, fasada, aditiva) queda en
+     `ADOPTION.md` del paquete (viaja en el tarball). **Adoptar OKF en otros repos** (Guani, agency-structure,
+     etc.) se ejecuta **en el workstream propio de cada repo**, no desde este proyecto — cada uno sigue el
+     `ADOPTION.md` y consume el paquete.
+  4. **Promoción a stable:** tras el dogfood en verde, cortar `0.1.0` en `latest` y aflojar los pines a `^0.1.0`.
 - **OSS público:** LICENSE **MIT**, README con uso, `CHANGELOG.md`, metadata pública (`repository`, `keywords`,
   `license`), `publishConfig.access: public`. Al ser público, la disciplina de release (semver, changelog) pasa
   a ser parte del contrato.

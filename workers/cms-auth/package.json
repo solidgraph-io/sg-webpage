@@ -1,0 +1,20 @@
+{
+  "name": "@solidgraph/cms-auth-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Puente de auth del CMS (SPEC-CMS-002): valida Cloudflare Access y entrega el token de servicio a Sveltia vía handshake postMessage — sin OAuth de GitHub.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc --noEmit",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "jose": "^6.0.11"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250620.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.6"
+  }
+}
