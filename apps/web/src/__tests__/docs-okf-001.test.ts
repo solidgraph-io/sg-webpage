@@ -1,235 +1,113 @@
 /**
- * SPEC-DOCS-OKF-001 — docs/ as a conformant OKF Knowledge Bundle
- * Tests the okf-check checker (scripts/okf-check.ts) against synthetic
- * fixture bundles and the real docs/ bundle.
+ * SPEC-DOCS-OKF-001 — docs/ as a conformant OKF Knowledge Bundle.
+ *
+ * Integration suite (ADR-0016 Fase 5.2): sg-webpage consumes
+ * @solidgraph-io/okf-tools — the tool's unit tests live in that package
+ * (sg-okf-tools). Here the CONSUMER asserts that its own bundle conforms,
+ * by running the package's CLI against the real docs/.
  */
-import { describe, it, expect, afterAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
-import { checkBundle, TAXONOMY } from '../../../../scripts/okf-check';
-import { buildIndexes } from '../../../../scripts/okf-index';
+import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
 
 const ROOT = path.resolve(__dirname, '../../../..');
 const DOCS = path.join(ROOT, 'docs');
-const CHECKER = path.join(ROOT, 'scripts/okf-check.ts');
-const TSX = path.join(ROOT, 'node_modules/.bin/tsx');
+const OKF = path.join(ROOT, 'node_modules/.bin/okf');
 
-// ── fixture helper ────────────────────────────────────────────────────────────
-
-const tmpDirs: string[] = [];
-afterAll(() => {
-  for (const d of tmpDirs) fs.rmSync(d, { recursive: true, force: true });
-});
-
-function makeBundle(files: Record<string, string>): string {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'okf-fixture-'));
-  tmpDirs.push(dir);
-  for (const [rel, content] of Object.entries(files)) {
-    const full = path.join(dir, rel);
-    fs.mkdirSync(path.dirname(full), { recursive: true });
-    fs.writeFileSync(full, content, 'utf-8');
-  }
-  return dir;
+function okf(...args: string[]): SpawnSyncReturns<string> {
+  return spawnSync(OKF, args, { encoding: 'utf-8', cwd: ROOT });
 }
 
-const ROOT_INDEX = '---\nokf_version: "0.1"\n---\n\n# Bundle\n';
-const VALID_CONCEPT = '---\ntype: Spec\ntitle: "X"\n---\n\n# X\n\nBody.\n';
+// One run per command, shared by the assertions below.
+const t0 = performance.now();
+const check = okf('check', DOCS);
+const checkMs = performance.now() - t0;
+const indexCheck = okf('index', DOCS, '--check');
+const linkCheck = okf('link', DOCS, '--check');
+const out = (r: SpawnSyncReturns<string>): string => r.stdout + r.stderr;
 
-// ── RF-1: root index.md declares okf_version ──────────────────────────────────
+// ── RF-1: root index.md declares okf_version; bundle passes check ─────────────
 
-describe('[SPEC-DOCS-OKF-001/RF-1] bundle root index.md with okf_version', () => {
-  it('[SPEC-DOCS-OKF-001/RF-1] valid root index → no errors', () => {
-    const dir = makeBundle({ 'index.md': ROOT_INDEX, 'specs/a.md': VALID_CONCEPT });
-    expect(checkBundle(dir).errors).toEqual([]);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-1] index.md without okf_version → hard error', () => {
-    const dir = makeBundle({ 'index.md': '---\ntitle: "no version"\n---\n\n# Bundle\n' });
-    const res = checkBundle(dir);
-    expect(res.errors.some((e) => e.includes('okf_version'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-1] missing root index.md → hard error', () => {
-    const dir = makeBundle({ 'specs/a.md': VALID_CONCEPT });
-    const res = checkBundle(dir);
-    expect(res.errors.some((e) => e.includes('index.md'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-1] real docs/index.md declares okf_version "0.1"', () => {
+describe('[SPEC-DOCS-OKF-001/RF-1] bundle root declares okf_version', () => {
+  it('[SPEC-DOCS-OKF-001/RF-1] docs/index.md opens with frontmatter carrying okf_version "0.1"', () => {
     const content = fs.readFileSync(path.join(DOCS, 'index.md'), 'utf-8');
     expect(content.startsWith('---')).toBe(true);
     expect(content).toContain('okf_version: "0.1"');
+    expect(check.status).toBe(0);
+    expect(out(check)).not.toContain('[RF-1]');
   });
 });
 
-// ── RF-2: parseable frontmatter in every non-reserved .md (hard) ──────────────
+// ── RF-2 / RF-3: every concept has parseable frontmatter + non-empty type ─────
 
 describe('[SPEC-DOCS-OKF-001/RF-2] parseable frontmatter on every concept', () => {
-  it('[SPEC-DOCS-OKF-001/RF-2] concept without frontmatter → hard error', () => {
-    const dir = makeBundle({ 'index.md': ROOT_INDEX, 'specs/bare.md': '# Bare\n\nNo fm.\n' });
-    const res = checkBundle(dir);
-    expect(res.errors.some((e) => e.includes('bare.md'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-2] unparseable YAML frontmatter → hard error', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/broken.md': '---\ntype: [unclosed\n---\n\n# Broken\n',
-    });
-    const res = checkBundle(dir);
-    expect(res.errors.some((e) => e.includes('broken.md'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-2] real docs/ bundle has zero hard errors', () => {
-    const res = checkBundle(DOCS);
-    expect(res.errors).toEqual([]);
-    expect(res.concepts).toBeGreaterThan(70); // specs + adr + prompts + numbered docs
+  it('[SPEC-DOCS-OKF-001/RF-2] okf check reports zero hard errors on docs/', () => {
+    expect(check.status).toBe(0);
+    expect(out(check)).toMatch(/ 0 error\(s\)/);
+    expect(out(check)).not.toContain('[RF-2]');
   });
 });
-
-// ── RF-3: non-empty `type` (hard) ─────────────────────────────────────────────
 
 describe('[SPEC-DOCS-OKF-001/RF-3] non-empty type in every concept', () => {
-  it('[SPEC-DOCS-OKF-001/RF-3] frontmatter without type → hard error', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/untyped.md': '---\ntitle: "no type"\n---\n\n# Untyped\n',
-    });
-    const res = checkBundle(dir);
-    expect(res.errors.some((e) => e.includes('untyped.md') && e.includes('type'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-3] empty type → hard error', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/empty.md': '---\ntype: ""\n---\n\n# Empty\n',
-    });
-    expect(checkBundle(dir).errors.length).toBeGreaterThan(0);
+  it('[SPEC-DOCS-OKF-001/RF-3] no missing/empty `type` in the bundle', () => {
+    expect(out(check)).not.toContain('[RF-3]');
   });
 });
 
-// ── RF-4: taxonomy (warning, permissive) ──────────────────────────────────────
+// ── RF-4 / RF-5: taxonomy + resolving links (clean bundle → no warnings) ──────
 
-describe('[SPEC-DOCS-OKF-001/RF-4] type outside taxonomy is a warning', () => {
-  it('[SPEC-DOCS-OKF-001/RF-4] unknown type → warning, zero errors', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/odd.md': '---\ntype: Weird\n---\n\n# Odd\n',
-    });
-    const res = checkBundle(dir);
-    expect(res.errors).toEqual([]);
-    expect(res.warnings.some((w) => w.includes('Weird'))).toBe(true);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-4] taxonomy matches SPEC-DOCS-OKF-001', () => {
-    expect([...TAXONOMY]).toEqual([
-      'Spec',
-      'ADR',
-      'Prompt',
-      'Architecture',
-      'Methodology',
-      'Plan',
-      'Runbook',
-      'Index',
-      'Reference',
-    ]);
+describe('[SPEC-DOCS-OKF-001/RF-4] types stay inside the project taxonomy', () => {
+  it('[SPEC-DOCS-OKF-001/RF-4] no taxonomy warnings on docs/', () => {
+    expect(out(check)).not.toContain('[RF-4]');
   });
 });
 
-// ── RF-5: bundle-relative links resolve (warning) ─────────────────────────────
-
-describe('[SPEC-DOCS-OKF-001/RF-5] bundle-relative links must resolve', () => {
-  it('[SPEC-DOCS-OKF-001/RF-5] broken /….md link → warning, zero errors', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nSee [B](/specs/NO-EXISTE.md).\n',
-    });
-    const res = checkBundle(dir);
-    expect(res.errors).toEqual([]);
-    expect(res.warnings.some((w) => w.includes('NO-EXISTE.md'))).toBe(true);
+describe('[SPEC-DOCS-OKF-001/RF-5] bundle-relative links resolve', () => {
+  it('[SPEC-DOCS-OKF-001/RF-5] no broken-link warnings on docs/', () => {
+    expect(out(check)).not.toContain('[RF-5]');
   });
 
-  it('[SPEC-DOCS-OKF-001/RF-5] resolving link (with anchor) → no warning', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/index.md': '# Catalog\n', // avoids the RF-8 missing-index warning
-      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nSee [B](/specs/b.md#schema).\n',
-      'specs/b.md': VALID_CONCEPT,
-    });
-    expect(checkBundle(dir).warnings).toEqual([]);
+  it('[SPEC-DOCS-OKF-001/INV-3] a real cross-link target exists (concept IDs are paths)', () => {
+    const spec = fs.readFileSync(path.join(DOCS, 'specs/SPEC-SEC-010.md'), 'utf-8');
+    const target = /\]\((\/[^)#\s]+\.md)\)/.exec(spec)?.[1];
+    expect(target).toBeTruthy();
+    expect(fs.existsSync(path.join(DOCS, target ?? ''))).toBe(true);
   });
 });
 
-// ── RF-5: links inside code zones are examples, not relations (prompt 52) ─────
-
-describe('[SPEC-DOCS-OKF-001/RF-5] links inside code zones are ignored', () => {
-  it('[SPEC-DOCS-OKF-001/RF-5] broken link inside a code fence → no warning', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/index.md': '# Catalog\n',
-      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\n```\n[ejemplo](/specs/NO-EXISTE.md)\n```\n',
-    });
-    expect(checkBundle(dir).warnings).toEqual([]);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-5] broken link inside inline code → no warning', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/index.md': '# Catalog\n',
-      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nEjemplo literal: `[x](/specs/NO-EXISTE.md)`.\n',
-    });
-    expect(checkBundle(dir).warnings).toEqual([]);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-5] same broken link in prose still warns (only code is masked)', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/index.md': '# Catalog\n',
-      'specs/a.md':
-        '---\ntype: Spec\n---\n\n# A\n\n[x](/specs/NO-EXISTE.md) y `[x](/specs/NO-EXISTE.md)`.\n',
-    });
-    const { warnings } = checkBundle(dir);
-    expect(warnings.filter((w) => w.includes('NO-EXISTE.md'))).toHaveLength(1);
-  });
-});
-
-// ── RF-6: exit codes — hard fails only on RF-1/RF-2/RF-3 ─────────────────────
+// ── RF-6 / INV-1: exit codes — hard minimum fails, permissive stays green ─────
 
 describe('[SPEC-DOCS-OKF-001/RF-6] CLI exit codes', () => {
-  const runCli = (bundle: string) =>
-    spawnSync(TSX, [CHECKER, bundle], { encoding: 'utf-8', cwd: ROOT });
-
-  it('[SPEC-DOCS-OKF-001/RF-6] hard violation (missing type) → exit ≠ 0', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/untyped.md': '---\ntitle: "x"\n---\n\n# X\n',
-    });
-    const res = runCli(dir);
-    expect(res.status).not.toBe(0);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RF-6] warnings only (unknown type + broken link) → exit 0', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/odd.md': '---\ntype: Weird\n---\n\n# Odd\n\n[gone](/nope.md)\n',
-    });
-    const res = runCli(dir);
-    expect(res.status).toBe(0);
-    expect(res.stderr).toContain('warn');
+  it('[SPEC-DOCS-OKF-001/RF-6][SPEC-DOCS-OKF-001/INV-1] hard violation → exit ≠ 0; conformant docs/ → exit 0', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'okf-consumer-fixture-'));
+    try {
+      fs.mkdirSync(path.join(dir, 'specs'), { recursive: true });
+      fs.writeFileSync(path.join(dir, 'index.md'), '---\nokf_version: "0.1"\n---\n\n# B\n');
+      fs.writeFileSync(path.join(dir, 'specs/untyped.md'), '---\ntitle: "x"\n---\n\n# X\n');
+      expect(okf('check', dir).status).not.toBe(0); // INV-1: hard minimum breaks the gate
+      expect(check.status).toBe(0); // our bundle passes
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
 
-// ── RF-7: okf:check wired as repo script + CI gate ────────────────────────────
+// ── RF-7: wiring — scripts point at the package CLI; CI keeps its own step ────
 
-describe('[SPEC-DOCS-OKF-001/RF-7] pnpm okf:check wiring', () => {
-  it('[SPEC-DOCS-OKF-001/RF-7] root package.json exposes okf:check like trace', () => {
+describe('[SPEC-DOCS-OKF-001/RF-7] pnpm okf:* wired to @solidgraph-io/okf-tools', () => {
+  it('[SPEC-DOCS-OKF-001/RF-7] root package.json consumes the CLI with an exact-pinned devDep', () => {
     const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8')) as {
       scripts: Record<string, string>;
+      devDependencies: Record<string, string>;
     };
-    expect(pkg.scripts['okf:check']).toContain('scripts/okf-check.ts');
-    expect(pkg.scripts['trace']).toBeDefined(); // runs alongside trace
+    expect(pkg.scripts['okf:check']).toBe('okf check');
+    expect(pkg.scripts['okf:index']).toBe('okf index');
+    expect(pkg.scripts['okf:link']).toBe('okf link');
+    // beta channel: exact pin (SemVer ranges do not resolve prereleases)
+    expect(pkg.devDependencies['@solidgraph-io/okf-tools']).toMatch(/^\d+\.\d+\.\d+-beta\.\d+$/);
+    expect(pkg.scripts['trace']).toBeDefined(); // trace stays local (its own gate)
   });
 
   it('[SPEC-DOCS-OKF-001/RF-7] CI runs okf:check + okf:index --check in its own step', () => {
@@ -250,14 +128,29 @@ describe('[SPEC-DOCS-OKF-001/RF-7] pnpm okf:check wiring', () => {
   });
 });
 
-// ── RNF-1: migration is additive — bodies preserved under frontmatter ─────────
+// ── RF-8: progressive-disclosure indexes are present and fresh ────────────────
+
+describe('[SPEC-DOCS-OKF-001/RF-8] per-directory indexes up to date', () => {
+  it('[SPEC-DOCS-OKF-001/RF-8] okf index --check passes (no stale index)', () => {
+    expect(out(indexCheck)).not.toContain('STALE');
+    expect(indexCheck.status).toBe(0);
+  });
+
+  it('[SPEC-DOCS-OKF-001/RF-8] every non-empty docs/ subdir has its index.md', () => {
+    for (const sub of ['specs', 'adr', 'prompts', 'deploy']) {
+      expect(fs.existsSync(path.join(DOCS, sub, 'index.md'))).toBe(true);
+    }
+  });
+});
+
+// ── RNF-1: migration stayed additive — original bodies preserved ──────────────
 
 describe('[SPEC-DOCS-OKF-001/RNF-1] additive migration', () => {
   it('[SPEC-DOCS-OKF-001/RNF-1] spec keeps its original body header below frontmatter', () => {
     const spec = fs.readFileSync(path.join(DOCS, 'specs/SPEC-DOCS-OKF-001.md'), 'utf-8');
     expect(spec.startsWith('---')).toBe(true);
-    expect(spec).toContain('- **ID:** SPEC-DOCS-OKF-001'); // original header intact
-    expect(spec).toContain('## Requisitos funcionales'); // original body intact
+    expect(spec).toContain('- **ID:** SPEC-DOCS-OKF-001');
+    expect(spec).toContain('## Requisitos funcionales');
   });
 
   it('[SPEC-DOCS-OKF-001/RNF-1] ADR keeps its Estado header below frontmatter', () => {
@@ -270,91 +163,40 @@ describe('[SPEC-DOCS-OKF-001/RNF-1] additive migration', () => {
   });
 });
 
-// ── RNF-2: minimal deps, fast ─────────────────────────────────────────────────
+// ── RNF-2: the conformance run stays fast ─────────────────────────────────────
 
-describe('[SPEC-DOCS-OKF-001/RNF-2] checker perf and dependencies', () => {
-  it('[SPEC-DOCS-OKF-001/RNF-2] checkBundle(docs/) completes in < 2s', () => {
-    const t0 = performance.now();
-    checkBundle(DOCS);
-    expect(performance.now() - t0).toBeLessThan(2000);
-  });
-
-  it('[SPEC-DOCS-OKF-001/RNF-2] checker imports only node builtins + yaml', () => {
-    const src = fs.readFileSync(CHECKER, 'utf-8');
-    const imports = [...src.matchAll(/^import .* from '([^']+)';$/gm)].map((m) => m[1] ?? '');
-    expect(imports.length).toBeGreaterThan(0);
-    for (const imp of imports) {
-      // local './' helpers (md-zones) keep the zero-external-deps intent
-      expect(imp.startsWith('node:') || imp === 'yaml' || imp.startsWith('./')).toBe(true);
-    }
+describe('[SPEC-DOCS-OKF-001/RNF-2] checker perf', () => {
+  it('[SPEC-DOCS-OKF-001/RNF-2] okf check over docs/ completes in < 2s', () => {
+    expect(check.status).toBe(0);
+    expect(checkMs).toBeLessThan(2000);
   });
 });
 
-// ── RNF-3: permissive consumption ─────────────────────────────────────────────
+// ── RNF-3: permissive consumption — warnings never break the gate ─────────────
 
 describe('[SPEC-DOCS-OKF-001/RNF-3] permissive consumer', () => {
-  it('[SPEC-DOCS-OKF-001/RNF-3] extra keys + unknown type + broken link → zero errors', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/x.md':
-        '---\ntype: Custom\nspec_status: Draft\nepic: EPIC-X\n---\n\n# X\n\n[gone](/y.md)\n',
-    });
-    expect(checkBundle(dir).errors).toEqual([]);
-  });
-});
-
-// ── INV-1: hard conformance minimum ───────────────────────────────────────────
-
-describe('[SPEC-DOCS-OKF-001/INV-1] hard minimum breaks okf:check', () => {
-  it('[SPEC-DOCS-OKF-001/INV-1] each hard rule violated → error reported', () => {
-    const dir = makeBundle({
-      // no index.md (RF-1), one bare concept (RF-2), one untyped (RF-3)
-      'a.md': '# A\n',
-      'b.md': '---\ntitle: "b"\n---\n\n# B\n',
-    });
-    const res = checkBundle(dir);
-    expect(res.errors.length).toBe(3);
+  it('[SPEC-DOCS-OKF-001/RNF-3] okf link --check exits 0 despite known unresolved refs', () => {
+    // Historical prompts keep dead refs on purpose (prompt 52 hygiene decision);
+    // they surface as warnings and must never break the gate.
+    expect(linkCheck.status).toBe(0);
+    expect(out(linkCheck)).toMatch(/unresolved/);
   });
 });
 
 // ── INV-2: reserved files are never concepts ──────────────────────────────────
 
 describe('[SPEC-DOCS-OKF-001/INV-2] index.md / log.md reserved', () => {
-  it('[SPEC-DOCS-OKF-001/INV-2] subdir index.md and log.md need no frontmatter', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      'specs/index.md': '# Catalog\n\n(no frontmatter — reserved)\n',
-      'log.md': '# Log\n\n## 2026-07-09\n\n- adopted OKF\n',
-      'specs/a.md': VALID_CONCEPT,
-    });
-    const res = checkBundle(dir);
-    expect(res.errors).toEqual([]);
-    expect(res.concepts).toBe(1); // only specs/a.md counts as a concept
-  });
-
-  it('[SPEC-DOCS-OKF-001/INV-2] real docs/log.md: reserved, ISO-dated, never indexed (OKF §7)', () => {
+  it('[SPEC-DOCS-OKF-001/INV-2] docs/log.md carries no frontmatter and ISO-dated entries', () => {
     const log = fs.readFileSync(path.join(DOCS, 'log.md'), 'utf-8');
-    expect(log.startsWith('---')).toBe(false); // reserved: no frontmatter
-    expect(log).toMatch(/\*\*\d{4}-\d{2}-\d{2}\*\*/); // ISO YYYY-MM-DD entries
-    // the index generator never lists log.md as a concept
-    for (const content of buildIndexes(DOCS).values()) {
-      expect(content).not.toContain('(log.md)');
-    }
+    expect(log.startsWith('---')).toBe(false);
+    expect(log).toMatch(/\*\*\d{4}-\d{2}-\d{2}\*\*/);
   });
-});
 
-// ── INV-3: concept IDs are paths — moved docs surface as broken links ─────────
-
-describe('[SPEC-DOCS-OKF-001/INV-3] renames surface via link resolution', () => {
-  it('[SPEC-DOCS-OKF-001/INV-3] link to a moved concept path → RF-5 warning', () => {
-    const dir = makeBundle({
-      'index.md': ROOT_INDEX,
-      // b.md moved to specs/b.md but a.md still links the old concept ID /b.md
-      'specs/a.md': '---\ntype: Spec\n---\n\n# A\n\nSee [B](/b.md).\n',
-      'specs/b.md': VALID_CONCEPT,
-    });
-    const res = checkBundle(dir);
-    expect(res.warnings.some((w) => w.includes('/b.md'))).toBe(true);
-    expect(res.errors).toEqual([]);
+  it('[SPEC-DOCS-OKF-001/INV-2] generated indexes never list reserved files', () => {
+    for (const sub of ['specs', 'adr', 'prompts', 'deploy']) {
+      const idx = fs.readFileSync(path.join(DOCS, sub, 'index.md'), 'utf-8');
+      expect(idx).not.toContain('(log.md)');
+      expect(idx).not.toContain('(index.md)');
+    }
   });
 });
