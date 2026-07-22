@@ -45,7 +45,7 @@ Pasos (haz el **(b) primero** — valida sin construir nada):
 
 En Cloudflare **Zero Trust** (free ≤ 50 usuarios):
 
-1. Añade una **Access Application** (self-hosted) cubriendo `https://sg-webpage.solidgraph.dev/admin/*` **y** el
+1. Añade una **Access Application** (self-hosted) cubriendo `https://solidgraph.io/admin/*` **y** el
    endpoint del Worker puente (Paso 2).
 2. **Método de login** amigable, sin GitHub: **One-time PIN por email**, Google, o magic link (el que prefieras).
 3. **Policy:** allow por email(s) del/los editor(es) del cliente (o un dominio). Esto define quién puede editar.
@@ -69,16 +69,21 @@ En `apps/web/public/admin/config.yml`, `backend.base_url` → la URL del **Worke
 
 ## Paso 4 — Verificación (end-to-end)
 
-1. `sg-webpage.solidgraph.dev/admin/` → **Cloudflare Access** pide el login (email/Google), **sin** GitHub.
+1. `solidgraph.io/admin/` → **Cloudflare Access** pide el login (email/Google), **sin** GitHub.
 2. Tras pasar Access → Sveltia carga ya "logueado" (token de servicio vía puente) y muestra las colecciones.
 3. Editar + **Save** → commit a `main` (autor = identidad de servicio; email del editor en el mensaje).
 4. El push dispara el pipeline (build fail-fast valida contra los schemas Zod — INV-1); el cambio aparece tras
    el rebuild.
 
-## Coherencia de rama (verificar)
+## Modelo de rama/entorno (confirmado)
 
-El CMS commitea a `main`. Confirma que `sg-webpage.solidgraph.dev` **se construye desde `main`**; si despliega
-desde otra rama, alinéalo (o los editores guardan sin ver el cambio).
+- **Producción = `solidgraph.io`**, se construye desde **`main`**. El CMS (`solidgraph.io/admin`) commitea a
+  `main` → prod se reconstruye → el cliente ve el cambio. **Coherente** (git-flow: main = prod).
+- **Dev = `*.solidgraph.dev`**, desde **`develop`** — **no** es el destino del CMS. Su `/admin` también apuntaría
+  a `main` (misma config), así que **no** se usa para editar contenido en dev; para eso, el modo local (FSA).
+- **Prerrequisito del CMS:** el **deploy de producción** (`solidgraph.io` desde `main`) debe existir para activar
+  el CMS end-to-end. Mientras no exista, el CMS solo funciona en modo local (FSA). Access, el Worker y el
+  `base_url` se configuran contra **`solidgraph.io`**.
 
 ## Notas de seguridad (RNF-2)
 
@@ -88,5 +93,8 @@ desde otra rama, alinéalo (o los editores guardan sin ver el cambio).
 
 ## Estado
 
-- RF-1..RF-5: hechos. **RF-6: pendiente** — Paso 0 (spike) + Pasos 1–2 (tú) → Paso 3 (prompt 56) → Paso 4
-  (verificación conjunta). El OAuth por-editor original queda **descartado** (ADR-0017).
+- RF-1..RF-5: hechos. Spike (Paso 0) **validado**. El Worker puente está **construido** ([SPEC-CMS-002](/specs/SPEC-CMS-002.md), prompt 57).
+- **RF-6 (activación): diferida al lanzamiento de producción.** Por decisión de proyecto, `solidgraph.io` no se
+  despliega hasta que el sitio esté feature-complete (métricas, chatbot, admin). Los Pasos 1–3 (Access + secret +
+  deploy del Worker + `base_url`) se ejecutan **en el lanzamiento**, contra `solidgraph.io`. Hasta entonces el
+  contenido se edita en **modo local (FSA)**. El OAuth por-editor original queda **descartado** (ADR-0017).

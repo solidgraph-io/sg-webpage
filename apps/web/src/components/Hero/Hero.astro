@@ -7,6 +7,7 @@ import Pill from '../Pill.astro';
 import Button from '../Button.astro';
 import FloatingCard from '../FloatingCard.astro';
 import logoNavIcon from '../../assets/logo_nav_icon_primary_288h.webp';
+import { ctaEventName } from '../../lib/analytics';
 
 type Props = HeroProps;
 
@@ -36,7 +37,12 @@ const { pill, title, subtitle, ctas, snippet, preview, floats } = Astro.props;
     <div class={styles['hero-ctas']} data-reveal style="--d:200ms">
       {
         ctas.map((cta) => (
-          <Button variant={cta.variant} href={cta.href} magnetic>
+          <Button
+            variant={cta.variant}
+            href={cta.href}
+            magnetic
+            data-umami-event={ctaEventName(cta.href)}
+          >
             <span>{cta.label}</span>
             {cta.icon && (
               <svg width="16" height="16" aria-hidden="true">

@@ -9,3 +9,12 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+// Umami tracker global (SPEC-ANALYTICS-001) — present only when the /stats
+// script loaded; every call site uses `window.umami?.track(...)` so a
+// missing tracker (no env configured) is a silent no-op.
+interface Window {
+  umami?: {
+    track: (event: string, data?: Record<string, unknown>) => void;
+  };
+}

@@ -41,5 +41,12 @@ const {
       </ul>
     )
   }
-  <a href={ctaHref} class={styles['plan-cta']}>{ctaLabel}</a>
+  <a
+    href={ctaHref}
+    class={styles['plan-cta']}
+    data-umami-event="cta_plan_start"
+    data-umami-event-plan={name}
+  >
+    {ctaLabel}
+  </a>
 </div>

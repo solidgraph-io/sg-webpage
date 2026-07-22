@@ -1,0 +1,24 @@
+---
+/**
+ * Analytics — Umami first-party tracker (SPEC-ANALYTICS-001/RF-1, INV-1).
+ * Same-origin script + beacon endpoint (/stats/*, proxied by
+ * src/pages/stats/*) so nothing loads from Umami's own host. Both env vars
+ * are optional: without them this renders nothing (no-op — the app behaves
+ * identically, INV-1) and /stats/* answer 404.
+ */
+import { ANALYTICS_UMAMI_HOST, ANALYTICS_UMAMI_WEBSITE_ID } from 'astro:env/server';
+
+const enabled = Boolean(ANALYTICS_UMAMI_HOST && ANALYTICS_UMAMI_WEBSITE_ID);
+---
+
+{
+  enabled && (
+    <script
+      async
+      defer
+      src="/stats/script.js"
+      data-website-id={ANALYTICS_UMAMI_WEBSITE_ID}
+      data-host-url="/stats"
+    />
+  )
+}

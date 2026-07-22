@@ -25,6 +25,19 @@ export default defineConfig({
       LEAD_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       LEAD_FROM_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       LEAD_PROVIDER: envField.string({ context: 'server', access: 'secret', optional: true }),
+      // Umami first-party analytics (SPEC-ANALYTICS-001) — same runtime-read
+      // pattern as Turnstile/lead vars above: unset in dev/CI → the tracker
+      // and its /stats/* proxy routes stay no-op.
+      ANALYTICS_UMAMI_HOST: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+      ANALYTICS_UMAMI_WEBSITE_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
     },
   },
   vite: {

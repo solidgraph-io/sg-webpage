@@ -36,7 +36,7 @@ GitHub.
 - **RF-3 (token como secreto)** — el token de servicio es un **secret del Worker** (`GITHUB_SERVICE_TOKEN`),
   **nunca** en el repo. Es un **PAT fine-grained** con `Contents: read/write` sobre `solidgraph-io/sg-webpage`.
 - **RF-4 (allowlist de dominio)** — valida el `site_id`/origen contra `ALLOWED_DOMAINS`
-  (`sg-webpage.solidgraph.dev`), como el relay original.
+  (`solidgraph.io`), como el relay original.
 - **RF-5 (config del CMS)** — `apps/web/public/admin/config.yml`: `backend.base_url` → la URL del Worker;
   `name: github`, `repo: solidgraph-io/sg-webpage`, `branch: main`. (Lo aplica el prompt de config; ver runbook.)
 - **RF-6 (atribución — opcional/stretch)** — incrustar el **email del editor** (del JWT de Access) en la

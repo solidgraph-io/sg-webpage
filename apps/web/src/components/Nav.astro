@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Button from './Button.astro';
+import { ctaEventName } from '../lib/analytics';
 
 interface NavLink {
   label: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const { links, cta } = Astro.props;
+const navCtaEvent = ctaEventName(cta.href);
 ---
 
 <header class="nav" id="nav">
@@ -47,7 +49,7 @@ const { links, cta } = Astro.props;
       </nav>
     </details>
 
-    <Button variant="primary" href={cta.href} magnetic class="nav-cta">
+    <Button href={cta.href} magnetic class="nav-cta" data-umami-event={navCtaEvent}>
       <span>{cta.label}</span>
     </Button>
   </div>
@@ -88,7 +90,6 @@ const { links, cta } = Astro.props;
   .nav.hide {
     transform: translateY(-130%);
   }
-
   .nav-links {
     display: flex;
     gap: 6px;
@@ -113,12 +114,10 @@ const { links, cta } = Astro.props;
     padding: 11px 22px;
     font-size: 13px;
   }
-
   /* ── Mobile ── */
   .nav-mobile {
     display: none;
   }
-
   @media (max-width: 900px) {
     .nav-links {
       display: none;

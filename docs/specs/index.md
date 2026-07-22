@@ -3,6 +3,7 @@
 # specs/
 
 * [SPEC-A11Y-001 — Accesibilidad transversal (WCAG 2.1 AA)](SPEC-A11Y-001.md) - Cada sección se testeó con axe, pero falta la auditoría a nivel de página y los detalles transversales (skip-link, orden de foco, landmarks, reduced-motion) + un gate que evite re…
+* [SPEC-ANALYTICS-001 — Analítica first-party (Umami self-hosted): pageviews + eventos de conversión](SPEC-ANALYTICS-001.md) - Instrumentar el sitio con Umami self-hosted (cookieless, sin banner): tracker cargado por astro:env en runtime, pageviews automáticos y eventos declarativos de conversión (CTAs, envío de lead, plan de interés), sin regresar el perf 100 ni la fidelidad. EPIC-10.
 * [SPEC-CMS-001 — CMS Sveltia (`/admin`, git-based) sobre las colecciones CMS-ready](SPEC-CMS-001.md) - El contenido ya vive en Content Collections editables por archivo (SPEC-CONTENT-001).
 * [SPEC-CMS-002 — Puente de auth del CMS (Cloudflare Access → token de servicio) sin OAuth de GitHub](SPEC-CMS-002.md) - Worker minúsculo que, tras validar Cloudflare Access, entrega a Sveltia el token de una cuenta de servicio por el handshake postMessage de Netlify/Decap, sin el roundtrip de OAuth de GitHub. Hace el CMS agnóstico al cliente (ADR-0017). Spike validado.
 * [SPEC-CONTENT-001 — Capa de contenido CMS-ready (Content Collections + Zod)](SPEC-CONTENT-001.md) - Tras el rebuild v3, todo el contenido de la home vive inline como constantes const en index.astro (navLinks, hero, marquee, painItems…).

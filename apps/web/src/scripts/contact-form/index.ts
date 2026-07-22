@@ -60,6 +60,10 @@ function enhance(form: HTMLFormElement): void {
     if (r?.ok) {
       state = 'success';
       applyState(ui, state); // form replaced by the confirmation card (RF-4)
+      // SPEC-ANALYTICS-001/RF-3: conversion event, no-op if the tracker
+      // never loaded. plan_interest is categorical — never PII (RF-4).
+      const plan = form.querySelector<HTMLSelectElement>('#plan_interest')?.value || undefined;
+      window.umami?.track('lead', plan ? { plan } : {});
       return;
     }
 

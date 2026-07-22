@@ -4,6 +4,7 @@ import styles from './HowItWorks.module.scss';
 import Aurora from '../Aurora.astro';
 import Eyebrow from '../Eyebrow.astro';
 import Button from '../Button.astro';
+import { ctaEventName } from '../../lib/analytics';
 
 type Props = HowItWorksProps;
 
@@ -35,7 +36,12 @@ const {
       <div class={styles['how-ctas']}>
         {
           ctas.map((cta) => (
-            <Button variant={cta.variant} href={cta.href} magnetic>
+            <Button
+              variant={cta.variant}
+              href={cta.href}
+              magnetic
+              data-umami-event={ctaEventName(cta.href)}
+            >
               <span>{cta.label}</span>
               {cta.icon && (
                 <svg width="16" height="16" aria-hidden="true">
