@@ -267,7 +267,9 @@ describe('[SPEC-SEC-016/RF-5] /.well-known/security.txt', () => {
     };
     const res = await mod.GET();
     const body = await res.text();
-    expect(body).toMatch(/^Contact:\s*mailto:.+$/m);
+    // Contact confirmed by the human (SPEC-SEC-016/RF-5) — andys@, not the
+    // security@ placeholder the route shipped with in prompt 60.
+    expect(body).toMatch(/^Contact:\s*mailto:andys@solidgraph\.io$/m);
     expect(body).toMatch(/^Expires:\s*\d{4}-\d{2}-\d{2}T/m);
     expect(body).toMatch(/^Preferred-Languages:/m);
   });

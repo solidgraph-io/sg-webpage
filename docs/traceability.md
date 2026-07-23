@@ -543,8 +543,8 @@ File: `docs/specs/SPEC-SEC-016.md`
 | RF-4 | ✅ | apps/web/src/__tests__/sec-016.test.ts:227, apps/web/src/__tests__/sec-016.test.ts:228, apps/web/src/__tests__/sec-016.test.ts:236, apps/web/src/__tests__/sec-016.test.ts:242, apps/web/src/__tests__/sec-016.test.ts:248 |
 | RF-5 | ✅ | apps/web/src/__tests__/sec-016.test.ts:257, apps/web/src/__tests__/sec-016.test.ts:258, apps/web/src/__tests__/sec-016.test.ts:264 |
 | RNF-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:113 |
-| RNF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:278, apps/web/src/__tests__/sec-016.test.ts:279 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:292, apps/web/src/__tests__/sec-016.test.ts:293, apps/web/src/__tests__/sec-016.test.ts:301 |
+| RNF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:280, apps/web/src/__tests__/sec-016.test.ts:281 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:294, apps/web/src/__tests__/sec-016.test.ts:295, apps/web/src/__tests__/sec-016.test.ts:303 |
 | INV-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:50, apps/web/src/__tests__/sec-016.test.ts:81 |
 | INV-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:148 |
 | INV-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:198 |

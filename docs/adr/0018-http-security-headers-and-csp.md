@@ -27,7 +27,7 @@ Cloudflare**. El origen cubre los **documentos SSR**, que es donde importan CSP 
 - **CSP (afinada a la app):**
   ```
   default-src 'self';
-  script-src 'self' https://challenges.cloudflare.com;
+  script-src 'self' https://challenges.cloudflare.com <sha256-… por respuesta>;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data:;
   font-src 'self';
@@ -39,11 +39,15 @@ Cloudflare**. El origen cubre los **documentos SSR**, que es donde importan CSP 
     ADR/SPEC-ANALYTICS-001) → cubierto por `'self'`; Turnstile carga `challenges.cloudflare.com` y su iframe.
   - `style-src 'unsafe-inline'` es **necesario**: `inlineStylesheets:'always'` (prompt 47) inlinea CSS y hay
     atributos `style=` en componentes. Es un trade-off aceptado (el vector crítico es script, no style).
-- **Scripts inline de Astro:** si el build emite algún `<script>` inline (bootstrap de islands), `script-src`
-  estricta lo rompería. **Preferido:** usar el **CSP experimental de Astro** (`experimental.csp`, auto-hashea sus
-  inline scripts/styles) para la directiva CSP, y el middleware para el resto de cabeceras. Alternativa: CSP en
-  middleware **verificada empíricamente** (report-only primero, revisar consola por violaciones) antes de
-  enforcar.
+- **Scripts inline de Astro → hash dinámico por respuesta (decisión de implementación, prompt 60):** durante la
+  verificación empírica se vio que Astro **a veces inlinea el bundle de una página** como `<script type="module">`
+  sin `src` (observado en Contact: form + Turnstile). Un **hash hardcodeado se rompería en cada build** (el output
+  minificado cambia) y `experimental.csp` no encajó. Solución adoptada: el middleware **lee el body de cada
+  respuesta de documento y calcula el SHA-256 de los scripts inline realmente presentes**, añadiéndolos a
+  `script-src` por-request (`scriptHashesFrom`/`buildCsp` en `lib/security-headers.ts`, lógica pura y testeable). Se
+  excluyen los `<script type="application/ld+json">` (datos, no ejecutables). El único script verdaderamente
+  estático (toggle JS de `BaseLayout`) se **externalizó a `public/enable-js.js`** (mismo timing, cubierto por
+  `'self'`). Así **nunca** hay `'unsafe-inline'` en `script-src` (INV-1), sin acoplarse al hash de un build.
 - **`/admin` (Sveltia):** carga desde un CDN y usa patrones incompatibles con la CSP estricta. `/admin` va
   **detrás de Cloudflare Access** (staging y prod — ADR-0017) y es estático; el middleware le aplica una CSP
   **relajada** (o la omite) para no romperlo. No se mezcla la CSP del sitio con la del CMS.
@@ -57,10 +61,18 @@ Cloudflare**. El origen cubre los **documentos SSR**, que es donde importan CSP 
 
 ## Consecuencias
 
-- Nuevo `src/middleware.ts` + (opcional) `experimental.csp` en `astro.config`.
-- **Verificación obligatoria:** cargar el sitio con la CSP y confirmar en consola **cero violaciones** (Turnstile
-  carga, Umami envía a `/stats`, el form postea). Si algo rompe, ajustar la directiva concreta y documentar.
-- HSTS con `preload` implica compromiso (difícil de revertir) → se activa consciente, en Cloudflare.
+- Nuevo `src/middleware.ts` (glue) + `lib/security-headers.ts` (lógica pura: `scriptHashesFrom`, `buildCsp`,
+  `headersFor`, `isExemptPath`). No se usó `experimental.csp`.
+- **Coste por-request:** el middleware lee y hashea el body de cada respuesta de documento. Verificado sin impacto
+  en Lighthouse (99/100/100/100, el 99 de perf es baseline de la máquina). Aceptable; si algún día pesa, se puede
+  cachear el hash por ruta/build.
+- **Verificado empíricamente (prompt 60):** Chromium real vía Playwright, **cero violaciones de CSP** en consola
+  incluso rellenando el formulario (Turnstile carga, form postea, Umami a `/stats`). 28 tests nuevos
+  `[SPEC-SEC-016/RF-1..5, RNF-1..3, INV-1..3]`.
+- **Nota de tooling:** los tests de a11y inyectaban axe-core con `page.addScriptTag` (un `<script>` de DOM,
+  bloqueado por la CSP) → se migraron a `page.evaluate(source)` (vía CDP, no sujeto a `script-src`). Solo test, no
+  toca producción.
+- HSTS con `preload` implica compromiso (difícil de revertir) → se activa consciente, en Cloudflare (runbook).
 - `/admin` mantiene su propia política (relajada/omitida) mientras esté Access-gated.
 
 ## Citations

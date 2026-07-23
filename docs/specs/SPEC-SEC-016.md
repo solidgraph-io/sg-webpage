@@ -42,6 +42,7 @@ de regresión por hallazgo**.
   noindex, nofollow`, y el `<meta name="robots">` del layout dice `noindex, nofollow`. En prod: comportamiento
   normal (`index, follow`). (El **bloqueo de acceso** al staging = Cloudflare Access, runbook.)
 - **RF-5 (security.txt)** — ruta `/.well-known/security.txt` con contacto de seguridad y `Expires` (RFC 9116).
+  **Contacto confirmado: `andys@solidgraph.io`** (reemplaza el placeholder `security@solidgraph.io` del prompt 60).
 
 ## Requisitos no funcionales
 
