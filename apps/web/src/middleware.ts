@@ -1,30 +1,38 @@
 /**
- * middleware — HTTP security headers + CSP (SPEC-SEC-016/RF-1, ADR-0018).
- * Thin Astro glue; the actual header/hash logic is in lib/security-headers.ts
+ * middleware — static HTTP security headers (SPEC-SEC-016/RF-1, ADR-0018).
+ * Thin Astro glue; the actual header logic is in lib/security-headers.ts
  * (kept import-free of astro:* so it's directly unit-testable).
+ *
+ * Deliberately does NOT read the response body (no body-buffering read, no
+ * regex, no hashing) — that was prompt 60's approach and it de-streamed
+ * Astro's SSR response while blocking the event loop on every request,
+ * causing a real Lighthouse CI regression (prompt 61). CSP is generated
+ * separately by Astro's `experimental.csp` (astro.config.ts) at render time
+ * and is already present on `response` by the time we see it here.
  */
 import { defineMiddleware } from 'astro:middleware';
-import { headersFor, isExemptPath, scriptHashesFrom } from './lib/security-headers';
+import { headersFor, stripStyleHashesFromCsp } from './lib/security-headers';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
-  const { pathname } = context.url;
-  const contentType = response.headers.get('content-type');
-
-  // Fast path: skip the body-read entirely when we won't add headers anyway.
-  if (isExemptPath(pathname) || !(contentType ?? '').includes('text/html')) {
-    return response;
-  }
-
   const env = await import('astro:env/server');
-  const html = await response.text();
-  const headers = headersFor(pathname, contentType, env.SITE_ENV, scriptHashesFrom(html));
-
-  const newResponse = new Response(html, { status: response.status, headers: response.headers });
+  const headers = headersFor(
+    context.url.pathname,
+    response.headers.get('content-type'),
+    env.SITE_ENV,
+  );
   if (headers) {
     for (const [key, value] of Object.entries(headers)) {
-      newResponse.headers.set(key, value);
+      response.headers.set(key, value);
     }
   }
-  return newResponse;
+
+  // See stripStyleHashesFromCsp: a plain header-value edit, not a body read.
+  const csp = response.headers.get('content-security-policy');
+  if (csp) {
+    const sanitized = stripStyleHashesFromCsp(csp);
+    if (sanitized !== csp) response.headers.set('content-security-policy', sanitized);
+  }
+
+  return response;
 });

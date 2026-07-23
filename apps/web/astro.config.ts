@@ -51,4 +51,34 @@ export default defineConfig({
       },
     },
   },
+  // SPEC-SEC-016/RF-1 (F-02, ADR-0018) — CSP hashed at render-time by Astro's
+  // own compiler-generated code (cheap, per-script, no full-body re-parse),
+  // NOT by middleware reading/regex-scanning the response body (prompt 61
+  // fixed a real perf regression: that approach de-streamed SSR and blocked
+  // the event loop on every request). None of our routes are prerendered, so
+  // Astro emits this as a genuine `Content-Security-Policy` response header
+  // (not a <meta> tag) — frame-ancestors works correctly.
+  // script-src NEVER carries 'unsafe-inline' (INV-1); style-src does, by
+  // design (inlineStylesheets:'always' + style= attributes — ADR-0018 trade-off).
+  experimental: {
+    csp: {
+      scriptDirective: {
+        resources: ["'self'", 'https://challenges.cloudflare.com'],
+      },
+      styleDirective: {
+        resources: ["'self'", "'unsafe-inline'"],
+      },
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+        "connect-src 'self' https://challenges.cloudflare.com",
+        'frame-src https://challenges.cloudflare.com',
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+        "object-src 'none'",
+      ],
+    },
+  },
 });

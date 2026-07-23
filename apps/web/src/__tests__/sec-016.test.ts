@@ -7,7 +7,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { headersFor, isExemptPath, scriptHashesFrom } from '../lib/security-headers';
+import { headersFor, isExemptPath, stripStyleHashesFromCsp } from '../lib/security-headers';
 import { handleLead } from '../pages/api/lead';
 import type { LeadPort } from '../lib/lead-port';
 import { resetRateLimitForTesting } from '../pages/api/lead';
@@ -20,47 +20,27 @@ beforeEach(() => {
   resetRateLimitForTesting();
 });
 
-// ── F-02 (RF-1, INV-1): security headers + CSP ────────────────────────────────
+// ── F-02 (RF-1, INV-1): security headers ──────────────────────────────────────
+// CSP itself is generated at render time by Astro's experimental.csp
+// (astro.config.ts) — see the dedicated describe blocks below for that and
+// for the RNF-2 perf-regression guard (prompt 61).
 
-describe('[SPEC-SEC-016/RF-1] document responses carry the security headers', () => {
-  it('[SPEC-SEC-016/RF-1] text/html response on a normal path gets all 5 headers', () => {
+describe('[SPEC-SEC-016/RF-1] document responses carry the static security headers', () => {
+  it('[SPEC-SEC-016/RF-1] text/html response on a normal path gets all 4 headers', () => {
     const headers = headersFor('/', 'text/html; charset=utf-8', undefined);
-    expect(headers).not.toBeNull();
-    expect(headers).toMatchObject({
+    expect(headers).toEqual({
       'X-Frame-Options': 'DENY',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
     });
-    expect(headers?.['Content-Security-Policy']).toBeTruthy();
   });
 
   it('[SPEC-SEC-016/RF-1] non-document responses (e.g. JSON) get no security headers', () => {
     expect(headersFor('/api/lead', 'application/json', undefined)).toBeNull();
   });
 
-  it('[SPEC-SEC-016/RF-1] CSP tunes Turnstile (challenges.cloudflare.com) and Umami same-origin', () => {
-    const csp = headersFor('/', 'text/html', undefined)?.['Content-Security-Policy'] ?? '';
-    expect(csp).toContain("script-src 'self' https://challenges.cloudflare.com");
-    expect(csp).toContain('https://challenges.cloudflare.com'); // frame-src / connect-src
-    expect(csp).toContain("frame-ancestors 'none'");
-    expect(csp).toContain("object-src 'none'");
-  });
-
-  it('[SPEC-SEC-016/INV-1] script-src never contains unsafe-inline', () => {
-    const csp = headersFor('/', 'text/html', undefined)?.['Content-Security-Policy'] ?? '';
-    const scriptSrc = /script-src[^;]*/.exec(csp)?.[0] ?? '';
-    expect(scriptSrc).not.toContain('unsafe-inline');
-  });
-
-  it('[SPEC-SEC-016/RF-1] X-Frame-Options DENY is coherent with frame-ancestors none', () => {
-    const headers = headersFor('/', 'text/html', undefined);
-    const csp = headers?.['Content-Security-Policy'] ?? '';
-    expect(headers?.['X-Frame-Options']).toBe('DENY');
-    expect(csp).toContain("frame-ancestors 'none'");
-  });
-
-  it('[SPEC-SEC-016/RF-1] /admin never gets the strict site CSP (Access-gated, CDN-loaded)', () => {
+  it('[SPEC-SEC-016/RF-1] /admin never gets the strict site headers (Access-gated, CDN-loaded)', () => {
     expect(isExemptPath('/admin')).toBe(true);
     expect(isExemptPath('/admin/index.html')).toBe(true);
     expect(headersFor('/admin', 'text/html', undefined)).toBeNull();
@@ -77,44 +57,114 @@ describe('[SPEC-SEC-016/RF-1] document responses carry the security headers', ()
     expect(src).toContain("from 'astro:middleware'");
     expect(src).toContain('headersFor');
   });
+});
 
-  it('[SPEC-SEC-016/RF-1][SPEC-SEC-016/INV-1] inline module scripts get a per-response sha256 hash in script-src', () => {
-    // Astro sometimes inlines a page's bundled client script (e.g. Contact's
-    // form+Turnstile bundle) as <script type="module"> with no src. A
-    // hardcoded hash would break on every rebuild, so the middleware hashes
-    // whatever's actually in THIS response body — this is the mechanism that
-    // keeps INV-1 (no unsafe-inline) true without silently blocking real,
-    // build-generated inline scripts.
-    const html = '<script type="module">const x = 1;</script>';
-    const hashes = scriptHashesFrom(html);
-    expect(hashes).toHaveLength(1);
-    expect(hashes[0]).toMatch(/^'sha256-[A-Za-z0-9+/]+=*'$/);
+// ── F-02 (RF-1, INV-1): CSP is build/render-time via experimental.csp ────────
 
-    const csp = headersFor('/', 'text/html', undefined, hashes)?.['Content-Security-Policy'] ?? '';
-    expect(csp).toContain(hashes[0]);
-    const scriptSrc = /script-src[^;]*/.exec(csp)?.[0] ?? '';
-    expect(scriptSrc).not.toContain('unsafe-inline'); // still true even with hashes present
+describe('[SPEC-SEC-016/RF-1][SPEC-SEC-016/INV-1] CSP config (astro.config.ts, experimental.csp)', () => {
+  it('[SPEC-SEC-016/RF-1] experimental.csp is enabled', () => {
+    const src = read('astro.config.ts');
+    expect(src).toMatch(/experimental:\s*{[\s\S]*csp:\s*{/);
   });
 
-  it('[SPEC-SEC-016/RF-1] scriptHashesFrom ignores external scripts (src=) and JSON-LD data blocks', () => {
-    const html = [
-      '<script src="/interactions.js" defer></script>',
-      '<script type="application/ld+json">{"@type":"Organization"}</script>',
-    ].join('\n');
-    expect(scriptHashesFrom(html)).toEqual([]);
+  it('[SPEC-SEC-016/INV-1] scriptDirective.resources never includes unsafe-inline', () => {
+    const src = read('astro.config.ts');
+    const block = /scriptDirective:\s*{[\s\S]*?}/.exec(src)?.[0] ?? '';
+    expect(block).toContain('challenges.cloudflare.com');
+    expect(block).not.toContain('unsafe-inline');
   });
 
-  it('[SPEC-SEC-016/RF-1] scriptHashesFrom is deterministic and dedupes identical scripts', () => {
-    const html = '<script type="module">foo();</script><script type="module">foo();</script>';
-    expect(scriptHashesFrom(html)).toHaveLength(1); // same content → same hash, deduped
-    expect(scriptHashesFrom(html)).toEqual(scriptHashesFrom(html)); // stable across calls
+  it('[SPEC-SEC-016/RF-1] styleDirective allows unsafe-inline (ADR-0018 trade-off: inlineStylesheets)', () => {
+    const src = read('astro.config.ts');
+    const block = /styleDirective:\s*{[\s\S]*?}/.exec(src)?.[0] ?? '';
+    expect(block).toContain('unsafe-inline');
   });
 
-  it('[SPEC-SEC-016/RNF-1] no unhashed inline scripts remain: the head bootstrap moved to an external file', () => {
-    // INV-1 requires script-src without unsafe-inline; the only inline
-    // execution risk was the early `.js` class toggle in BaseLayout — it now
-    // lives in an external same-origin file so 'self' covers it, no hash
-    // needed. This regression-tests that we didn't quietly reintroduce it.
+  it('[SPEC-SEC-016/RF-1] directives cover frame-ancestors, default-src, object-src, connect-src (Turnstile)', () => {
+    const src = read('astro.config.ts');
+    expect(src).toContain("frame-ancestors 'none'");
+    expect(src).toContain("default-src 'self'");
+    expect(src).toContain("object-src 'none'");
+    expect(src).toContain("connect-src 'self' https://challenges.cloudflare.com");
+  });
+});
+
+// ── F-02 (RF-1, INV-1): style-src hash vs unsafe-inline spec interaction ─────
+
+describe('[SPEC-SEC-016/RF-1] stripStyleHashesFromCsp keeps style unsafe-inline honored', () => {
+  it('[SPEC-SEC-016/RF-1] removes a style-src hash while keeping unsafe-inline and other directives', () => {
+    // Per the CSP spec, ANY hash present in style-src silently revokes
+    // 'unsafe-inline' for the whole directive (style-src-attr included) —
+    // and Astro's experimental.csp unconditionally hashes every inline
+    // <style> block it compiles, including scoped styles from legacy
+    // components not yet on CSS Modules. This is the header-only (not
+    // body-read) fix that keeps ADR-0018's accepted style unsafe-inline
+    // trade-off actually working.
+    const csp =
+      "default-src 'self'; script-src 'self' 'sha256-scriptHash='; " +
+      "style-src 'self' 'unsafe-inline' 'sha256-styleHash='; object-src 'none'";
+    const fixed = stripStyleHashesFromCsp(csp);
+    expect(fixed).toContain("style-src 'self' 'unsafe-inline'");
+    expect(fixed).not.toContain('sha256-styleHash');
+    expect(fixed).toContain('sha256-scriptHash'); // script hashes stay untouched
+    expect(fixed).toContain("object-src 'none'"); // unrelated directives untouched
+  });
+
+  it('[SPEC-SEC-016/RF-1] strips multiple style hashes in the same directive', () => {
+    const csp = "style-src 'self' 'unsafe-inline' 'sha256-aaa=' 'sha256-bbb=' 'sha384-ccc==';";
+    const fixed = stripStyleHashesFromCsp(csp);
+    expect(fixed).toBe("style-src 'self' 'unsafe-inline';");
+  });
+
+  it('[SPEC-SEC-016/RF-1] is a no-op when style-src has no hash (e.g. once legacy components migrate)', () => {
+    const csp = "style-src 'self' 'unsafe-inline';";
+    expect(stripStyleHashesFromCsp(csp)).toBe(csp);
+  });
+
+  it('[SPEC-SEC-016/RF-1] middleware.ts applies the fix to the header only, not the body', () => {
+    const src = read('src/middleware.ts');
+    expect(src).toContain('stripStyleHashesFromCsp');
+    expect(src).toContain("get('content-security-policy')");
+  });
+});
+
+// ── RNF-2: no per-request body work — the prompt-61 perf-regression guard ────
+
+describe('[SPEC-SEC-016/RNF-2] middleware does zero per-request body work', () => {
+  it('[SPEC-SEC-016/RNF-2] middleware.ts never calls response.text() / reads the body', () => {
+    // Prompt 60's middleware did `await response.text()` + a full-HTML regex
+    // scan + SHA-256 per request to build the CSP itself. That de-streamed
+    // Astro's SSR response and blocked the event loop, causing a real
+    // Lighthouse CI regression (TBT ~14s under CPU contention — prompt 61).
+    // CSP moved to build/render-time (experimental.csp); this guards against
+    // ever reintroducing a body read here.
+    const src = read('src/middleware.ts');
+    expect(src).not.toContain('.text()');
+    expect(src).not.toContain('scriptHashesFrom');
+    expect(src).not.toMatch(/new Response\(/); // never reconstructs the body
+  });
+
+  it('[SPEC-SEC-016/RNF-2] security-headers.ts no longer exposes any body/HTML-scanning helper', () => {
+    const src = read('src/lib/security-headers.ts');
+    expect(src).not.toContain('scriptHashesFrom');
+    expect(src).not.toContain('createHash');
+  });
+
+  it('[SPEC-SEC-016/RNF-2] headersFor stays O(1): no HTML/body parameter', () => {
+    // (pathname, contentType, siteEnv) only — no response/body/html param.
+    expect(headersFor).toHaveLength(3);
+  });
+});
+
+// ── RNF-1: no unhashed *static* inline scripts (the one we control directly) ──
+
+describe('[SPEC-SEC-016/RNF-1] the head bootstrap script stays external', () => {
+  it('[SPEC-SEC-016/RNF-1] BaseLayout loads it from public/enable-js.js, not inline', () => {
+    // INV-1 requires script-src without unsafe-inline. Astro's
+    // experimental.csp auto-hashes whatever inline scripts IT emits (e.g.
+    // Contact's bundled form+Turnstile module), but the one static script we
+    // hand-authored (the early .js class toggle) is external on purpose —
+    // one less thing for the CSP machinery to have to hash.
     const layout = read('src/layouts/BaseLayout.astro');
     expect(layout).not.toMatch(/<script is:inline>\s*document\.documentElement/);
     expect(fs.existsSync(path.join(WEB, 'public/enable-js.js'))).toBe(true);
@@ -272,20 +322,6 @@ describe('[SPEC-SEC-016/RF-5] /.well-known/security.txt', () => {
     expect(body).toMatch(/^Contact:\s*mailto:andys@solidgraph\.io$/m);
     expect(body).toMatch(/^Expires:\s*\d{4}-\d{2}-\d{2}T/m);
     expect(body).toMatch(/^Preferred-Languages:/m);
-  });
-});
-
-// ── RNF-2: headers-only — never touches the response body/render ─────────────
-
-describe('[SPEC-SEC-016/RNF-2] headers never affect the rendered document', () => {
-  it('[SPEC-SEC-016/RNF-2] headersFor is a pure header map — it never reads or returns a body', () => {
-    // Real render-fidelity (Lighthouse 100, QA-001 visual gate) is verified
-    // empirically per RF-1's build+serve check (see prompt 60 report); this
-    // regression-tests the code-level guarantee that headersFor is headers-only.
-    const headers = headersFor('/', 'text/html', undefined);
-    expect(headers).not.toBeNull();
-    expect(Object.values(headers ?? {}).every((v) => typeof v === 'string')).toBe(true);
-    expect(headersFor).toHaveLength(3); // (pathname, contentType, siteEnv) — no response/body param
   });
 });
 

@@ -24,11 +24,13 @@ de regresión por hallazgo**.
 
 ## Requisitos funcionales (testeables)
 
-- **RF-1 (F-02 — cabeceras de seguridad)** — `src/middleware.ts` fija en las respuestas de documento
-  `Content-Security-Policy`, `X-Frame-Options: DENY` (coherente con `frame-ancestors 'none'`),
-  `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` y `Permissions-Policy:
-  camera=(), microphone=(), geolocation=()`, según **[ADR-0018](/adr/0018-http-security-headers-and-csp.md)**.
-  CSP afinada a Turnstile + Umami same-origin + estilos inline; **`/admin`** con política relajada/omitida (está
+- **RF-1 (F-02 — cabeceras de seguridad)** — la respuesta de documento lleva `Content-Security-Policy`
+  (generada en build/render-time por `experimental.csp` de Astro — `astro.config.ts` —, NUNCA calculada
+  leyendo el body en runtime; ver RNF-2/prompt 61), `X-Frame-Options: DENY` (coherente con
+  `frame-ancestors 'none'`), `X-Content-Type-Options: nosniff`, `Referrer-Policy:
+  strict-origin-when-cross-origin` y `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+  (`src/middleware.ts`), según **[ADR-0018](/adr/0018-http-security-headers-and-csp.md)**. CSP afinada a
+  Turnstile + Umami same-origin + estilos inline; **`/admin`** con política relajada/omitida (está
   Access-gated). **HSTS** no aquí (Cloudflare). **Verificar cero violaciones de CSP** en consola (Turnstile
   carga, form postea, Umami envía a `/stats`).
 - **RF-2 (F-03 — IP fiable para rate-limit)** — en `apps/web/src/pages/api/lead.ts`, la IP se obtiene de
@@ -48,7 +50,11 @@ de regresión por hallazgo**.
 
 - **RNF-1 (no romper)** — CSP y cabeceras **no** rompen Turnstile, el form (`/api/lead`), ni Umami (`/stats`).
   Verificación empírica obligatoria (RF-1).
-- **RNF-2 (perf/fidelidad)** — cabeceras no afectan el render → **Lighthouse 100 y QA-001 intactos**.
+- **RNF-2 (perf/fidelidad)** — cabeceras no afectan el render → **Lighthouse 100 y QA-001 intactos**. El
+  middleware hace **cero trabajo por-request proporcional al tamaño de la respuesta** (sin leer/bufferizar el
+  body, sin regex sobre HTML, sin hash por request) — lo único que edita es el *valor* del header CSP (string
+  corto), nunca el body. Violarlo de-streamea el SSR y hunde Lighthouse bajo CPU compartida (TBT ~14s medido en
+  CI — prompt 61, corrigiendo una regresión real de prompt 60).
 - **RNF-3 (sin secretos)** — nada de secretos en el repo; el email de `security.txt` es público por diseño.
 
 ## Invariantes
