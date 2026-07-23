@@ -27,7 +27,7 @@ Cada subdirectorio tiene su `index.md` de *progressive disclosure* (OKF §6), ge
 <!-- okf:index:start -->
 - **[adr/](/adr/index.md)** — 6 conceptos · type: ADR
 - **[deploy/](/deploy/index.md)** — 3 conceptos · type: Runbook
-- **[prompts/](/prompts/index.md)** — 58 conceptos · type: Prompt
+- **[prompts/](/prompts/index.md)** — 59 conceptos · type: Prompt
 - **[specs/](/specs/index.md)** — 31 conceptos · type: Reference, Spec
 <!-- okf:index:end -->
 
