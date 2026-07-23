@@ -51,10 +51,14 @@ Cloudflare**. El origen cubre los **documentos SSR**, que es donde importan CSP 
   lleva `'unsafe-inline'` (INV-1). El único script verdaderamente estático (toggle JS de `BaseLayout`) se
   externalizó a `public/enable-js.js` (cubierto por `'self'`).
   - **Intento intermedio descartado (prompt 60 → revertido en 61):** hashear el body **en runtime** dentro del
-    middleware (`response.text()` + regex + SHA-256 por respuesta). Funcionaba y pasaba local, pero en el runner de
-    CI (CPU compartida) ese trabajo síncrono de O(tamaño-del-HTML) **satura node y hunde Lighthouse** (TBT 14 s,
-    TTI 21 s → `perf-test` en rojo), además de de-streamear el SSR. **Lección:** el middleware no debe hacer trabajo
-    por-request proporcional al tamaño de la respuesta.
+    middleware (`await response.text()` + regex + SHA-256 por respuesta). El coste de CPU del hash es
+    **despreciable** (medido: ~0,19 ms sobre 98 KB de HTML), así que NO era eso. El verdadero regresor es que
+    **`response.text()` de-streamea la respuesta SSR**: fuerza a materializar la página entera antes de enviar el
+    primer byte, anulando el streaming progresivo de Astro. Bajo CPU compartida (runner de Drone) ese "esperar el
+    render completo" dispara **TBT/TTI/LCP a la vez** (TBT 14 s, TTI 21 s → `perf-test` en rojo). **Lección:** el
+    middleware **no debe leer/consumir el body** (rompe el streaming), solo tocar cabeceras. Verificado tras el fix:
+    Lighthouse local 99/100/100/100, **TBT 0 ms**, idéntico bajo `taskset -c 0` (1 core) — sin trabajo por-request
+    proporcional a la respuesta.
   - **Hallazgo durante la implementación (prompt 61) — interacción hash/unsafe-inline en `style-src`:** Astro
     hashea *incondicionalmente* cualquier `<style>` scoped que compile, incluidos los de los ~22 componentes
     "planos" pre-ADR-0012 (aún sin migrar a CSS Modules — migración fuera de alcance aquí). Por spec de CSP, la

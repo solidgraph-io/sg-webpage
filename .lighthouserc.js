@@ -5,7 +5,15 @@ module.exports = {
       url: ['http://localhost:4321/'],
       startServerCommand: 'pnpm --filter @solidgraph/web preview --port 4321',
       startServerReadyPattern: 'Local',
-      numberOfRuns: 1,
+      // 3 runs, asserted against the median (LHCI's default aggregation for
+      // numeric metrics) — absorbs residual runner jitter without masking a
+      // real regression (which would be hundreds of ms, not noise). This
+      // does NOT replace running perf-test isolated (prompt 62 serialized it
+      // after visual/a11y so it stops fighting 2 other Chromium instances
+      // for the same Drone agent) — both fixes address different noise
+      // sources: isolation removes CPU contention, the median absorbs what's
+      // left over after that.
+      numberOfRuns: 3,
       settings: {
         // Docker root → --no-sandbox. --headless=new = modo headless estable.
         // --disable-dev-shm-usage: /dev/shm en contenedores es ~64MB → el tab de Chrome crashea
@@ -18,6 +26,9 @@ module.exports = {
       // SPEC-PERF-001/RF-1 — blocking performance budgets
       // Budgets are CI-safe (generous enough for headless Chrome on any machine).
       // Real user experience targets are tighter — adjust as prod data arrives.
+      // Explicit (matches numberOfRuns:3's default aggregation; spelled out
+      // so the pairing isn't implicit).
+      aggregationMethod: 'median',
       assertions: {
         'largest-contentful-paint': ['error', { maxNumericValue: 3500 }],
         'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],

@@ -216,6 +216,27 @@ describe('SPEC-PERF-001 — Performance gate', () => {
   // ── RNF-1: budgets are realistic and documented ──────────────────────────────
 
   describe('[SPEC-PERF-001/RNF-1] budgets are realistic (achievable on current home)', () => {
+    // prompt 62: perf-test now runs isolated (depends_on: [visual-test,
+    // a11y-test] in .drone.yml — no more 3 Chromium instances fighting for
+    // the same Drone agent) AND numberOfRuns:3 asserts against the median,
+    // absorbing whatever runner jitter is left over. Two independent fixes
+    // for two layers of noise; both belong under "realistic, CI-safe budgets".
+    it('[SPEC-PERF-001/RNF-1] collect.numberOfRuns is 3 (median absorbs runner jitter)', () => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const cfg = require(path.join(ROOT, '.lighthouserc.js')) as {
+        ci?: { collect?: { numberOfRuns?: number } };
+      };
+      expect(cfg.ci?.collect?.numberOfRuns).toBe(3);
+    });
+
+    it('[SPEC-PERF-001/RNF-1] assert.aggregationMethod is explicit median', () => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const cfg = require(path.join(ROOT, '.lighthouserc.js')) as {
+        ci?: { assert?: { aggregationMethod?: string } };
+      };
+      expect(cfg.ci?.assert?.aggregationMethod).toBe('median');
+    });
+
     it('[SPEC-PERF-001/RNF-1] LCP budget ≤ 4000 ms (CI-safe for headless Chrome)', () => {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const cfg = require(path.join(ROOT, '.lighthouserc.js')) as {

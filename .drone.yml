@@ -1,14 +1,18 @@
 # SolidGraph Solutions LLC — DroneCI Pipeline (web-only)
 # SPEC-INFRA-001/RF-8 · SPEC-DEPLOY-002
 #
-# Gates (dependency graph — build-once, gates en paralelo):
+# Gates (dependency graph — build-once, visual+a11y en paralelo, perf serializado tras ellos):
 #
-#   install → validate → test ──→ build ──────────────────────────────────────┐
-#          └→ okf-check ────────────┘  └→ install-glibc → visual-test ─┐      │
-#             (docs bundle)                              → a11y-test   ─┼────→ push-dev → deploy-dev  (develop)
-#                                                        → perf-test*  ─┘      push-prod → deploy      (main/stub→promote)
+#   install → validate → test ──→ build ──────────────────────────────────────────┐
+#          └→ okf-check ────────────┘  └→ install-glibc → visual-test ─┐          │
+#             (docs bundle)                              → a11y-test   ─┼→ perf-test* → push-dev → deploy-dev  (develop)
+#                                                                          push-prod → deploy      (main/stub→promote)
 #
-# * perf-test: bloqueante en develop/main push; skip en feature/PR (event push solo).
+# * perf-test: bloqueante en develop/main push; skip en feature/PR (event push solo). Serializado
+#   tras visual+a11y (depends_on: [visual-test, a11y-test]) — NO en paralelo con ellos (prompt 62):
+#   3 Chromium/Playwright peleando por el mismo agente de Drone saturaban el runner y Lighthouse
+#   medía la contención, no el sitio (TBT 69s / TTI 78s / CLS 0.57 sobre un dist/ que en local da
+#   TBT 0ms). Coste: ~1-2 min más de pipeline por push, a cambio de un gate con señal real.
 # (push-dev = step §7; deploy-dev = step §8; push-prod = step §9; deploy = step §10)
 #
 # build-once (SPEC-DEPLOY-002/RF-1):
@@ -140,7 +144,8 @@ steps:
   # ── 6. visual-test (design fidelity gate — SPEC-QA-001/RF-5) ────────────────
   # Bloqueante. Consume dist/ ya construido (playwright.config.ts webServer = 'node
   # dist/server/entry.mjs' cuando CI=true, sin rebuild).
-  # Corre en paralelo con a11y-test y perf-test (todos depends_on: [install-glibc]).
+  # Corre en paralelo con a11y-test (ambos depends_on: [install-glibc]); perf-test
+  # corre DESPUÉS, serializado, para no competir por CPU (prompt 62).
   - name: visual-test
     image: mcr.microsoft.com/playwright:v1.61.1-noble
     depends_on: [install-glibc]
@@ -158,7 +163,8 @@ steps:
       - pnpm --filter @solidgraph/web test:e2e
 
   # ── 6b. a11y gate (axe WCAG AA — SPEC-A11Y-001/RF-7, INV-1) ────────────────
-  # Corre en paralelo con visual-test (ambos depends_on: [install-glibc]).
+  # Corre en paralelo con visual-test (ambos depends_on: [install-glibc]); perf-test
+  # corre DESPUÉS, serializado, para no competir por CPU (prompt 62).
   # Consume dist/ ya construido; no reinstala ni reconstruye.
   - name: a11y-test
     image: mcr.microsoft.com/playwright:v1.61.1-noble
@@ -177,7 +183,16 @@ steps:
       - pnpm --filter @solidgraph/web exec playwright test tests/a11y/
 
   # ── 6c. perf-test (Lighthouse CI — SPEC-PERF-001/RF-1, SPEC-DEPLOY-002/RF-3) ─
-  # Perf sigue bloqueante pero ya NO serializa: corre en paralelo con visual y a11y.
+  # Perf sigue bloqueante pero ahora SERIALIZA: corre solo, después de visual-test
+  # y a11y-test (depends_on: [visual-test, a11y-test]), NO en paralelo con ellos
+  # (prompt 62 — revierte la elección original de este step).
+  # Motivo: con los tres corriendo a la vez, 3 Chromium/Playwright peleaban por el
+  # mismo agente de Drone y Lighthouse medía la contención del runner, no el sitio
+  # (TBT 69328ms/TTI 78551ms/CLS 0.57/LCP 3897 observados sobre un dist/ que en
+  # local da TBT 0ms/99·100·100·100, verificado incluso con `taskset -c 0`).
+  # Aislado, Lighthouse mide el sitio real. Coste asumido: ~1-2 min más de
+  # pipeline por push a cambio de un gate con señal real. No reconstruye: sigue
+  # consumiendo el dist/ de build-once (SPEC-DEPLOY-002/RF-1 intacto).
   # Solo en develop/main push (no en PRs — demasiado lento por commit en feature).
   # lhci levanta el servidor con `astro preview` que consume dist/ ya construido.
   #
@@ -187,7 +202,7 @@ steps:
   #   Con cron de Drone: `drone cron add solidgraph-webpage nightly-perf "@daily"`
   - name: perf-test
     image: mcr.microsoft.com/playwright:v1.61.1-noble
-    depends_on: [install-glibc]
+    depends_on: [visual-test, a11y-test]
     when:
       branch:
         - develop

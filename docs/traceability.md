@@ -131,16 +131,16 @@ File: `docs/specs/SPEC-DEPLOY-002.md`
 |-----|---------|-------|
 | RF-1 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:28, apps/web/src/__tests__/deploy-002.test.ts:29, apps/web/src/__tests__/deploy-002.test.ts:36, apps/web/src/__tests__/deploy-002.test.ts:40, apps/web/src/__tests__/deploy-002.test.ts:44, apps/web/src/__tests__/deploy-002.test.ts:48 |
 | RF-2 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:57, apps/web/src/__tests__/deploy-002.test.ts:58, apps/web/src/__tests__/deploy-002.test.ts:62, apps/web/src/__tests__/deploy-002.test.ts:67, apps/web/src/__tests__/deploy-002.test.ts:73 |
-| RF-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:81, apps/web/src/__tests__/deploy-002.test.ts:82, apps/web/src/__tests__/deploy-002.test.ts:87, apps/web/src/__tests__/deploy-002.test.ts:93 |
-| RF-4 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:101, apps/web/src/__tests__/deploy-002.test.ts:102, apps/web/src/__tests__/deploy-002.test.ts:107 |
-| RF-5 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:116, apps/web/src/__tests__/deploy-002.test.ts:117, apps/web/src/__tests__/deploy-002.test.ts:122 |
-| RF-6 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:130 |
-| RNF-1 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:139, apps/web/src/__tests__/deploy-002.test.ts:140, apps/web/src/__tests__/deploy-002.test.ts:144, apps/web/src/__tests__/deploy-002.test.ts:148 |
-| RNF-2 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:155, apps/web/src/__tests__/deploy-002.test.ts:156, apps/web/src/__tests__/deploy-002.test.ts:162 |
-| RNF-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:172 |
-| INV-1 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:181 |
-| INV-2 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:190 |
-| INV-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:203 |
+| RF-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:85, apps/web/src/__tests__/deploy-002.test.ts:86, apps/web/src/__tests__/deploy-002.test.ts:91, apps/web/src/__tests__/deploy-002.test.ts:97 |
+| RF-4 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:105, apps/web/src/__tests__/deploy-002.test.ts:106, apps/web/src/__tests__/deploy-002.test.ts:111 |
+| RF-5 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:120, apps/web/src/__tests__/deploy-002.test.ts:121, apps/web/src/__tests__/deploy-002.test.ts:126 |
+| RF-6 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:134 |
+| RNF-1 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:143, apps/web/src/__tests__/deploy-002.test.ts:144, apps/web/src/__tests__/deploy-002.test.ts:148, apps/web/src/__tests__/deploy-002.test.ts:152 |
+| RNF-2 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:159, apps/web/src/__tests__/deploy-002.test.ts:160, apps/web/src/__tests__/deploy-002.test.ts:166 |
+| RNF-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:179 |
+| INV-1 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:188 |
+| INV-2 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:197 |
+| INV-3 | ✅ | apps/web/src/__tests__/deploy-002.test.ts:210 |
 
 ## ✅ SPEC-DOCS-OKF-001 — Status: Implemented
 
@@ -260,8 +260,8 @@ File: `docs/specs/SPEC-PERF-001.md`
 | RF-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:110, apps/web/src/__tests__/perf-001.test.ts:111, apps/web/src/__tests__/perf-001.test.ts:117, apps/web/src/__tests__/perf-001.test.ts:122 |
 | RF-4 | ✅ | apps/web/src/__tests__/perf-001.test.ts:132, apps/web/src/__tests__/perf-001.test.ts:133, apps/web/src/__tests__/perf-001.test.ts:138, apps/web/src/__tests__/perf-001.test.ts:144 |
 | RF-5 | ✅ | apps/web/src/__tests__/perf-001.test.ts:152, apps/web/src/__tests__/perf-001.test.ts:153, apps/web/src/__tests__/perf-001.test.ts:158 |
-| RNF-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:218, apps/web/src/__tests__/perf-001.test.ts:219, apps/web/src/__tests__/perf-001.test.ts:229 |
-| RNF-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:242, apps/web/src/__tests__/perf-001.test.ts:243, apps/web/src/__tests__/perf-001.test.ts:248 |
+| RNF-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:218, apps/web/src/__tests__/perf-001.test.ts:224, apps/web/src/__tests__/perf-001.test.ts:232, apps/web/src/__tests__/perf-001.test.ts:240, apps/web/src/__tests__/perf-001.test.ts:250 |
+| RNF-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:263, apps/web/src/__tests__/perf-001.test.ts:264, apps/web/src/__tests__/perf-001.test.ts:269 |
 | INV-1 | ✅ | apps/web/src/__tests__/perf-001.test.ts:172, apps/web/src/__tests__/perf-001.test.ts:173, apps/web/src/__tests__/perf-001.test.ts:178 |
 | INV-2 | ✅ | apps/web/src/__tests__/perf-001.test.ts:189, apps/web/src/__tests__/perf-001.test.ts:190, apps/web/src/__tests__/perf-001.test.ts:202 |
 | INV-3 | ✅ | apps/web/src/__tests__/perf-001.test.ts:212 |

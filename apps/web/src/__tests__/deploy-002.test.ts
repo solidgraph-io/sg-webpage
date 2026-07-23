@@ -52,9 +52,9 @@ describe('[SPEC-DEPLOY-002/RF-1] pipeline has exactly one pnpm build', () => {
   });
 });
 
-// ── RF-2: gates en paralelo ───────────────────────────────────────────────────
+// ── RF-2: gates en paralelo (visual/a11y) ────────────────────────────────────
 
-describe('[SPEC-DEPLOY-002/RF-2] visual-test, a11y-test and perf-test run in parallel', () => {
+describe('[SPEC-DEPLOY-002/RF-2] visual-test and a11y-test run in parallel', () => {
   it('[SPEC-DEPLOY-002/RF-2] install-glibc step exists', () => {
     expect(drone()).toContain('- name: install-glibc\n');
   });
@@ -76,12 +76,16 @@ describe('[SPEC-DEPLOY-002/RF-2] visual-test, a11y-test and perf-test run in par
   });
 });
 
-// ── RF-3: perf fuera del camino crítico, pero bloqueante ─────────────────────
+// ── RF-3: perf serializado tras visual/a11y (prompt 62), sigue bloqueante ────
+// 3 Chromium/Playwright en paralelo (visual+a11y+perf) peleaban por el mismo
+// agente de Drone y Lighthouse medía la contención del runner, no el sitio
+// (TBT 69328ms sobre un dist/ que en local da TBT 0ms). perf-test ahora
+// depende de [visual-test, a11y-test]: corre solo, sin contención.
 
-describe('[SPEC-DEPLOY-002/RF-3] perf-test runs parallel with visual/a11y, still blocks deploy', () => {
-  it('[SPEC-DEPLOY-002/RF-3] perf-test depends on install-glibc (parallel)', () => {
+describe('[SPEC-DEPLOY-002/RF-3] perf-test serializes after visual/a11y, still blocks deploy', () => {
+  it('[SPEC-DEPLOY-002/RF-3] perf-test depends on visual-test and a11y-test (serialized, not parallel)', () => {
     const block = stepBlock('perf-test');
-    expect(block).toContain('depends_on: [install-glibc]');
+    expect(block).toContain('depends_on: [visual-test, a11y-test]');
   });
 
   it('[SPEC-DEPLOY-002/RF-3] perf-test only runs on develop/main push (still blocks prod)', () => {
@@ -150,20 +154,23 @@ describe('[SPEC-DEPLOY-002/RNF-1] all quality gates remain present', () => {
   });
 });
 
-// ── RNF-2: velocidad (parallelismo estructural) ───────────────────────────────
+// ── RNF-2: visual/a11y en paralelo; perf serializado a propósito (prompt 62) ──
 
-describe('[SPEC-DEPLOY-002/RNF-2] parallel gate structure reduces wall-clock', () => {
+describe('[SPEC-DEPLOY-002/RNF-2] visual/a11y stay parallel; perf trades wall-clock for signal', () => {
   it('[SPEC-DEPLOY-002/RNF-2] visual-test and a11y-test share the same depends_on (no serial chain)', () => {
     // Parallel: both wait for install-glibc, neither waits for the other.
     expect(stepBlock('visual-test')).toContain('depends_on: [install-glibc]');
     expect(stepBlock('a11y-test')).toContain('depends_on: [install-glibc]');
   });
 
-  it('[SPEC-DEPLOY-002/RNF-2] perf-test also depends on install-glibc (not a11y or visual)', () => {
+  it('[SPEC-DEPLOY-002/RNF-2] perf-test depends on visual-test AND a11y-test, not install-glibc directly', () => {
+    // Deliberately serial (prompt 62): 3 Chromium instances fighting for the
+    // same Drone agent made Lighthouse measure runner contention, not the
+    // site. perf-test now waits for both browser gates to finish first —
+    // ~1-2min more wall-clock per push, in exchange for a real signal.
     const block = stepBlock('perf-test');
-    expect(block).toContain('depends_on: [install-glibc]');
-    // perf no longer waits for visual-test (was serial before)
-    expect(block.slice(0, 150)).not.toContain('visual-test');
+    expect(block).toContain('depends_on: [visual-test, a11y-test]');
+    expect(block.slice(0, 150)).not.toContain('install-glibc');
   });
 });
 
