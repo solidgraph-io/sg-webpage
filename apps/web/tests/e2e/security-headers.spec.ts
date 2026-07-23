@@ -51,6 +51,80 @@ test('[SPEC-SEC-016/RF-1] /admin is exempt from the strict site CSP', async ({ p
   expect(res?.headers()['content-security-policy']).toBeUndefined();
 });
 
+// ── SPEC-SEC-017 round 2 ──────────────────────────────────────────────────────
+
+test('[SPEC-SEC-017/RF-1] a non-HTML response (robots.txt) still gets nosniff + Referrer-Policy', async ({
+  request,
+}) => {
+  const res = await request.get('/robots.txt');
+  const headers = res.headers();
+  expect(headers['x-content-type-options']).toBe('nosniff');
+  expect(headers['referrer-policy']).toBe('strict-origin-when-cross-origin');
+  // document-only headers must NOT leak onto a plain-text response
+  expect(headers['x-frame-options']).toBeUndefined();
+  expect(headers['cross-origin-opener-policy']).toBeUndefined();
+});
+
+test('[SPEC-SEC-017/RF-2][SPEC-SEC-017/INV-2] home carries COOP same-origin and never COEP', async ({
+  page,
+}) => {
+  const res = await page.goto('/');
+  const headers = res?.headers() ?? {};
+  expect(headers['cross-origin-opener-policy']).toBe('same-origin');
+  expect(headers['cross-origin-embedder-policy']).toBeUndefined();
+});
+
+test('[SPEC-SEC-017/RF-3] security.txt is RFC 9116-complete with Canonical', async ({
+  request,
+}) => {
+  const res = await request.get('/.well-known/security.txt');
+  const body = await res.text();
+  expect(body).toContain('Contact: mailto:andys@solidgraph.io');
+  expect(body).toContain('Canonical: https://solidgraph.io/.well-known/security.txt');
+  expect(body).toMatch(/^Expires:/m);
+});
+
+test('[SPEC-SEC-017/RF-4] /api/lead rejects a forged cross-origin Origin header', async ({
+  request,
+}) => {
+  const res = await request.post('/api/lead', {
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+      origin: 'https://evil.example',
+    },
+    data: {
+      first_name: 'Ana',
+      last_name: 'Gomez',
+      email: 'ana@example.com',
+      business_name: 'Ana Co',
+      city: 'Charlotte',
+    },
+  });
+  expect(res.status()).toBe(403);
+});
+
+test("[SPEC-SEC-017/RNF-1] Turnstile still loads and the form still submits end-to-end (COOP/nosniff don't break anything)", async ({
+  page,
+}) => {
+  await page.route('https://challenges.cloudflare.com/**', (route) =>
+    route.fulfill({ contentType: 'text/javascript', body: '/* stubbed */' }),
+  );
+  await page.route('**/api/lead', (route) =>
+    route.fulfill({ contentType: 'application/json', body: JSON.stringify({ ok: true }) }),
+  );
+  await page.goto('/');
+  const form = page.locator('.contact-form');
+  await expect(form).toBeVisible();
+  await page.locator('#first_name').fill('Ana');
+  await page.locator('#last_name').fill('Gomez');
+  await page.locator('#email').fill('ana@example.com');
+  await page.locator('#business_name').fill('Ana Co');
+  await page.locator('#city').selectOption({ label: 'Charlotte, NC' });
+  await page.locator('button[type="submit"]').click();
+  await expect(page.locator('#confirmCard')).toBeVisible();
+});
+
 test('[SPEC-SEC-016/RNF-1] interacting with the page produces zero CSP violations', async ({
   page,
 }) => {

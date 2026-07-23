@@ -114,6 +114,47 @@ corregir, es el trade-off del portfolio abierto. Lo único accionable:
 
 ---
 
+## Ronda 2 (segunda auditoría, B+) — infra
+
+Refinamientos de la 2ª auditoría. Los fixes de repo van en [SPEC-SEC-017](/specs/SPEC-SEC-017.md) + prompt 63;
+aquí solo lo de infra. (Numeración de la ronda 2: F-006/F-001/F-009.)
+
+### F-006 — Desactivar TLS 1.0 / 1.1 (Medium)
+
+**Cloudflare → SSL/TLS → Edge Certificates → Minimum TLS Version → `1.2`** (o `1.3` si ningún cliente legítimo
+necesita 1.2). Desactiva los protocolos obsoletos en el edge. Trivial y sin efectos secundarios para navegadores
+modernos.
+
+### F-001 — HSTS con max-age apto para preload
+
+En el mismo panel de HSTS (F-02 de la ronda 1): subir a **`max-age=31536000` (1 año) + `includeSubDomains` +
+`preload`**. Recuerda que **`preload` es difícil de revertir** (compromete todos los subdominios a HTTPS) → se
+activa **al lanzar prod**, no antes. Sin `preload`, un `max-age` de 1 año ya es buena higiene desde ahora.
+
+### F-009 — Registro CAA en DNS
+
+Añade un registro **CAA** en la zona autorizando solo a las CAs que emiten tus certificados. Con Cloudflare
+(certs gestionados) el conjunto habitual:
+
+```
+solidgraph.io.  CAA  0 issue "letsencrypt.org"
+solidgraph.io.  CAA  0 issue "pki.goog"
+solidgraph.io.  CAA  0 issue "ssl.com"
+solidgraph.io.  CAA  0 issuewild "letsencrypt.org"
+solidgraph.io.  CAA  0 iodef "mailto:andys@solidgraph.io"
+```
+
+Verifica en el dashboard de Cloudflare (SSL/TLS) qué CA emite tus certs actuales y ajusta la lista — un CAA que
+excluya tu CA real **bloquearía la renovación**. Cloudflare documenta el set exacto por tipo de certificado.
+
+### Aceptados con justificación (no se corrigen — ronda 2)
+
+- **F-008 (BREACH):** sin secreto reflejado en respuestas (no hay sesión/CSRF) → riesgo ~nulo.
+- **F-005 (`Server: cloudflare`):** lo pone el edge; en free no removible y solo revela el CDN → aceptado.
+- **F-003 (CORP) y F-002-COEP:** ver [SPEC-SEC-017](/specs/SPEC-SEC-017.md) (COEP rompería Turnstile).
+
+---
+
 ## Verificación (después de todo)
 
 1. **Cabeceras** — `curl -sI https://solidgraph.io | grep -iE 'content-security|x-frame|x-content-type|referrer|permissions|strict-transport'` → aparecen todas (HSTS incluida vía Cloudflare).
@@ -123,11 +164,16 @@ corregir, es el trade-off del portfolio abierto. Lo único accionable:
 5. **Staging cerrado** — abrir `sg-webpage.solidgraph.dev` en incógnito → pantalla de **Cloudflare Access** (no el sitio); `robots.txt` = `Disallow: /`.
 6. **`/admin`** — en incógnito → Access; autenticado → carga y el CMS funciona.
 7. **Repo** — sigue **público**; gitleaks/trufflehog sin hallazgos verificados (o secretos rotados); Secret scanning + Push protection + branch protection activos.
-8. **security.txt** — `https://solidgraph.io/.well-known/security.txt` responde con `Contact:` y `Expires:`.
+8. **security.txt** — `https://solidgraph.io/.well-known/security.txt` responde con `Contact:`, `Expires:` y `Canonical:`.
+9. **TLS (ronda 2)** — `curl -sv --tls-max 1.1 https://solidgraph.io 2>&1 | grep -i 'alert\|handshake'` → el handshake **falla** (1.0/1.1 desactivados); con TLS 1.2+ conecta normal.
+10. **CAA (ronda 2)** — `dig CAA solidgraph.io +short` → aparecen los registros y la renovación de certs sigue funcionando.
+11. **Headers en no-HTML (ronda 2)** — `curl -sI https://solidgraph.io/robots.txt | grep -i x-content-type-options` → `nosniff` presente en respuestas no-HTML.
+12. **/api/lead cross-origin (ronda 2)** — POST con `Origin: https://evil.example` → **403**; con el origen propio → normal.
 
 ## Notas
 
 - **Momento:** los pasos de Cloudflare Access/HSTS/WAF sobre `solidgraph.io` aplican **al publicar prod** (que aún
-  no se lanza). **F-01 (repo privado) hazlo ya**; el resto puedes prepararlo y activarlo en el lanzamiento. Access
-  sobre staging (`.dev`) sí conviene **ahora** (F-06).
-- **Email de `security.txt`:** confirma el buzón (p. ej. `security@solidgraph.io`) para que el prompt 60 lo use.
+  no se lanza). **F-01 (higiene de repo público) hazlo ya**; el resto puedes prepararlo y activarlo en el
+  lanzamiento. Access sobre staging (`.dev`) sí conviene **ahora** (F-06). TLS 1.2-min y CAA (ronda 2) puedes
+  hacerlos **ya** — no dependen del lanzamiento.
+- **Email de `security.txt`:** confirmado **`andys@solidgraph.io`** (SPEC-SEC-016/RF-5).

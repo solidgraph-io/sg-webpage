@@ -26,18 +26,27 @@ beforeEach(() => {
 // for the RNF-2 perf-regression guard (prompt 61).
 
 describe('[SPEC-SEC-016/RF-1] document responses carry the static security headers', () => {
-  it('[SPEC-SEC-016/RF-1] text/html response on a normal path gets all 4 headers', () => {
+  it('[SPEC-SEC-016/RF-1] text/html response on a normal path gets the full document header set', () => {
+    // SPEC-SEC-017/RF-2 (F-002) added Cross-Origin-Opener-Policy here.
     const headers = headersFor('/', 'text/html; charset=utf-8', undefined);
     expect(headers).toEqual({
       'X-Frame-Options': 'DENY',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      'Cross-Origin-Opener-Policy': 'same-origin',
     });
   });
 
-  it('[SPEC-SEC-016/RF-1] non-document responses (e.g. JSON) get no security headers', () => {
-    expect(headersFor('/api/lead', 'application/json', undefined)).toBeNull();
+  it('[SPEC-SEC-016/RF-1] non-document responses (e.g. JSON) get the universal headers only', () => {
+    // Extended by SPEC-SEC-017/RF-1 (F-007): nosniff + Referrer-Policy now
+    // apply everywhere non-exempt, not just HTML; see sec-017.test.ts for the
+    // full behavior (document-only headers absent, /admin still null).
+    const headers = headersFor('/api/lead', 'application/json', undefined);
+    expect(headers).toEqual({
+      'X-Content-Type-Options': 'nosniff',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+    });
   });
 
   it('[SPEC-SEC-016/RF-1] /admin never gets the strict site headers (Access-gated, CDN-loaded)', () => {

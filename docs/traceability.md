@@ -537,17 +537,34 @@ File: `docs/specs/SPEC-SEC-016.md`
 
 | Req | Covered | Tests |
 |-----|---------|-------|
-| RF-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:28, apps/web/src/__tests__/sec-016.test.ts:29, apps/web/src/__tests__/sec-016.test.ts:39, apps/web/src/__tests__/sec-016.test.ts:43, apps/web/src/__tests__/sec-016.test.ts:50, apps/web/src/__tests__/sec-016.test.ts:55, apps/web/src/__tests__/sec-016.test.ts:64, apps/web/src/__tests__/sec-016.test.ts:65, apps/web/src/__tests__/sec-016.test.ts:77, apps/web/src/__tests__/sec-016.test.ts:83, apps/web/src/__tests__/sec-016.test.ts:94, apps/web/src/__tests__/sec-016.test.ts:95, apps/web/src/__tests__/sec-016.test.ts:113, apps/web/src/__tests__/sec-016.test.ts:119, apps/web/src/__tests__/sec-016.test.ts:124, apps/web/tests/e2e/security-headers.spec.ts:15, apps/web/tests/e2e/security-headers.spec.ts:24, apps/web/tests/e2e/security-headers.spec.ts:49 |
-| RF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:177, apps/web/src/__tests__/sec-016.test.ts:178, apps/web/src/__tests__/sec-016.test.ts:198, apps/web/src/__tests__/sec-016.test.ts:222, apps/web/src/__tests__/sec-016.test.ts:238 |
-| RF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:247, apps/web/src/__tests__/sec-016.test.ts:248, apps/web/src/__tests__/sec-016.test.ts:262 |
-| RF-4 | ✅ | apps/web/src/__tests__/sec-016.test.ts:277, apps/web/src/__tests__/sec-016.test.ts:278, apps/web/src/__tests__/sec-016.test.ts:286, apps/web/src/__tests__/sec-016.test.ts:292, apps/web/src/__tests__/sec-016.test.ts:298 |
-| RF-5 | ✅ | apps/web/src/__tests__/sec-016.test.ts:307, apps/web/src/__tests__/sec-016.test.ts:308, apps/web/src/__tests__/sec-016.test.ts:314 |
-| RNF-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:161, apps/web/src/__tests__/sec-016.test.ts:162, apps/web/tests/e2e/security-headers.spec.ts:54 |
-| RNF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:133, apps/web/src/__tests__/sec-016.test.ts:134, apps/web/src/__tests__/sec-016.test.ts:147, apps/web/src/__tests__/sec-016.test.ts:153 |
-| RNF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:330, apps/web/src/__tests__/sec-016.test.ts:331, apps/web/src/__tests__/sec-016.test.ts:339 |
-| INV-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:64, apps/web/src/__tests__/sec-016.test.ts:70, apps/web/tests/e2e/security-headers.spec.ts:24 |
-| INV-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:198 |
-| INV-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:248 |
+| RF-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:28, apps/web/src/__tests__/sec-016.test.ts:29, apps/web/src/__tests__/sec-016.test.ts:41, apps/web/src/__tests__/sec-016.test.ts:52, apps/web/src/__tests__/sec-016.test.ts:59, apps/web/src/__tests__/sec-016.test.ts:64, apps/web/src/__tests__/sec-016.test.ts:73, apps/web/src/__tests__/sec-016.test.ts:74, apps/web/src/__tests__/sec-016.test.ts:86, apps/web/src/__tests__/sec-016.test.ts:92, apps/web/src/__tests__/sec-016.test.ts:103, apps/web/src/__tests__/sec-016.test.ts:104, apps/web/src/__tests__/sec-016.test.ts:122, apps/web/src/__tests__/sec-016.test.ts:128, apps/web/src/__tests__/sec-016.test.ts:133, apps/web/tests/e2e/security-headers.spec.ts:15, apps/web/tests/e2e/security-headers.spec.ts:24, apps/web/tests/e2e/security-headers.spec.ts:49 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:186, apps/web/src/__tests__/sec-016.test.ts:187, apps/web/src/__tests__/sec-016.test.ts:207, apps/web/src/__tests__/sec-016.test.ts:231, apps/web/src/__tests__/sec-016.test.ts:247 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:256, apps/web/src/__tests__/sec-016.test.ts:257, apps/web/src/__tests__/sec-016.test.ts:271 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-016.test.ts:286, apps/web/src/__tests__/sec-016.test.ts:287, apps/web/src/__tests__/sec-016.test.ts:295, apps/web/src/__tests__/sec-016.test.ts:301, apps/web/src/__tests__/sec-016.test.ts:307 |
+| RF-5 | ✅ | apps/web/src/__tests__/sec-016.test.ts:316, apps/web/src/__tests__/sec-016.test.ts:317, apps/web/src/__tests__/sec-016.test.ts:323 |
+| RNF-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:170, apps/web/src/__tests__/sec-016.test.ts:171, apps/web/tests/e2e/security-headers.spec.ts:122 |
+| RNF-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:142, apps/web/src/__tests__/sec-016.test.ts:143, apps/web/src/__tests__/sec-016.test.ts:156, apps/web/src/__tests__/sec-016.test.ts:162 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:339, apps/web/src/__tests__/sec-016.test.ts:340, apps/web/src/__tests__/sec-016.test.ts:348 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-016.test.ts:73, apps/web/src/__tests__/sec-016.test.ts:79, apps/web/tests/e2e/security-headers.spec.ts:24 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-016.test.ts:207 |
+| INV-3 | ✅ | apps/web/src/__tests__/sec-016.test.ts:257 |
+
+## ✅ SPEC-SEC-017 — Status: Approved
+
+File: `docs/specs/SPEC-SEC-017.md`
+
+| Req | Covered | Tests |
+|-----|---------|-------|
+| RF-1 | ✅ | apps/web/src/__tests__/sec-017.test.ts:20, apps/web/src/__tests__/sec-017.test.ts:21, apps/web/src/__tests__/sec-017.test.ts:28, apps/web/src/__tests__/sec-017.test.ts:35, apps/web/src/__tests__/sec-017.test.ts:41, apps/web/src/__tests__/sec-017.test.ts:52, apps/web/tests/e2e/security-headers.spec.ts:56 |
+| RF-2 | ✅ | apps/web/src/__tests__/sec-017.test.ts:61, apps/web/src/__tests__/sec-017.test.ts:62, apps/web/src/__tests__/sec-017.test.ts:67, apps/web/tests/e2e/security-headers.spec.ts:68 |
+| RF-3 | ✅ | apps/web/src/__tests__/sec-017.test.ts:86, apps/web/src/__tests__/sec-017.test.ts:87, apps/web/tests/e2e/security-headers.spec.ts:77 |
+| RF-4 | ✅ | apps/web/src/__tests__/sec-017.test.ts:103, apps/web/src/__tests__/sec-017.test.ts:112, apps/web/src/__tests__/sec-017.test.ts:132, apps/web/src/__tests__/sec-017.test.ts:145, apps/web/src/__tests__/sec-017.test.ts:163, apps/web/src/__tests__/sec-017.test.ts:181, apps/web/src/__tests__/sec-017.test.ts:197, apps/web/src/__tests__/sec-017.test.ts:211, apps/web/tests/e2e/security-headers.spec.ts:85 |
+| RNF-1 | ✅ | apps/web/tests/e2e/security-headers.spec.ts:101 |
+| RNF-2 | ✅ | apps/web/src/__tests__/sec-017.test.ts:224, apps/web/src/__tests__/sec-017.test.ts:225 |
+| RNF-3 | ✅ | apps/web/src/__tests__/sec-017.test.ts:234, apps/web/src/__tests__/sec-017.test.ts:235, apps/web/src/__tests__/sec-017.test.ts:241 |
+| INV-1 | ✅ | apps/web/src/__tests__/sec-017.test.ts:21 |
+| INV-2 | ✅ | apps/web/src/__tests__/sec-017.test.ts:67, apps/web/src/__tests__/sec-017.test.ts:76, apps/web/tests/e2e/security-headers.spec.ts:68 |
+| INV-3 | ✅ | apps/web/src/__tests__/sec-017.test.ts:224, apps/web/src/__tests__/sec-017.test.ts:225 |
 
 ## ✅ SPEC-SEO-001 — Status: Implemented
 
@@ -569,4 +586,4 @@ File: `docs/specs/SPEC-SEO-001.md`
 | INV-3 | ✅ | apps/web/src/__tests__/seo-001.test.ts:284, apps/web/src/__tests__/seo-001.test.ts:288 |
 
 ---
-_Total specs: 31 | Uncovered reqs in Approved specs: 0_
+_Total specs: 32 | Uncovered reqs in Approved specs: 0_

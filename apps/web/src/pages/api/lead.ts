@@ -13,6 +13,18 @@ export async function handleLead(
 ): Promise<Response> {
   const isJson = (request.headers.get('accept') ?? '').includes('application/json');
 
+  // SPEC-SEC-017/RF-4 (F-010): cheap anti-CSRF, ahead of rate-limit/Turnstile
+  // so cross-origin noise is cut early. No CSRF token/session — nothing
+  // stateful to protect; this is defense-in-depth alongside Turnstile.
+  // Origin/Referer both absent → allow: browsers issuing a cross-site
+  // request always send at least one of these, so absence signals a
+  // non-browser client, not the CSRF threat model.
+  if (isCrossOrigin(request)) {
+    const msg = 'Cross-origin request rejected';
+    if (isJson) return json({ error: msg }, 403);
+    return redirect(request, '/?contact=error');
+  }
+
   // SPEC-SEC-016/RF-2 (F-03): CF-Connecting-IP first (set by Cloudflare's edge,
   // not client-suppliable), then X-Real-IP, then the LAST X-Forwarded-For hop
   // (the first is client-controlled and trivially spoofable — INV-2).
@@ -115,4 +127,48 @@ function json(body: unknown, status: number): Response {
 function redirect(request: Request, path: string): Response {
   const base = new URL(request.url).origin;
   return Response.redirect(base + path, 303);
+}
+
+/** Host from the Origin header, falling back to Referer's host. Null if neither is present/parseable. */
+function requestHost(request: Request): string | null {
+  const origin = request.headers.get('origin');
+  if (origin) {
+    try {
+      return new URL(origin).host;
+    } catch {
+      return null;
+    }
+  }
+  const referer = request.headers.get('referer');
+  if (!referer) return null;
+  try {
+    return new URL(referer).host;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * SPEC-SEC-017/RF-4 (F-010): true only when Origin/Referer is present AND its
+ * host differs from the request's own. "Own host" prefers X-Forwarded-Host
+ * (Cloudflare/Traefik in prod), then the Host header, and only as a last
+ * resort `new URL(request.url).host`. That ordering matters: @astrojs/node's
+ * standalone adapter normalizes request.url's origin to a fixed
+ * `http://localhost` regardless of the actual bound host or the client's real
+ * target (confirmed empirically — using request.url as the primary source
+ * rejected every legitimate same-origin request in a real run). Host is what
+ * the client actually connected to and is the standard basis for
+ * Origin-based CSRF checks (OWASP); request.url only stays as a fallback for
+ * synthetic Request objects in tests, which don't carry a Host header at all.
+ * Scheme-agnostic on purpose: an http-vs-https mismatch on the SAME host is
+ * not the CSRF threat model.
+ */
+function isCrossOrigin(request: Request): boolean {
+  const originHost = requestHost(request);
+  if (!originHost) return false;
+  const ownHost =
+    request.headers.get('x-forwarded-host') ??
+    request.headers.get('host') ??
+    new URL(request.url).host;
+  return originHost !== ownHost;
 }

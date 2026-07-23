@@ -9,14 +9,30 @@
  * from an earlier version that read+hashed the response body per request).
  */
 
-export const STATIC_SECURITY_HEADERS: Record<string, string> = {
-  'X-Frame-Options': 'DENY',
+/**
+ * SPEC-SEC-017/RF-1 (F-007) — these two apply to EVERY non-exempt response,
+ * not just HTML documents (JSON, assets, robots.txt, security.txt, /stats/*).
+ */
+export const UNIVERSAL_HEADERS: Record<string, string> = {
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
 };
 
-/** /admin is Access-gated and CDN-loaded — never gets the strict site CSP. */
+/**
+ * Document-only (text/html): clickjacking/feature/opener protections that
+ * only make sense for a rendered page. SPEC-SEC-017/RF-2 (F-002) adds COOP
+ * here — deliberately WITHOUT Cross-Origin-Embedder-Policy (INV-2): COEP
+ * `require-corp` would break the Turnstile iframe (challenges.cloudflare.com)
+ * and any cross-origin resource lacking CORP, for a benefit (SharedArrayBuffer/
+ * high-res timers) this site doesn't use. Do not "fix" this by adding COEP.
+ */
+export const DOCUMENT_ONLY_HEADERS: Record<string, string> = {
+  'X-Frame-Options': 'DENY',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+};
+
+/** /admin is Access-gated and CDN-loaded — never gets any of these headers. */
 export function isExemptPath(pathname: string): boolean {
   return pathname.startsWith('/admin');
 }
@@ -44,9 +60,11 @@ export function stripStyleHashesFromCsp(csp: string): string {
 
 /**
  * Pure decision of which (non-CSP) headers to apply, given the request path,
- * the response's content-type, and the runtime SITE_ENV. Returns null when no
- * headers should be added (non-document response, or an exempt path). O(1) —
- * no body access, no regex over HTML, no hashing (RNF-2).
+ * the response's content-type, and the runtime SITE_ENV. Returns null only
+ * for exempt paths (/admin) — every other response gets at least
+ * UNIVERSAL_HEADERS (SPEC-SEC-017/RF-1); text/html documents additionally get
+ * DOCUMENT_ONLY_HEADERS. O(1) — no body access, no regex over HTML, no
+ * hashing (RNF-2).
  */
 export function headersFor(
   pathname: string,
@@ -54,11 +72,13 @@ export function headersFor(
   siteEnv: string | undefined,
 ): Record<string, string> | null {
   if (isExemptPath(pathname)) return null;
-  if (!(contentType ?? '').includes('text/html')) return null;
 
-  const headers = { ...STATIC_SECURITY_HEADERS };
-  if (siteEnv === 'staging') {
-    headers['X-Robots-Tag'] = 'noindex, nofollow';
+  const headers = { ...UNIVERSAL_HEADERS };
+  if ((contentType ?? '').includes('text/html')) {
+    Object.assign(headers, DOCUMENT_ONLY_HEADERS);
+    if (siteEnv === 'staging') {
+      headers['X-Robots-Tag'] = 'noindex, nofollow';
+    }
   }
   return headers;
 }
