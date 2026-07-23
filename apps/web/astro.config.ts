@@ -38,6 +38,9 @@ export default defineConfig({
         access: 'secret',
         optional: true,
       }),
+      // SPEC-SEC-016/RF-4 — 'staging' env-gates noindex (robots.txt, X-Robots-Tag,
+      // <meta robots>) without a separate build-time flag; same runtime pattern.
+      SITE_ENV: envField.string({ context: 'server', access: 'secret', optional: true }),
     },
   },
   vite: {

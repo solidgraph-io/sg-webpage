@@ -31,5 +31,6 @@
 * [SPEC-SEC-013 — Sección 13: Contact (UI del formulario)](SPEC-SEC-013.md) - "Get a Free Quote": sección clara con formulario + info de contacto.
 * [SPEC-SEC-014 — Sección 14: Footer](SPEC-SEC-014.md) - Pie oscuro (--night-2) con marca, columnas de enlaces, barra legal y watermark gigante.
 * [SPEC-SEC-015 — Ensamblado: index + `<head>`/SEO base + fidelidad de página completa](SPEC-SEC-015.md) - Las 14 secciones están construidas y verificadas por separado.
+* [SPEC-SEC-016 — Endurecimiento de seguridad (remediación auditoría PT-2026-002, parte de repo)](SPEC-SEC-016.md) - Fixes de código de la auditoría PT-2026-002: cabeceras de seguridad por middleware (F-02), IP de rate-limit desde CF-Connecting-IP (F-03), 400 controlado ante JSON malformado (F-05), noindex de staging env-gated (F-06) y /.well-known/security.txt. Los hallazgos de infra (F-01/04/07) van en el runbook.
 * [SPEC-SEO-001 — SEO de lanzamiento: metadatos, OG, JSON-LD, sitemap, robots](SPEC-SEO-001.md) - La home ya tiene SEO base (title/description en BaseLayout).
 * [SPEC-<DOMINIO>-<NNN> — <título>](SPEC-TEMPLATE.md) - Qué debe lograr, en una frase.

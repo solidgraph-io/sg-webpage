@@ -13,9 +13,13 @@ export async function handleLead(
 ): Promise<Response> {
   const isJson = (request.headers.get('accept') ?? '').includes('application/json');
 
+  // SPEC-SEC-016/RF-2 (F-03): CF-Connecting-IP first (set by Cloudflare's edge,
+  // not client-suppliable), then X-Real-IP, then the LAST X-Forwarded-For hop
+  // (the first is client-controlled and trivially spoofable — INV-2).
   const ip =
-    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('cf-connecting-ip') ??
     request.headers.get('x-real-ip') ??
+    request.headers.get('x-forwarded-for')?.split(',').pop()?.trim() ??
     'unknown';
 
   if (!checkRateLimit(ip).ok) {
@@ -27,7 +31,14 @@ export async function handleLead(
   let data: Record<string, unknown>;
   const ct = request.headers.get('content-type') ?? '';
   if (ct.includes('application/json')) {
-    data = (await request.json()) as Record<string, unknown>;
+    // SPEC-SEC-016/RF-3 (F-05): malformed body → 400, never an uncaught 500.
+    try {
+      data = (await request.json()) as Record<string, unknown>;
+    } catch {
+      const msg = 'Invalid request body';
+      if (isJson) return json({ error: msg }, 400);
+      return redirect(request, '/?contact=error');
+    }
   } else {
     const form = await request.formData();
     const pairs: Array<[string, unknown]> = [];

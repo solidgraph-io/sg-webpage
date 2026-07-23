@@ -199,9 +199,13 @@ describe('SPEC-DS-001/RF-5 — interactions JS', () => {
 
 // ── RF-6: progressive enhancement ─────────────────────────────────────────
 describe('SPEC-DS-001/RF-6 — progressive enhancement', () => {
-  it('[SPEC-DS-001/RF-6] BaseLayout has inline .js class snippet in <head>', () => {
+  it('[SPEC-DS-001/RF-6] BaseLayout loads the .js class snippet in <head> before first paint', () => {
+    // External since SPEC-SEC-016/INV-1 (CSP script-src has no unsafe-inline):
+    // same synchronous, blocking, before-first-paint timing as an inline script.
     const layout = fs.readFileSync(path.join(WEB, 'src/layouts/BaseLayout.astro'), 'utf-8');
-    expect(layout).toContain("classList.add('js')");
+    expect(layout).toContain('src="/enable-js.js"');
+    const snippet = fs.readFileSync(path.join(WEB, 'public/enable-js.js'), 'utf-8');
+    expect(snippet).toContain("classList.add('js')");
   });
 
   it('[SPEC-DS-001/RF-6] animations.css scopes reveal hide under .js (PE)', () => {

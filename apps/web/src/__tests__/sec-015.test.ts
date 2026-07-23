@@ -100,7 +100,9 @@ describe('SPEC-SEC-015/RF-5 — interactions.js progressive enhancement', () => 
   });
 
   it('[SPEC-SEC-015/RF-5] BaseLayout adds .js class before first paint', () => {
-    expect(fs.readFileSync(layout, 'utf-8')).toContain("classList.add('js')");
+    // External file (SPEC-SEC-016/INV-1: CSP script-src has no unsafe-inline);
+    // same blocking, before-first-paint timing as the inline script it replaced.
+    expect(fs.readFileSync(layout, 'utf-8')).toContain('src="/enable-js.js"');
   });
 });
 

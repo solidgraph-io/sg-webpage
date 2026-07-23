@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { getEntry } from 'astro:content';
 import { buildLocalBusinessJsonLd } from '../lib/seo';
 import Analytics from '../components/Analytics.astro';
+import { SITE_ENV } from 'astro:env/server';
+import { isStagingNoIndex } from '../lib/site-env';
 
 interface Props {
   title: string;
@@ -21,8 +23,8 @@ const jsonLd = sd ? buildLocalBusinessJsonLd(sd) : null;
 // Canonical: prop overrides, then site URL, then nothing
 const resolvedCanonical = canonical ?? sd?.url ?? '';
 const resolvedOgImage = ogImage ?? sd?.defaultSeo.ogImage;
-// noIndex: prop OR PUBLIC_NOINDEX env flag (staging environments)
-const isNoIndex = noIndex || import.meta.env.PUBLIC_NOINDEX === 'true';
+// noIndex: prop OR staging (SITE_ENV runtime / legacy PUBLIC_NOINDEX build flag)
+const isNoIndex = noIndex || isStagingNoIndex(SITE_ENV, import.meta.env.PUBLIC_NOINDEX);
 ---
 
 <!doctype html>
@@ -63,10 +65,11 @@ const isNoIndex = noIndex || import.meta.env.PUBLIC_NOINDEX === 'true';
     <!-- Umami analytics: same-origin, async/defer, no-op without env (SPEC-ANALYTICS-001) -->
     <Analytics />
 
-    <!-- Progressive enhancement: add .js before first paint so reveal CSS activates -->
-    <script is:inline>
-      document.documentElement.classList.add('js');
-    </script>
+    <!-- Progressive enhancement: add .js before first paint so reveal CSS
+         activates. External (not is:inline text) so CSP's script-src can stay
+         'self' with no unsafe-inline / hash (SPEC-SEC-016/INV-1) — same
+         blocking, synchronous-before-first-paint timing as an inline script. -->
+    <script is:inline src="/enable-js.js"></script>
   </head>
   <body>
     <!-- Skip-link: first tab stop, off-screen until focused (SPEC-A11Y-001/RF-2) -->
