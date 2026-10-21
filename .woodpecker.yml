@@ -1,0 +1,5 @@
+steps:
+  hello:
+    image: alpine:3.20
+    commands:
+      - echo "Woodpecker works"
